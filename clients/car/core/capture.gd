@@ -81,6 +81,15 @@ func _process(delta: float) -> void:
 		"run":
 			_autopilot(main)
 			_sample_run(main.world, frame_seconds)
+			if "--probe" in Settings.args():
+				_probe(main)
+			var limit = float(_arg("run-seconds", "0"))
+			if limit > 0.0 and _phase_t > limit:
+				_report_run()
+				Net.leave()
+				_quit_after = 1.0
+				_go("done")
+				return
 			if _phase_t > 5.0:
 				_shot("04-run")
 			if _phase_t > 9.0:
@@ -121,6 +130,71 @@ func _process(delta: float) -> void:
 		_quit_after -= delta
 		if _quit_after <= 0.0 and "--exit-when-done" in Settings.args():
 			get_tree().quit()
+
+
+var _run_fps = []
+var _probe_i = -1
+var _probe_frames = 0
+var _probe_t0 = 0
+const PROBES = ["base", "no_post", "no_weather", "no_hud", "no_3d", "no_world_proc", "no_hud_proc", "base2"]
+
+
+## --probe: toggle one subsystem at a time for 5 s and log the frame rate.
+func _probe(main: Node) -> void:
+	var w = main.world
+	if w == null or not w.ready_to_play:
+		return
+	var slot = int(floor((_phase_t - 3.0) / 5.0))
+	if slot < 0:
+		return
+	_probe_frames += 1
+	if slot != _probe_i:
+		if _probe_i >= 0 and _probe_i < PROBES.size():
+			var dt = (OS.get_ticks_msec() - _probe_t0) / 1000.0
+			print("PROBE %s fps=%.1f" % [PROBES[_probe_i], (_probe_frames - 1) / max(dt, 0.001)])
+			_probe_set(main, PROBES[_probe_i], false)
+		_probe_i = slot
+		_probe_frames = 0
+		_probe_t0 = OS.get_ticks_msec() + 1000  # 1 s settle, frames counted after
+		if slot < PROBES.size():
+			_probe_set(main, PROBES[slot], true)
+	if OS.get_ticks_msec() < _probe_t0:
+		_probe_frames = 0
+
+
+func _probe_set(main: Node, name: String, on: bool) -> void:
+	var w = main.world
+	match name:
+		"no_post":
+			w.display.material = null if on else (w._post_retro if Settings.retro_enabled else w._post_clean)
+		"no_weather":
+			w.weather.visible = not on
+		"no_hud":
+			main.hud.visible = not on
+		"no_3d":
+			w.viewport.render_target_update_mode = Viewport.UPDATE_DISABLED if on else Viewport.UPDATE_ALWAYS
+		"no_world_proc":
+			w.set_process(not on)
+		"no_hud_proc":
+			main.hud.set_process(not on)
+
+
+## Per-second run frame rates (after a 3 s settle) for car perf comparisons.
+func _report_run() -> void:
+	var xs = []
+	for row in _fps_log:
+		if row[0] == "run":
+			xs.append(row[1])
+	if xs.size() > 3:
+		xs = xs.slice(3, xs.size() - 1)
+	if xs.empty():
+		return
+	var lo = 999.0
+	var sum = 0.0
+	for x in xs:
+		lo = min(lo, x)
+		sum += x
+	print("CAPTURE run_fps map=%s avg=%.1f min=%.1f samples=%d" % [_arg("map", "pinecrest"), sum / xs.size(), lo, xs.size()])
 
 
 func _arg(name: String, fallback: String) -> String:

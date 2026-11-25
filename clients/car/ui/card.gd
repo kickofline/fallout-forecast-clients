@@ -6,6 +6,7 @@ var _title = ""
 var _detail = ""
 var _t = 0.0
 var _dots: Label
+var provider: Object                 # optional: provider.load_text() replaces the dots
 
 
 func setup(kicker: String, title: String, detail := "") -> void:
@@ -48,7 +49,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_t += delta
 	var n = int(_t * 3.0) % 4
-	_dots.text = ["SEARCHING   ", "SEARCHING.  ", "SEARCHING.. ", "SEARCHING..."][n]
+	var text = ""
+	if provider and is_instance_valid(provider) and provider.has_method("load_text"):
+		text = provider.load_text()
+	_dots.text = text if not text.empty() else ["SEARCHING   ", "SEARCHING.  ", "SEARCHING.. ", "SEARCHING..."][n]
 
 
 func _on_cancel() -> void:

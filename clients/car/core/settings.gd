@@ -119,3 +119,9 @@ func apply_cmdline() -> void:
 			retro_enabled = true
 		elif a.begins_with("--scale="):
 			render_scale = float(a.substr(8))
+		elif a.begins_with("--lines="):
+			retro_lines = int(a.substr(8))
+		elif a.begins_with("--detail="):
+			map_detail = int(a.substr(9))
+		elif a.begins_with("--particles="):
+			particle_density = float(a.substr(12))

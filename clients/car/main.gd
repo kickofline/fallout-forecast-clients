@@ -197,15 +197,23 @@ func _set_screen(kind: String) -> void:
 			var map_name = _map_name(_pending_map if not _pending_map.empty() else Net.current_map)
 			_screen = Card.new()
 			_screen.setup("TUNING IN", map_name.to_upper(), Net.status_msg)
+			_screen.provider = self
 		"joining":
 			_screen = Card.new()
 			_screen.setup("JOINING", "CLOUD PLAY", Net.status_msg if not Net.status_msg.empty() else "CONNECTING TO THE STORM")
 		"retuning":
 			_screen = Card.new()
 			_screen.setup("SIGNAL LOST", "RETUNING", Net.last_error)
+
 	if _screen:
 		_screen.set_anchors_and_margins_preset(Control.PRESET_WIDE)
 		_screen_root.add_child(_screen)
+
+
+func load_text() -> String:
+	if world and is_instance_valid(world):
+		return world.load_text()
+	return "LOADING MAP" if _load_wait > 0 else ""
 
 
 func _map_name(id: String) -> String:

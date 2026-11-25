@@ -86,6 +86,33 @@ func load_texture(rel) -> Texture:
 
 
 # ------------------------------------------------------------------ maps
+## [variant, res path] for a map. detail: 0 low, 1 full, 2 auto. Auto picks
+## the chunked export (frustum-cullable grid cells) when one exists, then the
+## low-detail merge on Android, then the full merge.
+func map_variant(id: String, detail: int) -> Array:
+	var e = entry("maps", id)
+	var order = []
+	match detail:
+		0:
+			order = ["chunked_glb", "low_glb", "glb"]
+		1:
+			order = ["glb", "chunked_glb"]
+		_:
+			order = ["chunked_glb", "low_glb", "glb"] if OS.get_name() == "Android" else ["chunked_glb", "glb"]
+	for key in order:
+		if e.get(key) is String and ResourceLoader.exists(path(e[key])):
+			return [key.replace("_glb", "").replace("glb", "full"), path(e[key])]
+	return ["placeholder", ""]
+
+
+func is_cached(p: String) -> bool:
+	return _cache.has(p) and _cache[p] != null
+
+
+func store_scene(p: String, res) -> void:
+	_cache[p] = res as PackedScene
+
+
 func map_scene(id: String, low := false) -> PackedScene:
 	var e = entry("maps", id)
 	if low and e.get("low_glb") is String:

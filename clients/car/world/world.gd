@@ -85,6 +85,15 @@ var _warm: Spatial
 var _warm_frames = 0
 var _initial_snapshot_frames = 2
 
+# Incremental map load (ResourceInteractiveLoader stepped each frame).
+var loading = false
+var load_progress = 0.0
+var _loader: ResourceInteractiveLoader
+var _load_path = ""
+var _load_variant = ""
+var _load_t0 = 0
+var _load_ms = {}
+
 
 func _ready() -> void:
 	viewport.usage = Viewport.USAGE_3D_NO_EFFECTS
@@ -155,16 +164,67 @@ func resize() -> void:
 
 
 # ------------------------------------------------------------------ map
+## Starts an incremental load: the scene resource is read a few stages per
+## frame (so the loading card animates and Net keeps up); _finish_load()
+## instances it once complete.
 func load_map(id: String) -> void:
 	map_id = id
-	var low = Settings.map_detail == 0 or (Settings.map_detail == 2 and OS.get_name() == "Android")
-	var packed = Assets.map_scene(id, low)
+	loading = true
+	load_progress = 0.0
+	_load_t0 = OS.get_ticks_msec()
+	var pick = Assets.map_variant(id, Settings.map_detail)
+	_load_variant = pick[0]
+	_load_path = pick[1]
+	if not _load_path.empty() and not Assets.is_cached(_load_path) and ResourceLoader.exists(_load_path):
+		_loader = ResourceLoader.load_interactive(_load_path)
+	print("LOAD start map=%s variant=%s path=%s cached=%s" % [id, _load_variant, _load_path, str(Assets.is_cached(_load_path))])
+
+
+func _step_load() -> void:
+	if _loader:
+		var budget_end = OS.get_ticks_msec() + 35
+		while OS.get_ticks_msec() < budget_end:
+			var err = _loader.poll()
+			if err == ERR_FILE_EOF:
+				Assets.store_scene(_load_path, _loader.get_resource())
+				_loader = null
+				break
+			elif err != OK:
+				print("LOAD error %d reading %s" % [err, _load_path])
+				_loader = null
+				break
+		if _loader:
+			load_progress = float(_loader.get_stage()) / float(max(1, _loader.get_stage_count()))
+			return
+		_load_ms["read"] = OS.get_ticks_msec() - _load_t0
+	load_progress = 1.0
+	_finish_load()
+
+
+func load_text() -> String:
+	if loading:
+		return "LOADING MAP  %d%%" % int(load_progress * 100.0)
+	if not ready_to_play:
+		return "WARMING UP" if _warm_frames > 0 or not look_ready else "TUNING"
+	return ""
+
+
+func _finish_load() -> void:
+	loading = false
+	var t = OS.get_ticks_msec()
+	var packed = Assets.load_scene(_load_path) if not _load_path.empty() else null
 	if packed:
 		level = packed.instance()
 	else:
 		level = _placeholder_level()
 	scene.add_child(level)
+	_load_ms["instance"] = OS.get_ticks_msec() - t
+	t = OS.get_ticks_msec()
 	RetroMat.prepare(level)
+	_load_ms["prepare"] = OS.get_ticks_msec() - t
+	t = OS.get_ticks_msec()
+	_setup_culling()
+	var id = map_id
 	weather.setup(id, Assets.map_environment(id), _world_env)
 	var side = Assets.map_sidecar(id)
 	var cells = Assets.prop_scene("decon_shower_cells")
@@ -183,7 +243,16 @@ func load_map(id: String) -> void:
 	Sound.attach_world(scene)
 	Sound.music("forecast_theme")
 	_warmup()
+	_load_ms["extras"] = OS.get_ticks_msec() - t
+	_load_ms["t_warm"] = OS.get_ticks_msec()
 	VisualServer.connect("frame_post_draw", self, "_on_loading_frame")
+
+
+## Chunked maps: cells are separate MeshInstances, so Godot's per-instance
+## frustum culling works; clip them at the fog distance.
+func _setup_culling() -> void:
+	if "--hide-level" in Settings.args():
+		level.visible = false
 
 
 ## Merge the enemy rigs and draw the warm-up instances behind the loading
@@ -220,6 +289,12 @@ func _on_loading_frame() -> void:
 	if _initial_snapshot_frames == 0:
 		VisualServer.disconnect("frame_post_draw", self, "_on_loading_frame")
 		ready_to_play = true
+		# Open Protocol (2026-11-25): full snapshot rate from here on.
+		Net.send({"t": "loaded"})
+		print("LOAD done map=%s variant=%s read=%dms instance=%dms prepare=%dms extras=%dms warm+first_draw=%dms total=%dms" % [
+			map_id, _load_variant, int(_load_ms.get("read", 0)), int(_load_ms.get("instance", 0)),
+			int(_load_ms.get("prepare", 0)), int(_load_ms.get("extras", 0)),
+			OS.get_ticks_msec() - int(_load_ms.get("t_warm", OS.get_ticks_msec())), OS.get_ticks_msec() - _load_t0])
 		get_parent().call_deferred("world_ready")
 
 
@@ -581,6 +656,9 @@ func current_slot() -> Dictionary:
 
 func _process(delta: float) -> void:
 	_anim_time += delta
+	if loading:
+		_step_load()
+		return
 	if level == null:
 		return
 	_sync_entities()

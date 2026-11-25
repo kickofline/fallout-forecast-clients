@@ -440,7 +440,7 @@ func _process(delta: float) -> void:
 		_draft_left = max(0.0, _draft_left - delta)
 	var lost = Net.phase == "retuning"
 	if lost and (_signal == null or not is_instance_valid(_signal)):
-		_signal = UI.label("SIGNAL LOST  ·  RETUNING", 40, UI.PINK, 2)
+		_signal = UI.label("SIGNAL LOST  ·  RETUNING  ·  " + Net.last_error, 40, UI.PINK, 2)
 		UI.place(_signal, 0.5, 0.5, -250, -160)
 		_root.add_child(_signal)
 	elif not lost and _signal and is_instance_valid(_signal):
