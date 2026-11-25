@@ -126,7 +126,7 @@ Thin player snapshots to render teammates.
 ## 7. Exported asset pack
 
 The exported client assets are in the private repository
-`kickofline/fallout-forecast-car`. With repository access, start at
+`kickofline/fallout-forecast-clients`. With repository access, start at
 `assets/manifest.json`. It indexes the maps by protocol map id and the
 enemies, weapons, projectiles, props, player rigs, UI, fonts and audio.
 Paths in the manifest are relative to `assets/`. A map entry points to its

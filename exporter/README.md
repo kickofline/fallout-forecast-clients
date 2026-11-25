@@ -16,15 +16,15 @@ C:/Users/drewd/Desktop/Godot_v4.7.2-stable_win64_console.exe `
   --headless `
   --path "C:/Users/drewd/OneDrive - Ouachita Baptist University/CSCI 3103 VIDEO GAME DEVT/fallout-forecast" `
   --audio-driver Dummy `
-  -s "C:/Users/drewd/fallout-forecast-car/exporter/export_all.gd" `
-  -- --out=C:/Users/drewd/fallout-forecast-car/assets
+  -s "C:/Users/drewd/fallout-forecast-clients/exporter/export_all.gd" `
+  -- --out=C:/Users/drewd/fallout-forecast-clients/assets
 ```
 
 ### CLI Options
 
 Pass after `--`:
 
-- `--out=<dir>` — Output directory (default: `C:/Users/drewd/fallout-forecast-car/assets`)
+- `--out=<dir>` — Output directory (default: `C:/Users/drewd/fallout-forecast-clients/assets`)
 - `--only=<sections>` — Comma-separated subset of `maps,characters,weapons,audio` (default: all)
 - `--maps=<ids>` — Comma-separated subset of `pinecrest,harbor,maple_hollow`
 - `--skip-decimate` — Skip generating `<map>_low.glb` when a map exceeds 150k triangles
@@ -56,7 +56,7 @@ $env:FALLOUT_TELEMETRY_URL = "http://127.0.0.1:1/"
 C:/Users/drewd/Desktop/Godot_v4.7.2-stable_win64_console.exe `
   --path "C:/Users/drewd/OneDrive - Ouachita Baptist University/CSCI 3103 VIDEO GAME DEVT/fallout-forecast" `
   --audio-driver Dummy `
-  -s "C:/Users/drewd/fallout-forecast-car/exporter/validate_and_capture.gd" `
-  -- --assets=C:/Users/drewd/fallout-forecast-car/assets `
+  -s "C:/Users/drewd/fallout-forecast-clients/exporter/validate_and_capture.gd" `
+  -- --assets=C:/Users/drewd/fallout-forecast-clients/assets `
      --shots=C:/Users/drewd/Downloads/fallout-car-assets
 ```

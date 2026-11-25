@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Mirror the repo's exported assets/ into client/assets/ (Godot res://assets/).
+"""Mirror the repo's exported assets/ into clients/car/assets/ (Godot res://assets/).
 
-The Godot 3 project root is client/, and Godot can only import files under
-it, so the exporter output is copied (not committed twice: client/assets is
+The Godot 3 project root is clients/car/, and Godot can only import files under
+it, so the exporter output is copied (not committed twice: clients/car/assets is
 gitignored). Only changed files are copied; files that disappeared upstream
 are removed (their .import side files too).
 
@@ -15,16 +15,16 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "assets")
-DST = os.path.join(ROOT, "client", "assets")
+DST = os.path.join(ROOT, "clients", "car", "assets")
 SKIP_EXT = {".import", ".webp"}  # Godot 3 export doesn't need the webp copies
-# Only files of these types are ever deleted from client/assets; anything
+# Only files of these types are ever deleted from clients/car/assets; anything
 # Godot generates next to them (.import, extracted materials) is left alone.
 OWNED_EXT = {".glb", ".gltf", ".json", ".png", ".jpg", ".wav", ".ogg", ".ttf", ".otf", ".txt", ".md"}
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--clean", action="store_true", help="delete client/assets first")
+    ap.add_argument("--clean", action="store_true", help="delete clients/car/assets first")
     args = ap.parse_args()
     if not os.path.isdir(SRC):
         print("no assets/ directory; the client will use placeholders")

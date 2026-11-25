@@ -14,14 +14,14 @@ python tools/sync_assets.py
 New-Item -ItemType Directory -Force build
 ```
 
-Open `client/project.godot` in Godot 3.6.3 and wait for the first import to
-finish. Set `GODOT3` to the Godot executable path, then export from `client/`.
+Open `clients/car/project.godot` in Godot 3.6.3 and wait for the first import to
+finish. Set `GODOT3` to the Godot executable path, then export from `clients/car/`.
 On Windows, `Start-Process -Wait` waits for the GUI executable to finish.
 
 ```powershell
-Push-Location client
-Start-Process -FilePath $env:GODOT3 -ArgumentList '--path . --no-window --export-debug "Android Car" ../build/fallout-car.apk' -Wait -NoNewWindow
-Start-Process -FilePath $env:GODOT3 -ArgumentList '--path . --no-window --export-debug "Android Test" ../build/fallout-car-test.apk' -Wait -NoNewWindow
+Push-Location clients/car
+Start-Process -FilePath $env:GODOT3 -ArgumentList '--path . --no-window --export-debug "Android Car" ../../build/fallout-car.apk' -Wait -NoNewWindow
+Start-Process -FilePath $env:GODOT3 -ArgumentList '--path . --no-window --export-debug "Android Test" ../../build/fallout-car-test.apk' -Wait -NoNewWindow
 Pop-Location
 ```
 
@@ -78,7 +78,7 @@ look, and touch button sizing.
   cover missing asset IDs. The loading card covers enemy-rig merging, combat
   effect warm-up, and the first draw of the populated world.
 
-The [Open Protocol specification](../docs/open-protocol.md) describes Thin
+The [Open Protocol specification](../../docs/open-protocol.md) describes Thin
 and Full. This client uses Thin JSON WebSocket messages. It has no join-code
 field.
 
@@ -91,7 +91,7 @@ python tools/mock_bridge.py --fast --host 127.0.0.1
 ```
 
 For desktop captures, launch the project with Godot 3.6.3 using
-`--path client -- --url=ws://127.0.0.1:8790/ --capture=../build/desktop-captures --exit-when-done`.
+`--path clients/car -- --url=ws://127.0.0.1:8790/ --capture=../../build/desktop-captures --exit-when-done`.
 The capture harness drives the lobby and run, then saves screenshots and
 frame-rate samples. Use an absolute path for `--capture` if launching from
 outside the repository.

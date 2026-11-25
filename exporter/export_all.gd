@@ -3,10 +3,10 @@ extends SceneTree
 ##
 ## Usage:
 ##   Godot_v4.7.2-stable_win64_console.exe --headless --path "<game checkout>" \
-##     --audio-driver Dummy -s "C:/Users/drewd/fallout-forecast-car/exporter/export_all.gd" \
-##     -- --out=C:/Users/drewd/fallout-forecast-car/assets [--only=maps,characters,weapons,audio] [--maps=pinecrest,harbor,maple_hollow]
+##     --audio-driver Dummy -s "C:/Users/drewd/fallout-forecast-clients/exporter/export_all.gd" \
+##     -- --out=C:/Users/drewd/fallout-forecast-clients/assets [--only=maps,characters,weapons,audio] [--maps=pinecrest,harbor,maple_hollow]
 
-const DEFAULT_OUT := "C:/Users/drewd/fallout-forecast-car/assets"
+const DEFAULT_OUT := "C:/Users/drewd/fallout-forecast-clients/assets"
 
 
 func _initialize() -> void:
@@ -97,7 +97,7 @@ func _exporter_dir() -> String:
 	for i in cmd.size() - 1:
 		if cmd[i] == "-s" or cmd[i] == "--script":
 			return cmd[i + 1].replace("\\", "/").get_base_dir()
-	return "C:/Users/drewd/fallout-forecast-car/exporter"
+	return "C:/Users/drewd/fallout-forecast-clients/exporter"
 
 
 func _parse_args() -> Dictionary:

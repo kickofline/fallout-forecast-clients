@@ -44,8 +44,8 @@ fi
 mkdir -p "$OUT" "$ROOT/build"
 python "$ROOT/tools/sync_assets.py"
 rm -f "$APK"
-if ! (cd "$ROOT/client" && "$GODOT3" --path . --no-window \
-	--export-debug "Android Test" ../build/fallout-car-test.apk) > "$OUT/export.log" 2>&1 ||
+if ! (cd "$ROOT/clients/car" && "$GODOT3" --path . --no-window \
+	--export-debug "Android Test" ../../build/fallout-car-test.apk) > "$OUT/export.log" 2>&1 ||
 	[[ ! -s "$APK" ]]; then
 	tail -30 "$OUT/export.log" >&2
 	echo "APK export failed. See $OUT/export.log" >&2

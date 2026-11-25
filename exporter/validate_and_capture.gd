@@ -9,11 +9,11 @@ extends SceneTree
 ##
 ## Run (non-headless, with FALLOUT_TELEMETRY_URL=http://127.0.0.1:1/):
 ##   Godot_v4.7.2-stable_win64_console.exe --path "<game checkout>" --audio-driver Dummy \
-##     -s "C:/Users/drewd/fallout-forecast-car/exporter/validate_and_capture.gd" -- \
-##     --assets=C:/Users/drewd/fallout-forecast-car/assets \
+##     -s "C:/Users/drewd/fallout-forecast-clients/exporter/validate_and_capture.gd" -- \
+##     --assets=C:/Users/drewd/fallout-forecast-clients/assets \
 ##     --shots=C:/Users/drewd/Downloads/fallout-car-assets
 
-const DEFAULT_ASSETS := "C:/Users/drewd/fallout-forecast-car/assets"
+const DEFAULT_ASSETS := "C:/Users/drewd/fallout-forecast-clients/assets"
 const DEFAULT_SHOTS := "C:/Users/drewd/Downloads/fallout-car-assets"
 
 # Curated camera viewpoints [name, eye_pos, look_at] per map
