@@ -1,0 +1,3175 @@
+{
+  "schema_version": 1,
+  "open_protocol_version": 1,
+  "game_protocol": 19,
+  "generated_by": "tools/open_protocol/gen_schema.gd",
+  "node_count": 13,
+  "rpc_count": 102,
+  "nodes": [
+    {
+      "node": "Main/Enemies/BossCumulus",
+      "script": "res://enemies/boss/boss_cumulus.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 2,
+      "rpc_md5": "c7ca828fb8ac29ddc8dca1037eba2b9f",
+      "notes": "Spawned on Wave 5 Downpour under Main/Enemies. Boss position, part HP, sac count, burn timer, death."
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 10,
+      "rpc_md5": "9a0bfe888a19ecd4ba144d7aa7b733ba",
+      "notes": "Child of Main. Enemy spawn/despawn/retire, 20 Hz batched position/yaw stream, wave progress, impact/tell/molt cues."
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 7,
+      "rpc_md5": "491b41165d97fce6452eb898846328d0",
+      "notes": "Child of GameManager. Vending cabinet stock/reveals, between-wave airdrops, and hold-to-buy/open requests."
+    },
+    {
+      "node": "GameManager/Feats",
+      "script": "res://game/feat_tracker.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 1,
+      "rpc_md5": "316b706101a54bc802391a9f951d7327",
+      "notes": "Child of GameManager. Per-player achievement progress awards."
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 17,
+      "rpc_md5": "320baba1147717dc4231952fe9b77400",
+      "notes": "Autoload. Global pause, Calm/Clearing ready-up, world interacts, decon pool, boss spawn, endless tape choice, results, shared VFX/hazards."
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 7,
+      "rpc_md5": "a9b5389c6503a93bdcc195a01241f6f2",
+      "notes": "Child of GameManager. Wave 2+ Calm mutation draft deal, vote tally, resolution, and late-join sync."
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "authority": "host",
+      "phase": "always",
+      "rpc_count": 15,
+      "rpc_md5": "ef72b00d27da871b5bfe2e8e258bd288",
+      "notes": "Autoload. Session handshake, lobby roster, map voting, chat, run start/readiness, RTT pings."
+    },
+    {
+      "node": "Main/Pings",
+      "script": "res://game/ping_system.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 2,
+      "rpc_md5": "76f88e7ff386d06e3680b15f1b1fcddd",
+      "notes": "Created by main.gd. Contextual/wheel squad pings (client request -> host validated relay)."
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "authority": "owner",
+      "phase": "run",
+      "rpc_count": 12,
+      "rpc_md5": "3350595e525e6cbb562f0f9f65e2fe80",
+      "notes": "One node per peer in Net.roster, authority = owning peer_id. All RPCs use any_peer + explicit sender validation."
+    },
+    {
+      "node": "Main/Level/<decon_marker>/Interact",
+      "script": "res://props/decon_shower.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 1,
+      "rpc_md5": "86a74badd98f9370f9b06a66d8d5dec3",
+      "notes": "Attached under each node in group 'decon_shower' by main.gd. Spray VFX broadcast when a player repairs their suit."
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 12,
+      "rpc_md5": "17f6b92ecc5e07e6072dda9c573c21f7",
+      "notes": "Created by main.gd. Starter kit selection, world pickups, projectiles/deployables, weapon unlocks."
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "authority": "owner",
+      "phase": "run",
+      "rpc_count": 11,
+      "rpc_md5": "1281175dc7784c24a6aca43a1eecaf2c",
+      "notes": "Child of each player's camera. Authoritative 5-slot inventory, belt pouches, shot/throw/reload/swap/drop requests and FX relays."
+    },
+    {
+      "node": "WeatherManager",
+      "script": "res://weather/weather_manager.gd",
+      "authority": "host",
+      "phase": "run",
+      "rpc_count": 5,
+      "rpc_md5": "e1aa49582e397e968c7f7d141a29171e",
+      "notes": "Autoload. Storm phase/wave transitions, intensity overrides, lightning strikes, and puddle growth."
+    }
+  ],
+  "rpcs": [
+    {
+      "node": "Main/Enemies/BossCumulus",
+      "script": "res://enemies/boss/boss_cumulus.gd",
+      "method": "_died",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "Main/Enemies/BossCumulus",
+      "script": "res://enemies/boss/boss_cumulus.gd",
+      "method": "_sync",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "pos",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "parts",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "sacs",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "burn",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_despawn_enemy",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "net_id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "drops",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "throw_vec",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "critical",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_enemy_impacts",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "rows",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_play_enemy_molt",
+      "rpc_id": 2,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "net_id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_play_enemy_tell",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "net_id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "cue",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "duration",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "volume",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_receive_group_warning",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_retire_enemies",
+      "rpc_id": 5,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "ids",
+          "type": "PackedInt32Array",
+          "type_id": 30,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_spawn_enemy",
+      "rpc_id": 6,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "net_id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "kind",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "small",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "elite",
+          "type": "bool",
+          "type_id": 1,
+          "optional": true,
+          "default": false
+        },
+        {
+          "name": "miniboss_wave",
+          "type": "int",
+          "type_id": 2,
+          "optional": true,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_sync_enemies",
+      "rpc_id": 7,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "ids",
+          "type": "PackedInt32Array",
+          "type_id": 30,
+          "optional": false
+        },
+        {
+          "name": "places",
+          "type": "PackedVector3Array",
+          "type_id": 36,
+          "optional": false
+        },
+        {
+          "name": "yaws",
+          "type": "PackedFloat32Array",
+          "type_id": 32,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_sync_miniboss_hp",
+      "rpc_id": 8,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "net_id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "hp",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "max_hp",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Enemies",
+      "script": "res://enemies/enemy_spawner.gd",
+      "method": "_sync_progress",
+      "rpc_id": 9,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "wave",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "left",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "recovery",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "score",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "method": "_airdrop_spawn",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "descent",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "method": "_announce_drop",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "method": "_hold_request",
+      "rpc_id": 2,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "mode",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "step",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "offer_serial",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "method": "_remove_drop",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "method": "_reveal",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "tier",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "method": "_snapshot",
+      "rpc_id": 5,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "cabinets",
+          "type": "Dictionary",
+          "type_id": 27,
+          "optional": false
+        },
+        {
+          "name": "drop",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/CrateManager",
+      "script": "res://game/crate_manager.gd",
+      "method": "_stock",
+      "rpc_id": 6,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "offers",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/Feats",
+      "script": "res://game/feat_tracker.gd",
+      "method": "_feat_event",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_banner",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "text",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "color",
+          "type": "Color",
+          "type_id": 20,
+          "optional": false
+        },
+        {
+          "name": "seconds",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_disperse_cloud",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_draw_arc",
+      "rpc_id": 2,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "points",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "color",
+          "type": "Color",
+          "type_id": 20,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_draw_blast",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "size",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "color",
+          "type": "Color",
+          "type_id": 20,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_finish",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "won",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "results",
+          "type": "Dictionary",
+          "type_id": 27,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_ready_changed",
+      "rpc_id": 5,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "count",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "needed",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_request_interact",
+      "rpc_id": 6,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "path",
+          "type": "NodePath",
+          "type_id": 22,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_request_pause_rpc",
+      "rpc_id": 7,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "paused",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "who",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_request_ready",
+      "rpc_id": 8,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_request_tape_choice",
+      "rpc_id": 9,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "keep_playing",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_spawn_boss",
+      "rpc_id": 10,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_spawn_cloud",
+      "rpc_id": 11,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "damage_per_second",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_spawn_spore",
+      "rpc_id": 12,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "from",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "to",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "flight",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "damage_per_second",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "acid",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "cloudburst",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_sync_decon",
+      "rpc_id": 13,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "value",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_sync_pause",
+      "rpc_id": 14,
+      "direction": "relayed",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "paused",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "who",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_sync_tape_state",
+      "rpc_id": 15,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "choice",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "is_endless",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "locked",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager",
+      "script": "res://game/game_manager.gd",
+      "method": "_weapon_unlocked",
+      "rpc_id": 16,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "weapon_name",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "method": "_clear_rpc",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "method": "_deal_rpc",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "enemy",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "dealt",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "method": "_request_vote",
+      "rpc_id": 2,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "index",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "method": "_reset_run_rpc",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "method": "_result_rpc",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "pick",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "enemy_list",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "player_list",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "granted",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "method": "_sync_active",
+      "rpc_id": 5,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "enemy_list",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "player_list",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "GameManager/MutationRoll",
+      "script": "res://game/mutation_roll.gd",
+      "method": "_votes_rpc",
+      "rpc_id": 6,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "counts",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_chat_rpc",
+      "rpc_id": 0,
+      "direction": "relayed",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "sender",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_confirm_run_ready",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_hello",
+      "rpc_id": 2,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "hello",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "protocol",
+          "type": "int",
+          "type_id": 2,
+          "optional": true,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_push_roster",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "new_roster",
+          "type": "Dictionary",
+          "type_id": 27,
+          "optional": false
+        },
+        {
+          "name": "map_id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "voting",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "counts",
+          "type": "Dictionary",
+          "type_id": 27,
+          "optional": false
+        },
+        {
+          "name": "my_vote",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_reject",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "reason",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_report_in_run",
+      "rpc_id": 5,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "value",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_request_chat",
+      "rpc_id": 6,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "text",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_request_cosmetic",
+      "rpc_id": 7,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "color",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "skin",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "unlocked",
+          "type": "Array",
+          "type_id": 28,
+          "optional": true,
+          "default": null
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_request_force_start",
+      "rpc_id": 8,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_request_map_vote",
+      "rpc_id": 9,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_request_name",
+      "rpc_id": 10,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "new_name",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_request_ready",
+      "rpc_id": 11,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "value",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_rtt_ping",
+      "rpc_id": 12,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "seq",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "measured_rtt",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_rtt_pong",
+      "rpc_id": 13,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "seq",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Net",
+      "script": "res://game/net.gd",
+      "method": "_start_run",
+      "rpc_id": 14,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "map_id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Pings",
+      "script": "res://game/ping_system.gd",
+      "method": "_request_ping",
+      "rpc_id": 0,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "kind",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "pos",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "enemy_id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Pings",
+      "script": "res://game/ping_system.gd",
+      "method": "_show_ping",
+      "rpc_id": 1,
+      "direction": "relayed",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "peer",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "kind",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "pos",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "enemy_id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_apply_tarp",
+      "rpc_id": 0,
+      "direction": "relayed",
+      "scope": "run_peers",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "value",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_apply_vitals",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "hp",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "suit",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "new_state",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "bleed",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "tarp",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "max_hp",
+          "type": "float",
+          "type_id": 3,
+          "optional": true,
+          "default": 100.0
+        },
+        {
+          "name": "charge",
+          "type": "float",
+          "type_id": 3,
+          "optional": true,
+          "default": 0.0
+        },
+        {
+          "name": "invuln",
+          "type": "bool",
+          "type_id": 1,
+          "optional": true,
+          "default": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_grant_tarp",
+      "rpc_id": 2,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_push_tarp",
+      "rpc_id": 3,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "value",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_push_transform",
+      "rpc_id": 4,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "pos",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "yaw",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "pitch",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "vel",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_receive_enemy_pull",
+      "rpc_id": 5,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "impulse",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_receive_hits",
+      "rpc_id": 6,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "hits",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_receive_hurt_from",
+      "rpc_id": 7,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_relay_transform",
+      "rpc_id": 8,
+      "direction": "relayed",
+      "scope": "run_peers",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "pos",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "yaw",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "pitch",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "vel",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_report_exposure",
+      "rpc_id": 9,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "is_sheltered",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "is_in_puddle",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_request_melee",
+      "rpc_id": 10,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "Main/Players/P_<peer_id>",
+      "script": "res://player/player.gd",
+      "method": "_teleport",
+      "rpc_id": 11,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "xf",
+          "type": "Transform3D",
+          "type_id": 18,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Level/<decon_marker>/Interact",
+      "script": "res://props/decon_shower.gd",
+      "method": "play_spray",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": []
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_claim",
+      "rpc_id": 0,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "expected",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "slot",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_discover",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_effect_deploy",
+      "rpc_id": 2,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "seq",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "life",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "yaw",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_effect_end",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "seq",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "blast",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_effect_spawn",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "seq",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "row",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_flight",
+      "rpc_id": 5,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "rows",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_release",
+      "rpc_id": 6,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_remove",
+      "rpc_id": 7,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "collector",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_request_starter",
+      "rpc_id": 8,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "index",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_snapshot",
+      "rpc_id": 9,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "rows",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "effects",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "found",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "chosen",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_spawn",
+      "rpc_id": 10,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "row",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/RunLoot",
+      "script": "res://weapons/run_loot.gd",
+      "method": "_starter_accepted",
+      "rpc_id": 11,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_action",
+      "rpc_id": 0,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "expected",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "slot",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_equip_state",
+      "rpc_id": 1,
+      "direction": "relayed",
+      "scope": "run_peers",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "rev",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "tier",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "left",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "total",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_jam",
+      "rpc_id": 2,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_play_charge",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "serial",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_pouch_full_feedback",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_private_state",
+      "rpc_id": 5,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "rev",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "rows",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "stash",
+          "type": "Dictionary",
+          "type_id": 27,
+          "optional": false
+        },
+        {
+          "name": "slot",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "pouch",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "new_scrap",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "frags",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "shield_domes",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "reload_left",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "reload_total",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "jam_left",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        },
+        {
+          "name": "cooldown",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_request_shot",
+      "rpc_id": 6,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "serial",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "origin",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "dir",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "is_aiming",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "predicted",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_request_throw",
+      "rpc_id": 7,
+      "direction": "client->host",
+      "scope": "host",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "origin",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "dir",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_scrap_feedback",
+      "rpc_id": 8,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_shot_fx",
+      "rpc_id": 9,
+      "direction": "relayed",
+      "scope": "run_peers",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "origin",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "dir",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "traces",
+          "type": "Array",
+          "type_id": 28,
+          "optional": false
+        },
+        {
+          "name": "ads",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        },
+        {
+          "name": "predicted",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder",
+      "script": "res://weapons/weapon_holder.gd",
+      "method": "_throw_fx",
+      "rpc_id": 10,
+      "direction": "relayed",
+      "scope": "run_peers",
+      "rpc_mode": "any_peer",
+      "sync": "call_remote",
+      "transfer_mode": "unreliable_ordered",
+      "reliable": false,
+      "channel": 0,
+      "args": [
+        {
+          "name": "run",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "type_id": 4,
+          "optional": false
+        },
+        {
+          "name": "origin",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "dir",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "predicted",
+          "type": "bool",
+          "type_id": 1,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "WeatherManager",
+      "script": "res://weather/weather_manager.gd",
+      "method": "_override",
+      "rpc_id": 0,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "value",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "WeatherManager",
+      "script": "res://weather/weather_manager.gd",
+      "method": "_receive_intensity",
+      "rpc_id": 1,
+      "direction": "host->client",
+      "scope": "single_peer",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "value",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "WeatherManager",
+      "script": "res://weather/weather_manager.gd",
+      "method": "_receive_phase",
+      "rpc_id": 2,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "new_phase",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "new_wave",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        },
+        {
+          "name": "time_left",
+          "type": "float",
+          "type_id": 3,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "WeatherManager",
+      "script": "res://weather/weather_manager.gd",
+      "method": "_strike",
+      "rpc_id": 3,
+      "direction": "host->client",
+      "scope": "all_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "position",
+          "type": "Vector3",
+          "type_id": 9,
+          "optional": false
+        },
+        {
+          "name": "strike_seed",
+          "type": "int",
+          "type_id": 2,
+          "optional": false
+        }
+      ]
+    },
+    {
+      "node": "WeatherManager",
+      "script": "res://weather/weather_manager.gd",
+      "method": "_sync_puddles",
+      "rpc_id": 4,
+      "direction": "host->client",
+      "scope": "run_peers",
+      "rpc_mode": "authority",
+      "sync": "call_remote",
+      "transfer_mode": "reliable",
+      "reliable": true,
+      "channel": 0,
+      "args": [
+        {
+          "name": "wet",
+          "type": "Dictionary",
+          "type_id": 27,
+          "optional": false
+        }
+      ]
+    }
+  ]
+}
