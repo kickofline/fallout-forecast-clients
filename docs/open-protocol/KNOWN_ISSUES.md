@@ -11,11 +11,7 @@ integral ping values to integers.
 
 ## 2. Full lobby handshake timeout
 
-The five-second transport hello deadline ends at `welcome`. The server does not
-impose a second deadline for `Net._hello`. It also ignores a `Net._hello` whose
-inner string does not parse to a dictionary. A client should send a valid
-inner JSON object once and impose its own deadline for a roster containing
-`welcome.you` or a `Net._reject` reply. Close on timeout.
+The five-second transport hello deadline ends at `welcome`. After `welcome`, the server enforces a ten-second join deadline for `Net._hello` to add the peer to the lobby roster, disconnecting peers that do not finish joining in time. The server also ignores a `Net._hello` whose inner string does not parse to a dictionary. A client should send a valid inner JSON object immediately after `welcome` and impose its own deadline for a roster containing `welcome.you` or a `Net._reject` reply. Close on timeout.
 
 ## 3. Full results broadcasts
 
