@@ -1,10 +1,12 @@
 # fallout-forecast-car
 
-Car port of Fallout Forecast: a Godot 3.6 (GLES2) Android client for an Android 5.1 head unit
-(PowerVR SGX 544MP, OpenGL ES 2.0) that plays Cloud Play co-op through a server-side bridge.
+Fallout Forecast Cloud Play client for a 2017 Honda Android 5.1.1 head unit
+with a 32-bit ARM CPU and a PowerVR SGX 544MP GPU. The client uses Godot
+3.6.3 with GLES2 and joins the dedicated server through the Open Protocol
+Thin tier. It renders the game locally while the server simulates the run.
 
-- `client/` Godot 3.6 project (APK).
-- `assets/` maps, characters, weapons, fonts and audio exported from the main game.
-- `exporter/` Godot 4.7.2 `-s` scripts that generate `assets/` from a checkout of the main game repo.
-- `tools/` mock bridge and helper scripts.
-- `docs/car-bridge-protocol.md` car <-> bridge protocol. The bridge itself lives in the main game repo (`--car-bridge` mode).
+- [Build, install, controls, and quality settings](client/README.md)
+- [Fallout Forecast Open Protocol](docs/open-protocol.md)
+- [Exported maps, character rigs, weapons, and audio](assets/README.md)
+- `exporter/` contains the Godot 4.7.2 scripts that generate the asset pack from the main game.
+- `tools/` contains asset sync, the local mock server, and the emulator capture harness.

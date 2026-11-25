@@ -726,6 +726,7 @@ class Session:
                     self.countdown -= dt
                     if self.countdown <= 0:
                         await self.start_run()
+                        next_t = time.monotonic()
                 if lobby_left <= 0:
                     lobby_left = 1.0
                     msg = self.lobby_msg()
@@ -743,6 +744,7 @@ class Session:
                 self.outbox.clear()
                 if self.run.done or (self.run.wave > self.args.waves + 3):
                     await self.finish()
+                    next_t = time.monotonic()
             await asyncio.sleep(max(0.0, next_t - time.monotonic()))
 
     async def start_run(self):

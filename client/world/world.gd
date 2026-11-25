@@ -57,6 +57,8 @@ var pitch = 0.0
 var look_ready = false
 var move = Vector2.ZERO
 var held_bits = 0
+var auto_bits = 0                # test harness (core/capture.gd) only
+var auto_move = Vector2.ZERO
 var _latched_bits = 0
 var _slot_pulse = 0
 var _slot_frames = 0
@@ -79,6 +81,9 @@ var _decon_cells = []
 var _fov = HIP_FOV
 var _world_env = WorldEnvironment.new()
 var _anim_time = 0.0
+var _warm: Spatial
+var _warm_frames = 0
+var _initial_snapshot_frames = 2
 
 
 func _ready() -> void:
@@ -177,6 +182,45 @@ func load_map(id: String) -> void:
 						_decon_cells.append([i, cell])
 	Sound.attach_world(scene)
 	Sound.music("forecast_theme")
+	_warmup()
+	VisualServer.connect("frame_post_draw", self, "_on_loading_frame")
+
+
+## Merge the enemy rigs and draw the warm-up instances behind the loading
+## card, ahead of the first in-game GLES2 shader use.
+func _warmup() -> void:
+	_warm = Spatial.new()
+	camera.add_child(_warm)
+	for type in Assets.ids("enemies"):
+		var a = Actor.new()
+		_warm.add_child(a)
+		a.setup_enemy(type)
+		a.spawn_left = 0.0
+	for kind in ["ammo", "health", "suit", "scrap", "airdrop", "station"]:
+		_warm.add_child(_make_pickup({"kind": kind, "item": kind}))
+	for kind in Assets.ids("projectiles"):
+		_warm.add_child(_make_projectile(kind))
+	for i in range(_warm.get_child_count()):
+		_warm.get_child(i).translation = Vector3((i % 6) - 2.5, -1.6, -5.0 - floor(i / 6.0))
+	fx.warmup(_warm)
+	_warm_frames = 3
+
+
+func _on_loading_frame() -> void:
+	if _warm_frames > 0:
+		_warm_frames -= 1
+		if _warm_frames == 0:
+			_warm.queue_free()
+		return
+	# The first snapshot can already have enemies, gear, and teammates.
+	# Give the populated viewport a chance to render under the loading card.
+	if not look_ready:
+		return
+	_initial_snapshot_frames -= 1
+	if _initial_snapshot_frames == 0:
+		VisualServer.disconnect("frame_post_draw", self, "_on_loading_frame")
+		ready_to_play = true
+		get_parent().call_deferred("world_ready")
 
 
 func _placeholder_level() -> Spatial:
@@ -249,11 +293,6 @@ func _on_snapshot(s: Dictionary) -> void:
 		yaw = float(you.get("yaw", 0.0))
 		pitch = float(you.get("pitch", 0.0))
 		look_ready = true
-	if not ready_to_play and level != null:
-		ready_to_play = true
-		var main = get_parent()
-		if main and main.has_method("world_ready"):
-			main.call_deferred("world_ready")
 
 
 func _bracket() -> Array:
@@ -623,7 +662,7 @@ func _update_decon() -> void:
 
 ## Immediate fire feedback (the original's owning-client muzzle + recoil).
 func _local_fire() -> void:
-	var down = (held_bits & BITS.fire) != 0
+	var down = ((held_bits | auto_bits) & BITS.fire) != 0
 	var pressed = down and not _prev_fire
 	_prev_fire = down
 	if not down or str(you.get("state", "ok")) != "ok":
@@ -670,13 +709,13 @@ func _send_input() -> void:
 	if Net.state != "run" or not look_ready:
 		return
 	_seq += 1
-	var bits = held_bits | _latched_bits
+	var bits = held_bits | auto_bits | _latched_bits
 	_latched_bits = 0
 	var slot = 0
 	if _slot_frames > 0:
 		slot = _slot_pulse
 		_slot_frames -= 1
-	var mv = move.limit_length(1.0)
+	var mv = (move + auto_move).limit_length(1.0)
 	Net.send({"t": "in", "seq": _seq, "mv": [stepify(mv.x, 0.01), stepify(mv.y, 0.01)],
 		"yaw": stepify(yaw, 0.001), "pitch": stepify(pitch, 0.001), "b": bits, "slot": slot, "wheel": _wheel})
 	_wheel = 0

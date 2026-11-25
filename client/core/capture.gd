@@ -1,7 +1,6 @@
 extends Node
 ## Test harness: `--capture=<dir>` drives the app through title -> lobby ->
-## run -> draft -> tape -> results against a (mock) bridge, saving PNGs and
-## an FPS log. `--autopilot` alone just plays (turns to enemies, fires).
+## run -> results, including draft/tape when offered, saving PNGs and FPS.
 ## Not used in normal play.
 
 var dir = ""
@@ -13,7 +12,16 @@ var _fps_log = []
 var _fps_acc = 0.0
 var _frames = 0
 var _quit_after = -1.0
-var _shot_index = 0
+var _last_frame_us = 0
+var _spawn_frames = 0
+var _spawn_peak_ms = 0.0
+var _initial_enemies = []
+var _move_until = 0.0
+var _start_pos = null
+var _move_distance = 0.0
+var _start_ammo = -1
+var _min_ammo = -1
+var _server_shots = 0
 
 
 func _ready() -> void:
@@ -28,19 +36,25 @@ func _ready() -> void:
 	d.make_dir_recursive(dir)
 	Net.connect("draft", self, "_on_draft")
 	Net.connect("tape", self, "_on_tape")
+	Net.connect("events", self, "_on_events")
 	print("CAPTURE dir=", dir)
 
 
 func _process(delta: float) -> void:
 	_t += delta
 	_phase_t += delta
-	_fps_acc += delta
+	var now = OS.get_ticks_usec()
+	var frame_seconds = (now - _last_frame_us) / 1000000.0 if _last_frame_us > 0 else delta
+	_last_frame_us = now
+	_fps_acc += frame_seconds
 	_frames += 1
 	if _fps_acc >= 1.0:
 		_fps_log.append([_phase, _frames / _fps_acc])
 		_fps_acc = 0.0
 		_frames = 0
 	var main = get_parent()
+	if _phase in ["run", "draft", "tape"] and main._screen_kind == "results":
+		_go("results")
 	match _phase:
 		"title":
 			if _phase_t > 2.0 and _shot("01-title"):
@@ -61,9 +75,12 @@ func _process(delta: float) -> void:
 			if _phase_t > 0.15:
 				_shot("03-loading")
 			if main.world and main.world.ready_to_play and Net.state == "run":
+				_move_until = _t + 1.25
+				_initial_enemies = main.world.enemies.keys()
 				_go("run")
 		"run":
 			_autopilot(main)
+			_sample_run(main.world, frame_seconds)
 			if _phase_t > 5.0:
 				_shot("04-run")
 			if _phase_t > 9.0:
@@ -72,8 +89,6 @@ func _process(delta: float) -> void:
 			if w and str(w.weather_state.get("phase", "")) in ["downpour", "acid_storm"] and not _shots.has("06-downpour"):
 				if _phase_t > 2.0:
 					_shot("06-downpour")
-			if main._screen_kind == "results":
-				_go("results")
 		"draft":
 			_autopilot(main)
 			if _phase_t > 1.2 and _shot("07-draft"):
@@ -83,6 +98,9 @@ func _process(delta: float) -> void:
 				Net.choose("mutation", 1)
 				_go("run")
 		"tape":
+			if main.world:
+				main.world.auto_bits = 0
+				main.world.auto_move = Vector2.ZERO
 			if _shots.has("tape-picked"):
 				_go("run")
 				return
@@ -95,6 +113,8 @@ func _process(delta: float) -> void:
 		"results":
 			if _phase_t > 1.5 and _shot("09-results"):
 				_write_fps()
+				print("CAPTURE run distance=%.2fm ammo=%d->%d server_shot_events=%d" % [
+					_move_distance, _start_ammo, _min_ammo, _server_shots])
 				_quit_after = 1.0
 				_go("done")
 	if _quit_after > 0.0:
@@ -124,10 +144,43 @@ func _on_tape(_d) -> void:
 	_go("tape")
 
 
+func _on_events(events: Array) -> void:
+	for ev in events:
+		if ev is Dictionary and ev.get("e") == "shot" and ev.get("by") == Net.you:
+			_server_shots += 1
+
+
+func _sample_run(w: Node, frame_seconds: float) -> void:
+	if w == null:
+		return
+	var pos: Vector3 = w._v(w.you.get("pos"))
+	if _start_pos == null:
+		_start_pos = pos
+	_move_distance = max(_move_distance, pos.distance_to(_start_pos))
+	var ammo = w.current_slot().get("ammo")
+	if ammo != null:
+		if _start_ammo < 0:
+			_start_ammo = int(ammo)
+			_min_ammo = _start_ammo
+		_min_ammo = min(_min_ammo, int(ammo))
+	if _spawn_frames == 0:
+		for id in w.enemies:
+			if not _initial_enemies.has(id):
+				_spawn_frames = 5
+				break
+	if _spawn_frames > 0:
+		_spawn_peak_ms = max(_spawn_peak_ms, frame_seconds * 1000.0)
+		_spawn_frames -= 1
+		if _spawn_frames == 0:
+			print("CAPTURE first_live_spawn_peak_frame_ms=%.1f" % _spawn_peak_ms)
+			_spawn_frames = -1
+
+
 func _autopilot(main: Node) -> void:
 	var w = main.world
 	if w == null or not w.ready_to_play:
 		return
+	w.auto_move = Vector2(0, -0.75) if _t < _move_until else Vector2.ZERO
 	var me: Vector3 = w._v(w.you.get("pos"))
 	var best = null
 	var bd = 1e9
@@ -143,16 +196,15 @@ func _autopilot(main: Node) -> void:
 		var want_pitch = atan2(to.y, Vector2(to.x, to.z).length())
 		w.yaw = lerp_angle(w.yaw, want_yaw, 0.12)
 		w.pitch = lerp(w.pitch, want_pitch, 0.12)
-		if abs(wrapf(w.yaw - want_yaw, -PI, PI)) < 0.12:
+		# Hold a few input ticks and release between attempts for semi-auto guns.
+		if abs(wrapf(w.yaw - want_yaw, -PI, PI)) < 0.2 and fmod(_t, 1.0) < 0.25:
 			bits |= w.BITS.fire
-		w.move = Vector2(0, 0)
 	else:
 		w.yaw += 0.004
-		w.move = Vector2.ZERO
 	var item: Dictionary = w.current_slot()
 	if item.get("ammo") != null and int(item.ammo) == 0:
 		bits |= w.BITS.reload
-	w.held_bits = bits
+	w.auto_bits = bits
 
 
 func _shot(name: String) -> bool:

@@ -87,6 +87,25 @@ func _flash_texture() -> ImageTexture:
 	return t
 
 
+## Draw the same material variants that the pool uses during combat.
+func warmup(root: Spatial) -> void:
+	var beam: MeshInstance = _tracers[0].duplicate()
+	root.add_child(beam)
+	beam.translation = Vector3(-0.8, 0.5, -3.0)
+	beam.scale = Vector3(0.5, 0.05, 0.05)
+	beam.show()
+	var muzzle: MeshInstance = _flashes[0].duplicate()
+	root.add_child(muzzle)
+	muzzle.translation = Vector3(0.0, 0.5, -3.0)
+	muzzle.show()
+	if Settings.particle_density > 0.01:
+		var sparks: CPUParticles = _sparks[0].duplicate()
+		root.add_child(sparks)
+		sparks.translation = Vector3(0.8, 0.5, -3.0)
+		sparks.local_coords = true
+		sparks.emitting = true
+
+
 func tracer(from: Vector3, to: Vector3, color := Color(1.0, 0.85, 0.5)) -> void:
 	var length = from.distance_to(to)
 	if length < 0.3:

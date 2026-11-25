@@ -118,6 +118,12 @@ var _templates = {}
 var _merged_material: SpatialMaterial
 
 
+func _exit_tree() -> void:
+	for template in _templates.values():
+		template.free()
+	_templates.clear()
+
+
 func instance_merged(scene: PackedScene, pivots: Array) -> Spatial:
 	if scene == null:
 		return null

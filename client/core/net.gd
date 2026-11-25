@@ -1,5 +1,5 @@
 extends Node
-## Car <-> bridge connection (docs/car-bridge-protocol.md, v1).
+## Fallout Forecast Open Protocol Thin v1 (docs/open-protocol.md).
 ## One WebSocket, JSON text frames. TLS certificates are verified.
 
 signal phase_changed(phase)          # "offline" | "connecting" | "online" | "retuning"
