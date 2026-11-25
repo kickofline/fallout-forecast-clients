@@ -4,7 +4,7 @@ extends Node
 signal changed
 
 const PATH = "user://car_settings.cfg"
-const DEFAULT_URL = "wss://fallout-car.drew.place/"
+const DEFAULT_URL = "wss://fallout-thin.drew.place/"
 
 var player_name = "Honda"
 var server_url = DEFAULT_URL

@@ -10,7 +10,7 @@ Alternative clients, shared GLES2 asset pack, and implementer documentation for 
 
 ## Live Open Protocol Endpoints
 
-- **WebSocket (Thin + Full):** `wss://fallout-open.drew.place/` (and `wss://fallout-car.drew.place/`)
+- **WebSocket (Thin + Full):** `wss://fallout-thin.drew.place/` (and `wss://fallout-open.drew.place/`)
 - **Raw TCP (Thin + Full):** `fallout.drew.place:7781`
 
 ## Repository Layout

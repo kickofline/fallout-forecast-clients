@@ -45,7 +45,7 @@ adb -s HEAD_UNIT_SERIAL install -r build/fallout-car.apk
 ```
 
 Open **Fallout Car** and use **Cloud Play**. The server field defaults to
-`wss://fallout-car.drew.place/`. The app saves the URL and display name when
+`wss://fallout-thin.drew.place/`. The app saves the URL and display name when
 you connect, and verifies certificates for WSS connections. Vote for a map
 and ready up in the lobby. In the run, use the left stick to move and drag on
 the right to look. Use the on-screen actions and hotbar for combat and items.
