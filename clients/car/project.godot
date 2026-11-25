@@ -19,11 +19,6 @@ boot_splash/bg_color=Color( 0.047, 0.078, 0.133, 1 )
 config/icon="res://icon.png"
 config/project_settings_override="user://override.cfg"
 
-[audio]
-
-mix_rate=48000
-output_latency=50
-
 [autoload]
 
 Settings="*res://core/settings.gd"
