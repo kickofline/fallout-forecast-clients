@@ -64,8 +64,11 @@ func load_scene(rel) -> PackedScene:
 	if _cache.has(p):
 		return _cache[p]
 	var res: PackedScene = null
+	var t0 = OS.get_ticks_msec()
 	if ResourceLoader.exists(p):
 		res = load(p) as PackedScene
+	if OS.get_ticks_msec() - t0 > 30:
+		print("ASSETS slow load %s %dms" % [p, OS.get_ticks_msec() - t0])
 	if res == null:
 		print("ASSETS missing scene ", p)
 	_cache[p] = res
@@ -86,23 +89,30 @@ func load_texture(rel) -> Texture:
 
 
 # ------------------------------------------------------------------ maps
-## [variant, res path] for a map. detail: 0 low, 1 full, 2 auto. Auto picks
-## the chunked export (frustum-cullable grid cells) when one exists, then the
-## low-detail merge on Android, then the full merge.
+## [variant, res path] for a map. detail: 0 low (decimated whole-map merge),
+## 1 full, 2 auto (full). Test switch --variant=glb|low_glb|chunked_glb.
 func map_variant(id: String, detail: int) -> Array:
 	var e = entry("maps", id)
-	var order = []
-	match detail:
-		0:
-			order = ["chunked_glb", "low_glb", "glb"]
-		1:
-			order = ["glb", "chunked_glb"]
-		_:
-			order = ["chunked_glb", "low_glb", "glb"] if OS.get_name() == "Android" else ["chunked_glb", "glb"]
+	var order = _detail_order(detail)
+	for a in Settings.args():
+		if str(a).begins_with("--variant="):  # test switch: glb | low_glb | chunked_glb
+			order = [str(a).substr(10)]
 	for key in order:
 		if e.get(key) is String and ResourceLoader.exists(path(e[key])):
 			return [key.replace("_glb", "").replace("glb", "full"), path(e[key])]
 	return ["placeholder", ""]
+
+
+func _detail_order(detail: int) -> Array:
+	match detail:
+		0:
+			return ["low_glb", "glb"]
+		1:
+			return ["glb", "chunked_glb"]
+	# Auto: full detail. On the head unit the whole-map merge ran within ~1 fps
+	# of the decimated one (and the decimated one z-fights on roads); the
+	# optional chunked export was slower on every map.
+	return ["glb", "low_glb"]
 
 
 func is_cached(p: String) -> bool:

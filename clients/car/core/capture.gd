@@ -79,7 +79,11 @@ func _process(delta: float) -> void:
 				_initial_enemies = main.world.enemies.keys()
 				_go("run")
 		"run":
-			_autopilot(main)
+			if "--probe" in Settings.args():
+				if main.world:
+					main.world.auto_bits = 0
+			else:
+				_autopilot(main)
 			_sample_run(main.world, frame_seconds)
 			if "--probe" in Settings.args():
 				_probe(main)
@@ -136,7 +140,7 @@ var _run_fps = []
 var _probe_i = -1
 var _probe_frames = 0
 var _probe_t0 = 0
-const PROBES = ["base", "no_post", "no_weather", "no_hud", "no_3d", "no_world_proc", "no_hud_proc", "base2"]
+const PROBES = ["base", "no_hud", "base2", "hud0", "hud1", "hud2", "hud3", "hud4", "hud5", "hud6", "hud7", "hud8", "hud9", "hud10", "hud11", "no_osd", "no_3d", "no_post", "base3"]
 
 
 ## --probe: toggle one subsystem at a time for 5 s and log the frame rate.
@@ -144,7 +148,7 @@ func _probe(main: Node) -> void:
 	var w = main.world
 	if w == null or not w.ready_to_play:
 		return
-	var slot = int(floor((_phase_t - 3.0) / 5.0))
+	var slot = int(floor((_phase_t - 3.0) / 4.0))
 	if slot < 0:
 		return
 	_probe_frames += 1
@@ -164,9 +168,18 @@ func _probe(main: Node) -> void:
 
 func _probe_set(main: Node, name: String, on: bool) -> void:
 	var w = main.world
+	if name.begins_with("hud") and name.length() <= 5:
+		var root = main.hud._root
+		var i = int(name.substr(3))
+		if i < root.get_child_count():
+			var c = root.get_child(i)
+			c.visible = not on
+			if on:
+				print("PROBE %s = %s %s" % [name, c.get_class(), c.name])
+		return
 	match name:
 		"no_post":
-			w.display.material = null if on else (w._post_retro if Settings.retro_enabled else w._post_clean)
+			w.post_rect.material = null if on else (w._post_retro if Settings.retro_enabled else w._post_clean)
 		"no_weather":
 			w.weather.visible = not on
 		"no_hud":
@@ -177,6 +190,14 @@ func _probe_set(main: Node, name: String, on: bool) -> void:
 			w.set_process(not on)
 		"no_hud_proc":
 			main.hud.set_process(not on)
+		"no_osd":
+			main._osd._root.visible = not on
+		"no_level":
+			w.level.visible = not on
+		"no_actors":
+			for a in w.enemies.values() + w.players.values():
+				if is_instance_valid(a):
+					a.visible = not on
 
 
 ## Per-second run frame rates (after a 3 s settle) for car perf comparisons.
@@ -194,7 +215,10 @@ func _report_run() -> void:
 	for x in xs:
 		lo = min(lo, x)
 		sum += x
-	print("CAPTURE run_fps map=%s avg=%.1f min=%.1f samples=%d" % [_arg("map", "pinecrest"), sum / xs.size(), lo, xs.size()])
+	xs.sort()
+	var osd = get_parent()._osd
+	print("CAPTURE run_fps map=%s avg=%.1f median=%.1f min=%.1f samples=%d spikes=%d spike_ms=%d args=%s" % [_arg("map", "pinecrest"),
+		sum / xs.size(), xs[xs.size() / 2], lo, xs.size(), osd.spikes, osd.spike_ms, " ".join(Settings.args()).replace("--capture=/data/data/org.falloutforecast.car/files/cap", "")])
 
 
 func _arg(name: String, fallback: String) -> String:

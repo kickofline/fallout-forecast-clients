@@ -22,6 +22,7 @@ func _run() -> void:
 	var only: PackedStringArray = args.only
 	var map_filter: PackedStringArray = args.maps
 	var skip_decimate: bool = args.skip_decimate
+	var chunked: bool = args.chunked
 
 	var base_dir := _exporter_dir()
 	print("=== Fallout Forecast Asset Exporter ===")
@@ -34,6 +35,7 @@ func _run() -> void:
 
 	var baker: RefCounted = (load(base_dir.path_join("lib/mesh_baker.gd")) as Script).new()
 	var map_exp: RefCounted = (load(base_dir.path_join("lib/export_maps.gd")) as Script).new()
+	map_exp.set("fold_colors", args.fold_colors)
 	var char_exp: RefCounted = (load(base_dir.path_join("lib/export_characters.gd")) as Script).new()
 	var wep_exp: RefCounted = (load(base_dir.path_join("lib/export_weapons.gd")) as Script).new()
 	var uia_exp: RefCounted = (load(base_dir.path_join("lib/export_ui_audio.gd")) as Script).new()
@@ -44,7 +46,7 @@ func _run() -> void:
 	manifest["exported_at_unix"] = int(Time.get_unix_time_from_system())
 
 	if only.is_empty() or "maps" in only:
-		var maps_res: Dictionary = await map_exp.export_maps(self, baker, out_dir, map_filter, skip_decimate)
+		var maps_res: Dictionary = await map_exp.export_maps(self, baker, out_dir, map_filter, skip_decimate, chunked)
 		if not manifest.has("maps") or map_filter.is_empty():
 			manifest["maps"] = maps_res
 		else:
@@ -105,6 +107,8 @@ func _parse_args() -> Dictionary:
 	var only := PackedStringArray()
 	var maps := PackedStringArray()
 	var skip_decimate := false
+	var chunked := false
+	var fold_colors := true
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--out="):
 			out_dir = arg.substr(6)
@@ -114,7 +118,11 @@ func _parse_args() -> Dictionary:
 			maps = arg.substr(7).split(",", false)
 		elif arg == "--skip-decimate":
 			skip_decimate = true
-	return {"out": out_dir, "only": only, "maps": maps, "skip_decimate": skip_decimate}
+		elif arg == "--chunked":
+			chunked = true
+		elif arg == "--no-fold-colors":
+			fold_colors = false
+	return {"out": out_dir, "only": only, "maps": maps, "skip_decimate": skip_decimate, "chunked": chunked, "fold_colors": fold_colors}
 
 
 func _load_existing_manifest(out_dir: String) -> Dictionary:

@@ -147,6 +147,115 @@ func build_decimated_scene(buckets: Dictionary, map_name: String, target_tris :=
 	}
 
 
+## Split previously collected `buckets` into a ground grid (XZ cells of
+## `cell` metres, by triangle centroid) and emit one MeshInstance3D per cell
+## with one surface per material. Godot 3 frustum-culls per instance, which
+## the whole-map merge defeats; full detail is kept (no decimation).
+func build_chunked_scene(buckets: Dictionary, map_name: String, cell := 20.0) -> Dictionary:
+	var keys: Array = buckets.keys()
+	keys.sort_custom(func(a: String, b: String) -> bool:
+		var ta := 1 if (buckets[a].mat as StandardMaterial3D).transparency != BaseMaterial3D.TRANSPARENCY_DISABLED else 0
+		var tb := 1 if (buckets[b].mat as StandardMaterial3D).transparency != BaseMaterial3D.TRANSPARENCY_DISABLED else 0
+		if ta != tb:
+			return ta < tb
+		return a < b
+	)
+	var cells := {}  # Vector2i -> Array of sub-buckets (in material order)
+	for key in keys:
+		var b: Dictionary = buckets[key]
+		var verts: PackedVector3Array = b.verts
+		var idx: PackedInt32Array = b.indices
+		if verts.is_empty() or idx.is_empty():
+			continue
+		var per_cell := {}  # Vector2i -> Array of triangle start offsets (Packed* would copy on cast)
+		for t in range(0, idx.size(), 3):
+			var c := (verts[idx[t]] + verts[idx[t + 1]] + verts[idx[t + 2]]) / 3.0
+			var k := Vector2i(floori(c.x / cell), floori(c.z / cell))
+			if not per_cell.has(k):
+				per_cell[k] = []
+			(per_cell[k] as Array).append(t)
+		for k in per_cell:
+			if not cells.has(k):
+				cells[k] = []
+			(cells[k] as Array).append(_sub_bucket(b, per_cell[k]))
+
+	var out_root := Node3D.new()
+	out_root.name = map_name + "_chunked"
+	var cell_keys: Array = cells.keys()
+	cell_keys.sort()
+	var surfaces := 0
+	var max_surfaces := 0
+	var tris := 0
+	for k in cell_keys:
+		var mesh := ArrayMesh.new()
+		for sb in cells[k]:
+			var arrays := []
+			arrays.resize(Mesh.ARRAY_MAX)
+			arrays[Mesh.ARRAY_VERTEX] = sb.verts
+			arrays[Mesh.ARRAY_NORMAL] = sb.normals
+			if sb.has_uv:
+				arrays[Mesh.ARRAY_TEX_UV] = sb.uvs
+			if sb.has_color:
+				arrays[Mesh.ARRAY_COLOR] = sb.colors
+			arrays[Mesh.ARRAY_INDEX] = sb.indices
+			mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+			mesh.surface_set_material(mesh.get_surface_count() - 1, sb.mat)
+			tris += int((sb.indices as PackedInt32Array).size() / 3)
+		surfaces += mesh.get_surface_count()
+		max_surfaces = maxi(max_surfaces, mesh.get_surface_count())
+		var mi := MeshInstance3D.new()
+		mi.name = "Cell_%d_%d" % [k.x, k.y]
+		mi.mesh = mesh
+		out_root.add_child(mi)
+		mi.owner = out_root
+	return {
+		"scene": out_root,
+		"triangles": tris,
+		"cells": cell_keys.size(),
+		"surfaces": surfaces,
+		"max_cell_surfaces": max_surfaces,
+		"cell_size": cell,
+	}
+
+
+## The triangles starting at `tri_starts` of bucket `b`, with compacted vertices.
+func _sub_bucket(b: Dictionary, tri_starts: Array) -> Dictionary:
+	var verts: PackedVector3Array = b.verts
+	var normals: PackedVector3Array = b.normals
+	var uvs: PackedVector2Array = b.uvs
+	var colors: PackedColorArray = b.colors
+	var idx: PackedInt32Array = b.indices
+	var has_uv: bool = b.has_uv and uvs.size() == verts.size()
+	var has_col: bool = b.has_color and colors.size() == verts.size()
+	var remap := {}
+	var ov := PackedVector3Array()
+	var on := PackedVector3Array()
+	var ou := PackedVector2Array()
+	var oc := PackedColorArray()
+	var oi := PackedInt32Array()
+	oi.resize(tri_starts.size() * 3)
+	var w := 0
+	for t in tri_starts:
+		for j in 3:
+			var vi: int = idx[t + j]
+			var ni: int
+			if remap.has(vi):
+				ni = remap[vi]
+			else:
+				ni = ov.size()
+				remap[vi] = ni
+				ov.append(verts[vi])
+				on.append(normals[vi] if vi < normals.size() else Vector3.UP)
+				if has_uv:
+					ou.append(uvs[vi])
+				if has_col:
+					oc.append(colors[vi])
+			oi[w] = ni
+			w += 1
+	return {"mat": b.mat, "tag": b.tag, "verts": ov, "normals": on, "uvs": ou, "colors": oc,
+		"indices": oi, "has_uv": has_uv, "has_color": has_col}
+
+
 func _decimate_bucket(b: Dictionary, cell: float) -> Dictionary:
 	var verts: PackedVector3Array = b.verts
 	var normals: PackedVector3Array = b.normals
@@ -646,6 +755,12 @@ func _convert_material(raw_mat: Material, mesh_has_color: bool, merge_solid_colo
 		tag = "vcol_unshaded" if mat.shading_mode == BaseMaterial3D.SHADING_MODE_UNSHADED else "vcol_lit"
 
 	var key := _canonical_mat_key(mat, tex_key)
+	# Baked-triplanar surfaces keep a "tri_" material name: the car client
+	# skips PS1 vertex snapping on them, like the original's triplanar path
+	# (snapping ground/road layers made them z-fight).
+	if uv_mode.begins_with("triplanar"):
+		mat.resource_name = "tri_" + tag
+		key += "|tri"
 	return {
 		"mat": mat,
 		"key": key,

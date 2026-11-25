@@ -20,12 +20,21 @@ func _ready() -> void:
 	rect_size = Vector2(360, 50)
 
 
+var _sig = []
+
+
 func warn(at: Vector3) -> void:
 	_warn_at = at
 	_warn_left = 2.5
 
 
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("compass", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	if world == null:
 		return
 	_warn_left = max(0.0, _warn_left - delta)
@@ -33,7 +42,12 @@ func _process(delta: float) -> void:
 	_cam = world.camera.global_transform.origin
 	var busy = _warn_left > 0.0 or not world.enemy_points.empty()
 	modulate.a = move_toward(modulate.a, 1.0 if busy else 0.6, delta * 3.0)
-	update()
+	var sig = [int(_heading * 4.0), int(_cam.x * 2.0), int(_cam.z * 2.0), int(_warn_left * 10.0), world.enemy_points.size()]
+	for e in world.enemy_points:
+		sig.append(int(e[0].x * 2.0) + int(e[0].z * 2.0) * 1000)
+	if sig != _sig:
+		_sig = sig
+		update()
 
 
 func _offset(at: Vector3) -> float:
@@ -46,9 +60,15 @@ func _x(angle: float) -> float:
 
 
 func _draw() -> void:
+	var _pt = OS.get_ticks_usec()
+	_draw_body()
+	Settings.prof_add("compass_draw", OS.get_ticks_usec() - _pt)
+
+
+func _draw_body() -> void:
 	if world == null:
 		return
-	draw_line(Vector2(0, 23), Vector2(rect_size.x, 23), Color(UI.MUTED.r, UI.MUTED.g, UI.MUTED.b, 0.25), 1.0)
+	draw_rect(Rect2(0, 22.5, rect_size.x, 1.0), Color(UI.MUTED.r, UI.MUTED.g, UI.MUTED.b, 0.25))
 	var first = int(floor((_heading - ARC) / 15.0))
 	for i in range(first, first + 14):
 		var bearing = i * 15
@@ -59,7 +79,8 @@ func _draw() -> void:
 		var major = posmod(bearing, 45) == 0
 		var deg = posmod(bearing, 360)
 		var fade = 1.0 - abs(off) / ARC * 0.7
-		draw_line(Vector2(x, 17.0 if major else 20.0), Vector2(x, 23), Color(UI.MUTED.r, UI.MUTED.g, UI.MUTED.b, 0.7 * fade), 1.0)
+		var top = 17.0 if major else 20.0
+		draw_rect(Rect2(x - 0.5, top, 1.0, 23.0 - top), Color(UI.MUTED.r, UI.MUTED.g, UI.MUTED.b, 0.7 * fade))
 		if deg % 90 == 0:
 			UI.draw_text_centered(self, clamp(x, 12.0, rect_size.x - 12.0), 14, CARDINALS[deg / 90], 20, Color(UI.PAPER.r, UI.PAPER.g, UI.PAPER.b, fade))
 	if _warn_left > 0.0:
@@ -87,10 +108,10 @@ func _draw() -> void:
 			if abs(ang) > ARC:
 				_edge(pt, ang, OBJECTIVE)
 			elif p.kind == "airdrop":
-				draw_arc(pt + Vector2(0, -1), 6.0, PI, TAU, 12, OBJECTIVE, 1.5, true)
+				draw_arc(pt + Vector2(0, -1), 6.0, PI, TAU, 12, OBJECTIVE, 1.5, false)
 				draw_rect(Rect2(pt + Vector2(-2, 3), Vector2(4, 4)), OBJECTIVE)
 			else:
-				draw_rect(Rect2(pt - Vector2(5, 5), Vector2(10, 10)), OBJECTIVE, false, 1.5)
+				UI.frame_rect(self, Rect2(pt - Vector2(5, 5), Vector2(10, 10)), OBJECTIVE, 1.5)
 			if abs(ang) <= best:
 				best = abs(ang)
 				nearest = pos
@@ -128,7 +149,8 @@ func _marker(at: Vector3, kind: String, dist: float) -> void:
 
 func _edge(at: Vector2, angle: float, color: Color) -> void:
 	var inward = -sign(angle)
-	draw_polyline(PoolVector2Array([at + Vector2(inward * 4, -3), at, at + Vector2(inward * 4, 3)]), color, 1.8, true)
+	UI.seg(self, at + Vector2(inward * 4, -3), at, color, 1.8)
+	UI.seg(self, at, at + Vector2(inward * 4, 3), color, 1.8)
 
 
 func _diamond(at: Vector2, r: float, color: Color) -> void:

@@ -41,6 +41,12 @@ func cell_at(at: Vector2) -> int:
 
 
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("hotbar", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	if world == null:
 		return
 	_flash = max(0.0, _flash - delta)
@@ -60,6 +66,8 @@ func _draw() -> void:
 		slots = []
 	var current = int(you.get("slot", 1)) - 1
 	var pouch = str(you.get("pouch", "")) if you.get("pouch") != null else ""
+	UI.defer_text(self)
+	var icons = []   # drawn after the rects so the rects batch
 	for i in 5:
 		var item = slots[i] if i < slots.size() else null
 		var selected = pouch.empty() and current == i
@@ -68,10 +76,10 @@ func _draw() -> void:
 		if selected:
 			draw_rect(Rect2(at, CELL), Color(color.r, color.g, color.b, 0.14))
 			var outline = Color("#ffc365").linear_interpolate(Color("#c7faff"), 1.0 - _flash / 1.2) if _flash > 0.0 else Color("#c7faff")
-			draw_rect(Rect2(at, CELL), outline, false, 2.0)
+			UI.frame_rect(self, Rect2(at, CELL), outline, 2.0)
 		else:
 			draw_rect(Rect2(at, CELL), Color(0.047, 0.078, 0.133, 0.35))
-			draw_rect(Rect2(at, CELL), Color(0.43, 0.54, 0.56, 0.4), false, 1.0)
+			UI.frame_rect(self, Rect2(at, CELL), Color(0.43, 0.54, 0.56, 0.4), 1.0)
 		UI.draw_text(self, at + Vector2(5, 16), str(i + 1), 16, Color(0.91, 0.91, 0.84, 0.8 if selected else 0.45))
 		if not (item is Dictionary):
 			draw_rect(Rect2(at + Vector2(30, 32), Vector2(12, 2)), Color(color.r, color.g, color.b, 0.5))
@@ -81,7 +89,7 @@ func _draw() -> void:
 		var icon = Assets.item_icon(id)
 		var alpha = 1.0 if selected else 0.75
 		if icon:
-			draw_texture_rect(icon, Rect2(at + Vector2(14, 9), Vector2(44, 44)), false, Color(1, 1, 1, alpha))
+			icons.append([icon, Rect2(at + Vector2(14, 9), Vector2(44, 44)), Color(1, 1, 1, alpha)])
 		else:
 			var initials = ""
 			for word in str(item.get("name", id)).split(" "):
@@ -97,13 +105,16 @@ func _draw() -> void:
 		var held = pouch == POUCH_ITEMS[j]
 		var c: Color = POUCH_COLORS[j] if counts[j] > 0 else MUTED
 		draw_rect(Rect2(at2, CELL), Color(INK.r, INK.g, INK.b, 0.6))
-		draw_rect(Rect2(at2, CELL), Color(c.r, c.g, c.b, 0.95 if held else 0.5), false, 2.0 if held else 1.0)
+		UI.frame_rect(self, Rect2(at2, CELL), Color(c.r, c.g, c.b, 0.95 if held else 0.5), 2.0 if held else 1.0)
 		var icon2 = Assets.item_icon(POUCH_ITEMS[j])
 		if icon2:
-			draw_texture_rect(icon2, Rect2(at2 + Vector2(15, 6), Vector2(42, 42)), false, Color(1, 1, 1, 1.0 if counts[j] > 0 else 0.45))
+			icons.append([icon2, Rect2(at2 + Vector2(15, 6), Vector2(42, 42)), Color(1, 1, 1, 1.0 if counts[j] > 0 else 0.45)])
 		UI.draw_text_centered(self, at2.x + CELL.x * 0.5, at2.y + 61, str(counts[j]), 20, c)
 	# Scrap.
 	var scrap = str(int(you.get("scrap", 0))) if you.get("scrap") != null else "0"
 	var sx = width() + 10.0
-	draw_rect(Rect2(Vector2(sx, CELL.y - 22), Vector2(12, 12)), Color("#ffc365"), false, 2.0)
+	UI.frame_rect(self, Rect2(Vector2(sx, CELL.y - 22), Vector2(12, 12)), Color("#ffc365"), 2.0)
 	UI.draw_text(self, Vector2(sx + 18, CELL.y - 9), scrap, 22, Color("#ffc365"))
+	for ic in icons:
+		draw_texture_rect(ic[0], ic[1], false, ic[2])
+	UI.flush_text(self)

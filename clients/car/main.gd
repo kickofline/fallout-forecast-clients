@@ -27,6 +27,10 @@ var _load_wait = 0
 
 func _ready() -> void:
 	Settings.apply_cmdline()
+	print("DISPLAY window=%s stretch=%s base=%dx%d batching=%s" % [str(OS.window_size),
+		ProjectSettings.get_setting("display/window/stretch/mode"),
+		ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"),
+		str(ProjectSettings.get_setting("rendering/batching/options/use_batching"))])
 	OS.low_processor_usage_mode = false
 	_ui_layer.layer = 10
 	add_child(_ui_layer)
@@ -170,7 +174,7 @@ func _refresh() -> void:
 		kind = "loading"
 	_set_screen(kind)
 	if hud:
-		hud.visible = kind == ""
+		hud.visible = kind == "" and not Settings.has_arg("--no-hud")
 	_backdrop.visible = kind != "" and kind != "loading_world"
 	_osd.set_mode("run" if kind == "" else "menu")
 

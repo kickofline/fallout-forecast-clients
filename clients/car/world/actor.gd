@@ -56,6 +56,7 @@ var _anticipation = 0.0
 var _attack = 0.0
 var _down = 0.0
 var _gait: Array = GAIT["drip"]
+var _lod_acc = 0.0
 
 
 func setup_enemy(enemy_type: String) -> void:
@@ -191,6 +192,12 @@ func kill() -> void:
 
 
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("actors", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	_time += delta
 	var pos = global_transform.origin
 	if _has_last and delta > 0.0:
@@ -214,6 +221,16 @@ func _process(delta: float) -> void:
 		if die_left <= -0.2:
 			queue_free()
 		return
+	# Off-screen or distant actors animate at ~10 Hz (procedural rigs are
+	# GDScript-heavy on the head unit).
+	var cam = get_viewport().get_camera()
+	if cam and spawn_left <= 0.0:
+		if pos.distance_squared_to(cam.global_transform.origin) > 900.0 or cam.is_position_behind(pos):
+			_lod_acc += delta
+			if _lod_acc < 0.1:
+				return
+			delta = _lod_acc
+		_lod_acc = 0.0
 	match kind:
 		"player", "turned":
 			_animate_player(delta)

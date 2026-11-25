@@ -44,6 +44,7 @@ var _state_label: Label
 var _hurt_mat = ShaderMaterial.new()
 var _acid_mat = ShaderMaterial.new()
 var _hurt_rect = ColorRect.new()
+var _draw_busy = true
 var _acid_rect = ColorRect.new()
 var _overlay: Control
 var _overlay_kind = ""
@@ -105,6 +106,17 @@ func _ready() -> void:
 	Net.connect("draft_done", self, "_on_draft_done")
 	Net.connect("tape", self, "_on_tape")
 	Net.connect("events", self, "_on_events")
+	# Test switch: --hud-hide=2,5 hides those _root children (on-car A/B).
+	for a in Settings.args():
+		if str(a).begins_with("--hud-hide="):
+			var names = []
+			for i in range(_root.get_child_count()):
+				names.append("%d=%s" % [i, _root.get_child(i).get_class()])
+			print("HUD children ", " ".join(names))
+			for part in str(a).substr(11).split(","):
+				var i = int(part)
+				if i < _root.get_child_count():
+					_root.get_child(i).set_meta("test_hidden", true)
 
 
 func _build_damage() -> void:
@@ -406,6 +418,12 @@ func _choose(kind: String, i: int) -> void:
 
 # ------------------------------------------------------------------ frame
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("hud", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	if world == null:
 		return
 	_clock += delta
@@ -422,11 +440,8 @@ func _process(delta: float) -> void:
 	_damage_left = max(0.0, _damage_left - delta)
 	_suit_flash = max(0.0, _suit_flash - delta)
 	var hurt_s: float = min(_damage_left * 2.0, 0.85) * Settings.flash_scale()
-	_hurt_mat.set_shader_param("strength", hurt_s)
-	_hurt_rect.visible = hurt_s > 0.01
 	var acid_s = _suit_flash * 0.5 * Settings.flash_scale()
-	_acid_mat.set_shader_param("strength", acid_s)
-	_acid_rect.visible = acid_s > 0.01
+	world.set_edge_tints(hurt_s, acid_s)
 	for a in _arcs:
 		a[1] -= delta * 1.2
 	while not _arcs.empty() and _arcs[0][1] <= 0.0:
@@ -446,9 +461,18 @@ func _process(delta: float) -> void:
 	elif not lost and _signal and is_instance_valid(_signal):
 		_signal.queue_free()
 		_signal = null
-	_touch.visible = (_menu == null or not is_instance_valid(_menu)) and Net.state == "run"
+	_touch.visible = (_menu == null or not is_instance_valid(_menu)) and Net.state == "run" and not Settings.has_arg("--no-touch")
+	if Settings.has_arg("--no-compass"):
+		_compass.visible = false
+	for c in _root.get_children():
+		if c.has_meta("test_hidden"):
+			c.visible = false
 	_touch.update()
-	_draw.update()
+	# The overlay only has content with arcs, teammates, numbers or a draft.
+	var busy = not _arcs.empty() or not world.others.empty() or not _numbers.empty() or _overlay_kind == "draft"
+	if busy or _draw_busy:
+		_draw.update()
+	_draw_busy = busy
 
 
 func _update_forecast(delta: float) -> void:
@@ -606,13 +630,19 @@ func _update_center(you: Dictionary, state: String) -> void:
 
 
 func _on_draw() -> void:
+	var _pt = OS.get_ticks_usec()
+	_on_draw_body()
+	Settings.prof_add("hud_draw", OS.get_ticks_usec() - _pt)
+
+
+func _on_draw_body() -> void:
 	var size = _draw.rect_size
 	var c = size * 0.5
 	# Damage direction arcs.
 	for a in _arcs:
 		var ang: float = a[0] - PI / 2
 		var alpha: float = clamp(a[1], 0.0, 1.0)
-		_draw.draw_arc(c, 120, ang - 0.4, ang + 0.4, 18, Color(UI.PINK.r, UI.PINK.g, UI.PINK.b, alpha * 0.9), 6, true)
+		_draw.draw_arc(c, 120, ang - 0.4, ang + 0.4, 18, Color(UI.PINK.r, UI.PINK.g, UI.PINK.b, alpha * 0.9), 6, false)
 	# Teammate name tags.
 	for o in world.others:
 		var p = world.to_screen(o.pos + Vector3(0, 2.15, 0), size)

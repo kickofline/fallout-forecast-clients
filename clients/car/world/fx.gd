@@ -160,6 +160,12 @@ func spark(at: Vector3, color := Color(1.0, 0.9, 0.5), amount_scale := 1.0) -> v
 
 
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("fx", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	for mi in _tracers:
 		if not mi.visible:
 			continue

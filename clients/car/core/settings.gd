@@ -21,7 +21,7 @@ var volume = 0.8
 var hud_scale = 1.0
 var button_size = 1.0
 var interp_ms = 100
-var map_detail = 2               # 0 low (decimated), 1 full, 2 auto (low on Android)
+var map_detail = 2               # 0 low (decimated), 1 full, 2 auto (full)
 
 
 func _ready() -> void:
@@ -85,6 +85,44 @@ func _apply_volume() -> void:
 
 
 var _args = null
+
+
+func has_arg(a: String) -> bool:
+	return a in args()
+
+# Lightweight per-section CPU profile (usec summed between PERF lines).
+var prof = {}
+var prof_frame = {}
+var spike_ctx = []
+
+
+func prof_add(key: String, usec: int) -> void:
+	prof[key] = int(prof.get(key, 0)) + usec
+	prof_frame[key] = int(prof_frame.get(key, 0)) + usec
+
+
+## Spike report for one frame: sections over 5 ms.
+func prof_frame_take() -> String:
+	var parts = []
+	for k in prof_frame:
+		if prof_frame[k] > 5000:
+			parts.append("%s=%d" % [k, prof_frame[k] / 1000])
+	prof_frame.clear()
+	if not spike_ctx.empty():
+		parts.append("ctx=" + ",".join(spike_ctx))
+		spike_ctx.clear()
+	return " ".join(parts)
+
+
+## "key=ms/frame ..." averaged over `frames`, then reset.
+func prof_take(frames: int) -> String:
+	var parts = []
+	var keys = prof.keys()
+	keys.sort()
+	for k in keys:
+		parts.append("%s=%.1f" % [k, prof[k] / 1000.0 / max(1, frames)])
+	prof.clear()
+	return " ".join(parts)
 
 
 ## Command-line args plus user://test_args.txt (one per line). The file lets

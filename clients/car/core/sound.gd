@@ -78,7 +78,10 @@ func _stream(file: String, loop := false) -> AudioStream:
 		var src = p
 		if p.ends_with(".ogg") and ResourceLoader.exists(p.get_basename() + ".wav"):
 			src = p.get_basename() + ".wav"
+		var t0 = OS.get_ticks_msec()
 		var s = load(src) if ResourceLoader.exists(src) else null
+		if OS.get_ticks_msec() - t0 > 30:
+			print("AUDIO slow load %s %dms" % [src, OS.get_ticks_msec() - t0])
 		if s:
 			# Loop flags live on the shared resource: loops get their own copy.
 			if loop:

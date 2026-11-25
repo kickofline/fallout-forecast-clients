@@ -28,6 +28,8 @@ Pass after `--`:
 - `--only=<sections>` — Comma-separated subset of `maps,characters,weapons,audio` (default: all)
 - `--maps=<ids>` — Comma-separated subset of `pinecrest,harbor,maple_hollow`
 - `--skip-decimate` — Skip generating `<map>_low.glb` when a map exceeds 150k triangles
+- `--no-fold-colors` — Keep one material per solid colour (by default untextured opaque solids are folded into vertex colours, which halves the maps' draw calls and renders identically on the client)
+- `--chunked` — Also write `<map>_chunked.glb`: the full-detail map split into 40 m grid cells (one multi-surface mesh per cell) so Godot 3 can frustum-cull it. Off by default: on the head unit it ran slower than the whole-map merge on every map, because the extra draw calls cost more than the culled vertices save
 
 ### Architecture
 
@@ -40,7 +42,8 @@ Pass after `--`:
     - Maple Hollow ground mist shader: bakes the radial `smoothstep(1.0, 0.15, r)^2` falloff into a 64×64 RGBA texture on an unshaded alpha-blended material.
   - **Negative-scale winding**: flips triangle winding when `global_transform.basis.determinant() < 0`.
   - **3D Signage (`Label3D`)**: Pinecrest uses the game's runtime `props/map_signs.gd` (`NeonLettering`); Harbor and Maple Hollow static `Label3D` signs (excluding `decon_shower` labels, which `decon_shower.gd` hides) are baked as flat 3D stroke lettering so they export natively in glTF.
-  - **Material merging**: merges all static map geometry into one surface per canonical material (falling back to vertex-color folding of untextured opaque solids if unique materials exceed 180).
+  - **Material merging**: merges all static map geometry into one surface per canonical material, after folding untextured opaque solid colours into vertex colours (Pinecrest 149 → 74 materials, Harbor 98 → 48, Maple Hollow 113 → 77).
+  - **Triplanar tag**: materials whose triplanar UVs were baked get a `tri_` name; the car client skips PS1 vertex snapping on them like the original's triplanar path (snapped ground and road layers z-fought).
   - **Decimation**: generates `<map>_low.glb` via normal-octant-aware spatial vertex clustering if a map exceeds 150,000 triangles.
 - `lib/export_maps.gd` — Instances `pinecrest`, `harbor`, `maple_hollow` (with `building_restyle.gd`, `map_signs.gd`, and `tree_shelter.gd`), extracts sidecar JSONs (`puddles` with raycasted `floor_y`, `shelters`, spawns, `vending_stations`, `decon_showers`, `boss_anchors`, `lights`) and per-weather environment tables (`maps/environments.json`).
 - `lib/export_characters.gd` — Exports all 12 enemy types (`drip`, `gutter`, `mister`, `hailstone`, `sleet`, `smog`, `static`, `thunderhead`, `undertow`, `cloudburst`, `cumulus`, `turned`) and all 50 player skin × suit-color combinations with clean articulated node hierarchies and rest poses.

@@ -82,7 +82,9 @@ func _convert(material: Material) -> Material:
 		s.set_shader_param("uv_offset", m.uv1_offset)
 		s.set_shader_param("use_vertex_color", m.vertex_color_use_as_albedo)
 		s.set_shader_param("use_texture", m.albedo_texture != null)
-		s.set_shader_param("snap", snap)
+		# Baked-triplanar surfaces (exporter names them tri_*) don't snap, like
+		# the original's triplanar path; snapped ground/road layers z-fight.
+		s.set_shader_param("snap", 0.0 if m.resource_name.begins_with("tri_") else snap)
 	s.set_shader_param("albedo", m.albedo_color)
 	if m.albedo_texture:
 		s.set_shader_param("albedo_texture", m.albedo_texture)

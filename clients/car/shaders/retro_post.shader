@@ -12,6 +12,20 @@ uniform float scanline_strength = 0.18;
 uniform float vignette_strength = 0.35;
 uniform float glitch = 0.0;
 
+// Damage / acid edge tints (ui/damage.gdshader), applied here at the 3D
+// resolution instead of as two full-screen HUD rects.
+uniform float hurt = 0.0;
+uniform vec3 hurt_tint = vec3(1.0, 0.08, 0.16);
+uniform float acid = 0.0;
+uniform vec3 acid_tint = vec3(0.65, 1.0, 0.08);
+
+vec3 edge_tints(vec3 col, vec2 uv) {
+	vec2 p = uv * 2.0 - 1.0;
+	float edge = smoothstep(0.22, 0.95, max(abs(p.x), abs(p.y)));
+	col = mix(col, hurt_tint, clamp(hurt * (0.12 + edge * 0.8), 0.0, 1.0));
+	return mix(col, acid_tint, clamp(acid * (0.12 + edge * 0.8), 0.0, 1.0));
+}
+
 float hash(float n) { return fract(sin(n) * 43758.5453); }
 
 float b2(vec2 p) { return mod(2.0 * p.x + 3.0 * p.y, 4.0); }
@@ -44,5 +58,5 @@ void fragment() {
 	float bar = smoothstep(0.0, 0.02, abs(fract(UV.y + t * 0.15) - 0.5) - 0.48);
 	col = mix(col, vec3(0.9), (1.0 - bar) * 0.25 * glitch);
 	col += (hash(cell.x * 13.1 + cell.y * 71.7 + floor(t * 30.0)) - 0.5) * 0.25 * glitch;
-	COLOR = vec4(col, 1.0);
+	COLOR = vec4(edge_tints(col, UV), 1.0);
 }

@@ -221,6 +221,12 @@ func cancel_all() -> void:
 
 
 func _process(_delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(_delta)
+	Settings.prof_add("touch", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(_delta: float) -> void:
 	if world == null:
 		return
 	# Movement vector: stick, else keyboard.
@@ -261,15 +267,38 @@ func _key(code: int) -> bool:
 	return bool(_keys.get(code, false))
 
 
+var _draw_sig = ""
+
+
+## Redraw only when something the controls show changed.
+func update() -> void:
+	if world == null:
+		.update()
+		return
+	var sig = "%s|%s|%s|%d|%s|%s|%s" % [str(_held), str(_contacts.values()), str(_stick_tip.round()), world.held_bits,
+		str(world.you.get("interact_progress", world.you.get("revive", 0.0))), str(world.you.get("reloading", false)),
+		str(Net.state) + str(world.you.get("state", "")) + str(world.you.get("prompt", "")) + str(world.weather_state.get("phase", "")) 		+ str(float(world.weather_state.get("phase_time_left", 0.0)) > 6.0)]
+	if sig != _draw_sig:
+		_draw_sig = sig
+		.update()
+
+
 func _draw() -> void:
+	var _pt = OS.get_ticks_usec()
+	_draw_body()
+	Settings.prof_add("touch_draw", OS.get_ticks_usec() - _pt)
+
+
+func _draw_body() -> void:
 	if world == null:
 		return
 	var font = UI.font(24)
+	UI.defer_text(self)
 	# Stick.
 	var moving = "move" in _contacts.values()
 	var ring = Color(UI.PAPER.r, UI.PAPER.g, UI.PAPER.b, 0.35 if moving else 0.18)
-	draw_arc(_stick_center, STICK_R, 0, TAU, 40, ring, 2.0, true)
-	draw_arc(_stick_center, STICK_R * SPRINT_EDGE, -PI * 0.85, -PI * 0.15, 24, Color(UI.AMBER.r, UI.AMBER.g, UI.AMBER.b, 0.35 if moving else 0.15), 2.0, true)
+	draw_arc(_stick_center, STICK_R, 0, TAU, 40, ring, 2.0, false)
+	draw_arc(_stick_center, STICK_R * SPRINT_EDGE, -PI * 0.85, -PI * 0.15, 24, Color(UI.AMBER.r, UI.AMBER.g, UI.AMBER.b, 0.35 if moving else 0.15), 2.0, false)
 	var tip = _stick_center + (_stick_tip - _stick_center).limit_length(STICK_R * SPRINT_EDGE)
 	var sprinting = (world.held_bits & world.BITS.sprint) != 0
 	draw_circle(tip, 30.0, Color(UI.AMBER.r, UI.AMBER.g, UI.AMBER.b, 0.55) if sprinting else Color(UI.CYAN.r, UI.CYAN.g, UI.CYAN.b, 0.32 if moving else 0.18))
@@ -295,7 +324,7 @@ func _draw() -> void:
 			bg = Color(accent.r, accent.g, accent.b, 0.35)
 		draw_rect(r, bg)
 		draw_rect(Rect2(r.position, Vector2(3, r.size.y)), accent)
-		draw_rect(r, Color(accent.r, accent.g, accent.b, 0.55), false, 1.0)
+		UI.frame_rect(self, r, Color(accent.r, accent.g, accent.b, 0.55), 1.0)
 		var cap: String = captions.get(action, action.to_upper())
 		var size = 30 if action == "fire" else 24
 		var w = UI.text_width(cap, size)
@@ -306,6 +335,7 @@ func _draw() -> void:
 				draw_rect(Rect2(r.position + Vector2(0, r.size.y - 5), Vector2(r.size.x * clamp(p, 0, 1), 5)), UI.ACID)
 		if action == "reload" and bool(world.you.get("reloading", false)):
 			draw_rect(Rect2(r.position + Vector2(0, r.size.y - 4), Vector2(r.size.x, 4)), UI.PAPER)
+	UI.flush_text(self)
 
 
 func _notification(what: int) -> void:

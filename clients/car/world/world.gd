@@ -36,6 +36,11 @@ var viewmodel: Spatial
 var fx: Spatial
 var weather: Spatial
 var display = TextureRect.new()
+# The VHS/clean post pass runs in its own viewport at the 3D resolution (its
+# result only varies per virtual pixel anyway); `display` just upscales it.
+# Running it per screen pixel at 1240x686 capped the head unit at ~14 fps.
+var post_vp = Viewport.new()
+var post_rect = TextureRect.new()
 var level: Spatial
 var latest = {}
 var you = {}
@@ -93,6 +98,7 @@ var _load_path = ""
 var _load_variant = ""
 var _load_t0 = 0
 var _load_ms = {}
+var _fixed_cam = []
 
 
 func _ready() -> void:
@@ -110,7 +116,7 @@ func _ready() -> void:
 	scene.add_child(_world_env)
 	camera.current = true
 	camera.fov = HIP_FOV
-	camera.near = 0.05
+	camera.near = 0.08  # was 0.05: more depth precision on the SGX (road decals)
 	camera.far = 260.0
 	scene.add_child(camera)
 	viewmodel = Viewmodel.new()
@@ -126,7 +132,21 @@ func _ready() -> void:
 	display.stretch_mode = TextureRect.STRETCH_SCALE
 	display.set_anchors_and_margins_preset(Control.PRESET_WIDE)
 	display.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	display.texture = viewport.get_texture()
+	post_vp.usage = Viewport.USAGE_2D_NO_SAMPLING
+	post_vp.hdr = false
+	post_vp.msaa = Viewport.MSAA_DISABLED
+	post_vp.transparent_bg = false
+	post_vp.render_target_v_flip = true
+	post_vp.render_target_update_mode = Viewport.UPDATE_ALWAYS
+	post_vp.gui_disable_input = true
+	add_child(post_vp)
+	post_rect.expand = true
+	post_rect.stretch_mode = TextureRect.STRETCH_SCALE
+	post_rect.set_anchors_and_margins_preset(Control.PRESET_WIDE)
+	post_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	post_rect.texture = viewport.get_texture()
+	post_vp.add_child(post_rect)
+	display.texture = post_vp.get_texture()
 	_layer.add_child(display)
 	_post_retro.shader = RETRO_POST
 	_post_clean.shader = CLEAN_POST
@@ -151,15 +171,19 @@ func resize() -> void:
 	if Settings.retro_enabled:
 		var lines = float(Settings.retro_lines)
 		size = Vector2(round(lines * aspect), lines)
-		display.material = _post_retro
+		post_rect.material = _post_retro
 		_post_retro.set_shader_param("res", size)
 		viewport.get_texture().flags = 0
+		post_vp.get_texture().flags = 0
 	else:
 		var s: float = clamp(Settings.render_scale, 0.25, 1.0)
 		size = Vector2(round(win.x * s), round(win.y * s))
-		display.material = _post_clean
-		viewport.get_texture().flags = Texture.FLAG_FILTER
+		post_rect.material = _post_clean
+		viewport.get_texture().flags = 0
+		post_vp.get_texture().flags = Texture.FLAG_FILTER
 	viewport.size = size
+	post_vp.size = size
+	post_rect.rect_size = size
 	RetroMat.snap = 120.0 if Settings.retro_enabled else 0.0
 
 
@@ -251,8 +275,18 @@ func _finish_load() -> void:
 ## Chunked maps: cells are separate MeshInstances, so Godot's per-instance
 ## frustum culling works; clip them at the fog distance.
 func _setup_culling() -> void:
-	if "--hide-level" in Settings.args():
+	for a in Settings.args():
+		if str(a).begins_with("--cam="):
+			_fixed_cam = Array(str(a).substr(6).split_floats(","))
+	# Test switches (user://test_args.txt) for on-car A/B runs.
+	if Settings.has_arg("--hide-level"):
 		level.visible = false
+	if Settings.has_arg("--no-3d"):
+		viewport.render_target_update_mode = Viewport.UPDATE_DISABLED
+	if Settings.has_arg("--no-post"):
+		post_rect.material = null
+	if Settings.has_arg("--no-rain"):
+		weather.set_rain_enabled(false)
 
 
 ## Merge the enemy rigs and draw the warm-up instances behind the loading
@@ -342,6 +376,12 @@ static func _v(a) -> Vector3:
 
 # ------------------------------------------------------------------ snapshots
 func _on_snapshot(s: Dictionary) -> void:
+	var _t = OS.get_ticks_usec()
+	_on_snapshot_body(s)
+	Settings.prof_add("w_snap", OS.get_ticks_usec() - _t)
+
+
+func _on_snapshot_body(s: Dictionary) -> void:
 	latest = s
 	_snap_local_ms = OS.get_ticks_msec()
 	if s.get("you") is Dictionary:
@@ -419,6 +459,7 @@ func _sync_entities() -> void:
 			actor.id = id
 			scene.add_child(actor)
 			actor.setup_enemy(str(row.get("type", "gutter")))
+			Settings.spike_ctx.append("spawn:" + str(row.get("type", "")))
 			enemies[id] = actor
 		var pos = _lerp_pos(a.enemies.get(id), row, f)
 		actor.translation = pos
@@ -564,9 +605,16 @@ func _make_pickup(row: Dictionary) -> Spatial:
 
 # ------------------------------------------------------------------ events
 func _on_events(list: Array) -> void:
+	var _t = OS.get_ticks_usec()
+	_on_events_body(list)
+	Settings.prof_add("w_events", OS.get_ticks_usec() - _t)
+
+
+func _on_events_body(list: Array) -> void:
 	for ev in list:
 		if not (ev is Dictionary):
 			continue
+		Settings.spike_ctx.append(str(ev.get("e", "")) + (":" + str(ev.get("name", ev.get("text", ""))) if ev.has("name") or ev.has("text") else ""))
 		match str(ev.get("e", "")):
 			"shot":
 				_on_shot(ev)
@@ -655,24 +703,34 @@ func current_slot() -> Dictionary:
 
 
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("world", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	_anim_time += delta
 	if loading:
 		_step_load()
 		return
 	if level == null:
 		return
+	var _t = OS.get_ticks_usec()
 	_sync_entities()
+	Settings.prof_add("w_sync", OS.get_ticks_usec() - _t)
 	for id in pickup_nodes:
 		var n = pickup_nodes[id]
 		if is_instance_valid(n) and n.get_meta("spin"):
 			n.rotation.y = _anim_time * 1.6 + float(hash(id) % 10)
 			n.get_child(0).translation.y = 0.25 + sin(_anim_time * 2.0 + float(hash(id) % 7)) * 0.06
 	_update_camera(delta)
+	_t = OS.get_ticks_usec()
 	weather.update(delta, weather_state)
+	Settings.prof_add("w_weather", OS.get_ticks_usec() - _t)
 	_update_decon()
 	var downed = str(you.get("state", "ok")) == "downed"
 	glitch = max(move_toward(glitch, 0.0, delta * 1.6), 0.45 * Settings.flash_scale() if downed else 0.0)
-	var mat = display.material as ShaderMaterial
+	var mat = post_rect.material as ShaderMaterial
 	if mat:
 		mat.set_shader_param("glitch", glitch)
 	_local_fire()
@@ -713,6 +771,9 @@ func _update_camera(delta: float) -> void:
 	shake = max(0.0, shake - delta * 3.0)
 	if shake > 0.0 and not Settings.reduced_flash:
 		origin += Vector3(rand_range(-1, 1), rand_range(-1, 1), 0) * shake * 0.03
+	if _fixed_cam.size() == 5:  # test switch --cam=x,y,z,yaw,pitch (A/B screenshots)
+		basis = Basis(Vector3.UP, _fixed_cam[3]) * Basis(Vector3.RIGHT, _fixed_cam[4])
+		origin = Vector3(_fixed_cam[0], _fixed_cam[1], _fixed_cam[2])
 	camera.global_transform = Transform(basis, origin)
 	# FOV: hip, sprint +6, ADS from weapons.json.
 	var item = current_slot()
@@ -797,6 +858,13 @@ func _send_input() -> void:
 	Net.send({"t": "in", "seq": _seq, "mv": [stepify(mv.x, 0.01), stepify(mv.y, 0.01)],
 		"yaw": stepify(yaw, 0.001), "pitch": stepify(pitch, 0.001), "b": bits, "slot": slot, "wheel": _wheel})
 	_wheel = 0
+
+
+## Damage / acid edge tints, drawn by the post pass (low resolution).
+func set_edge_tints(hurt: float, acid: float) -> void:
+	for m in [_post_retro, _post_clean]:
+		m.set_shader_param("hurt", hurt)
+		m.set_shader_param("acid", acid)
 
 
 ## Screen position (UI space) of a world point, or null when behind.

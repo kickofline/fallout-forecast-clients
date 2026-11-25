@@ -7,7 +7,10 @@ extends Spatial
 
 var env = Environment.new()
 var sun = DirectionalLight.new()
-var sky = ProceduralSky.new()
+var sky_mat = ShaderMaterial.new()   # shaders/sky.shader on a background canvas layer
+var _sky_layer = CanvasLayer.new()
+var _sky_rect = ColorRect.new()
+var _sky_ground = Color("#1a1426")
 var camera: Camera
 var phase = "calm"
 var intensity = 0.0
@@ -58,21 +61,25 @@ func setup(map_id: String, cfg: Dictionary, world_env: WorldEnvironment) -> void
 	if cfg.get("lightning_flash") is Dictionary:
 		_flash_cfg = cfg.lightning_flash
 	var sky_cfg: Dictionary = cfg.get("sky", {}) if cfg.get("sky") is Dictionary else {}
-	sky.sky_top_color = hex(sky_cfg.get("sky_top_color"), Color("#1c1638"))
-	sky.sky_horizon_color = hex(sky_cfg.get("sky_horizon_color"), Color("#d9586b"))
-	sky.sky_curve = float(sky_cfg.get("sky_curve", 0.12))
-	_sky_top = sky.sky_top_color
-	_sky_horizon = sky.sky_horizon_color
+	_sky_top = hex(sky_cfg.get("sky_top_color"), Color("#1c1638"))
+	_sky_horizon = hex(sky_cfg.get("sky_horizon_color"), Color("#d9586b"))
 	_ground_horizon = hex(sky_cfg.get("ground_horizon_color"), Color("#6b3a55"))
-	sky.ground_bottom_color = hex(sky_cfg.get("ground_bottom_color"), Color("#1a1426"))
-	sky.ground_horizon_color = hex(sky_cfg.get("ground_horizon_color"), Color("#6b3a55"))
-	sky.ground_curve = float(sky_cfg.get("ground_curve", 0.02))
-	sky.sun_latitude = 12.0
-	sky.sun_angle_max = 8.0
-	sky.sun_color = Color("#ffa885")
-	sky.radiance_size = Sky.RADIANCE_SIZE_32
-	env.background_mode = Environment.BG_SKY
-	env.background_sky = sky
+	_sky_ground = hex(sky_cfg.get("ground_bottom_color"), Color("#1a1426"))
+	sky_mat.shader = preload("res://shaders/sky.shader")
+	sky_mat.set_shader_param("sky_curve", float(sky_cfg.get("sky_curve", 0.12)))
+	sky_mat.set_shader_param("ground_curve", float(sky_cfg.get("ground_curve", 0.02)))
+	sky_mat.set_shader_param("ground_bottom", _sky_ground)
+	sky_mat.set_shader_param("sun_color", Color("#ffa885"))
+	# ProceduralSky sun at latitude 12, longitude 0.
+	sky_mat.set_shader_param("sun_dir", Basis(Vector3.RIGHT, deg2rad(12.0)).xform(Vector3(0, 0, -1)))
+	_sky_layer.layer = -100
+	add_child(_sky_layer)
+	_sky_rect.set_anchors_and_margins_preset(Control.PRESET_WIDE)
+	_sky_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_sky_rect.material = sky_mat
+	_sky_layer.add_child(_sky_rect)
+	env.background_mode = Environment.BG_CANVAS
+	env.background_canvas_max_layer = -100
 	var amb: Dictionary = cfg.get("ambient", {}) if cfg.get("ambient") is Dictionary else {}
 	_base_ambient = hex(amb.get("color"), Color("#9e80a8"))
 	env.ambient_light_color = _base_ambient
@@ -138,11 +145,26 @@ func _build_rain() -> void:
 	add_child(_rain)
 
 
+var _rain_enabled = true
+
+
+func set_rain_enabled(on: bool) -> void:
+	_rain_enabled = on
+	_rain.visible = on
+
+
 func update(delta: float, w: Dictionary) -> void:
 	phase = str(w.get("phase", phase))
 	intensity = float(w.get("intensity", intensity))
 	_apply_phase(delta, false)
 	if camera:
+		var b = camera.global_transform.basis
+		sky_mat.set_shader_param("cam_x", b.x)
+		sky_mat.set_shader_param("cam_y", b.y)
+		sky_mat.set_shader_param("cam_z", b.z)
+		sky_mat.set_shader_param("tan_half_fov", tan(deg2rad(camera.fov * 0.5)))
+		var vs = camera.get_viewport().size
+		sky_mat.set_shader_param("aspect", vs.x / max(1.0, vs.y))
 		_rain.global_transform.origin = camera.global_transform.origin + Vector3(0, 9, 0) - camera.global_transform.basis.z * 6.0
 	for b in _bolts.duplicate():
 		b.set_meta("life", float(b.get_meta("life")) - delta)
@@ -185,10 +207,10 @@ func _apply_phase(delta: float, snap: bool) -> void:
 	if abs(murk - _sky_murk) > 0.04 or snap:
 		_sky_murk = murk
 		var k2 = murk * 0.75
-		sky.sky_top_color = _sky_top.linear_interpolate(_fog_color.darkened(0.35), k2)
-		sky.sky_horizon_color = _sky_horizon.linear_interpolate(_fog_color, k2)
-		sky.ground_horizon_color = _ground_horizon.linear_interpolate(_fog_color, k2)
-	env.background_energy = _sky_energy * (1.0 - murk * 0.25) + glow * float(_flash_cfg.get("sky_boost", 0.85))
+		sky_mat.set_shader_param("sky_top", _sky_top.linear_interpolate(_fog_color.darkened(0.35), k2))
+		sky_mat.set_shader_param("sky_horizon", _sky_horizon.linear_interpolate(_fog_color, k2))
+		sky_mat.set_shader_param("ground_horizon", _ground_horizon.linear_interpolate(_fog_color, k2))
+	sky_mat.set_shader_param("energy", _sky_energy * (1.0 - murk * 0.25) + glow * float(_flash_cfg.get("sky_boost", 0.85)))
 	env.ambient_light_energy = _ambient_energy * (1.0 + glow * float(_flash_cfg.get("ambient_boost", 0.4)))
 	env.ambient_light_color = _base_ambient.linear_interpolate(_fog_color, murk * 0.35)
 	sun.light_energy = lerp(sun.light_energy, sun_target, k) + glow * float(_flash_cfg.get("sun_boost", 0.5)) * 0.2

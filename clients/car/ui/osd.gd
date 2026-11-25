@@ -19,6 +19,13 @@ var _fps_frames = 0
 var _fps = 0.0
 var _worst = 0.0
 var _log_left = 5.0
+var _log_frames = 0
+var _last_us = 0
+var _d2 = 0.0
+var _i2 = 0.0
+var spikes = 0
+var spike_ms = 0
+var _log_us = 0
 
 
 func _ready() -> void:
@@ -45,6 +52,21 @@ func _ready() -> void:
 	_perf.align = Label.ALIGN_RIGHT
 	_root.add_child(_perf)
 	set_mode("menu")
+	VisualServer.connect("frame_pre_draw", self, "_on_pre_draw")
+	VisualServer.connect("frame_post_draw", self, "_on_post_draw")
+
+
+var _pre_us = 0
+
+
+func _on_pre_draw() -> void:
+	_pre_us = OS.get_ticks_usec()
+
+
+## Time inside VisualServer.draw(): render submission plus any GPU stalls.
+func _on_post_draw() -> void:
+	if _pre_us > 0:
+		Settings.prof_add("render", OS.get_ticks_usec() - _pre_us)
 
 
 func set_mode(mode: String) -> void:
@@ -62,6 +84,15 @@ func fps() -> float:
 
 
 func _process(delta: float) -> void:
+	var spike = Settings.prof_frame_take()
+	var now_us = OS.get_ticks_usec()
+	if _mode == "run" and _last_us > 0 and now_us - _last_us > 250000:
+		spikes += 1
+		spike_ms += (now_us - _last_us) / 1000
+	if _last_us > 0 and now_us - _last_us > 250000:
+		print("SPIKE frame=%dms delta=%dms nodes=%d %s" % [(now_us - _last_us) / 1000, int(delta * 1000.0),
+			Performance.get_monitor(Performance.OBJECT_NODE_COUNT), spike])
+	_last_us = now_us
 	_clock += delta
 	_fps_acc += delta
 	_fps_frames += 1
@@ -73,10 +104,19 @@ func _process(delta: float) -> void:
 		var rtt = ("%d" % int(Net.rtt_ms)) if Net.rtt_ms >= 0.0 else "--"
 		_perf.text = "%d FPS  %d MS  PING %s" % [int(round(_fps)), int(_worst * 1000.0), rtt]
 		_worst = 0.0
-	_perf.visible = Settings.fps_overlay
+	_perf.visible = Settings.fps_overlay and not Settings.has_arg("--no-osd")
+	_root.visible = not Settings.has_arg("--no-osd")
 	_log_left -= delta
+	_log_frames += 1
+	_d2 += Performance.get_monitor(Performance.RENDER_2D_DRAW_CALLS_IN_FRAME)
+	_i2 += Performance.get_monitor(Performance.RENDER_2D_ITEMS_IN_FRAME)
 	if _log_left <= 0.0:
 		_log_left = 5.0
+		print("PROF frame=%.1f items2d=%.0f draws2d=%.0f %s" % [5000.0 / max(1, _log_frames),
+			_i2 / max(1, _log_frames), _d2 / max(1, _log_frames), Settings.prof_take(_log_frames)])
+		_d2 = 0.0
+		_i2 = 0.0
+		_log_frames = 0
 		# Grepable perf line for adb logcat / desktop stdout.
 		print("PERF fps=%.1f mode=%s retro=%s scale=%.2f rtt=%d proc=%.1fms draws=%d verts=%d objs=%d nodes=%d" % [_fps, _mode,
 			str(Settings.retro_enabled), Settings.render_scale, int(Net.rtt_ms),

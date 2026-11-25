@@ -4,9 +4,17 @@ extends RefCounted
 
 const MAP_IDS := ["pinecrest", "harbor", "maple_hollow"]
 const DECIMATE_TRI_THRESHOLD := 150000
+## Grid cell size (metres) for the frustum-cullable <map>_chunked.glb.
+const CHUNK_CELL := 40.0
+
+## Fold untextured opaque solid colours into vertex colours (default; turn off
+## with --no-fold-colors, then folding only happens past 180 materials). It
+## halves the maps' material/draw-call count and renders identically on the
+## Godot 3 client (fixed-camera A/B, 2026-11-25); the SGX is draw-call bound.
+var fold_colors := true
 
 
-func export_maps(tree: SceneTree, baker: RefCounted, out_dir: String, filter_maps: PackedStringArray, skip_decimate := false) -> Dictionary:
+func export_maps(tree: SceneTree, baker: RefCounted, out_dir: String, filter_maps: PackedStringArray, skip_decimate := false, chunked := false) -> Dictionary:
 	var maps_script: Variant = load("res://game/maps.gd")
 	var tree_shelter_script: Variant = load("res://props/tree_shelter.gd")
 	var restyle_script: Variant = load("res://props/building_restyle.gd")
@@ -63,7 +71,7 @@ func export_maps(tree: SceneTree, baker: RefCounted, out_dir: String, filter_map
 		var draw_calls: int = baked.draw_calls
 		var used_vcol_fold := false
 		# If exact materials exceed 180 draw calls, fold untextured opaque solid colors into vertex colors.
-		if draw_calls > 180:
+		if draw_calls > 180 or fold_colors:
 			baked.scene.free()
 			baker.clear_caches()
 			baked = baker.bake_level_to_merged_scene(level, map_id, true)
@@ -105,6 +113,14 @@ func export_maps(tree: SceneTree, baker: RefCounted, out_dir: String, filter_map
 				map_info["low_draw_calls"] = dec.draw_calls
 				map_info["low_bytes"] = lwr.get("bytes", 0)
 			dec.scene.free()
+
+		# Optional (--chunked) variant: same full-detail geometry split into
+		# CHUNK_CELL grid cells so Godot 3 frustum-culls per cell. Measured on the
+		# head unit (2026-11-25) it was slower than the whole-map merge on all
+		# three maps (draw calls cost more than the culled vertices save), so it
+		# is not exported by default.
+		if chunked:
+			_export_chunked(baker, baked, map_id, out_dir, map_info)
 
 		sidecar["mesh"] = map_info
 		baker.write_json(out_dir.path_join("maps/%s.json" % map_id), sidecar)
@@ -402,6 +418,23 @@ func _extract_sidecar(level: Node3D, map_id: String, display_name: String, env_d
 		"lights": lights,
 		"environment": env_data,
 	}
+
+
+func _export_chunked(baker: RefCounted, baked: Dictionary, map_id: String, out_dir: String, map_info: Dictionary) -> void:
+	var ch: Dictionary = baker.build_chunked_scene(baked.buckets, map_id, CHUNK_CELL)
+	var ch_rel := "maps/%s_chunked.glb" % map_id
+	var cwr: Dictionary = baker.write_glb(ch.scene, out_dir.path_join(ch_rel))
+	if cwr.ok:
+		map_info["chunked_glb"] = ch_rel
+		map_info["chunked_cells"] = ch.cells
+		map_info["chunked_surfaces"] = ch.surfaces
+		map_info["chunked_max_cell_surfaces"] = ch.max_cell_surfaces
+		map_info["chunked_cell_size"] = ch.cell_size
+		map_info["chunked_bytes"] = cwr.get("bytes", 0)
+	else:
+		push_error("Failed writing %s: %s" % [ch_rel, cwr.get("error", "")])
+	print("  chunked: %d cells, %d surfaces (max %d per cell), %d tris" % [ch.cells, ch.surfaces, ch.max_cell_surfaces, ch.triangles])
+	ch.scene.free()
 
 
 static func _v3(v: Vector3) -> Array:

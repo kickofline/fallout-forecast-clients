@@ -39,7 +39,7 @@ func font(size: int, outline := 0) -> DynamicFont:
 	f.size = size
 	f.use_filter = false
 	f.use_mipmaps = false
-	if outline > 0:
+	if outline > 0 and not Settings.has_arg("--no-outline"):
 		f.outline_size = outline
 		f.outline_color = Color(INK.r, INK.g, INK.b, 0.9)
 	_fonts[key] = f
@@ -223,9 +223,61 @@ func text_width(text: String, size: int) -> float:
 	return font(size).get_string_size(text).x
 
 
+## Batch-friendly primitives. Godot 3 GLES2 draws antialiased lines, arcs
+## and unfilled rects as separate unbatched draw calls; on the head unit's
+## SGX the HUD issued ~230 draw calls a frame that way. Filled rects batch.
+func frame_rect(ci: CanvasItem, r: Rect2, color: Color, w := 1.0) -> void:
+	ci.draw_rect(Rect2(r.position, Vector2(r.size.x, w)), color)
+	ci.draw_rect(Rect2(r.position + Vector2(0, r.size.y - w), Vector2(r.size.x, w)), color)
+	ci.draw_rect(Rect2(r.position + Vector2(0, w), Vector2(w, r.size.y - 2.0 * w)), color)
+	ci.draw_rect(Rect2(r.position + Vector2(r.size.x - w, w), Vector2(w, r.size.y - 2.0 * w)), color)
+
+
+## Line segment of width w: a rect when axis-aligned, else a quad.
+func seg(ci: CanvasItem, a: Vector2, b: Vector2, color: Color, w := 1.0) -> void:
+	if abs(a.x - b.x) < 0.01 or abs(a.y - b.y) < 0.01:
+		var lo = Vector2(min(a.x, b.x), min(a.y, b.y))
+		var hi = Vector2(max(a.x, b.x), max(a.y, b.y))
+		ci.draw_rect(Rect2(lo - Vector2(w, w) * 0.5, hi - lo + Vector2(w, w)), color)
+		return
+	var n = (b - a).normalized().tangent() * (w * 0.5)
+	ci.draw_colored_polygon(PoolVector2Array([a - n, b - n, b + n, a + n]), color)
+
+
+const _OUTLINE_OFFSETS = [Vector2(-2, 0), Vector2(2, 0), Vector2(0, -2), Vector2(0, 2), Vector2(-1, -1), Vector2(1, -1),
+	Vector2(-1, 1), Vector2(1, 1), Vector2(-2, -1), Vector2(2, -1), Vector2(-2, 1), Vector2(2, 1), Vector2(-1, -2),
+	Vector2(1, -2), Vector2(-1, 2), Vector2(1, 2)]
+var _deferred = {}   # CanvasItem instance id -> [[at, text, size, color, outline], ...]
+
+
+## Queue draw_text calls on `ci` until flush_text(ci), so a widget's rects
+## batch together and its text batches together (texture switches split
+## batches on GLES2).
+func defer_text(ci: CanvasItem) -> void:
+	_deferred[ci.get_instance_id()] = []
+
+
+func flush_text(ci: CanvasItem) -> void:
+	var list = _deferred.get(ci.get_instance_id(), [])
+	_deferred.erase(ci.get_instance_id())
+	for t in list:
+		draw_text(ci, t[0], t[1], t[2], t[3], t[4])
+
+
 ## Outlined string drawn on a CanvasItem (Godot 3 has no draw_string_outline).
+## The outline is the plain font stamped at 2 px offsets in INK, so outline
+## and fill share one glyph texture and batch (a DynamicFont outline lives in
+## a second texture and splits every string into two draw calls).
 func draw_text(ci: CanvasItem, at: Vector2, text: String, size: int, color: Color, outline := true) -> void:
-	var f = font(size, 2 if outline else 0)
+	var key = ci.get_instance_id()
+	if _deferred.has(key):
+		_deferred[key].append([at, text, size, color, outline])
+		return
+	var f = font(size)
+	if outline:
+		var ink = Color(INK.r, INK.g, INK.b, 0.9 * color.a)
+		for o in _OUTLINE_OFFSETS:
+			ci.draw_string(f, at + o, text, ink)
 	ci.draw_string(f, at, text, color)
 
 

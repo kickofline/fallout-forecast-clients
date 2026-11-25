@@ -112,6 +112,12 @@ func fire() -> void:
 
 
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("viewmodel", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	if model == null:
 		return
 	kick = max(0.0, kick - delta * 6.0)

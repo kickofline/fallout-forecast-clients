@@ -26,6 +26,7 @@ const PROTOCOL = 1
 const CLIENT = "car/0.1"
 const CONNECT_TIMEOUT = 10.0
 const RETRIES = 6
+const SNAP_RATE = 15
 
 var phase = "offline"
 var state = "disconnected"          # last bridge status state
@@ -199,6 +200,12 @@ func _close_socket() -> void:
 
 
 func _process(delta: float) -> void:
+	var _pt = OS.get_ticks_usec()
+	_process_body(delta)
+	Settings.prof_add("net", OS.get_ticks_usec() - _pt)
+
+
+func _process_body(delta: float) -> void:
 	var now = OS.get_ticks_msec()
 	var gap = now - _main_tick_ms
 	_main_tick_ms = now
@@ -233,7 +240,9 @@ func _on_open(_protocol, gen: int) -> void:
 	if gen != _gen or _ws == null:
 		return
 	_ws.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
-	_put({"t": "hello", "v": PROTOCOL, "tier": "thin", "name": _name, "client": CLIENT})
+	# 15 Hz snapshots: JSON parsing is a real cost on the head unit, and the
+	# 100 ms interpolation delay still brackets two snapshots.
+	_put({"t": "hello", "v": PROTOCOL, "tier": "thin", "name": _name, "client": CLIENT, "rate": SNAP_RATE})
 	_inbox.append([gen, "open"])
 
 
@@ -292,7 +301,9 @@ func _dispatch(batch: Array) -> void:
 				if skip_snaps > 0 and str(parsed.result.get("t", "")) == "snap":
 					skip_snaps -= 1
 					continue
+				var _t = OS.get_ticks_usec()
 				_handle(parsed.result)
+				Settings.prof_add("n_" + str(parsed.result.get("t", "")), OS.get_ticks_usec() - _t)
 		if ev[0] != _gen or _ws == null:
 			return
 
