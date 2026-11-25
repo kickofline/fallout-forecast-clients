@@ -1,0 +1,3030 @@
+{
+	"id": "maple_hollow",
+	"name": "MAPLE HOLLOW",
+	"player_spawns": [
+		{
+			"name": "PlayerSpawn",
+			"pos": [
+				-5.2,
+				0.08,
+				35.0
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "PlayerSpawn2",
+			"pos": [
+				-2.8,
+				0.08,
+				35.0
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "PlayerSpawn3",
+			"pos": [
+				-5.2,
+				0.08,
+				37.4
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "PlayerSpawn4",
+			"pos": [
+				-2.8,
+				0.08,
+				37.4
+			],
+			"rot_y": 0.0
+		}
+	],
+	"enemy_spawns": [
+		{
+			"name": "EnemySpawn",
+			"pos": [
+				-60.0,
+				0.08,
+				52.0
+			]
+		},
+		{
+			"name": "EnemySpawn2",
+			"pos": [
+				-60.0,
+				0.08,
+				12.0
+			]
+		},
+		{
+			"name": "EnemySpawn3",
+			"pos": [
+				-60.0,
+				0.08,
+				-22.0
+			]
+		},
+		{
+			"name": "EnemySpawn4",
+			"pos": [
+				-59.0,
+				0.08,
+				-58.0
+			]
+		},
+		{
+			"name": "EnemySpawn5",
+			"pos": [
+				-36.0,
+				0.08,
+				-59.0
+			]
+		},
+		{
+			"name": "EnemySpawn6",
+			"pos": [
+				-10.0,
+				0.08,
+				-59.0
+			]
+		},
+		{
+			"name": "EnemySpawn7",
+			"pos": [
+				14.0,
+				0.08,
+				-59.0
+			]
+		},
+		{
+			"name": "EnemySpawn8",
+			"pos": [
+				46.0,
+				0.08,
+				-58.0
+			]
+		},
+		{
+			"name": "EnemySpawn9",
+			"pos": [
+				56.0,
+				0.08,
+				-34.0
+			]
+		},
+		{
+			"name": "EnemySpawn10",
+			"pos": [
+				58.5,
+				0.08,
+				1.0
+			]
+		},
+		{
+			"name": "EnemySpawn11",
+			"pos": [
+				59.0,
+				0.08,
+				28.0
+			]
+		},
+		{
+			"name": "EnemySpawn12",
+			"pos": [
+				55.0,
+				0.08,
+				54.0
+			]
+		},
+		{
+			"name": "EnemySpawn13",
+			"pos": [
+				18.0,
+				0.08,
+				57.0
+			]
+		},
+		{
+			"name": "EnemySpawn14",
+			"pos": [
+				-36.0,
+				0.08,
+				56.0
+			]
+		}
+	],
+	"drain_spawns": [
+		{
+			"name": "Grate",
+			"pos": [
+				-39.0,
+				0.06,
+				-34.0
+			]
+		},
+		{
+			"name": "Grate2",
+			"pos": [
+				-39.0,
+				0.06,
+				-2.0
+			]
+		},
+		{
+			"name": "Grate3",
+			"pos": [
+				-39.0,
+				0.06,
+				30.0
+			]
+		},
+		{
+			"name": "Grate4",
+			"pos": [
+				-46.75,
+				-2.76,
+				-28.0
+			]
+		},
+		{
+			"name": "Grate5",
+			"pos": [
+				-46.75,
+				-2.76,
+				5.5
+			]
+		},
+		{
+			"name": "Grate6",
+			"pos": [
+				18.5,
+				0.06,
+				-15.5
+			]
+		},
+		{
+			"name": "Grate7",
+			"pos": [
+				4.5,
+				0.06,
+				28.0
+			]
+		},
+		{
+			"name": "Grate8",
+			"pos": [
+				38.0,
+				0.06,
+				17.5
+			]
+		}
+	],
+	"crate_spawns": [
+		{
+			"name": "CrateSpawn",
+			"pos": [
+				-56.0,
+				0.08,
+				20.0
+			]
+		},
+		{
+			"name": "CrateSpawn2",
+			"pos": [
+				-56.0,
+				0.08,
+				-16.0
+			]
+		},
+		{
+			"name": "CrateSpawn3",
+			"pos": [
+				-30.0,
+				0.08,
+				-26.0
+			]
+		},
+		{
+			"name": "CrateSpawn4",
+			"pos": [
+				-12.0,
+				0.08,
+				-24.0
+			]
+		},
+		{
+			"name": "CrateSpawn5",
+			"pos": [
+				-2.0,
+				0.08,
+				-42.0
+			]
+		},
+		{
+			"name": "CrateSpawn6",
+			"pos": [
+				21.0,
+				0.08,
+				-22.0
+			]
+		},
+		{
+			"name": "CrateSpawn7",
+			"pos": [
+				46.0,
+				0.08,
+				-34.0
+			]
+		},
+		{
+			"name": "CrateSpawn8",
+			"pos": [
+				46.0,
+				0.08,
+				-16.0
+			]
+		},
+		{
+			"name": "CrateSpawn9",
+			"pos": [
+				34.0,
+				0.08,
+				12.0
+			]
+		},
+		{
+			"name": "CrateSpawn10",
+			"pos": [
+				20.0,
+				0.08,
+				28.0
+			]
+		},
+		{
+			"name": "CrateSpawn11",
+			"pos": [
+				-4.0,
+				0.08,
+				14.0
+			]
+		},
+		{
+			"name": "CrateSpawn12",
+			"pos": [
+				-22.0,
+				0.08,
+				-2.0
+			]
+		}
+	],
+	"vending_stations": [
+		{
+			"name": "ChapelSteps",
+			"pos": [
+				24.0,
+				0.24,
+				-36.5
+			],
+			"rot_y": -3.142,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		},
+		{
+			"name": "RangerStation",
+			"pos": [
+				-14.0,
+				0.24,
+				42.0
+			],
+			"rot_y": 0.0,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		},
+		{
+			"name": "Campground",
+			"pos": [
+				-12.0,
+				0.06,
+				-39.9
+			],
+			"rot_y": -3.142,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		}
+	],
+	"decon_showers": [
+		{
+			"name": "RangerDecon",
+			"pos": [
+				-21.0,
+				0.0,
+				38.5
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		},
+		{
+			"name": "CampgroundDecon",
+			"pos": [
+				-19.5,
+				0.0,
+				-35.0
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		},
+		{
+			"name": "ChapelDecon",
+			"pos": [
+				28.5,
+				0.0,
+				-35.8
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		}
+	],
+	"boss_anchors": [
+		{
+			"name": "BossAnchor",
+			"pos": [
+				46.0,
+				18.0,
+				-26.0
+			]
+		}
+	],
+	"shelters": [
+		{
+			"name": "Culvert",
+			"pos": [
+				-46.75,
+				-1.58,
+				-34.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				8.2,
+				2.42,
+				7.6
+			]
+		},
+		{
+			"name": "Culvert2",
+			"pos": [
+				-46.75,
+				-1.58,
+				32.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				8.2,
+				2.42,
+				7.6
+			]
+		},
+		{
+			"name": "TankUnderside",
+			"pos": [
+				-56.5,
+				4.9,
+				-47.0
+			],
+			"rot": [
+				0.0,
+				0.349,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				6.5,
+				9.8,
+				6.5
+			]
+		},
+		{
+			"name": "ChapelPorch",
+			"pos": [
+				24.0,
+				1.84,
+				-35.75
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.2,
+				3.68,
+				2.85
+			]
+		},
+		{
+			"name": "Portico",
+			"pos": [
+				47.0,
+				2.65,
+				-8.8
+			],
+			"rot": [
+				0.0,
+				-3.142,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				12.7,
+				5.3,
+				4.3
+			]
+		},
+		{
+			"name": "RangerPorch",
+			"pos": [
+				-14.0,
+				1.75,
+				40.9
+			],
+			"rot": [
+				0.0,
+				-3.142,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				11.4,
+				3.3,
+				3.3
+			]
+		},
+		{
+			"name": "TowerBase",
+			"pos": [
+				-12.0,
+				1.75,
+				-4.0
+			],
+			"rot": [
+				0.0,
+				0.209,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				4.9,
+				3.45,
+				4.9
+			]
+		},
+		{
+			"name": "PicnicPavilion",
+			"pos": [
+				-12.0,
+				1.68,
+				-38.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				8.8,
+				3.3,
+				5.6
+			]
+		},
+		{
+			"name": "LeanToShelter",
+			"pos": [
+				-27.968,
+				1.35,
+				-45.962
+			],
+			"rot": [
+				0.0,
+				0.698,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				4.9,
+				2.6,
+				3.0
+			]
+		},
+		{
+			"name": "LeanToShelter",
+			"pos": [
+				-29.95,
+				1.35,
+				11.996
+			],
+			"rot": [
+				0.0,
+				1.658,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				4.9,
+				2.6,
+				3.0
+			]
+		},
+		{
+			"name": "CabinPorch",
+			"pos": [
+				2.466,
+				1.6,
+				-47.683
+			],
+			"rot": [
+				0.0,
+				0.14,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				6.9,
+				3.1,
+				2.55
+			]
+		},
+		{
+			"name": "CabinPorch",
+			"pos": [
+				-27.534,
+				1.6,
+				17.683
+			],
+			"rot": [
+				0.0,
+				3.002,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				6.9,
+				3.1,
+				2.55
+			]
+		},
+		{
+			"name": "LoggingShedDry",
+			"pos": [
+				31.717,
+				1.68,
+				34.258
+			],
+			"rot": [
+				0.0,
+				-0.314,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.6,
+				3.3,
+				5.6
+			]
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-36.971,
+				1.9,
+				-57.908
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-36.128,
+				1.9,
+				-53.325
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-35.312,
+				1.9,
+				-28.108
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-38.212,
+				1.9,
+				-18.231
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-37.837,
+				1.9,
+				-9.876
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-29.978,
+				1.9,
+				-60.421
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-28.459,
+				1.9,
+				-55.711
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-30.759,
+				1.9,
+				-28.558
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-29.177,
+				1.9,
+				-22.704
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-31.704,
+				1.9,
+				-11.047
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-23.175,
+				1.9,
+				-59.422
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-24.65,
+				1.9,
+				-25.521
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-24.577,
+				1.9,
+				-16.709
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-26.246,
+				1.9,
+				-12.337
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-15.738,
+				1.9,
+				-60.293
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-20.253,
+				1.9,
+				-53.494
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-18.63,
+				1.9,
+				-24.914
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-18.765,
+				1.9,
+				-18.892
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-9.831,
+				1.9,
+				-59.596
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-10.029,
+				1.9,
+				-54.011
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-6.142,
+				1.9,
+				-17.129
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-1.915,
+				1.9,
+				-60.76
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				1.137,
+				1.9,
+				-24.426
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				1.658,
+				1.9,
+				-18.976
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				7.296,
+				1.9,
+				-60.383
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				6.62,
+				1.9,
+				-22.683
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				6.123,
+				1.9,
+				-3.862
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				13.017,
+				1.9,
+				-58.464
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				12.23,
+				1.9,
+				-47.058
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				13.596,
+				1.9,
+				-42.367
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				23.273,
+				1.9,
+				-60.271
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				25.38,
+				1.9,
+				-1.643
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				34.741,
+				1.9,
+				-60.52
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				35.992,
+				1.9,
+				-54.144
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				44.186,
+				1.9,
+				-58.523
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				50.24,
+				1.9,
+				-53.796
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				54.51,
+				1.9,
+				-60.459
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				58.627,
+				1.9,
+				-55.245
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-37.65,
+				1.9,
+				42.221
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-35.726,
+				1.9,
+				48.483
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-36.136,
+				1.9,
+				53.334
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-36.591,
+				1.9,
+				58.725
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-29.669,
+				1.9,
+				43.802
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-29.643,
+				1.9,
+				48.752
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-29.815,
+				1.9,
+				57.973
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-25.732,
+				1.9,
+				46.506
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-23.858,
+				1.9,
+				54.897
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-19.923,
+				1.9,
+				11.992
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-16.839,
+				1.9,
+				17.893
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-18.166,
+				1.9,
+				22.335
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-17.059,
+				1.9,
+				53.623
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-18.299,
+				1.9,
+				60.661
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-13.393,
+				1.9,
+				55.781
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-4.265,
+				1.9,
+				54.084
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-4.494,
+				1.9,
+				59.631
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-1.093,
+				1.9,
+				4.946
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-0.252,
+				1.9,
+				10.062
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-1.702,
+				1.9,
+				47.72
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				0.125,
+				1.9,
+				18.53
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				0.864,
+				1.9,
+				22.808
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				1.853,
+				1.9,
+				59.21
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				7.489,
+				1.9,
+				4.338
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				5.411,
+				1.9,
+				10.963
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				6.263,
+				1.9,
+				19.138
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				5.605,
+				1.9,
+				43.365
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				4.738,
+				1.9,
+				48.839
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				6.296,
+				1.9,
+				59.587
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				11.336,
+				1.9,
+				43.251
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				10.49,
+				1.9,
+				49.472
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				10.221,
+				1.9,
+				55.511
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				12.402,
+				1.9,
+				61.204
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				18.07,
+				1.9,
+				35.331
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				18.736,
+				1.9,
+				43.007
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				19.947,
+				1.9,
+				54.549
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				18.996,
+				1.9,
+				59.727
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				24.441,
+				1.9,
+				6.914
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				24.17,
+				1.9,
+				16.481
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				26.0,
+				1.9,
+				48.461
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				23.522,
+				1.9,
+				58.766
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				28.274,
+				1.9,
+				4.72
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				31.578,
+				1.9,
+				11.15
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				31.732,
+				1.9,
+				54.816
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				28.167,
+				1.9,
+				58.969
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				37.902,
+				1.9,
+				5.708
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				34.517,
+				1.9,
+				50.085
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				36.567,
+				1.9,
+				55.297
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				41.579,
+				1.9,
+				49.459
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				43.029,
+				1.9,
+				55.619
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				40.598,
+				1.9,
+				60.702
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				46.398,
+				1.9,
+				47.352
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				49.669,
+				1.9,
+				54.984
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				49.653,
+				1.9,
+				60.433
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				56.057,
+				1.9,
+				31.431
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				53.547,
+				1.9,
+				36.935
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				53.339,
+				1.9,
+				41.796
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				54.173,
+				1.9,
+				46.918
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				54.472,
+				1.9,
+				60.259
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				57.714,
+				1.9,
+				26.222
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				61.389,
+				1.9,
+				36.248
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				59.224,
+				1.9,
+				40.626
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				60.922,
+				1.9,
+				51.788
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.8,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				8.0,
+				1.9,
+				-34.0
+			],
+			"rot": [
+				0.0,
+				-1.082,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				31.0,
+				1.9,
+				-49.0
+			],
+			"rot": [
+				0.0,
+				0.14,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				10.0,
+				1.9,
+				-14.0
+			],
+			"rot": [
+				0.0,
+				0.14,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-3.0,
+				1.9,
+				23.0
+			],
+			"rot": [
+				0.0,
+				0.942,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-22.0,
+				1.9,
+				-34.0
+			],
+			"rot": [
+				0.0,
+				2.583,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-24.0,
+				1.9,
+				2.0
+			],
+			"rot": [
+				0.0,
+				-1.99,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				26.0,
+				1.9,
+				24.0
+			],
+			"rot": [
+				0.0,
+				-2.758,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				50.0,
+				1.9,
+				12.0
+			],
+			"rot": [
+				0.0,
+				-1.292,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-56.0,
+				1.9,
+				22.0
+			],
+			"rot": [
+				0.0,
+				2.548,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		},
+		{
+			"name": "WorldCollision_canopy",
+			"pos": [
+				-56.0,
+				1.9,
+				-24.0
+			],
+			"rot": [
+				0.0,
+				0.14,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.5,
+			"height": 4.4
+		}
+	],
+	"puddles": [
+		{
+			"name": "Pool",
+			"pos": [
+				-37.0,
+				0.04,
+				32.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.5,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool2",
+			"pos": [
+				-24.0,
+				0.04,
+				33.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool3",
+			"pos": [
+				8.0,
+				0.04,
+				30.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.4,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool4",
+			"pos": [
+				28.0,
+				0.04,
+				24.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.4,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool5",
+			"pos": [
+				44.0,
+				0.04,
+				16.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool6",
+			"pos": [
+				-9.0,
+				0.04,
+				16.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool7",
+			"pos": [
+				-11.0,
+				0.04,
+				-18.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool8",
+			"pos": [
+				-26.0,
+				0.04,
+				-34.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool9",
+			"pos": [
+				-37.0,
+				0.04,
+				-34.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.4,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool10",
+			"pos": [
+				-56.5,
+				0.04,
+				-14.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool11",
+			"pos": [
+				-56.5,
+				0.04,
+				14.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool12",
+			"pos": [
+				-28.0,
+				0.04,
+				-3.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool13",
+			"pos": [
+				19.0,
+				0.04,
+				-20.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.6,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool14",
+			"pos": [
+				39.0,
+				0.04,
+				-28.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.8,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool15",
+			"pos": [
+				53.0,
+				0.04,
+				-36.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.5,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool16",
+			"pos": [
+				17.0,
+				0.04,
+				8.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		}
+	],
+	"lights": [
+		{
+			"name": "Lamp",
+			"type": "omni",
+			"pos": [
+				-42.5,
+				2.6,
+				0.0
+			],
+			"color": "#ffbe74",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp",
+			"type": "omni",
+			"pos": [
+				24.0,
+				3.2,
+				-35.2
+			],
+			"color": "#ffc07a",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp2",
+			"type": "omni",
+			"pos": [
+				47.0,
+				3.6,
+				-10.0
+			],
+			"color": "#ffaa68",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp",
+			"type": "omni",
+			"pos": [
+				-14.0,
+				3.1,
+				40.5
+			],
+			"color": "#ffb86e",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp",
+			"type": "omni",
+			"pos": [
+				-12.0,
+				3.1,
+				-4.0
+			],
+			"color": "#ffbc72",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp",
+			"type": "omni",
+			"pos": [
+				-12.0,
+				3.0,
+				-38.0
+			],
+			"color": "#ffbe76",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp",
+			"type": "omni",
+			"pos": [
+				32.5,
+				3.0,
+				33.5
+			],
+			"color": "#ffb86c",
+			"energy": 2.2,
+			"range": 13.0
+		}
+	],
+	"environment": {
+		"map_id": "maple_hollow",
+		"sky": {
+			"type": "procedural",
+			"sky_top_color": "#11172b",
+			"sky_horizon_color": "#544972",
+			"sky_curve": 0.22,
+			"sky_energy_multiplier": 1.0,
+			"ground_bottom_color": "#0d131e",
+			"ground_horizon_color": "#1f2a38",
+			"ground_curve": 0.02
+		},
+		"ambient": {
+			"source": "color",
+			"source_id": 2,
+			"color": "#768da3",
+			"energy": 0.74,
+			"sky_contribution": 1.0
+		},
+		"tonemap": {
+			"mode": 2,
+			"exposure": 1.0
+		},
+		"base_fog": {
+			"enabled": true,
+			"color": "#3b4c62",
+			"density": 0.0085,
+			"sky_affect": 0.42
+		},
+		"sun": {
+			"color": "#c4d2e8",
+			"energy": 0.78,
+			"direction": [
+				0.562,
+				-0.407,
+				-0.72
+			],
+			"rotation_rad": [
+				-0.419,
+				-0.663,
+				0.0
+			]
+		},
+		"fog_base": {
+			"fog_color": "#6e667d",
+			"acid_fog_color": "#2e521f",
+			"storm_fog_tint": "#54734d",
+			"storm_fog_tint_amount": 0.3,
+			"density_curve": [
+				0.0,
+				0.012,
+				0.031,
+				0.04
+			]
+		},
+		"lightning_flash": {
+			"fade_rate": 2.6,
+			"sky_boost": 0.85,
+			"ambient_boost": 0.4,
+			"sun_boost": 0.5
+		},
+		"phases": {
+			"calm": {
+				"intensity": 0.0,
+				"fog_density": 0.0,
+				"fog_depth_begin_gles2": 200.0,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6e667d",
+				"sky_energy": 1.0,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.78,
+				"rain_color": "#6beb5c6b"
+			},
+			"drizzle": {
+				"intensity": 0.3,
+				"fog_density": 0.012,
+				"fog_depth_begin_gles2": 39.0,
+				"fog_depth_end_gles2": 216.7,
+				"fog_color": "#6a6877",
+				"sky_energy": 0.721,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.54,
+				"rain_color": "#6beb5c6b"
+			},
+			"downpour": {
+				"intensity": 0.7,
+				"fog_density": 0.031,
+				"fog_depth_begin_gles2": 15.1,
+				"fog_depth_end_gles2": 83.9,
+				"fog_color": "#666a6e",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.22,
+				"rain_color": "#6beb5c6b"
+			},
+			"acid_storm": {
+				"intensity": 1.0,
+				"fog_density": 0.04,
+				"fog_depth_begin_gles2": 11.7,
+				"fog_depth_end_gles2": 65.0,
+				"fog_color": "#2e521f",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.22,
+				"rain_color": "#8cff408c"
+			},
+			"clearing": {
+				"intensity": 0.15,
+				"fog_density": 0.006,
+				"fog_depth_begin_gles2": 46.8,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6c677a",
+				"sky_energy": 0.861,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.66,
+				"rain_color": "#6beb5c6b"
+			}
+		}
+	},
+	"mesh": {
+		"id": "maple_hollow",
+		"name": "MAPLE HOLLOW",
+		"glb": "maps/maple_hollow.glb",
+		"sidecar": "maps/maple_hollow.json",
+		"triangles": 85094,
+		"draw_calls": 113,
+		"bytes": 6745604,
+		"vcol_solid_folded": false,
+		"bounds": {
+			"min": [
+				-184.0,
+				-3.25,
+				-186.0
+			],
+			"max": [
+				184.0,
+				21.43,
+				186.0
+			]
+		},
+		"bake_stats": {
+			"skipped_hidden": 0,
+			"csg_baked": 9,
+			"mi_baked": 269,
+			"mm_baked": 248,
+			"labels_baked": 12
+		}
+	}
+}

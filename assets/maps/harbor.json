@@ -1,0 +1,1360 @@
+{
+	"id": "harbor",
+	"name": "HARBOR POINT",
+	"player_spawns": [
+		{
+			"name": "PlayerSpawn",
+			"pos": [
+				-39.3,
+				0.08,
+				3.7
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "PlayerSpawn2",
+			"pos": [
+				-36.8,
+				0.08,
+				3.7
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "PlayerSpawn3",
+			"pos": [
+				-39.3,
+				0.08,
+				6.0
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "PlayerSpawn4",
+			"pos": [
+				-36.8,
+				0.08,
+				6.0
+			],
+			"rot_y": 0.0
+		}
+	],
+	"enemy_spawns": [
+		{
+			"name": "EnemySpawn",
+			"pos": [
+				-59.0,
+				0.08,
+				-52.0
+			]
+		},
+		{
+			"name": "EnemySpawn2",
+			"pos": [
+				-43.0,
+				0.08,
+				-59.0
+			]
+		},
+		{
+			"name": "EnemySpawn3",
+			"pos": [
+				-5.0,
+				0.08,
+				-60.0
+			]
+		},
+		{
+			"name": "EnemySpawn4",
+			"pos": [
+				37.0,
+				0.08,
+				-59.0
+			]
+		},
+		{
+			"name": "EnemySpawn5",
+			"pos": [
+				59.0,
+				0.08,
+				-46.0
+			]
+		},
+		{
+			"name": "EnemySpawn6",
+			"pos": [
+				60.0,
+				0.08,
+				-13.0
+			]
+		},
+		{
+			"name": "EnemySpawn7",
+			"pos": [
+				61.0,
+				0.08,
+				32.0
+			]
+		},
+		{
+			"name": "EnemySpawn8",
+			"pos": [
+				62.0,
+				0.08,
+				58.0
+			]
+		},
+		{
+			"name": "EnemySpawn9",
+			"pos": [
+				4.0,
+				0.08,
+				61.0
+			]
+		},
+		{
+			"name": "EnemySpawn10",
+			"pos": [
+				-21.0,
+				0.08,
+				58.0
+			]
+		},
+		{
+			"name": "EnemySpawn11",
+			"pos": [
+				-52.0,
+				0.08,
+				38.0
+			]
+		},
+		{
+			"name": "EnemySpawn12",
+			"pos": [
+				-60.0,
+				0.08,
+				-24.0
+			]
+		},
+		{
+			"name": "EnemySpawn13",
+			"pos": [
+				10.0,
+				0.08,
+				41.0
+			]
+		},
+		{
+			"name": "EnemySpawn14",
+			"pos": [
+				35.0,
+				0.08,
+				36.0
+			]
+		},
+		{
+			"name": "EnemySpawn15",
+			"pos": [
+				-20.0,
+				0.08,
+				25.0
+			]
+		}
+	],
+	"drain_spawns": [
+		{
+			"name": "Grate",
+			"pos": [
+				-54.0,
+				0.02,
+				-29.0
+			]
+		},
+		{
+			"name": "Grate2",
+			"pos": [
+				-26.0,
+				0.02,
+				-28.0
+			]
+		},
+		{
+			"name": "Grate3",
+			"pos": [
+				0.0,
+				0.02,
+				-28.0
+			]
+		},
+		{
+			"name": "Grate4",
+			"pos": [
+				32.0,
+				0.02,
+				-28.0
+			]
+		},
+		{
+			"name": "Grate5",
+			"pos": [
+				-30.0,
+				0.02,
+				5.0
+			]
+		},
+		{
+			"name": "Grate6",
+			"pos": [
+				35.0,
+				0.02,
+				8.0
+			]
+		},
+		{
+			"name": "Grate7",
+			"pos": [
+				17.0,
+				0.02,
+				34.0
+			]
+		},
+		{
+			"name": "Grate8",
+			"pos": [
+				49.0,
+				0.02,
+				40.0
+			]
+		},
+		{
+			"name": "Grate9",
+			"pos": [
+				-29.0,
+				0.02,
+				23.0
+			]
+		},
+		{
+			"name": "Grate10",
+			"pos": [
+				10.0,
+				0.02,
+				28.0
+			]
+		}
+	],
+	"crate_spawns": [
+		{
+			"name": "CrateSpawn",
+			"pos": [
+				-57.0,
+				0.08,
+				-28.0
+			]
+		},
+		{
+			"name": "CrateSpawn2",
+			"pos": [
+				-23.0,
+				0.08,
+				-28.0
+			]
+		},
+		{
+			"name": "CrateSpawn3",
+			"pos": [
+				11.0,
+				0.08,
+				-28.0
+			]
+		},
+		{
+			"name": "CrateSpawn4",
+			"pos": [
+				48.0,
+				0.08,
+				-32.0
+			]
+		},
+		{
+			"name": "CrateSpawn5",
+			"pos": [
+				-26.0,
+				0.08,
+				-1.0
+			]
+		},
+		{
+			"name": "CrateSpawn6",
+			"pos": [
+				-14.0,
+				0.08,
+				9.0
+			]
+		},
+		{
+			"name": "CrateSpawn7",
+			"pos": [
+				-21.0,
+				0.08,
+				24.0
+			]
+		},
+		{
+			"name": "CrateSpawn8",
+			"pos": [
+				8.9,
+				0.08,
+				23.0
+			]
+		},
+		{
+			"name": "CrateSpawn9",
+			"pos": [
+				32.0,
+				0.08,
+				24.5
+			]
+		},
+		{
+			"name": "CrateSpawn10",
+			"pos": [
+				9.0,
+				0.08,
+				38.0
+			]
+		},
+		{
+			"name": "CrateSpawn11",
+			"pos": [
+				50.0,
+				0.08,
+				39.0
+			]
+		},
+		{
+			"name": "CrateSpawn12",
+			"pos": [
+				14.0,
+				0.08,
+				51.0
+			]
+		},
+		{
+			"name": "CrateSpawn13",
+			"pos": [
+				-49.0,
+				0.08,
+				53.0
+			]
+		}
+	],
+	"vending_stations": [
+		{
+			"name": "CanneryStation",
+			"pos": [
+				12.5,
+				0.0,
+				-38.03
+			],
+			"rot_y": -3.142,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		},
+		{
+			"name": "BaitShopStation",
+			"pos": [
+				53.85,
+				0.0,
+				10.26
+			],
+			"rot_y": -3.142,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		},
+		{
+			"name": "FishExchangeStation",
+			"pos": [
+				-5.7,
+				0.0,
+				23.7
+			],
+			"rot_y": -1.571,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		},
+		{
+			"name": "RescueStation",
+			"pos": [
+				-35.6,
+				0.0,
+				22.1
+			],
+			"rot_y": -1.571,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		}
+	],
+	"decon_showers": [
+		{
+			"name": "IceHouse",
+			"pos": [
+				-48.0,
+				0.0,
+				-35.0
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		},
+		{
+			"name": "FishExchange",
+			"pos": [
+				-5.5,
+				0.0,
+				26.0
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		},
+		{
+			"name": "IceMarket",
+			"pos": [
+				19.5,
+				0.0,
+				44.0
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		},
+		{
+			"name": "RescueBay",
+			"pos": [
+				-34.8,
+				0.0,
+				19.0
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		}
+	],
+	"boss_anchors": [
+		{
+			"name": "BossAnchor",
+			"pos": [
+				36.0,
+				16.0,
+				49.0
+			]
+		}
+	],
+	"shelters": [
+		{
+			"name": "LoadingApron",
+			"pos": [
+				-35.0,
+				2.33,
+				-36.1
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				30.0,
+				4.65,
+				5.8
+			]
+		},
+		{
+			"name": "CanneryFloor",
+			"pos": [
+				-1.0,
+				3.0,
+				-47.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				29.2,
+				6.0,
+				15.5
+			]
+		},
+		{
+			"name": "LoadingApron",
+			"pos": [
+				-1.0,
+				2.33,
+				-36.1
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				30.0,
+				4.65,
+				5.8
+			]
+		},
+		{
+			"name": "LoadingApron",
+			"pos": [
+				39.0,
+				2.33,
+				-36.1
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				30.0,
+				4.65,
+				5.8
+			]
+		},
+		{
+			"name": "DryPassage",
+			"pos": [
+				-45.0,
+				1.57,
+				-13.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				3.86,
+				3.14,
+				9.96
+			]
+		},
+		{
+			"name": "DryPassage",
+			"pos": [
+				11.0,
+				1.57,
+				5.0
+			],
+			"rot": [
+				0.0,
+				1.571,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				3.86,
+				3.14,
+				9.96
+			]
+		},
+		{
+			"name": "CraneBase",
+			"pos": [
+				23.0,
+				6.9,
+				6.0
+			],
+			"rot": [
+				0.0,
+				-0.611,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				4.7,
+				13.8,
+				4.7
+			]
+		},
+		{
+			"name": "SignalWalkRoof",
+			"pos": [
+				12.7,
+				4.28,
+				0.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				7.9,
+				2.86,
+				4.8
+			]
+		},
+		{
+			"name": "HarborPatrolRoof",
+			"pos": [
+				-38.0,
+				1.48,
+				4.4
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				9.85,
+				2.96,
+				7.85
+			]
+		},
+		{
+			"name": "FishExchangeRoof",
+			"pos": [
+				0.0,
+				1.48,
+				24.9
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				13.85,
+				2.96,
+				8.25
+			]
+		},
+		{
+			"name": "RescueBayRoof",
+			"pos": [
+				-34.0,
+				1.48,
+				20.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.45,
+				2.96,
+				9.45
+			]
+		},
+		{
+			"name": "NetLoftRoof",
+			"pos": [
+				-52.0,
+				1.48,
+				47.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				6.15,
+				2.96,
+				9.25
+			]
+		},
+		{
+			"name": "CustomsShedRoof",
+			"pos": [
+				47.0,
+				1.48,
+				29.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				6.85,
+				2.96,
+				7.25
+			]
+		},
+		{
+			"name": "IceMarketRoof",
+			"pos": [
+				24.0,
+				1.48,
+				44.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				13.85,
+				2.96,
+				11.65
+			]
+		},
+		{
+			"name": "CraneBase",
+			"pos": [
+				-17.0,
+				6.9,
+				49.0
+			],
+			"rot": [
+				0.0,
+				2.007,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				4.7,
+				13.8,
+				4.7
+			]
+		},
+		{
+			"name": "DryPassage",
+			"pos": [
+				41.0,
+				1.57,
+				45.0
+			],
+			"rot": [
+				0.0,
+				1.571,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				3.86,
+				3.14,
+				9.96
+			]
+		},
+		{
+			"name": "TackleCounter",
+			"pos": [
+				56.0,
+				1.48,
+				11.3
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				9.5,
+				2.96,
+				3.6
+			]
+		},
+		{
+			"name": "KeepersVeranda",
+			"pos": [
+				48.08,
+				1.4,
+				58.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				3.36,
+				2.8,
+				6.85
+			]
+		},
+		{
+			"name": "CanopyShelter",
+			"pos": [
+				-52.0,
+				1.475,
+				-31.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "cylinder",
+			"radius": 1.65,
+			"height": 2.95
+		},
+		{
+			"name": "CanopyShelter",
+			"pos": [
+				-44.0,
+				1.475,
+				4.5
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "cylinder",
+			"radius": 1.65,
+			"height": 2.95
+		},
+		{
+			"name": "CanopyShelter",
+			"pos": [
+				39.0,
+				1.475,
+				6.5
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "cylinder",
+			"radius": 1.65,
+			"height": 2.95
+		},
+		{
+			"name": "CanopyShelter",
+			"pos": [
+				59.0,
+				1.475,
+				-17.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "cylinder",
+			"radius": 1.65,
+			"height": 2.95
+		},
+		{
+			"name": "CanopyShelter",
+			"pos": [
+				7.0,
+				1.475,
+				51.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "cylinder",
+			"radius": 1.65,
+			"height": 2.95
+		},
+		{
+			"name": "CanopyShelter",
+			"pos": [
+				57.0,
+				1.475,
+				41.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "cylinder",
+			"radius": 1.65,
+			"height": 2.95
+		}
+	],
+	"puddles": [
+		{
+			"name": "Pool",
+			"pos": [
+				-57.0,
+				0.04,
+				-20.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 3.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool2",
+			"pos": [
+				-33.0,
+				0.04,
+				-30.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 3.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool3",
+			"pos": [
+				-10.0,
+				0.04,
+				-23.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 3.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool4",
+			"pos": [
+				2.0,
+				0.04,
+				-32.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool5",
+			"pos": [
+				30.0,
+				0.04,
+				-25.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 3.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool6",
+			"pos": [
+				55.0,
+				0.04,
+				-33.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 3.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool7",
+			"pos": [
+				-26.0,
+				0.04,
+				-3.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 3.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool8",
+			"pos": [
+				-4.0,
+				0.04,
+				5.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.5,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool9",
+			"pos": [
+				34.0,
+				0.04,
+				0.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.8,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool10",
+			"pos": [
+				48.0,
+				0.04,
+				6.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.4,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool11",
+			"pos": [
+				0.0,
+				0.04,
+				15.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool12",
+			"pos": [
+				12.0,
+				0.04,
+				35.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.5,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool13",
+			"pos": [
+				32.0,
+				0.04,
+				48.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 3.5,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool14",
+			"pos": [
+				-1.0,
+				0.04,
+				52.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool15",
+			"pos": [
+				44.0,
+				0.04,
+				54.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.5,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool16",
+			"pos": [
+				-50.0,
+				0.04,
+				5.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Pool17",
+			"pos": [
+				32.0,
+				0.04,
+				24.5
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		}
+	],
+	"lights": [
+		{
+			"name": "Lamp",
+			"type": "omni",
+			"pos": [
+				-22.0,
+				4.0,
+				-33.0
+			],
+			"color": "#ffac60",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp2",
+			"type": "omni",
+			"pos": [
+				22.0,
+				4.0,
+				-33.0
+			],
+			"color": "#ffac60",
+			"energy": 2.2,
+			"range": 13.0
+		}
+	],
+	"environment": {
+		"map_id": "harbor",
+		"sky": {
+			"type": "procedural",
+			"sky_top_color": "#132f45",
+			"sky_horizon_color": "#dd9467",
+			"sky_curve": 0.18,
+			"sky_energy_multiplier": 1.0,
+			"ground_bottom_color": "#132f45",
+			"ground_horizon_color": "#a66f4d",
+			"ground_curve": 0.02
+		},
+		"ambient": {
+			"source": "color",
+			"source_id": 2,
+			"color": "#8faeb7",
+			"energy": 0.76,
+			"sky_contribution": 1.0
+		},
+		"tonemap": {
+			"mode": 2,
+			"exposure": 1.0
+		},
+		"base_fog": {
+			"enabled": false,
+			"color": "#848d9b",
+			"density": 0.01,
+			"sky_affect": 1.0
+		},
+		"sun": {
+			"color": "#ffb47c",
+			"energy": 0.8,
+			"direction": [
+				0.703,
+				-0.326,
+				-0.633
+			],
+			"rotation_rad": [
+				-0.332,
+				-0.838,
+				0.0
+			]
+		},
+		"fog_base": {
+			"fog_color": "#5e7387",
+			"acid_fog_color": "#2e521f",
+			"storm_fog_tint": "#54734d",
+			"storm_fog_tint_amount": 0.3,
+			"density_curve": [
+				0.0,
+				0.011,
+				0.029,
+				0.04
+			]
+		},
+		"lightning_flash": {
+			"fade_rate": 2.6,
+			"sky_boost": 0.85,
+			"ambient_boost": 0.4,
+			"sun_boost": 0.5
+		},
+		"phases": {
+			"calm": {
+				"intensity": 0.0,
+				"fog_density": 0.0,
+				"fog_depth_begin_gles2": 200.0,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#5e7387",
+				"sky_energy": 1.0,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.8,
+				"rain_color": "#6beb5c6b"
+			},
+			"drizzle": {
+				"intensity": 0.3,
+				"fog_density": 0.011,
+				"fog_depth_begin_gles2": 42.6,
+				"fog_depth_end_gles2": 236.4,
+				"fog_color": "#5d7380",
+				"sky_energy": 0.721,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.56,
+				"rain_color": "#6beb5c6b"
+			},
+			"downpour": {
+				"intensity": 0.7,
+				"fog_density": 0.029,
+				"fog_depth_begin_gles2": 16.1,
+				"fog_depth_end_gles2": 89.7,
+				"fog_color": "#5b7376",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.24,
+				"rain_color": "#6beb5c6b"
+			},
+			"acid_storm": {
+				"intensity": 1.0,
+				"fog_density": 0.04,
+				"fog_depth_begin_gles2": 11.7,
+				"fog_depth_end_gles2": 65.0,
+				"fog_color": "#2e521f",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.24,
+				"rain_color": "#8cff408c"
+			},
+			"clearing": {
+				"intensity": 0.15,
+				"fog_density": 0.0055,
+				"fog_depth_begin_gles2": 46.8,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#5e7383",
+				"sky_energy": 0.861,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.68,
+				"rain_color": "#6beb5c6b"
+			}
+		}
+	},
+	"mesh": {
+		"id": "harbor",
+		"name": "HARBOR POINT",
+		"glb": "maps/harbor.glb",
+		"sidecar": "maps/harbor.json",
+		"triangles": 58626,
+		"draw_calls": 98,
+		"bytes": 5217588,
+		"vcol_solid_folded": false,
+		"bounds": {
+			"min": [
+				-600.0,
+				-4.2,
+				-445.0
+			],
+			"max": [
+				600.0,
+				24.0,
+				555.0
+			]
+		},
+		"bake_stats": {
+			"skipped_hidden": 0,
+			"csg_baked": 12,
+			"mi_baked": 337,
+			"mm_baked": 0,
+			"labels_baked": 53
+		}
+	}
+}

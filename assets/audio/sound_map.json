@@ -1,0 +1,1036 @@
+{
+	"buses": [
+		"Music",
+		"Weapons",
+		"Threats",
+		"UI",
+		"Ambience",
+		"Rain",
+		"Foley"
+	],
+	"music": {
+		"forecast_theme": {
+			"file": "audio/music/forecast_theme.wav",
+			"bus": "Music",
+			"loop": true
+		},
+		"forecast_pulse": {
+			"file": "audio/music/forecast_pulse.wav",
+			"bus": "Music",
+			"loop": true
+		},
+		"forecast_storm": {
+			"file": "audio/music/forecast_storm.wav",
+			"bus": "Music",
+			"loop": true
+		},
+		"forecast_boss": {
+			"file": "audio/music/forecast_boss.wav",
+			"bus": "Music",
+			"loop": true
+		}
+	},
+	"ambience_loops": {
+		"rain": {
+			"file": "audio/sfx/rain.wav",
+			"bus": "Rain",
+			"loop": true,
+			"gain": 0.5
+		},
+		"storm_wind": {
+			"file": "audio/sfx/storm_wind.wav",
+			"bus": "Rain",
+			"loop": true
+		},
+		"gun_bait_loop": {
+			"file": "audio/sfx/gun_bait_loop.wav",
+			"bus": "Threats",
+			"loop": true
+		}
+	},
+	"cues": {
+		"airdrop_land": {
+			"file": "audio/sfx/airdrop_land.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"casing_0": {
+			"file": "audio/sfx/casing_0.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"casing_1": {
+			"file": "audio/sfx/casing_1.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"casing_2": {
+			"file": "audio/sfx/casing_2.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"crate_open": {
+			"file": "audio/sfx/crate_open.ogg",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"decon": {
+			"file": "audio/sfx/decon.ogg",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"decon_spray": {
+			"file": "audio/sfx/decon_spray.wav",
+			"bus": "Ambience",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"dome_collapse": {
+			"file": "audio/sfx/dome_collapse.wav",
+			"bus": "Ambience",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"dome_deploy": {
+			"file": "audio/sfx/dome_deploy.wav",
+			"bus": "Ambience",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"downed": {
+			"file": "audio/sfx/downed.ogg",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"downpour": {
+			"file": "audio/sfx/downpour.wav",
+			"bus": "Ambience",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"drip_windup": {
+			"file": "audio/sfx/drip_windup.wav",
+			"bus": "Threats",
+			"trim_db": 3.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"enemy_death": {
+			"file": "audio/sfx/enemy_death.ogg",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"explosion": {
+			"file": "audio/sfx/explosion.ogg",
+			"bus": "Threats",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"explosion_big": {
+			"file": "audio/sfx/explosion_big.ogg",
+			"bus": "Threats",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_bait_activate": {
+			"file": "audio/sfx/gun_bait_activate.wav",
+			"bus": "Foley",
+			"trim_db": -1.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_bait_loop": {
+			"file": "audio/sfx/gun_bait_loop.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_bait_radio": {
+			"file": "audio/sfx/gun_bait_radio.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_battery_zapper": {
+			"file": "audio/sfx/gun_battery_zapper.wav",
+			"bus": "Weapons",
+			"trim_db": 4.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_bleach_bomb": {
+			"file": "audio/sfx/gun_bleach_bomb.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_bleach_burst": {
+			"file": "audio/sfx/gun_bleach_burst.wav",
+			"bus": "Ambience",
+			"trim_db": -2.5,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_boombox_launcher": {
+			"file": "audio/sfx/gun_boombox_launcher.wav",
+			"bus": "Weapons",
+			"trim_db": -1.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_disruptor": {
+			"file": "audio/sfx/gun_disruptor.wav",
+			"bus": "Weapons",
+			"trim_db": 2.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_disruptor_charge": {
+			"file": "audio/sfx/gun_disruptor_charge.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_dome_expand": {
+			"file": "audio/sfx/gun_dome_expand.wav",
+			"bus": "Ambience",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_dome_throw": {
+			"file": "audio/sfx/gun_dome_throw.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_field_deploy": {
+			"file": "audio/sfx/gun_field_deploy.wav",
+			"bus": "Ambience",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_flare": {
+			"file": "audio/sfx/gun_flare.wav",
+			"bus": "Ambience",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_flare_launcher": {
+			"file": "audio/sfx/gun_flare_launcher.wav",
+			"bus": "Weapons",
+			"trim_db": 3.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_frag_blast": {
+			"file": "audio/sfx/gun_frag_blast.wav",
+			"bus": "Threats",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_frag_throw": {
+			"file": "audio/sfx/gun_frag_throw.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_harpoon": {
+			"file": "audio/sfx/gun_harpoon.wav",
+			"bus": "Weapons",
+			"trim_db": 4.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_hunting_rifle": {
+			"file": "audio/sfx/gun_hunting_rifle.wav",
+			"bus": "Weapons",
+			"trim_db": 3.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_leaf_blower": {
+			"file": "audio/sfx/gun_leaf_blower.wav",
+			"bus": "Weapons",
+			"trim_db": 2.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_leaky_nailgun": {
+			"file": "audio/sfx/gun_leaky_nailgun.wav",
+			"bus": "Weapons",
+			"trim_db": -0.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_lightning_rod": {
+			"file": "audio/sfx/gun_lightning_rod.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_lucky_penny_revolver": {
+			"file": "audio/sfx/gun_lucky_penny_revolver.wav",
+			"bus": "Weapons",
+			"trim_db": 0.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_med_tin": {
+			"file": "audio/sfx/gun_med_tin.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_nail_driver": {
+			"file": "audio/sfx/gun_nail_driver.wav",
+			"bus": "Weapons",
+			"trim_db": 4.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_pressure_washer": {
+			"file": "audio/sfx/gun_pressure_washer.wav",
+			"bus": "Weapons",
+			"trim_db": 2.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_revolver": {
+			"file": "audio/sfx/gun_revolver.wav",
+			"bus": "Weapons",
+			"trim_db": 1.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_rifle": {
+			"file": "audio/sfx/gun_rifle.wav",
+			"bus": "Weapons",
+			"trim_db": -2.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_rock_salt": {
+			"file": "audio/sfx/gun_rock_salt.wav",
+			"bus": "Weapons",
+			"trim_db": 3.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_sandbag": {
+			"file": "audio/sfx/gun_sandbag.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_shotgun": {
+			"file": "audio/sfx/gun_shotgun.wav",
+			"bus": "Weapons",
+			"trim_db": -2.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"gun_suit_patch": {
+			"file": "audio/sfx/gun_suit_patch.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_supply_drop": {
+			"file": "audio/sfx/gun_supply_drop.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_umbrella": {
+			"file": "audio/sfx/gun_umbrella.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gun_umbrella_open": {
+			"file": "audio/sfx/gun_umbrella_open.wav",
+			"bus": "Foley",
+			"trim_db": -2.5,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gutter_skid": {
+			"file": "audio/sfx/gutter_skid.wav",
+			"bus": "Threats",
+			"trim_db": -2.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"gutter_windup": {
+			"file": "audio/sfx/gutter_windup.wav",
+			"bus": "Threats",
+			"trim_db": 5.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"hailstone_charge": {
+			"file": "audio/sfx/hailstone_charge.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"hailstone_crash": {
+			"file": "audio/sfx/hailstone_crash.wav",
+			"bus": "Threats",
+			"trim_db": -3.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"headshot": {
+			"file": "audio/sfx/headshot.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"heartbeat": {
+			"file": "audio/sfx/heartbeat.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"hit_enemy": {
+			"file": "audio/sfx/hit_enemy.ogg",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"hit_flesh": {
+			"file": "audio/sfx/hit_flesh.wav",
+			"bus": "Threats",
+			"trim_db": -4.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"incoming_group": {
+			"file": "audio/sfx/incoming_group.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"jam": {
+			"file": "audio/sfx/jam.ogg",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"kill_confirm": {
+			"file": "audio/sfx/kill_confirm.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"lever": {
+			"file": "audio/sfx/lever.ogg",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"mister_windup": {
+			"file": "audio/sfx/mister_windup.wav",
+			"bus": "Threats",
+			"trim_db": 5.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"multikill": {
+			"file": "audio/sfx/multikill.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"pickup": {
+			"file": "audio/sfx/pickup.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ping_danger": {
+			"file": "audio/sfx/ping_danger.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ping_enemy": {
+			"file": "audio/sfx/ping_enemy.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ping_go": {
+			"file": "audio/sfx/ping_go.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ping_item": {
+			"file": "audio/sfx/ping_item.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ping_revive": {
+			"file": "audio/sfx/ping_revive.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ping_shelter": {
+			"file": "audio/sfx/ping_shelter.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"player_hurt": {
+			"file": "audio/sfx/player_hurt.wav",
+			"bus": "Threats",
+			"trim_db": 1.0,
+			"cap_db": -7.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"rain": {
+			"file": "audio/sfx/rain.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"reel_land": {
+			"file": "audio/sfx/reel_land.ogg",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"reel_tick": {
+			"file": "audio/sfx/reel_tick.ogg",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"reload": {
+			"file": "audio/sfx/reload.ogg",
+			"bus": "Foley",
+			"trim_db": -4.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"revive": {
+			"file": "audio/sfx/revive.ogg",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"rifle_reload": {
+			"file": "audio/sfx/rifle_reload.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"shot_boombox": {
+			"file": "audio/sfx/shot_boombox.ogg",
+			"bus": "Weapons",
+			"trim_db": 0.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"shot_flare": {
+			"file": "audio/sfx/shot_flare.ogg",
+			"bus": "Weapons",
+			"trim_db": 0.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"shot_nailgun": {
+			"file": "audio/sfx/shot_nailgun.ogg",
+			"bus": "Weapons",
+			"trim_db": 1.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"shot_penny": {
+			"file": "audio/sfx/shot_penny.ogg",
+			"bus": "Weapons",
+			"trim_db": 0.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"shot_rifle": {
+			"file": "audio/sfx/shot_rifle.ogg",
+			"bus": "Weapons",
+			"trim_db": 2.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"shot_shotgun": {
+			"file": "audio/sfx/shot_shotgun.ogg",
+			"bus": "Weapons",
+			"trim_db": -1.5,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"shotgun_pump": {
+			"file": "audio/sfx/shotgun_pump.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"sleet_leap": {
+			"file": "audio/sfx/sleet_leap.wav",
+			"bus": "Threats",
+			"trim_db": 2.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"smog_spit": {
+			"file": "audio/sfx/smog_spit.wav",
+			"bus": "Threats",
+			"trim_db": 2.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"smog_splash": {
+			"file": "audio/sfx/smog_splash.wav",
+			"bus": "Threats",
+			"trim_db": 2.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"splash_0": {
+			"file": "audio/sfx/splash_0.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"splash_1": {
+			"file": "audio/sfx/splash_1.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"spore_burst": {
+			"file": "audio/sfx/spore_burst.ogg",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"static_blink": {
+			"file": "audio/sfx/static_blink.wav",
+			"bus": "Threats",
+			"trim_db": 1.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"static_power": {
+			"file": "audio/sfx/static_power.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"static_shock": {
+			"file": "audio/sfx/static_shock.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"step_0": {
+			"file": "audio/sfx/step_0.ogg",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"step_1": {
+			"file": "audio/sfx/step_1.ogg",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"step_2": {
+			"file": "audio/sfx/step_2.ogg",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"step_3": {
+			"file": "audio/sfx/step_3.ogg",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"step_grass_0": {
+			"file": "audio/sfx/step_grass_0.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"step_grass_1": {
+			"file": "audio/sfx/step_grass_1.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"step_wood_0": {
+			"file": "audio/sfx/step_wood_0.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"step_wood_1": {
+			"file": "audio/sfx/step_wood_1.wav",
+			"bus": "Foley",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"storm_arrival": {
+			"file": "audio/sfx/storm_arrival.wav",
+			"bus": "UI",
+			"trim_db": -2.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"storm_clear": {
+			"file": "audio/sfx/storm_clear.wav",
+			"bus": "UI",
+			"trim_db": -4.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"storm_countdown": {
+			"file": "audio/sfx/storm_countdown.wav",
+			"bus": "UI",
+			"trim_db": -2.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"storm_wind": {
+			"file": "audio/sfx/storm_wind.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"suit_beep": {
+			"file": "audio/sfx/suit_beep.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"throw_bomb": {
+			"file": "audio/sfx/throw_bomb.ogg",
+			"bus": "Weapons",
+			"trim_db": 0.0,
+			"cap_db": -1.0,
+			"is_fire": true,
+			"is_attack_tell": false
+		},
+		"thunder": {
+			"file": "audio/sfx/thunder.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -1.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"thunder_web": {
+			"file": "audio/sfx/thunder_web.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"thunderhead_fuse": {
+			"file": "audio/sfx/thunderhead_fuse.wav",
+			"bus": "Threats",
+			"trim_db": -2.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"turned": {
+			"file": "audio/sfx/turned.ogg",
+			"bus": "Threats",
+			"trim_db": -4.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ui_achievement": {
+			"file": "audio/sfx/ui_achievement.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ui_click": {
+			"file": "audio/sfx/ui_click.ogg",
+			"bus": "UI",
+			"trim_db": -4.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"undertow_emerge": {
+			"file": "audio/sfx/undertow_emerge.wav",
+			"bus": "Threats",
+			"trim_db": 0.0,
+			"cap_db": -6.0,
+			"is_fire": false,
+			"is_attack_tell": true
+		},
+		"undertow_lurk": {
+			"file": "audio/sfx/undertow_lurk.wav",
+			"bus": "Threats",
+			"trim_db": -2.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"vcr_eject": {
+			"file": "audio/sfx/vcr_eject.wav",
+			"bus": "UI",
+			"trim_db": -2.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"vcr_ff": {
+			"file": "audio/sfx/vcr_ff.wav",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"vcr_insert": {
+			"file": "audio/sfx/vcr_insert.wav",
+			"bus": "UI",
+			"trim_db": -5.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"vcr_whirr": {
+			"file": "audio/sfx/vcr_whirr.wav",
+			"bus": "UI",
+			"trim_db": 1.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"vhs_glitch": {
+			"file": "audio/sfx/vhs_glitch.ogg",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false
+		},
+		"ui_focus": {
+			"file": "audio/sfx/reel_tick.ogg",
+			"bus": "UI",
+			"trim_db": -2.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false,
+			"alias_of": "reel_tick"
+		},
+		"ui_tick": {
+			"file": "audio/sfx/reel_tick.ogg",
+			"bus": "UI",
+			"trim_db": 0.0,
+			"cap_db": -10.0,
+			"is_fire": false,
+			"is_attack_tell": false,
+			"alias_of": "reel_tick"
+		}
+	},
+	"synthesized_at_runtime": [],
+	"runtime_dsp_effects_notes": [
+		"All SFX and music stems are pre-rendered offline by tools/audio/gen_*.py into .wav/.ogg; zero audio waveforms are synthesized at runtime.",
+		"Desktop-only runtime bus DSP in game/sound.gd (disabled on Web and optional on Android GLES2): AudioEffectLowPassFilter on Rain bus (16000 Hz outside -> 1500 Hz sheltered), AudioEffectCompressor sidechain on Music ducked by Weapons (-22 dB threshold, 3:1 ratio), AudioEffectHardLimiter on Master (-1.5 dB ceiling)."
+	]
+}

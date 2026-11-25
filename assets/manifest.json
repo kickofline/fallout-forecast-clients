@@ -1,0 +1,11208 @@
+{
+	"schema_version": 1,
+	"target": "Godot 3.6 GLES2 / PowerVR SGX 544MP / Android 5.1",
+	"exported_at_unix": 1795589639,
+	"maps": {
+		"pinecrest": {
+			"id": "pinecrest",
+			"name": "PINECREST",
+			"glb": "maps/pinecrest.glb",
+			"sidecar": "maps/pinecrest.json",
+			"triangles": 151415,
+			"draw_calls": 149,
+			"bytes": 10271724,
+			"vcol_solid_folded": false,
+			"bounds": {
+				"min": [
+					-67.0,
+					-1.0,
+					-67.0
+				],
+				"max": [
+					67.0,
+					23.0,
+					67.0
+				]
+			},
+			"bake_stats": {
+				"skipped_hidden": 9,
+				"csg_baked": 196,
+				"mi_baked": 515,
+				"mm_baked": 0,
+				"labels_baked": 0
+			},
+			"low_glb": "maps/pinecrest_low.glb",
+			"low_triangles": 103213,
+			"low_draw_calls": 148,
+			"low_bytes": 5528048
+		},
+		"harbor": {
+			"id": "harbor",
+			"name": "HARBOR POINT",
+			"glb": "maps/harbor.glb",
+			"sidecar": "maps/harbor.json",
+			"triangles": 58626,
+			"draw_calls": 98,
+			"bytes": 5217588,
+			"vcol_solid_folded": false,
+			"bounds": {
+				"min": [
+					-600.0,
+					-4.2,
+					-445.0
+				],
+				"max": [
+					600.0,
+					24.0,
+					555.0
+				]
+			},
+			"bake_stats": {
+				"skipped_hidden": 0,
+				"csg_baked": 12,
+				"mi_baked": 337,
+				"mm_baked": 0,
+				"labels_baked": 53
+			}
+		},
+		"maple_hollow": {
+			"id": "maple_hollow",
+			"name": "MAPLE HOLLOW",
+			"glb": "maps/maple_hollow.glb",
+			"sidecar": "maps/maple_hollow.json",
+			"triangles": 85094,
+			"draw_calls": 113,
+			"bytes": 6745604,
+			"vcol_solid_folded": false,
+			"bounds": {
+				"min": [
+					-184.0,
+					-3.25,
+					-186.0
+				],
+				"max": [
+					184.0,
+					21.43,
+					186.0
+				]
+			},
+			"bake_stats": {
+				"skipped_hidden": 0,
+				"csg_baked": 9,
+				"mi_baked": 269,
+				"mm_baked": 248,
+				"labels_baked": 12
+			}
+		}
+	},
+	"environments": "maps/environments.json",
+	"enemies": {
+		"drip": {
+			"id": "drip",
+			"glb": "characters/enemies/drip.glb",
+			"triangles": 504,
+			"draw_calls": 30,
+			"bytes": 67260,
+			"rest_reach_rad": 1.15,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.63,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head/Jaw": {
+					"pos": [
+						0.0,
+						-0.11,
+						0.02
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						1.15,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						1.15,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gutter": {
+			"id": "gutter",
+			"glb": "characters/enemies/gutter.glb",
+			"triangles": 552,
+			"draw_calls": 31,
+			"bytes": 74624,
+			"rest_reach_rad": 0.55,
+			"scale": [
+				1.05,
+				0.82,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						-0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.63,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head/Jaw": {
+					"pos": [
+						0.0,
+						-0.11,
+						0.02
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						0.55,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.44,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						0.55,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.44,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"mister": {
+			"id": "mister",
+			"glb": "characters/enemies/mister.glb",
+			"triangles": 564,
+			"draw_calls": 33,
+			"bytes": 72532,
+			"rest_reach_rad": 0.3,
+			"scale": [
+				1.2,
+				1.12,
+				1.15
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.63,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head/Jaw": {
+					"pos": [
+						0.0,
+						-0.11,
+						0.02
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						0.3,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						0.3,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"hailstone": {
+			"id": "hailstone",
+			"glb": "characters/enemies/hailstone.glb",
+			"triangles": 896,
+			"draw_calls": 21,
+			"bytes": 104784,
+			"rest_reach_rad": 0.25,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						2.02,
+						-0.25
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.76,
+						1.64,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.65,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.33,
+						0.91,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.428,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.76,
+						1.64,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.65,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.33,
+						0.91,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.428,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"sleet": {
+			"id": "sleet",
+			"glb": "characters/enemies/sleet.glb",
+			"triangles": 540,
+			"draw_calls": 19,
+			"bytes": 58076,
+			"rest_reach_rad": 0.7,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						0.78,
+						-0.49
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.245,
+						0.76,
+						0.0
+					],
+					"rot": [
+						0.7,
+						0.0,
+						-0.38
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.35,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.14,
+						0.48,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.226,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.245,
+						0.76,
+						0.0
+					],
+					"rot": [
+						0.7,
+						0.0,
+						0.38
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.35,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.14,
+						0.48,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.226,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"smog": {
+			"id": "smog",
+			"glb": "characters/enemies/smog.glb",
+			"triangles": 704,
+			"draw_calls": 19,
+			"bytes": 79548,
+			"rest_reach_rad": 0.25,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.58,
+						-0.44
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.56,
+						1.37,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.38,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.319,
+						0.65,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.306,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.56,
+						1.37,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.38,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.319,
+						0.65,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.306,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"static": {
+			"id": "static",
+			"glb": "characters/enemies/static.glb",
+			"triangles": 644,
+			"draw_calls": 18,
+			"bytes": 71544,
+			"rest_reach_rad": 0.57,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.7,
+						-0.09
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.36,
+						1.41,
+						0.0
+					],
+					"rot": [
+						0.57,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.205,
+						0.73,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.343,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.36,
+						1.41,
+						0.0
+					],
+					"rot": [
+						0.57,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.205,
+						0.73,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.343,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Sparks": {
+					"pos": [
+						0.0,
+						1.55,
+						-0.42
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"thunderhead": {
+			"id": "thunderhead",
+			"glb": "characters/enemies/thunderhead.glb",
+			"triangles": 940,
+			"draw_calls": 23,
+			"bytes": 79696,
+			"rest_reach_rad": 0.35,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.26,
+						-0.65
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.69,
+						1.25,
+						0.0
+					],
+					"rot": [
+						0.35,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.3,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.33,
+						0.59,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.277,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.69,
+						1.25,
+						0.0
+					],
+					"rot": [
+						0.35,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.3,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.33,
+						0.59,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.277,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"undertow": {
+			"id": "undertow",
+			"glb": "characters/enemies/undertow.glb",
+			"triangles": 656,
+			"draw_calls": 20,
+			"bytes": 70760,
+			"rest_reach_rad": 0.24,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.49,
+						-0.21
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.35,
+						1.42,
+						0.0
+					],
+					"rot": [
+						0.24,
+						0.0,
+						-0.15
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.6,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.199,
+						0.67,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.315,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.35,
+						1.42,
+						0.0
+					],
+					"rot": [
+						0.24,
+						0.0,
+						0.15
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.6,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.199,
+						0.67,
+						0.08
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.315,
+						0.04
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"cloudburst": {
+			"id": "cloudburst",
+			"glb": "characters/enemies/cloudburst.glb",
+			"triangles": 1928,
+			"draw_calls": 43,
+			"bytes": 118020,
+			"rest_reach_rad": 0.3,
+			"scale": [
+				3.0,
+				2.8,
+				2.875
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head": {
+					"pos": [
+						0.0,
+						1.63,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/Head/Jaw": {
+					"pos": [
+						0.0,
+						-0.11,
+						0.02
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL": {
+					"pos": [
+						-0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						0.3,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmL/ElbowL": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL": {
+					"pos": [
+						-0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegL/KneeL": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR": {
+					"pos": [
+						0.37,
+						1.38,
+						0.0
+					],
+					"rot": [
+						0.3,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/ArmR/ElbowR": {
+					"pos": [
+						0.0,
+						-0.36,
+						0.0
+					],
+					"rot": [
+						0.25,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR": {
+					"pos": [
+						0.15,
+						0.72,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/LegR/KneeR": {
+					"pos": [
+						0.0,
+						-0.34,
+						0.0
+					],
+					"rot": [
+						-0.08,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body/MinibossMantle": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"cumulus": {
+			"id": "cumulus",
+			"glb": "characters/enemies/cumulus.glb",
+			"triangles": 4692,
+			"draw_calls": 15,
+			"bytes": 86928,
+			"scale": [
+				1.42,
+				1.42,
+				1.42
+			],
+			"pivots": {
+				"Rig": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Body": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.003,
+						0.0
+					]
+				},
+				"Rig/Sac0": {
+					"pos": [
+						5.0,
+						-1.2,
+						0.052
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Sac0/@CollisionShape3D@992": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Sac1": {
+					"pos": [
+						-2.545,
+						-1.2,
+						4.304
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Sac1/@CollisionShape3D@995": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Sac2": {
+					"pos": [
+						-2.455,
+						-1.2,
+						-4.356
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Sac2/@CollisionShape3D@998": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Core": {
+					"pos": [
+						0.0,
+						-1.8,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Core/@CollisionShape3D@1001": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Rig/Core/CoreRings": {
+					"pos": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rot": [
+						0.021,
+						0.042,
+						0.0
+					]
+				}
+			}
+		},
+		"turned": {
+			"id": "turned",
+			"skin": "standard",
+			"color": "hazmat_yellow",
+			"color_hex": "#c0e041",
+			"turned": true,
+			"glb": "characters/enemies/turned.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 33396,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.243,
+						1.657,
+						-0.382
+					],
+					"rot": [
+						0.053,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.35,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.3,
+						0.0,
+						0.35
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						1.4,
+						0.0,
+						0.1
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.2,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						1.4,
+						0.0,
+						-0.1
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.3,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		}
+	},
+	"players": {
+		"standard_hazmat_yellow": {
+			"id": "standard_hazmat_yellow",
+			"skin": "standard",
+			"color": "hazmat_yellow",
+			"color_hex": "#ffd933",
+			"turned": false,
+			"glb": "characters/player/standard_hazmat_yellow.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29908,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.052,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_teal": {
+			"id": "standard_teal",
+			"skin": "standard",
+			"color": "teal",
+			"color_hex": "#2ec9c9",
+			"turned": false,
+			"glb": "characters/player/standard_teal.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30096,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.052,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_hot_pink": {
+			"id": "standard_hot_pink",
+			"skin": "standard",
+			"color": "hot_pink",
+			"color_hex": "#ff4fa3",
+			"turned": false,
+			"glb": "characters/player/standard_hot_pink.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29904,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.052,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_lime": {
+			"id": "standard_lime",
+			"skin": "standard",
+			"color": "lime",
+			"color_hex": "#9be04a",
+			"turned": false,
+			"glb": "characters/player/standard_lime.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30096,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.051,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_orange": {
+			"id": "standard_orange",
+			"skin": "standard",
+			"color": "orange",
+			"color_hex": "#ff8a2a",
+			"turned": false,
+			"glb": "characters/player/standard_orange.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29924,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.051,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_purple": {
+			"id": "standard_purple",
+			"skin": "standard",
+			"color": "purple",
+			"color_hex": "#9a6bff",
+			"turned": false,
+			"glb": "characters/player/standard_purple.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29916,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.051,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_white": {
+			"id": "standard_white",
+			"skin": "standard",
+			"color": "white",
+			"color_hex": "#e6e9ec",
+			"turned": false,
+			"glb": "characters/player/standard_white.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30072,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.051,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_red": {
+			"id": "standard_red",
+			"skin": "standard",
+			"color": "red",
+			"color_hex": "#e8423a",
+			"turned": false,
+			"glb": "characters/player/standard_red.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30112,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_storm_blue": {
+			"id": "standard_storm_blue",
+			"skin": "standard",
+			"color": "storm_blue",
+			"color_hex": "#3d7bff",
+			"turned": false,
+			"glb": "characters/player/standard_storm_blue.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29928,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"standard_rust": {
+			"id": "standard_rust",
+			"skin": "standard",
+			"color": "rust",
+			"color_hex": "#b5653a",
+			"turned": false,
+			"glb": "characters/player/standard_rust.glb",
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30104,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_hazmat_yellow": {
+			"id": "gas_mask_hazmat_yellow",
+			"skin": "gas_mask",
+			"color": "hazmat_yellow",
+			"color_hex": "#ffd933",
+			"turned": false,
+			"glb": "characters/player/gas_mask_hazmat_yellow.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39348,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_teal": {
+			"id": "gas_mask_teal",
+			"skin": "gas_mask",
+			"color": "teal",
+			"color_hex": "#2ec9c9",
+			"turned": false,
+			"glb": "characters/player/gas_mask_teal.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39536,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_hot_pink": {
+			"id": "gas_mask_hot_pink",
+			"skin": "gas_mask",
+			"color": "hot_pink",
+			"color_hex": "#ff4fa3",
+			"turned": false,
+			"glb": "characters/player/gas_mask_hot_pink.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39344,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_lime": {
+			"id": "gas_mask_lime",
+			"skin": "gas_mask",
+			"color": "lime",
+			"color_hex": "#9be04a",
+			"turned": false,
+			"glb": "characters/player/gas_mask_lime.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39536,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_orange": {
+			"id": "gas_mask_orange",
+			"skin": "gas_mask",
+			"color": "orange",
+			"color_hex": "#ff8a2a",
+			"turned": false,
+			"glb": "characters/player/gas_mask_orange.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39364,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_purple": {
+			"id": "gas_mask_purple",
+			"skin": "gas_mask",
+			"color": "purple",
+			"color_hex": "#9a6bff",
+			"turned": false,
+			"glb": "characters/player/gas_mask_purple.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39356,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_white": {
+			"id": "gas_mask_white",
+			"skin": "gas_mask",
+			"color": "white",
+			"color_hex": "#e6e9ec",
+			"turned": false,
+			"glb": "characters/player/gas_mask_white.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39512,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_red": {
+			"id": "gas_mask_red",
+			"skin": "gas_mask",
+			"color": "red",
+			"color_hex": "#e8423a",
+			"turned": false,
+			"glb": "characters/player/gas_mask_red.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39552,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_storm_blue": {
+			"id": "gas_mask_storm_blue",
+			"skin": "gas_mask",
+			"color": "storm_blue",
+			"color_hex": "#3d7bff",
+			"turned": false,
+			"glb": "characters/player/gas_mask_storm_blue.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39368,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"gas_mask_rust": {
+			"id": "gas_mask_rust",
+			"skin": "gas_mask",
+			"color": "rust",
+			"color_hex": "#b5653a",
+			"turned": false,
+			"glb": "characters/player/gas_mask_rust.glb",
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39540,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_hazmat_yellow": {
+			"id": "firefighter_hazmat_yellow",
+			"skin": "firefighter",
+			"color": "hazmat_yellow",
+			"color_hex": "#ffd933",
+			"turned": false,
+			"glb": "characters/player/firefighter_hazmat_yellow.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35188,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_teal": {
+			"id": "firefighter_teal",
+			"skin": "firefighter",
+			"color": "teal",
+			"color_hex": "#2ec9c9",
+			"turned": false,
+			"glb": "characters/player/firefighter_teal.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35364,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_hot_pink": {
+			"id": "firefighter_hot_pink",
+			"skin": "firefighter",
+			"color": "hot_pink",
+			"color_hex": "#ff4fa3",
+			"turned": false,
+			"glb": "characters/player/firefighter_hot_pink.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35184,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_lime": {
+			"id": "firefighter_lime",
+			"skin": "firefighter",
+			"color": "lime",
+			"color_hex": "#9be04a",
+			"turned": false,
+			"glb": "characters/player/firefighter_lime.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35360,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_orange": {
+			"id": "firefighter_orange",
+			"skin": "firefighter",
+			"color": "orange",
+			"color_hex": "#ff8a2a",
+			"turned": false,
+			"glb": "characters/player/firefighter_orange.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35196,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_purple": {
+			"id": "firefighter_purple",
+			"skin": "firefighter",
+			"color": "purple",
+			"color_hex": "#9a6bff",
+			"turned": false,
+			"glb": "characters/player/firefighter_purple.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35192,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_white": {
+			"id": "firefighter_white",
+			"skin": "firefighter",
+			"color": "white",
+			"color_hex": "#e6e9ec",
+			"turned": false,
+			"glb": "characters/player/firefighter_white.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35336,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_red": {
+			"id": "firefighter_red",
+			"skin": "firefighter",
+			"color": "red",
+			"color_hex": "#e8423a",
+			"turned": false,
+			"glb": "characters/player/firefighter_red.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35372,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_storm_blue": {
+			"id": "firefighter_storm_blue",
+			"skin": "firefighter",
+			"color": "storm_blue",
+			"color_hex": "#3d7bff",
+			"turned": false,
+			"glb": "characters/player/firefighter_storm_blue.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35208,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"firefighter_rust": {
+			"id": "firefighter_rust",
+			"skin": "firefighter",
+			"color": "rust",
+			"color_hex": "#b5653a",
+			"turned": false,
+			"glb": "characters/player/firefighter_rust.glb",
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35364,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_hazmat_yellow": {
+			"id": "bio_tech_hazmat_yellow",
+			"skin": "bio_tech",
+			"color": "hazmat_yellow",
+			"color_hex": "#ffd933",
+			"turned": false,
+			"glb": "characters/player/bio_tech_hazmat_yellow.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37128,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_teal": {
+			"id": "bio_tech_teal",
+			"skin": "bio_tech",
+			"color": "teal",
+			"color_hex": "#2ec9c9",
+			"turned": false,
+			"glb": "characters/player/bio_tech_teal.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37324,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_hot_pink": {
+			"id": "bio_tech_hot_pink",
+			"skin": "bio_tech",
+			"color": "hot_pink",
+			"color_hex": "#ff4fa3",
+			"turned": false,
+			"glb": "characters/player/bio_tech_hot_pink.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37128,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_lime": {
+			"id": "bio_tech_lime",
+			"skin": "bio_tech",
+			"color": "lime",
+			"color_hex": "#9be04a",
+			"turned": false,
+			"glb": "characters/player/bio_tech_lime.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37320,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.048,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_orange": {
+			"id": "bio_tech_orange",
+			"skin": "bio_tech",
+			"color": "orange",
+			"color_hex": "#ff8a2a",
+			"turned": false,
+			"glb": "characters/player/bio_tech_orange.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37148,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_purple": {
+			"id": "bio_tech_purple",
+			"skin": "bio_tech",
+			"color": "purple",
+			"color_hex": "#9a6bff",
+			"turned": false,
+			"glb": "characters/player/bio_tech_purple.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37140,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_white": {
+			"id": "bio_tech_white",
+			"skin": "bio_tech",
+			"color": "white",
+			"color_hex": "#e6e9ec",
+			"turned": false,
+			"glb": "characters/player/bio_tech_white.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37296,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_red": {
+			"id": "bio_tech_red",
+			"skin": "bio_tech",
+			"color": "red",
+			"color_hex": "#e8423a",
+			"turned": false,
+			"glb": "characters/player/bio_tech_red.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37340,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_storm_blue": {
+			"id": "bio_tech_storm_blue",
+			"skin": "bio_tech",
+			"color": "storm_blue",
+			"color_hex": "#3d7bff",
+			"turned": false,
+			"glb": "characters/player/bio_tech_storm_blue.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37156,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"bio_tech_rust": {
+			"id": "bio_tech_rust",
+			"skin": "bio_tech",
+			"color": "rust",
+			"color_hex": "#b5653a",
+			"turned": false,
+			"glb": "characters/player/bio_tech_rust.glb",
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37328,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_hazmat_yellow": {
+			"id": "ion_rig_hazmat_yellow",
+			"skin": "ion_rig",
+			"color": "hazmat_yellow",
+			"color_hex": "#ffd933",
+			"turned": false,
+			"glb": "characters/player/ion_rig_hazmat_yellow.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46104,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.049,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_teal": {
+			"id": "ion_rig_teal",
+			"skin": "ion_rig",
+			"color": "teal",
+			"color_hex": "#2ec9c9",
+			"turned": false,
+			"glb": "characters/player/ion_rig_teal.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46276,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_hot_pink": {
+			"id": "ion_rig_hot_pink",
+			"skin": "ion_rig",
+			"color": "hot_pink",
+			"color_hex": "#ff4fa3",
+			"turned": false,
+			"glb": "characters/player/ion_rig_hot_pink.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46100,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_lime": {
+			"id": "ion_rig_lime",
+			"skin": "ion_rig",
+			"color": "lime",
+			"color_hex": "#9be04a",
+			"turned": false,
+			"glb": "characters/player/ion_rig_lime.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46276,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_orange": {
+			"id": "ion_rig_orange",
+			"skin": "ion_rig",
+			"color": "orange",
+			"color_hex": "#ff8a2a",
+			"turned": false,
+			"glb": "characters/player/ion_rig_orange.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46116,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.05,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_purple": {
+			"id": "ion_rig_purple",
+			"skin": "ion_rig",
+			"color": "purple",
+			"color_hex": "#9a6bff",
+			"turned": false,
+			"glb": "characters/player/ion_rig_purple.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46116,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.051,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_white": {
+			"id": "ion_rig_white",
+			"skin": "ion_rig",
+			"color": "white",
+			"color_hex": "#e6e9ec",
+			"turned": false,
+			"glb": "characters/player/ion_rig_white.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46256,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.051,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_red": {
+			"id": "ion_rig_red",
+			"skin": "ion_rig",
+			"color": "red",
+			"color_hex": "#e8423a",
+			"turned": false,
+			"glb": "characters/player/ion_rig_red.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46288,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.051,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_storm_blue": {
+			"id": "ion_rig_storm_blue",
+			"skin": "ion_rig",
+			"color": "storm_blue",
+			"color_hex": "#3d7bff",
+			"turned": false,
+			"glb": "characters/player/ion_rig_storm_blue.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46124,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.052,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		"ion_rig_rust": {
+			"id": "ion_rig_rust",
+			"skin": "ion_rig",
+			"color": "rust",
+			"color_hex": "#b5653a",
+			"turned": false,
+			"glb": "characters/player/ion_rig_rust.glb",
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46276,
+			"pivots": {
+				"WeaponMount": {
+					"pos": [
+						0.3,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.052,
+						0.0,
+						0.0
+					]
+				},
+				"Hips": {
+					"pos": [
+						0.0,
+						0.92,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso": {
+					"pos": [
+						0.0,
+						0.12,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/Head": {
+					"pos": [
+						0.0,
+						0.6,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL": {
+					"pos": [
+						-0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmL/ForearmL": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR": {
+					"pos": [
+						0.3,
+						0.46,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/Torso/ArmR/ForearmR": {
+					"pos": [
+						0.0,
+						-0.29,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL": {
+					"pos": [
+						-0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegL/ShinL": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR": {
+					"pos": [
+						0.12,
+						-0.06,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"Hips/LegR/ShinR": {
+					"pos": [
+						0.0,
+						-0.4,
+						0.0
+					],
+					"rot": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		}
+	},
+	"cosmetics": "characters/cosmetics.json",
+	"weapons": {
+		"service_revolver": {
+			"id": "service_revolver",
+			"name": "Service Revolver",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/service_revolver.glb",
+			"view_triangles": 356,
+			"view_draw_calls": 16,
+			"view_bytes": 21836,
+			"pickup_glb": "weapons/pickup/service_revolver.glb",
+			"pickup_triangles": 236,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 34736,
+			"pose_action": "swing",
+			"animated_part": "Cylinder",
+			"support_grip_z": -0.018,
+			"muzzle": [
+				0.0,
+				0.02,
+				-0.14
+			],
+			"sight": [
+				0.0,
+				0.044,
+				-0.12
+			],
+			"view_position": [
+				0.15,
+				-0.15,
+				-0.3
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 55.0,
+			"ads_eye_relief": 0.36,
+			"tracer_color": "#ffd966",
+			"shot_sound": "gun_revolver",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.32,
+			"reload_time": 1.5,
+			"mag_size": 6,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"pump_shotgun": {
+			"id": "pump_shotgun",
+			"name": "Pump Shotgun",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/pump_shotgun.glb",
+			"view_triangles": 560,
+			"view_draw_calls": 29,
+			"view_bytes": 32396,
+			"pickup_glb": "weapons/pickup/pump_shotgun.glb",
+			"pickup_triangles": 440,
+			"pickup_draw_calls": 7,
+			"pickup_bytes": 63044,
+			"pose_action": "tube",
+			"animated_part": "Pump",
+			"support_grip_z": -0.18,
+			"muzzle": [
+				0.0,
+				0.014,
+				-0.465
+			],
+			"sight": [
+				0.0,
+				0.034,
+				-0.445
+			],
+			"view_position": [
+				0.17,
+				-0.16,
+				-0.32
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 0.8,
+			"ads_fov": 60.0,
+			"ads_eye_relief": 0.72,
+			"tracer_color": "#ffcc59",
+			"shot_sound": "gun_shotgun",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.85,
+			"reload_time": 0.48,
+			"mag_size": 6,
+			"automatic": false,
+			"shell_reload": true,
+			"cursed": false
+		},
+		"spray_rifle": {
+			"id": "spray_rifle",
+			"name": "Spray Rifle",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/spray_rifle.glb",
+			"view_triangles": 742,
+			"view_draw_calls": 45,
+			"view_bytes": 45004,
+			"pickup_glb": "weapons/pickup/spray_rifle.glb",
+			"pickup_triangles": 622,
+			"pickup_draw_calls": 6,
+			"pickup_bytes": 86424,
+			"pose_action": "mag",
+			"animated_part": "Magazine",
+			"support_grip_z": -0.15,
+			"muzzle": [
+				0.0,
+				0.0,
+				-0.455
+			],
+			"sight": [
+				0.0,
+				0.06,
+				-0.016
+			],
+			"view_position": [
+				0.17,
+				-0.17,
+				-0.36
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 0.8,
+			"ads_fov": 42.0,
+			"ads_eye_relief": 0.42,
+			"tracer_color": "#ffd180",
+			"shot_sound": "gun_rifle",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.085,
+			"reload_time": 1.8,
+			"mag_size": 40,
+			"automatic": true,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"nail_driver": {
+			"id": "nail_driver",
+			"name": "Nail Driver",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/nail_driver.glb",
+			"view_triangles": 584,
+			"view_draw_calls": 28,
+			"view_bytes": 32248,
+			"pickup_glb": "weapons/pickup/nail_driver.glb",
+			"pickup_triangles": 248,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 37236,
+			"pose_action": "mag",
+			"animated_part": "Magazine",
+			"support_grip_z": -0.075,
+			"muzzle": [
+				0.0,
+				-0.018,
+				-0.198
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#f0b873",
+			"shot_sound": "gun_nail_driver",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.085,
+			"reload_time": 1.65,
+			"mag_size": 24,
+			"automatic": true,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"hunting_rifle": {
+			"id": "hunting_rifle",
+			"name": "Hunting Rifle",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/hunting_rifle.glb",
+			"view_triangles": 964,
+			"view_draw_calls": 30,
+			"view_bytes": 73248,
+			"pickup_glb": "weapons/pickup/hunting_rifle.glb",
+			"pickup_triangles": 364,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 52276,
+			"pose_action": "bolt",
+			"animated_part": "Bolt",
+			"support_grip_z": -0.14,
+			"muzzle": [
+				0.0,
+				0.014,
+				-0.485
+			],
+			"sight": [
+				0.0,
+				0.065,
+				0.044
+			],
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 27.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#f9cd98",
+			"shot_sound": "gun_hunting_rifle",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 1.3,
+			"reload_time": 2.65,
+			"mag_size": 5,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"pressure_washer": {
+			"id": "pressure_washer",
+			"name": "Pressure Washer",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/pressure_washer.glb",
+			"view_triangles": 832,
+			"view_draw_calls": 26,
+			"view_bytes": 36516,
+			"pickup_glb": "weapons/pickup/pressure_washer.glb",
+			"pickup_triangles": 208,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 26568,
+			"pose_action": "hose",
+			"animated_part": "Wand",
+			"support_grip_z": -0.095,
+			"muzzle": [
+				0.0,
+				0.012,
+				-0.407
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#70e8f8",
+			"shot_sound": "gun_pressure_washer",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.11,
+			"reload_time": 1.85,
+			"mag_size": 56,
+			"automatic": true,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"rock_salt": {
+			"id": "rock_salt",
+			"name": "Rock Salt Shotgun",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/rock_salt.glb",
+			"view_triangles": 712,
+			"view_draw_calls": 26,
+			"view_bytes": 31288,
+			"pickup_glb": "weapons/pickup/rock_salt.glb",
+			"pickup_triangles": 304,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 42272,
+			"pose_action": "break",
+			"animated_part": "Barrel",
+			"support_grip_z": -0.08,
+			"muzzle": [
+				0.0,
+				0.02,
+				-0.34
+			],
+			"sight": [
+				0.0,
+				0.039,
+				-0.333
+			],
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#f5e6cf",
+			"shot_sound": "gun_rock_salt",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.33,
+			"reload_time": 1.75,
+			"mag_size": 2,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"battery_zapper": {
+			"id": "battery_zapper",
+			"name": "Car-Battery Zapper",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/battery_zapper.glb",
+			"view_triangles": 680,
+			"view_draw_calls": 32,
+			"view_bytes": 32648,
+			"pickup_glb": "weapons/pickup/battery_zapper.glb",
+			"pickup_triangles": 488,
+			"pickup_draw_calls": 6,
+			"pickup_bytes": 67408,
+			"pose_action": "charge",
+			"animated_part": "Clamps",
+			"support_grip_z": -0.1,
+			"muzzle": [
+				0.0,
+				0.038,
+				-0.192
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#fff267",
+			"shot_sound": "gun_battery_zapper",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.39,
+			"reload_time": 2.1,
+			"mag_size": 12,
+			"automatic": true,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"flare_launcher": {
+			"id": "flare_launcher",
+			"name": "Road Flare Launcher",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/flare_launcher.glb",
+			"view_triangles": 592,
+			"view_draw_calls": 26,
+			"view_bytes": 47776,
+			"pickup_glb": "weapons/pickup/flare_launcher.glb",
+			"pickup_triangles": 232,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 33424,
+			"pose_action": "flare",
+			"animated_part": "Barrel",
+			"support_grip_z": -0.055,
+			"muzzle": [
+				0.0,
+				0.028,
+				-0.235
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#ff733b",
+			"shot_sound": "gun_flare_launcher",
+			"deploy_sound": "gun_flare",
+			"blast_sound": "explosion",
+			"effect_radius": 4.0,
+			"fire_interval": 0.75,
+			"reload_time": 2.0,
+			"mag_size": 3,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"harpoon": {
+			"id": "harpoon",
+			"name": "Harpoon Gun",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/harpoon.glb",
+			"view_triangles": 836,
+			"view_draw_calls": 29,
+			"view_bytes": 34680,
+			"pickup_glb": "weapons/pickup/harpoon.glb",
+			"pickup_triangles": 296,
+			"pickup_draw_calls": 6,
+			"pickup_bytes": 44544,
+			"pose_action": "reel",
+			"animated_part": "Spool",
+			"support_grip_z": -0.095,
+			"muzzle": [
+				0.0,
+				0.038,
+				-0.395
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#b9eacc",
+			"shot_sound": "gun_harpoon",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.55,
+			"reload_time": 1.35,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"leaf_blower": {
+			"id": "leaf_blower",
+			"name": "Leaf Blower",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/leaf_blower.glb",
+			"view_triangles": 722,
+			"view_draw_calls": 31,
+			"view_bytes": 49344,
+			"pickup_glb": "weapons/pickup/leaf_blower.glb",
+			"pickup_triangles": 410,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 56716,
+			"pose_action": "fan",
+			"animated_part": "Fan",
+			"support_grip_z": -0.085,
+			"muzzle": [
+				0.0,
+				-0.012,
+				-0.38
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#baf4a7",
+			"shot_sound": "gun_leaf_blower",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.2,
+			"reload_time": 1.85,
+			"mag_size": 52,
+			"automatic": true,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"disruptor": {
+			"id": "disruptor",
+			"name": "Weather-Radio Disruptor",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/disruptor.glb",
+			"view_triangles": 1860,
+			"view_draw_calls": 49,
+			"view_bytes": 76732,
+			"pickup_glb": "weapons/pickup/disruptor.glb",
+			"pickup_triangles": 756,
+			"pickup_draw_calls": 9,
+			"pickup_bytes": 96840,
+			"pose_action": "tune",
+			"animated_part": "Dish",
+			"support_grip_z": -0.1,
+			"muzzle": [
+				0.0,
+				0.092,
+				-0.255
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#f99bdc",
+			"shot_sound": "gun_disruptor",
+			"deploy_sound": "gun_field_deploy",
+			"blast_sound": "explosion",
+			"effect_radius": 7.5,
+			"fire_interval": 0.75,
+			"reload_time": 2.1,
+			"mag_size": 4,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"leaky_nailgun": {
+			"id": "leaky_nailgun",
+			"name": "Leaky Nailgun",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/leaky_nailgun.glb",
+			"view_triangles": 240,
+			"view_draw_calls": 16,
+			"view_bytes": 18020,
+			"pickup_glb": "weapons/pickup/leaky_nailgun.glb",
+			"pickup_triangles": 120,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 20000,
+			"pose_action": "mag",
+			"animated_part": "Magazine",
+			"support_grip_z": -0.12,
+			"muzzle": [
+				0.0,
+				-0.01,
+				-0.25
+			],
+			"sight": null,
+			"view_position": [
+				0.17,
+				-0.15,
+				-0.3
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#8cff4d",
+			"shot_sound": "gun_leaky_nailgun",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.22,
+			"reload_time": 2.0,
+			"mag_size": 24,
+			"automatic": true,
+			"shell_reload": false,
+			"cursed": true
+		},
+		"boombox_launcher": {
+			"id": "boombox_launcher",
+			"name": "Boombox Launcher",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/boombox_launcher.glb",
+			"view_triangles": 528,
+			"view_draw_calls": 20,
+			"view_bytes": 22364,
+			"pickup_glb": "weapons/pickup/boombox_launcher.glb",
+			"pickup_triangles": 408,
+			"pickup_draw_calls": 7,
+			"pickup_bytes": 50964,
+			"pose_action": "tube",
+			"animated_part": "",
+			"support_grip_z": -0.055,
+			"muzzle": [
+				0.0,
+				0.085,
+				-0.2
+			],
+			"sight": null,
+			"view_position": [
+				0.16,
+				-0.2,
+				-0.34
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#ff4dcc",
+			"shot_sound": "gun_boombox_launcher",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 6.5,
+			"fire_interval": 1.1,
+			"reload_time": 2.4,
+			"mag_size": 4,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": true
+		},
+		"lucky_penny_revolver": {
+			"id": "lucky_penny_revolver",
+			"name": "Lucky Penny Revolver",
+			"category": "gun",
+			"is_pouch": false,
+			"view_glb": "weapons/view/lucky_penny_revolver.glb",
+			"view_triangles": 356,
+			"view_draw_calls": 16,
+			"view_bytes": 21832,
+			"pickup_glb": "weapons/pickup/lucky_penny_revolver.glb",
+			"pickup_triangles": 236,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 34728,
+			"pose_action": "swing",
+			"animated_part": "Cylinder",
+			"support_grip_z": -0.018,
+			"muzzle": [
+				0.0,
+				0.02,
+				-0.14
+			],
+			"sight": [
+				0.0,
+				0.044,
+				-0.12
+			],
+			"view_position": [
+				0.15,
+				-0.15,
+				-0.3
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 55.0,
+			"ads_eye_relief": 0.36,
+			"tracer_color": "#ffd933",
+			"shot_sound": "gun_lucky_penny_revolver",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.38,
+			"reload_time": 1.6,
+			"mag_size": 6,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": true
+		},
+		"frag": {
+			"id": "frag",
+			"name": "Frag Grenade",
+			"category": "item",
+			"is_pouch": true,
+			"view_glb": "weapons/view/frag.glb",
+			"view_triangles": 848,
+			"view_draw_calls": 21,
+			"view_bytes": 35240,
+			"pickup_glb": "weapons/pickup/frag.glb",
+			"pickup_triangles": 728,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 95964,
+			"pose_action": "lob",
+			"animated_part": "",
+			"support_grip_z": -0.015,
+			"muzzle": [
+				0.0,
+				0.06,
+				0.0
+			],
+			"sight": null,
+			"view_position": [
+				0.18,
+				-0.17,
+				-0.32
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#ff9940",
+			"shot_sound": "gun_frag_throw",
+			"deploy_sound": "",
+			"blast_sound": "gun_frag_blast",
+			"effect_radius": 6.0,
+			"fire_interval": 0.9,
+			"reload_time": 0.6,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"shield_dome": {
+			"id": "shield_dome",
+			"name": "Shield Dome",
+			"category": "item",
+			"is_pouch": true,
+			"view_glb": "weapons/view/shield_dome.glb",
+			"view_triangles": 408,
+			"view_draw_calls": 18,
+			"view_bytes": 19992,
+			"pickup_glb": "weapons/pickup/shield_dome.glb",
+			"pickup_triangles": 288,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 41592,
+			"pose_action": "toss",
+			"animated_part": "",
+			"support_grip_z": -0.016,
+			"muzzle": [
+				0.0,
+				0.06,
+				0.0
+			],
+			"sight": null,
+			"view_position": [
+				0.18,
+				-0.17,
+				-0.32
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 60.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#59f2ff",
+			"shot_sound": "gun_dome_throw",
+			"deploy_sound": "gun_dome_expand",
+			"blast_sound": "explosion",
+			"effect_radius": 6.5,
+			"fire_interval": 0.8,
+			"reload_time": 0.9,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"umbrella": {
+			"id": "umbrella",
+			"name": "Umbrella Stand",
+			"category": "item",
+			"is_pouch": false,
+			"view_glb": "weapons/view/umbrella.glb",
+			"view_triangles": 916,
+			"view_draw_calls": 24,
+			"view_bytes": 33652,
+			"pickup_glb": "weapons/pickup/umbrella.glb",
+			"pickup_triangles": 244,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 23848,
+			"pose_action": "lob",
+			"animated_part": "Canopy",
+			"support_grip_z": -0.07,
+			"muzzle": [
+				0.0,
+				0.07,
+				-0.216
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#ab85fe",
+			"shot_sound": "gun_umbrella",
+			"deploy_sound": "gun_umbrella_open",
+			"blast_sound": "explosion",
+			"effect_radius": 4.2,
+			"fire_interval": 0.7,
+			"reload_time": 2.0,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"bleach_bomb": {
+			"id": "bleach_bomb",
+			"name": "Bleach Bomb",
+			"category": "item",
+			"is_pouch": false,
+			"view_glb": "weapons/view/bleach_bomb.glb",
+			"view_triangles": 504,
+			"view_draw_calls": 21,
+			"view_bytes": 26932,
+			"pickup_glb": "weapons/pickup/bleach_bomb.glb",
+			"pickup_triangles": 276,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 38688,
+			"pose_action": "lob",
+			"animated_part": "Cap",
+			"support_grip_z": -0.035,
+			"muzzle": [
+				0.0,
+				0.091,
+				-0.025
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#b8ffd7",
+			"shot_sound": "gun_bleach_bomb",
+			"deploy_sound": "gun_bleach_burst",
+			"blast_sound": "explosion",
+			"effect_radius": 4.3,
+			"fire_interval": 0.7,
+			"reload_time": 2.0,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"bait_radio": {
+			"id": "bait_radio",
+			"name": "Bait Radio",
+			"category": "item",
+			"is_pouch": false,
+			"view_glb": "weapons/view/bait_radio.glb",
+			"view_triangles": 576,
+			"view_draw_calls": 28,
+			"view_bytes": 29220,
+			"pickup_glb": "weapons/pickup/bait_radio.glb",
+			"pickup_triangles": 192,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 27064,
+			"pose_action": "toss",
+			"animated_part": "Antenna",
+			"support_grip_z": -0.04,
+			"muzzle": [
+				0.0,
+				0.065,
+				-0.045
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#ed9556",
+			"shot_sound": "gun_bait_radio",
+			"deploy_sound": "gun_bait_activate",
+			"blast_sound": "explosion",
+			"effect_radius": 20.0,
+			"fire_interval": 0.7,
+			"reload_time": 2.0,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"sandbag": {
+			"id": "sandbag",
+			"name": "Sandbag",
+			"category": "item",
+			"is_pouch": false,
+			"view_glb": "weapons/view/sandbag.glb",
+			"view_triangles": 380,
+			"view_draw_calls": 24,
+			"view_bytes": 32532,
+			"pickup_glb": "weapons/pickup/sandbag.glb",
+			"pickup_triangles": 152,
+			"pickup_draw_calls": 2,
+			"pickup_bytes": 22148,
+			"pose_action": "place",
+			"animated_part": "Sack",
+			"support_grip_z": -0.06,
+			"muzzle": [
+				0.0,
+				0.05,
+				-0.09
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#cfad73",
+			"shot_sound": "gun_sandbag",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.65,
+			"reload_time": 2.0,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"lightning_rod": {
+			"id": "lightning_rod",
+			"name": "Lightning Rod Spike",
+			"category": "item",
+			"is_pouch": false,
+			"view_glb": "weapons/view/lightning_rod.glb",
+			"view_triangles": 780,
+			"view_draw_calls": 22,
+			"view_bytes": 29852,
+			"pickup_glb": "weapons/pickup/lightning_rod.glb",
+			"pickup_triangles": 528,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 69780,
+			"pose_action": "plant",
+			"animated_part": "Spike",
+			"support_grip_z": -0.07,
+			"muzzle": [
+				0.0,
+				0.07,
+				-0.24
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#fff16a",
+			"shot_sound": "gun_lightning_rod",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 7.0,
+			"fire_interval": 0.7,
+			"reload_time": 2.0,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"med_tin": {
+			"id": "med_tin",
+			"name": "Med Tin",
+			"category": "item",
+			"is_pouch": false,
+			"view_glb": "weapons/view/med_tin.glb",
+			"view_triangles": 336,
+			"view_draw_calls": 20,
+			"view_bytes": 21284,
+			"pickup_glb": "weapons/pickup/med_tin.glb",
+			"pickup_triangles": 60,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 9208,
+			"pose_action": "open",
+			"animated_part": "Lid",
+			"support_grip_z": -0.045,
+			"muzzle": [
+				0.0,
+				0.045,
+				-0.055
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#ff7190",
+			"shot_sound": "gun_med_tin",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.5,
+			"reload_time": 2.0,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		},
+		"suit_patch": {
+			"id": "suit_patch",
+			"name": "Suit Patch",
+			"category": "item",
+			"is_pouch": false,
+			"view_glb": "weapons/view/suit_patch.glb",
+			"view_triangles": 348,
+			"view_draw_calls": 29,
+			"view_bytes": 20896,
+			"pickup_glb": "weapons/pickup/suit_patch.glb",
+			"pickup_triangles": 60,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 10164,
+			"pose_action": "press",
+			"animated_part": "Patch",
+			"support_grip_z": -0.035,
+			"muzzle": [
+				0.0,
+				0.028,
+				-0.065
+			],
+			"sight": null,
+			"view_position": [
+				0.28,
+				-0.26,
+				-0.5
+			],
+			"view_rotation_degrees": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"view_scale": 1.0,
+			"ads_fov": 52.0,
+			"ads_eye_relief": 0.32,
+			"tracer_color": "#7dc6fb",
+			"shot_sound": "gun_suit_patch",
+			"deploy_sound": "",
+			"blast_sound": "explosion",
+			"effect_radius": 5.0,
+			"fire_interval": 0.5,
+			"reload_time": 2.0,
+			"mag_size": 1,
+			"automatic": false,
+			"shell_reload": false,
+			"cursed": false
+		}
+	},
+	"props": {
+		"bug_bomb_canister": {
+			"id": "bug_bomb_canister",
+			"glb": "props/bug_bomb_canister.glb",
+			"triangles": 608,
+			"draw_calls": 6,
+			"bytes": 24224
+		},
+		"pickup_ammo": {
+			"id": "pickup_ammo",
+			"glb": "props/pickup_ammo.glb",
+			"triangles": 1032,
+			"draw_calls": 9,
+			"bytes": 27000
+		},
+		"pickup_health": {
+			"id": "pickup_health",
+			"glb": "props/pickup_health.glb",
+			"triangles": 384,
+			"draw_calls": 9,
+			"bytes": 20572
+		},
+		"pickup_suit": {
+			"id": "pickup_suit",
+			"glb": "props/pickup_suit.glb",
+			"triangles": 780,
+			"draw_calls": 6,
+			"bytes": 25880
+		},
+		"pickup_supply": {
+			"id": "pickup_supply",
+			"glb": "props/pickup_supply.glb",
+			"triangles": 720,
+			"draw_calls": 10,
+			"bytes": 28712
+		},
+		"pickup_scrap": {
+			"id": "pickup_scrap",
+			"glb": "props/pickup_scrap.glb",
+			"triangles": 544,
+			"draw_calls": 2,
+			"bytes": 45204
+		},
+		"pickup_scrap_large": {
+			"id": "pickup_scrap_large",
+			"glb": "props/pickup_scrap_large.glb",
+			"triangles": 1088,
+			"draw_calls": 4,
+			"bytes": 48712
+		},
+		"vending_station": {
+			"id": "vending_station",
+			"glb": "props/vending_station.glb",
+			"triangles": 2376,
+			"draw_calls": 21,
+			"bytes": 234228
+		},
+		"crate_station": {
+			"id": "crate_station",
+			"glb": "props/crate_station.glb",
+			"triangles": 3252,
+			"draw_calls": 17,
+			"bytes": 355592
+		},
+		"airdrop": {
+			"id": "airdrop",
+			"glb": "props/airdrop.glb",
+			"triangles": 4000,
+			"draw_calls": 20,
+			"bytes": 388804
+		},
+		"shield_dome": {
+			"id": "shield_dome",
+			"glb": "props/shield_dome.glb",
+			"triangles": 712,
+			"draw_calls": 2,
+			"bytes": 25996,
+			"radius": 6.5,
+			"warning_color": "#ffc365"
+		},
+		"umbrella_open": {
+			"id": "umbrella_open",
+			"glb": "props/umbrella_open.glb",
+			"triangles": 1296,
+			"draw_calls": 22,
+			"bytes": 32740
+		},
+		"sandbag_wall": {
+			"id": "sandbag_wall",
+			"glb": "props/sandbag_wall.glb",
+			"triangles": 1520,
+			"draw_calls": 20,
+			"bytes": 29200
+		},
+		"lightning_rod_planted": {
+			"id": "lightning_rod_planted",
+			"glb": "props/lightning_rod_planted.glb",
+			"triangles": 528,
+			"draw_calls": 9,
+			"bytes": 18148
+		},
+		"decon_shower_cells": {
+			"id": "decon_shower_cells",
+			"glb": "props/decon_shower_cells.glb",
+			"triangles": 1584,
+			"draw_calls": 14,
+			"bytes": 31448
+		}
+	},
+	"projectiles": {
+		"nail_driver": {
+			"id": "nail_driver",
+			"glb": "projectiles/nail_driver.glb",
+			"triangles": 125,
+			"draw_calls": 3,
+			"bytes": 8404
+		},
+		"harpoon": {
+			"id": "harpoon",
+			"glb": "projectiles/harpoon.glb",
+			"triangles": 132,
+			"draw_calls": 3,
+			"bytes": 8968
+		},
+		"flare_launcher": {
+			"id": "flare_launcher",
+			"glb": "projectiles/flare_launcher.glb",
+			"triangles": 204,
+			"draw_calls": 4,
+			"bytes": 12412
+		},
+		"boombox_launcher": {
+			"id": "boombox_launcher",
+			"glb": "projectiles/boombox_launcher.glb",
+			"triangles": 120,
+			"draw_calls": 2,
+			"bytes": 6420
+		},
+		"frag": {
+			"id": "frag",
+			"glb": "projectiles/frag.glb",
+			"triangles": 728,
+			"draw_calls": 11,
+			"bytes": 29032
+		},
+		"shield_dome": {
+			"id": "shield_dome",
+			"glb": "projectiles/shield_dome.glb",
+			"triangles": 288,
+			"draw_calls": 8,
+			"bytes": 13800
+		},
+		"bug_bomb": {
+			"id": "bug_bomb",
+			"glb": "projectiles/bug_bomb.glb",
+			"triangles": 608,
+			"draw_calls": 6,
+			"bytes": 24280
+		},
+		"bleach_bomb": {
+			"id": "bleach_bomb",
+			"glb": "projectiles/bleach_bomb.glb",
+			"triangles": 276,
+			"draw_calls": 3,
+			"bytes": 38784
+		},
+		"bait_radio": {
+			"id": "bait_radio",
+			"glb": "projectiles/bait_radio.glb",
+			"triangles": 192,
+			"draw_calls": 5,
+			"bytes": 27160
+		},
+		"sandbag": {
+			"id": "sandbag",
+			"glb": "projectiles/sandbag.glb",
+			"triangles": 152,
+			"draw_calls": 2,
+			"bytes": 22188
+		},
+		"umbrella": {
+			"id": "umbrella",
+			"glb": "projectiles/umbrella.glb",
+			"triangles": 244,
+			"draw_calls": 4,
+			"bytes": 23900
+		},
+		"spore_glob": {
+			"id": "spore_glob",
+			"glb": "projectiles/spore_glob.glb",
+			"triangles": 168,
+			"draw_calls": 1,
+			"bytes": 7500
+		},
+		"acid_glob": {
+			"id": "acid_glob",
+			"glb": "projectiles/acid_glob.glb",
+			"triangles": 168,
+			"draw_calls": 1,
+			"bytes": 7524
+		}
+	},
+	"weapons_metadata": "weapons/weapons.json",
+	"fonts": [
+		"fonts/BarlowCondensed-SemiBold.ttf",
+		"fonts/OFL.txt",
+		"fonts/VT323-OFL.txt",
+		"fonts/VT323-Regular.ttf"
+	],
+	"ui": {
+		"items": [
+			"ui/items/bait_radio.png",
+			"ui/items/battery_zapper.png",
+			"ui/items/bleach_bomb.png",
+			"ui/items/boombox_launcher.png",
+			"ui/items/disruptor.png",
+			"ui/items/flare_launcher.png",
+			"ui/items/frag.png",
+			"ui/items/harpoon.png",
+			"ui/items/hunting_rifle.png",
+			"ui/items/leaf_blower.png",
+			"ui/items/leaky_nailgun.png",
+			"ui/items/lightning_rod.png",
+			"ui/items/lucky_penny_revolver.png",
+			"ui/items/med_tin.png",
+			"ui/items/nail_driver.png",
+			"ui/items/pressure_washer.png",
+			"ui/items/pump_shotgun.png",
+			"ui/items/rock_salt.png",
+			"ui/items/sandbag.png",
+			"ui/items/shield_dome.png",
+			"ui/items/spray_rifle.png",
+			"ui/items/suit_patch.png",
+			"ui/items/umbrella.png"
+		],
+		"screens": [
+			"ui/harbor.webp",
+			"ui/maple_hollow.webp",
+			"ui/title_street.png",
+			"ui/harbor.png",
+			"ui/maple_hollow.png"
+		]
+	},
+	"audio": {
+		"sound_map": "audio/sound_map.json",
+		"music": [
+			"audio/music/forecast_boss.wav",
+			"audio/music/forecast_pulse.wav",
+			"audio/music/forecast_storm.wav",
+			"audio/music/forecast_theme.wav"
+		],
+		"sfx_count": 122
+	},
+	"total_bytes": 45655613,
+	"total_mb": 43.54
+}

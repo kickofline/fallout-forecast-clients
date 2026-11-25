@@ -1,0 +1,1995 @@
+{
+	"id": "pinecrest",
+	"name": "PINECREST",
+	"player_spawns": [
+		{
+			"name": "P1",
+			"pos": [
+				-2.0,
+				0.0,
+				0.5
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "P2",
+			"pos": [
+				2.0,
+				0.0,
+				0.5
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "P3",
+			"pos": [
+				-2.0,
+				0.0,
+				3.0
+			],
+			"rot_y": 0.0
+		},
+		{
+			"name": "P4",
+			"pos": [
+				2.0,
+				0.0,
+				3.0
+			],
+			"rot_y": 0.0
+		}
+	],
+	"enemy_spawns": [
+		{
+			"name": "MainStWest",
+			"pos": [
+				-58.0,
+				0.0,
+				2.0
+			]
+		},
+		{
+			"name": "MainStEast",
+			"pos": [
+				58.0,
+				0.0,
+				2.0
+			]
+		},
+		{
+			"name": "ParkNorth",
+			"pos": [
+				-40.0,
+				0.0,
+				-61.0
+			]
+		},
+		{
+			"name": "BackyardsNorth",
+			"pos": [
+				40.0,
+				0.0,
+				-61.0
+			]
+		},
+		{
+			"name": "CulDeSacNorth",
+			"pos": [
+				-8.0,
+				0.0,
+				-62.0
+			]
+		},
+		{
+			"name": "LotSouthWest",
+			"pos": [
+				-25.0,
+				0.0,
+				61.0
+			]
+		},
+		{
+			"name": "LotSouthEast",
+			"pos": [
+				20.0,
+				0.0,
+				61.0
+			]
+		},
+		{
+			"name": "GasBack",
+			"pos": [
+				61.0,
+				0.0,
+				40.0
+			]
+		}
+	],
+	"drain_spawns": [
+		{
+			"name": "Drain-40_4",
+			"pos": [
+				-40.0,
+				0.0,
+				4.0
+			]
+		},
+		{
+			"name": "Drain-12_-4",
+			"pos": [
+				-12.0,
+				0.0,
+				-4.0
+			]
+		},
+		{
+			"name": "Drain14_4",
+			"pos": [
+				14.0,
+				0.0,
+				4.0
+			]
+		},
+		{
+			"name": "Drain46_-4",
+			"pos": [
+				46.0,
+				0.0,
+				-4.0
+			]
+		},
+		{
+			"name": "Drain8_-36",
+			"pos": [
+				8.0,
+				0.0,
+				-36.0
+			]
+		},
+		{
+			"name": "Drain-15_40",
+			"pos": [
+				-15.0,
+				0.0,
+				40.0
+			]
+		},
+		{
+			"name": "Drain-50_8",
+			"pos": [
+				-50.0,
+				0.0,
+				8.5
+			]
+		}
+	],
+	"crate_spawns": [
+		{
+			"name": "Crate0",
+			"pos": [
+				6.0,
+				0.0,
+				-44.0
+			]
+		},
+		{
+			"name": "Crate1",
+			"pos": [
+				-6.0,
+				0.0,
+				-36.0
+			]
+		},
+		{
+			"name": "Crate2",
+			"pos": [
+				0.0,
+				0.0,
+				-12.0
+			]
+		},
+		{
+			"name": "Crate3",
+			"pos": [
+				-30.0,
+				0.0,
+				2.5
+			]
+		},
+		{
+			"name": "Crate4",
+			"pos": [
+				28.0,
+				0.0,
+				-2.5
+			]
+		},
+		{
+			"name": "Crate5",
+			"pos": [
+				-20.0,
+				0.0,
+				38.0
+			]
+		},
+		{
+			"name": "Crate6",
+			"pos": [
+				4.0,
+				0.0,
+				42.0
+			]
+		},
+		{
+			"name": "Crate7",
+			"pos": [
+				-53.0,
+				0.0,
+				37.0
+			]
+		},
+		{
+			"name": "Crate8",
+			"pos": [
+				46.0,
+				0.0,
+				34.0
+			]
+		},
+		{
+			"name": "Crate9",
+			"pos": [
+				-44.0,
+				0.0,
+				-36.0
+			]
+		},
+		{
+			"name": "Crate10",
+			"pos": [
+				42.0,
+				0.0,
+				-34.0
+			]
+		},
+		{
+			"name": "Crate11",
+			"pos": [
+				9.0,
+				0.0,
+				20.5
+			]
+		}
+	],
+	"vending_stations": [
+		{
+			"name": "HardwareStation",
+			"pos": [
+				-2.8,
+				0.055,
+				9.0
+			],
+			"rot_y": 0.0,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		},
+		{
+			"name": "GasStationSurplus",
+			"pos": [
+				49.0,
+				0.08,
+				26.5
+			],
+			"rot_y": 0.0,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		},
+		{
+			"name": "TownSquareStation",
+			"pos": [
+				-53.0,
+				0.08,
+				30.85
+			],
+			"rot_y": 0.0,
+			"size": [
+				2.09,
+				2.07,
+				0.91
+			]
+		}
+	],
+	"decon_showers": [
+		{
+			"name": "GarageWest",
+			"pos": [
+				-21.843,
+				0.0,
+				-46.965
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		},
+		{
+			"name": "Laundromat",
+			"pos": [
+				-18.0,
+				0.0,
+				8.6
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		},
+		{
+			"name": "GasStation",
+			"pos": [
+				49.0,
+				0.0,
+				22.0
+			],
+			"rot_y": 0.0,
+			"interact_offset": [
+				0.0,
+				1.0,
+				0.0
+			],
+			"radius": 2.2
+		}
+	],
+	"boss_anchors": [
+		{
+			"name": "BossAnchor",
+			"pos": [
+				0.0,
+				18.0,
+				0.0
+			]
+		}
+	],
+	"shelters": [
+		{
+			"name": "Tree-61_11_canopy",
+			"pos": [
+				-61.0,
+				1.9,
+				11.0
+			],
+			"rot": [
+				0.0,
+				0.984,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.071,
+			"height": 4.4
+		},
+		{
+			"name": "Tree-45_11_canopy",
+			"pos": [
+				-45.0,
+				1.9,
+				11.0
+			],
+			"rot": [
+				0.0,
+				-0.898,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.071,
+			"height": 4.4
+		},
+		{
+			"name": "Tree-61_39_canopy",
+			"pos": [
+				-61.0,
+				1.9,
+				39.0
+			],
+			"rot": [
+				0.0,
+				-0.508,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.071,
+			"height": 4.4
+		},
+		{
+			"name": "Tree-45_39_canopy",
+			"pos": [
+				-45.0,
+				1.9,
+				39.0
+			],
+			"rot": [
+				0.0,
+				2.009,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.071,
+			"height": 4.4
+		},
+		{
+			"name": "Tree0_canopy",
+			"pos": [
+				-60.0,
+				1.9,
+				-58.0
+			],
+			"rot": [
+				0.0,
+				0.063,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.885,
+			"height": 4.4
+		},
+		{
+			"name": "Tree1_canopy",
+			"pos": [
+				-40.0,
+				1.9,
+				-58.0
+			],
+			"rot": [
+				0.0,
+				2.611,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.165,
+			"height": 4.4
+		},
+		{
+			"name": "Tree2_canopy",
+			"pos": [
+				-58.0,
+				1.9,
+				-32.0
+			],
+			"rot": [
+				0.0,
+				1.659,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.495,
+			"height": 4.4
+		},
+		{
+			"name": "Tree3_canopy",
+			"pos": [
+				-34.0,
+				1.9,
+				-30.0
+			],
+			"rot": [
+				0.0,
+				-1.812,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.026,
+			"height": 4.4
+		},
+		{
+			"name": "Tree4_canopy",
+			"pos": [
+				-26.0,
+				1.9,
+				-58.0
+			],
+			"rot": [
+				0.0,
+				0.678,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.226,
+			"height": 4.4
+		},
+		{
+			"name": "Tree5_canopy",
+			"pos": [
+				-58.0,
+				1.9,
+				-14.0
+			],
+			"rot": [
+				0.0,
+				-0.587,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.738,
+			"height": 4.4
+		},
+		{
+			"name": "Tree6_canopy",
+			"pos": [
+				-36.0,
+				1.9,
+				-14.0
+			],
+			"rot": [
+				0.0,
+				-0.089,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.382,
+			"height": 4.4
+		},
+		{
+			"name": "Tree7_canopy",
+			"pos": [
+				-20.0,
+				1.9,
+				-45.0
+			],
+			"rot": [
+				0.0,
+				0.248,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.92,
+			"height": 4.4
+		},
+		{
+			"name": "Tree8_canopy",
+			"pos": [
+				28.0,
+				1.9,
+				-58.0
+			],
+			"rot": [
+				0.0,
+				-0.963,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.754,
+			"height": 4.4
+		},
+		{
+			"name": "Tree9_canopy",
+			"pos": [
+				58.0,
+				1.9,
+				-58.0
+			],
+			"rot": [
+				0.0,
+				-1.122,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.994,
+			"height": 4.4
+		},
+		{
+			"name": "Tree10_canopy",
+			"pos": [
+				30.0,
+				1.9,
+				-32.0
+			],
+			"rot": [
+				0.0,
+				2.578,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.203,
+			"height": 4.4
+		},
+		{
+			"name": "Tree11_canopy",
+			"pos": [
+				58.0,
+				1.9,
+				-30.0
+			],
+			"rot": [
+				0.0,
+				2.308,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.419,
+			"height": 4.4
+		},
+		{
+			"name": "Tree12_canopy",
+			"pos": [
+				28.0,
+				1.9,
+				-8.5
+			],
+			"rot": [
+				0.0,
+				0.842,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.267,
+			"height": 4.4
+		},
+		{
+			"name": "Tree13_canopy",
+			"pos": [
+				-8.0,
+				1.9,
+				-27.0
+			],
+			"rot": [
+				0.0,
+				-1.624,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.362,
+			"height": 4.4
+		},
+		{
+			"name": "Tree14_canopy",
+			"pos": [
+				8.0,
+				1.9,
+				-27.0
+			],
+			"rot": [
+				0.0,
+				-0.504,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.492,
+			"height": 4.4
+		},
+		{
+			"name": "Tree15_canopy",
+			"pos": [
+				-28.0,
+				1.9,
+				58.0
+			],
+			"rot": [
+				0.0,
+				1.763,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.177,
+			"height": 4.4
+		},
+		{
+			"name": "Tree16_canopy",
+			"pos": [
+				-8.0,
+				1.9,
+				58.0
+			],
+			"rot": [
+				0.0,
+				1.792,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.125,
+			"height": 4.4
+		},
+		{
+			"name": "Tree17_canopy",
+			"pos": [
+				12.0,
+				1.9,
+				58.0
+			],
+			"rot": [
+				0.0,
+				2.841,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.543,
+			"height": 4.4
+		},
+		{
+			"name": "Tree18_canopy",
+			"pos": [
+				32.0,
+				1.9,
+				50.0
+			],
+			"rot": [
+				0.0,
+				2.527,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.224,
+			"height": 4.4
+		},
+		{
+			"name": "Tree19_canopy",
+			"pos": [
+				-50.0,
+				1.9,
+				52.0
+			],
+			"rot": [
+				0.0,
+				-0.933,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.054,
+			"height": 4.4
+		},
+		{
+			"name": "Tree20_canopy",
+			"pos": [
+				62.0,
+				1.9,
+				48.0
+			],
+			"rot": [
+				0.0,
+				0.896,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 1.763,
+			"height": 4.4
+		},
+		{
+			"name": "Tree21_canopy",
+			"pos": [
+				34.0,
+				1.9,
+				12.0
+			],
+			"rot": [
+				0.0,
+				-0.548,
+				0.0
+			],
+			"is_tree_canopy": true,
+			"shape": "cylinder",
+			"radius": 2.194,
+			"height": 4.4
+		},
+		{
+			"name": "BlockAAwning",
+			"pos": [
+				-28.0,
+				1.6,
+				8.2
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				29.5,
+				3.2,
+				3.5
+			]
+		},
+		{
+			"name": "BlockBAwning",
+			"pos": [
+				9.0,
+				1.6,
+				8.2
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				29.5,
+				3.2,
+				3.5
+			]
+		},
+		{
+			"name": "Gazebo",
+			"pos": [
+				-53.0,
+				1.7,
+				28.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				7.0,
+				3.4,
+				7.0
+			]
+		},
+		{
+			"name": "GasCanopy",
+			"pos": [
+				49.0,
+				2.2,
+				22.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				17.5,
+				4.4,
+				11.5
+			]
+		},
+		{
+			"name": "HouseWestGarage",
+			"pos": [
+				-21.843,
+				1.6,
+				-46.965
+			],
+			"rot": [
+				0.0,
+				1.616,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.4,
+				3.2,
+				6.6
+			]
+		},
+		{
+			"name": "HouseNorthWestCarport",
+			"pos": [
+				-10.59,
+				1.45,
+				-60.826
+			],
+			"rot": [
+				0.0,
+				0.818,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.8,
+				2.9,
+				6.8
+			]
+		},
+		{
+			"name": "HouseNorthPorch",
+			"pos": [
+				0.0,
+				1.35,
+				-54.92
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.0,
+				2.7,
+				2.6
+			]
+		},
+		{
+			"name": "HouseNorthEastPorch",
+			"pos": [
+				12.374,
+				1.35,
+				-51.601
+			],
+			"rot": [
+				0.0,
+				-0.818,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.0,
+				2.7,
+				2.6
+			]
+		},
+		{
+			"name": "HouseEastGarage",
+			"pos": [
+				21.174,
+				1.6,
+				-31.079
+			],
+			"rot": [
+				0.0,
+				-1.616,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.4,
+				3.2,
+				6.6
+			]
+		},
+		{
+			"name": "LaneWestPorch",
+			"pos": [
+				-11.024,
+				1.35,
+				-19.0
+			],
+			"rot": [
+				0.0,
+				1.571,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.0,
+				2.7,
+				2.6
+			]
+		},
+		{
+			"name": "LaneEastCarport",
+			"pos": [
+				15.25,
+				1.45,
+				-11.409
+			],
+			"rot": [
+				0.0,
+				-1.571,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.8,
+				2.9,
+				6.8
+			]
+		},
+		{
+			"name": "MainNorthEast1Garage",
+			"pos": [
+				42.95,
+				1.6,
+				-17.305
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.4,
+				3.2,
+				6.6
+			]
+		},
+		{
+			"name": "MainNorthEast2Porch",
+			"pos": [
+				52.0,
+				1.35,
+				-11.95
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.0,
+				2.7,
+				2.6
+			]
+		},
+		{
+			"name": "BackNorthEastPorch",
+			"pos": [
+				44.0,
+				1.35,
+				-52.013
+			],
+			"rot": [
+				0.0,
+				-3.142,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				5.0,
+				2.7,
+				2.6
+			]
+		},
+		{
+			"name": "Pavilion",
+			"pos": [
+				-44.0,
+				1.5,
+				-24.0
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				8.8,
+				3.0,
+				6.3
+			]
+		},
+		{
+			"name": "BusStopWest",
+			"pos": [
+				-27.0,
+				1.25,
+				-6.6
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				3.6,
+				2.5,
+				2.0
+			]
+		},
+		{
+			"name": "BusStopEast",
+			"pos": [
+				44.0,
+				1.25,
+				-6.6
+			],
+			"rot": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"is_tree_canopy": false,
+			"shape": "box",
+			"size": [
+				3.6,
+				2.5,
+				2.0
+			]
+		}
+	],
+	"puddles": [
+		{
+			"name": "MainW",
+			"pos": [
+				-32.0,
+				0.0,
+				2.0
+			],
+			"floor_y": 0.09,
+			"max_radius": 2.5,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "MainC",
+			"pos": [
+				-6.0,
+				0.0,
+				-2.0
+			],
+			"floor_y": 0.09,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "MainE",
+			"pos": [
+				26.0,
+				0.0,
+				2.0
+			],
+			"floor_y": 0.09,
+			"max_radius": 2.4,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "MainFarE",
+			"pos": [
+				56.0,
+				0.0,
+				-1.0
+			],
+			"floor_y": 0.09,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Lane",
+			"pos": [
+				2.0,
+				0.0,
+				-20.0
+			],
+			"floor_y": 0.1,
+			"max_radius": 1.8,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "CircleW",
+			"pos": [
+				-6.0,
+				0.0,
+				-45.0
+			],
+			"floor_y": 0.11,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "CircleE",
+			"pos": [
+				7.0,
+				0.0,
+				-35.0
+			],
+			"floor_y": 0.11,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "LotW",
+			"pos": [
+				-32.0,
+				0.0,
+				38.0
+			],
+			"floor_y": 0.1,
+			"max_radius": 3.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "LotC",
+			"pos": [
+				-4.0,
+				0.0,
+				39.0
+			],
+			"floor_y": 0.1,
+			"max_radius": 2.6,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "LotE",
+			"pos": [
+				16.0,
+				0.0,
+				40.0
+			],
+			"floor_y": 0.1,
+			"max_radius": 2.4,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Square",
+			"pos": [
+				-48.0,
+				0.0,
+				18.0
+			],
+			"floor_y": 0.13,
+			"max_radius": 2.0,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Gas",
+			"pos": [
+				42.0,
+				0.0,
+				30.0
+			],
+			"floor_y": 0.11,
+			"max_radius": 2.4,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Park",
+			"pos": [
+				-40.0,
+				0.0,
+				-36.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.6,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Backyards",
+			"pos": [
+				45.0,
+				0.0,
+				-32.0
+			],
+			"floor_y": 0.03,
+			"max_radius": 2.2,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		},
+		{
+			"name": "Alley",
+			"pos": [
+				-9.5,
+				0.0,
+				16.0
+			],
+			"floor_y": 0.09,
+			"max_radius": 1.8,
+			"grow_time": 45.0,
+			"dry_time": 25.0,
+			"color": "#4d9e45b3",
+			"acid_color": "#6be033d1"
+		}
+	],
+	"lights": [
+		{
+			"name": "@OmniLight3D@51",
+			"type": "omni",
+			"pos": [
+				-38.0,
+				5.4,
+				9.173
+			],
+			"color": "#ff4db3",
+			"energy": 0.9,
+			"range": 3.49
+		},
+		{
+			"name": "@OmniLight3D@58",
+			"type": "omni",
+			"pos": [
+				-28.0,
+				5.48,
+				9.278
+			],
+			"color": "#33ffe6",
+			"energy": 0.9,
+			"range": 3.49
+		},
+		{
+			"name": "@OmniLight3D@63",
+			"type": "omni",
+			"pos": [
+				-18.0,
+				5.04,
+				9.278
+			],
+			"color": "#ff4db3",
+			"energy": 0.9,
+			"range": 3.49
+		},
+		{
+			"name": "@OmniLight3D@68",
+			"type": "omni",
+			"pos": [
+				-1.0,
+				5.07,
+				9.278
+			],
+			"color": "#ff8c26",
+			"energy": 0.9,
+			"range": 3.49
+		},
+		{
+			"name": "@OmniLight3D@73",
+			"type": "omni",
+			"pos": [
+				9.69,
+				5.22,
+				9.173
+			],
+			"color": "#4dff80",
+			"energy": 0.9,
+			"range": 3.49
+		},
+		{
+			"name": "@OmniLight3D@80",
+			"type": "omni",
+			"pos": [
+				19.2,
+				5.12,
+				9.173
+			],
+			"color": "#ffe64d",
+			"energy": 0.9,
+			"range": 3.49
+		},
+		{
+			"name": "@OmniLight3D@89",
+			"type": "omni",
+			"pos": [
+				9.0,
+				6.2,
+				24.929
+			],
+			"color": "#e6e6ff",
+			"energy": 0.9,
+			"range": 3.17
+		},
+		{
+			"name": "@OmniLight3D@96",
+			"type": "omni",
+			"pos": [
+				9.0,
+				6.2,
+				23.731
+			],
+			"color": "#e6e6ff",
+			"energy": 0.9,
+			"range": 3.17
+		},
+		{
+			"name": "@OmniLight3D@106",
+			"type": "omni",
+			"pos": [
+				49.0,
+				6.2,
+				15.456
+			],
+			"color": "#ff8c26",
+			"energy": 0.9,
+			"range": 4.76
+		},
+		{
+			"name": "@OmniLight3D@113",
+			"type": "omni",
+			"pos": [
+				49.0,
+				6.2,
+				17.184
+			],
+			"color": "#ff8c26",
+			"energy": 0.9,
+			"range": 4.76
+		},
+		{
+			"name": "@OmniLight3D@26",
+			"type": "omni",
+			"pos": [
+				38.624,
+				2.6,
+				34.137
+			],
+			"color": "#ff1a1a",
+			"energy": 0.0,
+			"range": 9.0
+		},
+		{
+			"name": "@OmniLight3D@27",
+			"type": "omni",
+			"pos": [
+				39.376,
+				2.6,
+				33.863
+			],
+			"color": "#264dff",
+			"energy": 3.0,
+			"range": 9.0
+		},
+		{
+			"name": "LampN0Lamp",
+			"type": "omni",
+			"pos": [
+				-54.0,
+				4.0,
+				-7.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampS1Lamp",
+			"type": "omni",
+			"pos": [
+				-45.0,
+				4.0,
+				4.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampN2Lamp",
+			"type": "omni",
+			"pos": [
+				-36.0,
+				4.0,
+				-7.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampS3Lamp",
+			"type": "omni",
+			"pos": [
+				-27.0,
+				4.0,
+				4.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampN4Lamp",
+			"type": "omni",
+			"pos": [
+				-18.0,
+				4.0,
+				-7.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampS5Lamp",
+			"type": "omni",
+			"pos": [
+				-9.0,
+				4.0,
+				4.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampN6Lamp",
+			"type": "omni",
+			"pos": [
+				18.0,
+				4.0,
+				-7.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampS7Lamp",
+			"type": "omni",
+			"pos": [
+				27.0,
+				4.0,
+				4.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampN8Lamp",
+			"type": "omni",
+			"pos": [
+				36.0,
+				4.0,
+				-7.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampS9Lamp",
+			"type": "omni",
+			"pos": [
+				45.0,
+				4.0,
+				4.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampN10Lamp",
+			"type": "omni",
+			"pos": [
+				54.0,
+				4.0,
+				-7.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "LampS11Lamp",
+			"type": "omni",
+			"pos": [
+				63.0,
+				4.0,
+				4.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp12Lamp",
+			"type": "omni",
+			"pos": [
+				4.4,
+				4.0,
+				-20.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp13Lamp",
+			"type": "omni",
+			"pos": [
+				-7.151,
+				4.0,
+				-30.151
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp14Lamp",
+			"type": "omni",
+			"pos": [
+				7.151,
+				4.0,
+				-49.849
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp15Lamp",
+			"type": "omni",
+			"pos": [
+				-11.8,
+				4.0,
+				-41.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp16Lamp",
+			"type": "omni",
+			"pos": [
+				-30.0,
+				4.0,
+				39.2
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp17Lamp",
+			"type": "omni",
+			"pos": [
+				10.0,
+				4.0,
+				39.2
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp18Lamp",
+			"type": "omni",
+			"pos": [
+				-46.8,
+				4.0,
+				22.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "Lamp19Lamp",
+			"type": "omni",
+			"pos": [
+				34.8,
+				4.0,
+				24.0
+			],
+			"color": "#ff9e40",
+			"energy": 2.2,
+			"range": 13.0
+		},
+		{
+			"name": "@OmniLight3D@28",
+			"type": "omni",
+			"pos": [
+				-61.0,
+				2.6,
+				-2.1
+			],
+			"color": "#ff1a1a",
+			"energy": 0.0,
+			"range": 9.0
+		},
+		{
+			"name": "@OmniLight3D@29",
+			"type": "omni",
+			"pos": [
+				-61.0,
+				2.6,
+				-2.9
+			],
+			"color": "#264dff",
+			"energy": 3.0,
+			"range": 9.0
+		},
+		{
+			"name": "@OmniLight3D@173",
+			"type": "omni",
+			"pos": [
+				-59.272,
+				2.6,
+				-7.12
+			],
+			"color": "#f5d142",
+			"energy": 0.9,
+			"range": 2.0
+		},
+		{
+			"name": "@OmniLight3D@178",
+			"type": "omni",
+			"pos": [
+				-59.728,
+				2.6,
+				-6.48
+			],
+			"color": "#f5d142",
+			"energy": 0.9,
+			"range": 2.0
+		},
+		{
+			"name": "@OmniLight3D@30",
+			"type": "omni",
+			"pos": [
+				61.0,
+				2.6,
+				-2.1
+			],
+			"color": "#ff1a1a",
+			"energy": 3.0,
+			"range": 9.0
+		},
+		{
+			"name": "@OmniLight3D@31",
+			"type": "omni",
+			"pos": [
+				61.0,
+				2.6,
+				-2.9
+			],
+			"color": "#264dff",
+			"energy": 0.0,
+			"range": 9.0
+		},
+		{
+			"name": "@OmniLight3D@194",
+			"type": "omni",
+			"pos": [
+				59.272,
+				2.6,
+				-6.48
+			],
+			"color": "#f5d142",
+			"energy": 0.9,
+			"range": 2.0
+		},
+		{
+			"name": "@OmniLight3D@199",
+			"type": "omni",
+			"pos": [
+				59.728,
+				2.6,
+				-7.12
+			],
+			"color": "#f5d142",
+			"energy": 0.9,
+			"range": 2.0
+		}
+	],
+	"environment": {
+		"map_id": "pinecrest",
+		"sky": {
+			"type": "procedural",
+			"sky_top_color": "#1c1638",
+			"sky_horizon_color": "#d9586b",
+			"sky_curve": 0.12,
+			"sky_energy_multiplier": 1.0,
+			"ground_bottom_color": "#1a1426",
+			"ground_horizon_color": "#6b3a55",
+			"ground_curve": 0.02
+		},
+		"ambient": {
+			"source": "color",
+			"source_id": 2,
+			"color": "#9e80a8",
+			"energy": 0.9,
+			"sky_contribution": 1.0
+		},
+		"tonemap": {
+			"mode": 2,
+			"exposure": 1.0
+		},
+		"base_fog": {
+			"enabled": false,
+			"color": "#848d9b",
+			"density": 0.01,
+			"sky_affect": 1.0
+		},
+		"sun": {
+			"color": "#ffa885",
+			"energy": 1.1,
+			"direction": [
+				0.765,
+				-0.469,
+				-0.441
+			],
+			"rotation_rad": [
+				-0.489,
+				-1.047,
+				0.0
+			]
+		},
+		"fog_base": {
+			"fog_color": "#6b6185",
+			"acid_fog_color": "#2e521f",
+			"storm_fog_tint": "#54734d",
+			"storm_fog_tint_amount": 0.3,
+			"density_curve": [
+				0.0,
+				0.012,
+				0.035,
+				0.04
+			]
+		},
+		"lightning_flash": {
+			"fade_rate": 2.6,
+			"sky_boost": 0.85,
+			"ambient_boost": 0.4,
+			"sun_boost": 0.5
+		},
+		"phases": {
+			"calm": {
+				"intensity": 0.0,
+				"fog_density": 0.0,
+				"fog_depth_begin_gles2": 200.0,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6b6185",
+				"sky_energy": 1.0,
+				"ambient_energy": 0.9,
+				"sun_energy": 1.1,
+				"rain_color": "#6beb5c6b"
+			},
+			"drizzle": {
+				"intensity": 0.3,
+				"fog_density": 0.012,
+				"fog_depth_begin_gles2": 39.0,
+				"fog_depth_end_gles2": 216.7,
+				"fog_color": "#68637d",
+				"sky_energy": 0.721,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.693,
+				"rain_color": "#6beb5c6b"
+			},
+			"downpour": {
+				"intensity": 0.7,
+				"fog_density": 0.035,
+				"fog_depth_begin_gles2": 13.4,
+				"fog_depth_end_gles2": 74.3,
+				"fog_color": "#646674",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.15,
+				"rain_color": "#6beb5c6b"
+			},
+			"acid_storm": {
+				"intensity": 1.0,
+				"fog_density": 0.04,
+				"fog_depth_begin_gles2": 11.7,
+				"fog_depth_end_gles2": 65.0,
+				"fog_color": "#2e521f",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.15,
+				"rain_color": "#8cff408c"
+			},
+			"clearing": {
+				"intensity": 0.15,
+				"fog_density": 0.006,
+				"fog_depth_begin_gles2": 46.8,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6a6281",
+				"sky_energy": 0.861,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.896,
+				"rain_color": "#6beb5c6b"
+			}
+		}
+	},
+	"mesh": {
+		"id": "pinecrest",
+		"name": "PINECREST",
+		"glb": "maps/pinecrest.glb",
+		"sidecar": "maps/pinecrest.json",
+		"triangles": 151415,
+		"draw_calls": 149,
+		"bytes": 10271724,
+		"vcol_solid_folded": false,
+		"bounds": {
+			"min": [
+				-67.0,
+				-1.0,
+				-67.0
+			],
+			"max": [
+				67.0,
+				23.0,
+				67.0
+			]
+		},
+		"bake_stats": {
+			"skipped_hidden": 9,
+			"csg_baked": 196,
+			"mi_baked": 515,
+			"mm_baked": 0,
+			"labels_baked": 0
+		},
+		"low_glb": "maps/pinecrest_low.glb",
+		"low_triangles": 103213,
+		"low_draw_calls": 148,
+		"low_bytes": 5528048
+	}
+}

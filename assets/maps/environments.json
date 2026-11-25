@@ -1,0 +1,359 @@
+{
+	"pinecrest": {
+		"map_id": "pinecrest",
+		"sky": {
+			"type": "procedural",
+			"sky_top_color": "#1c1638",
+			"sky_horizon_color": "#d9586b",
+			"sky_curve": 0.12,
+			"sky_energy_multiplier": 1.0,
+			"ground_bottom_color": "#1a1426",
+			"ground_horizon_color": "#6b3a55",
+			"ground_curve": 0.02
+		},
+		"ambient": {
+			"source": "color",
+			"source_id": 2,
+			"color": "#9e80a8",
+			"energy": 0.9,
+			"sky_contribution": 1.0
+		},
+		"tonemap": {
+			"mode": 2,
+			"exposure": 1.0
+		},
+		"base_fog": {
+			"enabled": false,
+			"color": "#848d9b",
+			"density": 0.01,
+			"sky_affect": 1.0
+		},
+		"sun": {
+			"color": "#ffa885",
+			"energy": 1.1,
+			"direction": [
+				0.765,
+				-0.469,
+				-0.441
+			],
+			"rotation_rad": [
+				-0.489,
+				-1.047,
+				0.0
+			]
+		},
+		"fog_base": {
+			"fog_color": "#6b6185",
+			"acid_fog_color": "#2e521f",
+			"storm_fog_tint": "#54734d",
+			"storm_fog_tint_amount": 0.3,
+			"density_curve": [
+				0.0,
+				0.012,
+				0.035,
+				0.04
+			]
+		},
+		"lightning_flash": {
+			"fade_rate": 2.6,
+			"sky_boost": 0.85,
+			"ambient_boost": 0.4,
+			"sun_boost": 0.5
+		},
+		"phases": {
+			"calm": {
+				"intensity": 0.0,
+				"fog_density": 0.0,
+				"fog_depth_begin_gles2": 200.0,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6b6185",
+				"sky_energy": 1.0,
+				"ambient_energy": 0.9,
+				"sun_energy": 1.1,
+				"rain_color": "#6beb5c6b"
+			},
+			"drizzle": {
+				"intensity": 0.3,
+				"fog_density": 0.012,
+				"fog_depth_begin_gles2": 39.0,
+				"fog_depth_end_gles2": 216.7,
+				"fog_color": "#68637d",
+				"sky_energy": 0.721,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.693,
+				"rain_color": "#6beb5c6b"
+			},
+			"downpour": {
+				"intensity": 0.7,
+				"fog_density": 0.035,
+				"fog_depth_begin_gles2": 13.4,
+				"fog_depth_end_gles2": 74.3,
+				"fog_color": "#646674",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.15,
+				"rain_color": "#6beb5c6b"
+			},
+			"acid_storm": {
+				"intensity": 1.0,
+				"fog_density": 0.04,
+				"fog_depth_begin_gles2": 11.7,
+				"fog_depth_end_gles2": 65.0,
+				"fog_color": "#2e521f",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.15,
+				"rain_color": "#8cff408c"
+			},
+			"clearing": {
+				"intensity": 0.15,
+				"fog_density": 0.006,
+				"fog_depth_begin_gles2": 46.8,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6a6281",
+				"sky_energy": 0.861,
+				"ambient_energy": 0.9,
+				"sun_energy": 0.896,
+				"rain_color": "#6beb5c6b"
+			}
+		}
+	},
+	"harbor": {
+		"map_id": "harbor",
+		"sky": {
+			"type": "procedural",
+			"sky_top_color": "#132f45",
+			"sky_horizon_color": "#dd9467",
+			"sky_curve": 0.18,
+			"sky_energy_multiplier": 1.0,
+			"ground_bottom_color": "#132f45",
+			"ground_horizon_color": "#a66f4d",
+			"ground_curve": 0.02
+		},
+		"ambient": {
+			"source": "color",
+			"source_id": 2,
+			"color": "#8faeb7",
+			"energy": 0.76,
+			"sky_contribution": 1.0
+		},
+		"tonemap": {
+			"mode": 2,
+			"exposure": 1.0
+		},
+		"base_fog": {
+			"enabled": false,
+			"color": "#848d9b",
+			"density": 0.01,
+			"sky_affect": 1.0
+		},
+		"sun": {
+			"color": "#ffb47c",
+			"energy": 0.8,
+			"direction": [
+				0.703,
+				-0.326,
+				-0.633
+			],
+			"rotation_rad": [
+				-0.332,
+				-0.838,
+				0.0
+			]
+		},
+		"fog_base": {
+			"fog_color": "#5e7387",
+			"acid_fog_color": "#2e521f",
+			"storm_fog_tint": "#54734d",
+			"storm_fog_tint_amount": 0.3,
+			"density_curve": [
+				0.0,
+				0.011,
+				0.029,
+				0.04
+			]
+		},
+		"lightning_flash": {
+			"fade_rate": 2.6,
+			"sky_boost": 0.85,
+			"ambient_boost": 0.4,
+			"sun_boost": 0.5
+		},
+		"phases": {
+			"calm": {
+				"intensity": 0.0,
+				"fog_density": 0.0,
+				"fog_depth_begin_gles2": 200.0,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#5e7387",
+				"sky_energy": 1.0,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.8,
+				"rain_color": "#6beb5c6b"
+			},
+			"drizzle": {
+				"intensity": 0.3,
+				"fog_density": 0.011,
+				"fog_depth_begin_gles2": 42.6,
+				"fog_depth_end_gles2": 236.4,
+				"fog_color": "#5d7380",
+				"sky_energy": 0.721,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.56,
+				"rain_color": "#6beb5c6b"
+			},
+			"downpour": {
+				"intensity": 0.7,
+				"fog_density": 0.029,
+				"fog_depth_begin_gles2": 16.1,
+				"fog_depth_end_gles2": 89.7,
+				"fog_color": "#5b7376",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.24,
+				"rain_color": "#6beb5c6b"
+			},
+			"acid_storm": {
+				"intensity": 1.0,
+				"fog_density": 0.04,
+				"fog_depth_begin_gles2": 11.7,
+				"fog_depth_end_gles2": 65.0,
+				"fog_color": "#2e521f",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.24,
+				"rain_color": "#8cff408c"
+			},
+			"clearing": {
+				"intensity": 0.15,
+				"fog_density": 0.0055,
+				"fog_depth_begin_gles2": 46.8,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#5e7383",
+				"sky_energy": 0.861,
+				"ambient_energy": 0.76,
+				"sun_energy": 0.68,
+				"rain_color": "#6beb5c6b"
+			}
+		}
+	},
+	"maple_hollow": {
+		"map_id": "maple_hollow",
+		"sky": {
+			"type": "procedural",
+			"sky_top_color": "#11172b",
+			"sky_horizon_color": "#544972",
+			"sky_curve": 0.22,
+			"sky_energy_multiplier": 1.0,
+			"ground_bottom_color": "#0d131e",
+			"ground_horizon_color": "#1f2a38",
+			"ground_curve": 0.02
+		},
+		"ambient": {
+			"source": "color",
+			"source_id": 2,
+			"color": "#768da3",
+			"energy": 0.74,
+			"sky_contribution": 1.0
+		},
+		"tonemap": {
+			"mode": 2,
+			"exposure": 1.0
+		},
+		"base_fog": {
+			"enabled": true,
+			"color": "#3b4c62",
+			"density": 0.0085,
+			"sky_affect": 0.42
+		},
+		"sun": {
+			"color": "#c4d2e8",
+			"energy": 0.78,
+			"direction": [
+				0.562,
+				-0.407,
+				-0.72
+			],
+			"rotation_rad": [
+				-0.419,
+				-0.663,
+				0.0
+			]
+		},
+		"fog_base": {
+			"fog_color": "#6e667d",
+			"acid_fog_color": "#2e521f",
+			"storm_fog_tint": "#54734d",
+			"storm_fog_tint_amount": 0.3,
+			"density_curve": [
+				0.0,
+				0.012,
+				0.031,
+				0.04
+			]
+		},
+		"lightning_flash": {
+			"fade_rate": 2.6,
+			"sky_boost": 0.85,
+			"ambient_boost": 0.4,
+			"sun_boost": 0.5
+		},
+		"phases": {
+			"calm": {
+				"intensity": 0.0,
+				"fog_density": 0.0,
+				"fog_depth_begin_gles2": 200.0,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6e667d",
+				"sky_energy": 1.0,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.78,
+				"rain_color": "#6beb5c6b"
+			},
+			"drizzle": {
+				"intensity": 0.3,
+				"fog_density": 0.012,
+				"fog_depth_begin_gles2": 39.0,
+				"fog_depth_end_gles2": 216.7,
+				"fog_color": "#6a6877",
+				"sky_energy": 0.721,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.54,
+				"rain_color": "#6beb5c6b"
+			},
+			"downpour": {
+				"intensity": 0.7,
+				"fog_density": 0.031,
+				"fog_depth_begin_gles2": 15.1,
+				"fog_depth_end_gles2": 83.9,
+				"fog_color": "#666a6e",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.22,
+				"rain_color": "#6beb5c6b"
+			},
+			"acid_storm": {
+				"intensity": 1.0,
+				"fog_density": 0.04,
+				"fog_depth_begin_gles2": 11.7,
+				"fog_depth_end_gles2": 65.0,
+				"fog_color": "#2e521f",
+				"sky_energy": 0.35,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.22,
+				"rain_color": "#8cff408c"
+			},
+			"clearing": {
+				"intensity": 0.15,
+				"fog_density": 0.006,
+				"fog_depth_begin_gles2": 46.8,
+				"fog_depth_end_gles2": 260.0,
+				"fog_color": "#6c677a",
+				"sky_energy": 0.861,
+				"ambient_energy": 0.74,
+				"sun_energy": 0.66,
+				"rain_color": "#6beb5c6b"
+			}
+		}
+	}
+}
