@@ -1,8 +1,21 @@
 # Thin tier session — tcp/bin
 
-Captured from a local dedicated server (Godot 4.7.2, game protocol from `welcome`), transport **tcp**, encoding **bin**, by `tools/open_protocol/capture_transcripts.py` under `tools/open_protocol/capture_harness.gd` (real server code; only the storm timers were shortened, wave-1 stragglers were finished off after 9 s and the run was ended through `GameManager.finish(false)` 6 s into wave 2 so the session fits in about two minutes). A second bot of the other tier played in the same lobby, so its traffic appears too.
+Captured from a local Godot 4.7.2 dedicated server using **tcp** and **bin**.
+The capture harness shortens Drizzle and Clearing, removes wave-one
+stragglers, keeps players above a health and suit floor, and ends the
+run six seconds into wave-two Drizzle. A bot of the other tier shares
+the lobby, so its traffic appears here too.
 
-`C→S` is client to server, `S→C` server to client, `+t` is seconds since capture start. Binary frames are shown as hex (the raw TCP length prefix is shown on its own line) with the decoded value underneath. Long previews can be truncated; TCP prefixes always describe the full payload. Repeats are counted at the end of the section. The order-preserving sampled log is [`thin-bin.jsonl`](thin-bin.jsonl).
+`C→S` is client to server, `S→C` is server to client, and `+t` is
+seconds since capture start. Long previews can be truncated. Repeats
+are counted at the end of the section. The sampled, ordered capture
+is [`thin-bin.jsonl`](thin-bin.jsonl).
+
+TCP prefixes show the full payload length. The JSONL `hex` field
+contains the full payload without that prefix. Use `hex` for
+byte-exact tests. For outgoing client frames, `msg` can hold
+values from before encoding, such as a double that was rounded
+to a 32-bit float on the wire.
 
 > First frame on the socket, always JSON text even for `enc:"bin"` (spec-common §4, spec-thin §2).
 
