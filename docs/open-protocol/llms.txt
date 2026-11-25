@@ -1,0 +1,25 @@
+# Fallout Forecast Open Protocol
+
+> Engine-neutral protocol for Fallout Forecast's dedicated server. Thin sends controls and renders server snapshots. Full simulates the local player and exchanges game RPCs. Start with the implementer guide.
+
+## Start here
+
+- [Implementer guide](AGENTS.md): Tier selection, reading order, implementation checkpoints.
+- [Common spec](spec-common.md): Framing, transports, handshake and versions.
+- [Thin spec](spec-thin.md): Controls, snapshots, events and binary layout.
+- [Full spec](spec-full.md): Lobby, run lifecycle, JSON and binary RPC framing.
+- [Full client responsibilities](client-responsibilities.md): Movement, gameplay requests and presentation.
+- [Conformance](conformance.md): Local test commands and check coverage.
+- [Known issues](KNOWN_ISSUES.md): Observed quirks and client behavior.
+
+## Reference
+
+- [RPC catalog](rpc-catalog.md): Full RPC signatures.
+- [RPC schema](open-protocol-schema.json): Machine-readable game protocol and signatures.
+- [Game reference](game-reference.md): Maps, assets, ids, weather and axes.
+- [Game data](game-data.json): Machine-readable rules and catalogs.
+- [Level markers](level-markers.json): Spawn transforms, shelter and interactables.
+- [Thin JSON session](transcripts/thin-json.md)
+- [Thin binary session](transcripts/thin-bin.md)
+- [Full JSON session](transcripts/full-json.md)
+- [Full binary session](transcripts/full-bin.md)

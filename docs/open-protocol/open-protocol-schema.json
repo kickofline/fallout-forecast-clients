@@ -88,13 +88,13 @@
       "notes": "One node per peer in Net.roster, authority = owning peer_id. All RPCs use any_peer + explicit sender validation."
     },
     {
-      "node": "Main/Level/<decon_marker>/Interact",
+      "node": "Main/Level/DeconShowers/<decon_marker>/Interact",
       "script": "res://props/decon_shower.gd",
       "authority": "host",
       "phase": "run",
       "rpc_count": 1,
       "rpc_md5": "86a74badd98f9370f9b06a66d8d5dec3",
-      "notes": "Attached under each node in group 'decon_shower' by main.gd. Spray VFX broadcast when a player repairs their suit."
+      "notes": "Attached under each node in group 'decon_shower' by main.gd (exact paths per map in docs/open-protocol/level-markers.json). Spray VFX broadcast when a player repairs their suit."
     },
     {
       "node": "Main/RunLoot",
@@ -2162,7 +2162,7 @@
       ]
     },
     {
-      "node": "Main/Level/<decon_marker>/Interact",
+      "node": "Main/Level/DeconShowers/<decon_marker>/Interact",
       "script": "res://props/decon_shower.gd",
       "method": "play_spray",
       "rpc_id": 0,

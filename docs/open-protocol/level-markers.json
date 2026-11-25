@@ -1,0 +1,4729 @@
+{
+  "generated_by": "tools/open_protocol/gen_reference.gd",
+  "maps": {
+    "harbor": {
+      "boss_anchor": [
+        {
+          "name": "BossAnchor",
+          "path": "Main/Level/BossAnchor",
+          "pos": [
+            36.0,
+            16.0,
+            49.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "crate_spawn": [
+        {
+          "name": "CrateSpawn",
+          "path": "Main/Level/CrateSpawns/CrateSpawn",
+          "pos": [
+            -57.0,
+            0.08,
+            -28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn2",
+          "path": "Main/Level/CrateSpawns/CrateSpawn2",
+          "pos": [
+            -23.0,
+            0.08,
+            -28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn3",
+          "path": "Main/Level/CrateSpawns/CrateSpawn3",
+          "pos": [
+            11.0,
+            0.08,
+            -28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn4",
+          "path": "Main/Level/CrateSpawns/CrateSpawn4",
+          "pos": [
+            48.0,
+            0.08,
+            -32.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn5",
+          "path": "Main/Level/CrateSpawns/CrateSpawn5",
+          "pos": [
+            -26.0,
+            0.08,
+            -1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn6",
+          "path": "Main/Level/CrateSpawns/CrateSpawn6",
+          "pos": [
+            -14.0,
+            0.08,
+            9.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn7",
+          "path": "Main/Level/CrateSpawns/CrateSpawn7",
+          "pos": [
+            -21.0,
+            0.08,
+            24.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn8",
+          "path": "Main/Level/CrateSpawns/CrateSpawn8",
+          "pos": [
+            8.9,
+            0.08,
+            23.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn9",
+          "path": "Main/Level/CrateSpawns/CrateSpawn9",
+          "pos": [
+            32.0,
+            0.08,
+            24.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn10",
+          "path": "Main/Level/CrateSpawns/CrateSpawn10",
+          "pos": [
+            9.0,
+            0.08,
+            38.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn11",
+          "path": "Main/Level/CrateSpawns/CrateSpawn11",
+          "pos": [
+            50.0,
+            0.08,
+            39.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn12",
+          "path": "Main/Level/CrateSpawns/CrateSpawn12",
+          "pos": [
+            14.0,
+            0.08,
+            51.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn13",
+          "path": "Main/Level/CrateSpawns/CrateSpawn13",
+          "pos": [
+            -49.0,
+            0.08,
+            53.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "decon_showers": [
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/IceHouse/Interact",
+          "interact_pos": [
+            -48.0,
+            1.0,
+            -35.0
+          ],
+          "marker_path": "Main/Level/DeconShowers/IceHouse",
+          "name": "IceHouse",
+          "pos": [
+            -48.0,
+            0.0,
+            -35.0
+          ],
+          "radius": 2.2
+        },
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/FishExchange/Interact",
+          "interact_pos": [
+            -5.5,
+            1.0,
+            26.0
+          ],
+          "marker_path": "Main/Level/DeconShowers/FishExchange",
+          "name": "FishExchange",
+          "pos": [
+            -5.5,
+            0.0,
+            26.0
+          ],
+          "radius": 2.2
+        },
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/IceMarket/Interact",
+          "interact_pos": [
+            19.5,
+            1.0,
+            44.0
+          ],
+          "marker_path": "Main/Level/DeconShowers/IceMarket",
+          "name": "IceMarket",
+          "pos": [
+            19.5,
+            0.0,
+            44.0
+          ],
+          "radius": 2.2
+        },
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/RescueBay/Interact",
+          "interact_pos": [
+            -34.8,
+            1.0,
+            19.0
+          ],
+          "marker_path": "Main/Level/DeconShowers/RescueBay",
+          "name": "RescueBay",
+          "pos": [
+            -34.8,
+            0.0,
+            19.0
+          ],
+          "radius": 2.2
+        }
+      ],
+      "drain_spawn": [
+        {
+          "name": "Grate",
+          "path": "Main/Level/StormDrains/Grate",
+          "pos": [
+            -54.0,
+            0.02,
+            -29.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate2",
+          "path": "Main/Level/StormDrains/Grate2",
+          "pos": [
+            -26.0,
+            0.02,
+            -28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate3",
+          "path": "Main/Level/StormDrains/Grate3",
+          "pos": [
+            0.0,
+            0.02,
+            -28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate4",
+          "path": "Main/Level/StormDrains/Grate4",
+          "pos": [
+            32.0,
+            0.02,
+            -28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate5",
+          "path": "Main/Level/StormDrains/Grate5",
+          "pos": [
+            -30.0,
+            0.02,
+            5.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate6",
+          "path": "Main/Level/StormDrains/Grate6",
+          "pos": [
+            35.0,
+            0.02,
+            8.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate7",
+          "path": "Main/Level/StormDrains/Grate7",
+          "pos": [
+            17.0,
+            0.02,
+            34.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate8",
+          "path": "Main/Level/StormDrains/Grate8",
+          "pos": [
+            49.0,
+            0.02,
+            40.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate9",
+          "path": "Main/Level/StormDrains/Grate9",
+          "pos": [
+            -29.0,
+            0.02,
+            23.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate10",
+          "path": "Main/Level/StormDrains/Grate10",
+          "pos": [
+            10.0,
+            0.02,
+            28.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "enemy_spawn": [
+        {
+          "name": "EnemySpawn",
+          "path": "Main/Level/EnemySpawns/EnemySpawn",
+          "pos": [
+            -59.0,
+            0.08,
+            -52.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn2",
+          "path": "Main/Level/EnemySpawns/EnemySpawn2",
+          "pos": [
+            -43.0,
+            0.08,
+            -59.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn3",
+          "path": "Main/Level/EnemySpawns/EnemySpawn3",
+          "pos": [
+            -5.0,
+            0.08,
+            -60.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn4",
+          "path": "Main/Level/EnemySpawns/EnemySpawn4",
+          "pos": [
+            37.0,
+            0.08,
+            -59.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn5",
+          "path": "Main/Level/EnemySpawns/EnemySpawn5",
+          "pos": [
+            59.0,
+            0.08,
+            -46.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn6",
+          "path": "Main/Level/EnemySpawns/EnemySpawn6",
+          "pos": [
+            60.0,
+            0.08,
+            -13.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn7",
+          "path": "Main/Level/EnemySpawns/EnemySpawn7",
+          "pos": [
+            61.0,
+            0.08,
+            32.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn8",
+          "path": "Main/Level/EnemySpawns/EnemySpawn8",
+          "pos": [
+            62.0,
+            0.08,
+            58.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn9",
+          "path": "Main/Level/EnemySpawns/EnemySpawn9",
+          "pos": [
+            4.0,
+            0.08,
+            61.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn10",
+          "path": "Main/Level/EnemySpawns/EnemySpawn10",
+          "pos": [
+            -21.0,
+            0.08,
+            58.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn11",
+          "path": "Main/Level/EnemySpawns/EnemySpawn11",
+          "pos": [
+            -52.0,
+            0.08,
+            38.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn12",
+          "path": "Main/Level/EnemySpawns/EnemySpawn12",
+          "pos": [
+            -60.0,
+            0.08,
+            -24.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn13",
+          "path": "Main/Level/EnemySpawns/EnemySpawn13",
+          "pos": [
+            10.0,
+            0.08,
+            41.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn14",
+          "path": "Main/Level/EnemySpawns/EnemySpawn14",
+          "pos": [
+            35.0,
+            0.08,
+            36.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn15",
+          "path": "Main/Level/EnemySpawns/EnemySpawn15",
+          "pos": [
+            -20.0,
+            0.08,
+            25.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "name": "HARBOR POINT",
+      "player_spawn": [
+        {
+          "name": "PlayerSpawn",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn",
+          "pos": [
+            -39.3,
+            0.08,
+            3.7
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "PlayerSpawn2",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn2",
+          "pos": [
+            -36.8,
+            0.08,
+            3.7
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "PlayerSpawn3",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn3",
+          "pos": [
+            -39.3,
+            0.08,
+            6.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "PlayerSpawn4",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn4",
+          "pos": [
+            -36.8,
+            0.08,
+            6.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "puddles": [
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.0,
+          "name": "Pool",
+          "path": "Main/Level/Puddles/Pool",
+          "pos": [
+            -57.0,
+            0.04,
+            -20.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.0,
+          "name": "Pool2",
+          "path": "Main/Level/Puddles/Pool2",
+          "pos": [
+            -33.0,
+            0.04,
+            -30.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool2"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.2,
+          "name": "Pool3",
+          "path": "Main/Level/Puddles/Pool3",
+          "pos": [
+            -10.0,
+            0.04,
+            -23.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool3"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Pool4",
+          "path": "Main/Level/Puddles/Pool4",
+          "pos": [
+            2.0,
+            0.04,
+            -32.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool4"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.0,
+          "name": "Pool5",
+          "path": "Main/Level/Puddles/Pool5",
+          "pos": [
+            30.0,
+            0.04,
+            -25.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool5"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.0,
+          "name": "Pool6",
+          "path": "Main/Level/Puddles/Pool6",
+          "pos": [
+            55.0,
+            0.04,
+            -33.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool6"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.0,
+          "name": "Pool7",
+          "path": "Main/Level/Puddles/Pool7",
+          "pos": [
+            -26.0,
+            0.04,
+            -3.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool7"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.5,
+          "name": "Pool8",
+          "path": "Main/Level/Puddles/Pool8",
+          "pos": [
+            -4.0,
+            0.04,
+            5.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool8"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.8,
+          "name": "Pool9",
+          "path": "Main/Level/Puddles/Pool9",
+          "pos": [
+            34.0,
+            0.04,
+            0.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool9"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.4,
+          "name": "Pool10",
+          "path": "Main/Level/Puddles/Pool10",
+          "pos": [
+            48.0,
+            0.04,
+            6.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool10"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Pool11",
+          "path": "Main/Level/Puddles/Pool11",
+          "pos": [
+            0.0,
+            0.04,
+            15.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool11"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.5,
+          "name": "Pool12",
+          "path": "Main/Level/Puddles/Pool12",
+          "pos": [
+            12.0,
+            0.04,
+            35.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool12"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.5,
+          "name": "Pool13",
+          "path": "Main/Level/Puddles/Pool13",
+          "pos": [
+            32.0,
+            0.04,
+            48.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool13"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Pool14",
+          "path": "Main/Level/Puddles/Pool14",
+          "pos": [
+            -1.0,
+            0.04,
+            52.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool14"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.5,
+          "name": "Pool15",
+          "path": "Main/Level/Puddles/Pool15",
+          "pos": [
+            44.0,
+            0.04,
+            54.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool15"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Pool16",
+          "path": "Main/Level/Puddles/Pool16",
+          "pos": [
+            -50.0,
+            0.04,
+            5.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool16"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Pool17",
+          "path": "Main/Level/Puddles/Pool17",
+          "pos": [
+            32.0,
+            0.04,
+            24.5
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool17"
+        }
+      ],
+      "shelter_areas": [
+        {
+          "name": "LoadingApron",
+          "path": "Main/Level/Geometry/CanneryBay1/LoadingApron",
+          "pos": [
+            -35.0,
+            2.33,
+            -36.1
+          ],
+          "shape": "box",
+          "size": [
+            30.0,
+            4.65,
+            5.8
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CanneryFloor",
+          "path": "Main/Level/Geometry/CanneryBay2/CanneryFloor",
+          "pos": [
+            -1.0,
+            3.0,
+            -47.0
+          ],
+          "shape": "box",
+          "size": [
+            29.2,
+            6.0,
+            15.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "LoadingApron",
+          "path": "Main/Level/Geometry/CanneryBay2/LoadingApron",
+          "pos": [
+            -1.0,
+            2.33,
+            -36.1
+          ],
+          "shape": "box",
+          "size": [
+            30.0,
+            4.65,
+            5.8
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "LoadingApron",
+          "path": "Main/Level/Geometry/CanneryBay3/LoadingApron",
+          "pos": [
+            39.0,
+            2.33,
+            -36.1
+          ],
+          "shape": "box",
+          "size": [
+            30.0,
+            4.65,
+            5.8
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "DryPassage",
+          "path": "Main/Level/Geometry/IntermodalYard/ThroughContainer/DryPassage",
+          "pos": [
+            -45.0,
+            1.57,
+            -13.0
+          ],
+          "shape": "box",
+          "size": [
+            3.86,
+            3.14,
+            9.96
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "DryPassage",
+          "path": "Main/Level/Geometry/IntermodalYard/ThroughContainer2/DryPassage",
+          "pos": [
+            11.0,
+            1.57,
+            5.0
+          ],
+          "shape": "box",
+          "size": [
+            3.86,
+            3.14,
+            9.96
+          ],
+          "yaw": 1.571
+        },
+        {
+          "name": "CraneBase",
+          "path": "Main/Level/Geometry/IntermodalYard/HammerheadCrane/CraneBase",
+          "pos": [
+            23.0,
+            6.9,
+            6.0
+          ],
+          "shape": "box",
+          "size": [
+            4.7,
+            13.8,
+            4.7
+          ],
+          "yaw": -0.611
+        },
+        {
+          "name": "SignalWalkRoof",
+          "path": "Main/Level/Geometry/SignalWalk/SignalWalkRoof",
+          "pos": [
+            12.7,
+            4.28,
+            0.0
+          ],
+          "shape": "box",
+          "size": [
+            7.9,
+            2.86,
+            4.8
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "HarborPatrolRoof",
+          "path": "Main/Level/Geometry/HarborPatrol/HarborPatrolRoof",
+          "pos": [
+            -38.0,
+            1.48,
+            4.4
+          ],
+          "shape": "box",
+          "size": [
+            9.85,
+            2.96,
+            7.85
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "FishExchangeRoof",
+          "path": "Main/Level/Geometry/FishExchange/FishExchangeRoof",
+          "pos": [
+            0.0,
+            1.48,
+            24.9
+          ],
+          "shape": "box",
+          "size": [
+            13.85,
+            2.96,
+            8.25
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "RescueBayRoof",
+          "path": "Main/Level/Geometry/RescueBay/RescueBayRoof",
+          "pos": [
+            -34.0,
+            1.48,
+            20.0
+          ],
+          "shape": "box",
+          "size": [
+            5.45,
+            2.96,
+            9.45
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "NetLoftRoof",
+          "path": "Main/Level/Geometry/NetLoft/NetLoftRoof",
+          "pos": [
+            -52.0,
+            1.48,
+            47.0
+          ],
+          "shape": "box",
+          "size": [
+            6.15,
+            2.96,
+            9.25
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CustomsShedRoof",
+          "path": "Main/Level/Geometry/CustomsShed/CustomsShedRoof",
+          "pos": [
+            47.0,
+            1.48,
+            29.0
+          ],
+          "shape": "box",
+          "size": [
+            6.85,
+            2.96,
+            7.25
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "IceMarketRoof",
+          "path": "Main/Level/Geometry/IceMarket/IceMarketRoof",
+          "pos": [
+            24.0,
+            1.48,
+            44.0
+          ],
+          "shape": "box",
+          "size": [
+            13.85,
+            2.96,
+            11.65
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CraneBase",
+          "path": "Main/Level/Geometry/WharfCover/HammerheadCrane/CraneBase",
+          "pos": [
+            -17.0,
+            6.9,
+            49.0
+          ],
+          "shape": "box",
+          "size": [
+            4.7,
+            13.8,
+            4.7
+          ],
+          "yaw": 2.007
+        },
+        {
+          "name": "DryPassage",
+          "path": "Main/Level/Geometry/WharfCover/ThroughContainer/DryPassage",
+          "pos": [
+            41.0,
+            1.57,
+            45.0
+          ],
+          "shape": "box",
+          "size": [
+            3.86,
+            3.14,
+            9.96
+          ],
+          "yaw": 1.571
+        },
+        {
+          "name": "TackleCounter",
+          "path": "Main/Level/Geometry/BaitAndTackle/TackleCounter",
+          "pos": [
+            56.0,
+            1.48,
+            11.3
+          ],
+          "shape": "box",
+          "size": [
+            9.5,
+            2.96,
+            3.6
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "KeepersVeranda",
+          "path": "Main/Level/Geometry/HarborMastersOffice/KeepersVeranda",
+          "pos": [
+            48.08,
+            1.4,
+            58.0
+          ],
+          "shape": "box",
+          "size": [
+            3.36,
+            2.8,
+            6.85
+          ],
+          "yaw": 0.0
+        },
+        {
+          "height": 2.95,
+          "name": "CanopyShelter",
+          "path": "Main/Level/Geometry/WindbreakPine1/CanopyShelter",
+          "pos": [
+            -52.0,
+            1.475,
+            -31.0
+          ],
+          "radius": 1.65,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 2.95,
+          "name": "CanopyShelter",
+          "path": "Main/Level/Geometry/WindbreakPine2/CanopyShelter",
+          "pos": [
+            -44.0,
+            1.475,
+            4.5
+          ],
+          "radius": 1.65,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 2.95,
+          "name": "CanopyShelter",
+          "path": "Main/Level/Geometry/WindbreakPine3/CanopyShelter",
+          "pos": [
+            39.0,
+            1.475,
+            6.5
+          ],
+          "radius": 1.65,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 2.95,
+          "name": "CanopyShelter",
+          "path": "Main/Level/Geometry/WindbreakPine4/CanopyShelter",
+          "pos": [
+            59.0,
+            1.475,
+            -17.0
+          ],
+          "radius": 1.65,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 2.95,
+          "name": "CanopyShelter",
+          "path": "Main/Level/Geometry/WindbreakPine5/CanopyShelter",
+          "pos": [
+            7.0,
+            1.475,
+            51.0
+          ],
+          "radius": 1.65,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 2.95,
+          "name": "CanopyShelter",
+          "path": "Main/Level/Geometry/WindbreakPine6/CanopyShelter",
+          "pos": [
+            57.0,
+            1.475,
+            41.0
+          ],
+          "radius": 1.65,
+          "shape": "cylinder",
+          "yaw": 0.0
+        }
+      ],
+      "vending_stations": [
+        {
+          "key": "CanneryStation",
+          "pos": [
+            12.5,
+            0.0,
+            -38.03
+          ],
+          "server_path": "Main/RunLoot/CanneryStation",
+          "yaw": -3.142
+        },
+        {
+          "key": "BaitShopStation",
+          "pos": [
+            53.85,
+            0.0,
+            10.26
+          ],
+          "server_path": "Main/RunLoot/BaitShopStation",
+          "yaw": -3.142
+        },
+        {
+          "key": "FishExchangeStation",
+          "pos": [
+            -5.7,
+            0.0,
+            23.7
+          ],
+          "server_path": "Main/RunLoot/FishExchangeStation",
+          "yaw": -1.571
+        },
+        {
+          "key": "RescueStation",
+          "pos": [
+            -35.6,
+            0.0,
+            22.1
+          ],
+          "server_path": "Main/RunLoot/RescueStation",
+          "yaw": -1.571
+        }
+      ]
+    },
+    "maple_hollow": {
+      "boss_anchor": [
+        {
+          "name": "BossAnchor",
+          "path": "Main/Level/BossAnchor",
+          "pos": [
+            46.0,
+            18.0,
+            -26.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "crate_spawn": [
+        {
+          "name": "CrateSpawn",
+          "path": "Main/Level/CrateSpawns/CrateSpawn",
+          "pos": [
+            -56.0,
+            0.08,
+            20.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn2",
+          "path": "Main/Level/CrateSpawns/CrateSpawn2",
+          "pos": [
+            -56.0,
+            0.08,
+            -16.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn3",
+          "path": "Main/Level/CrateSpawns/CrateSpawn3",
+          "pos": [
+            -30.0,
+            0.08,
+            -26.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn4",
+          "path": "Main/Level/CrateSpawns/CrateSpawn4",
+          "pos": [
+            -12.0,
+            0.08,
+            -24.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn5",
+          "path": "Main/Level/CrateSpawns/CrateSpawn5",
+          "pos": [
+            -2.0,
+            0.08,
+            -42.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn6",
+          "path": "Main/Level/CrateSpawns/CrateSpawn6",
+          "pos": [
+            21.0,
+            0.08,
+            -22.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn7",
+          "path": "Main/Level/CrateSpawns/CrateSpawn7",
+          "pos": [
+            46.0,
+            0.08,
+            -34.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn8",
+          "path": "Main/Level/CrateSpawns/CrateSpawn8",
+          "pos": [
+            46.0,
+            0.08,
+            -16.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn9",
+          "path": "Main/Level/CrateSpawns/CrateSpawn9",
+          "pos": [
+            34.0,
+            0.08,
+            12.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn10",
+          "path": "Main/Level/CrateSpawns/CrateSpawn10",
+          "pos": [
+            20.0,
+            0.08,
+            28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn11",
+          "path": "Main/Level/CrateSpawns/CrateSpawn11",
+          "pos": [
+            -4.0,
+            0.08,
+            14.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CrateSpawn12",
+          "path": "Main/Level/CrateSpawns/CrateSpawn12",
+          "pos": [
+            -22.0,
+            0.08,
+            -2.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "decon_showers": [
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/RangerDecon/Interact",
+          "interact_pos": [
+            -21.0,
+            1.0,
+            38.5
+          ],
+          "marker_path": "Main/Level/DeconShowers/RangerDecon",
+          "name": "RangerDecon",
+          "pos": [
+            -21.0,
+            0.0,
+            38.5
+          ],
+          "radius": 2.2
+        },
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/CampgroundDecon/Interact",
+          "interact_pos": [
+            -19.5,
+            1.0,
+            -35.0
+          ],
+          "marker_path": "Main/Level/DeconShowers/CampgroundDecon",
+          "name": "CampgroundDecon",
+          "pos": [
+            -19.5,
+            0.0,
+            -35.0
+          ],
+          "radius": 2.2
+        },
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/ChapelDecon/Interact",
+          "interact_pos": [
+            28.5,
+            1.0,
+            -35.8
+          ],
+          "marker_path": "Main/Level/DeconShowers/ChapelDecon",
+          "name": "ChapelDecon",
+          "pos": [
+            28.5,
+            0.0,
+            -35.8
+          ],
+          "radius": 2.2
+        }
+      ],
+      "drain_spawn": [
+        {
+          "name": "Grate",
+          "path": "Main/Level/StormDrains/Grate",
+          "pos": [
+            -39.0,
+            0.06,
+            -34.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate2",
+          "path": "Main/Level/StormDrains/Grate2",
+          "pos": [
+            -39.0,
+            0.06,
+            -2.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate3",
+          "path": "Main/Level/StormDrains/Grate3",
+          "pos": [
+            -39.0,
+            0.06,
+            30.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate4",
+          "path": "Main/Level/StormDrains/Grate4",
+          "pos": [
+            -46.75,
+            -2.76,
+            -28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate5",
+          "path": "Main/Level/StormDrains/Grate5",
+          "pos": [
+            -46.75,
+            -2.76,
+            5.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate6",
+          "path": "Main/Level/StormDrains/Grate6",
+          "pos": [
+            18.5,
+            0.06,
+            -15.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate7",
+          "path": "Main/Level/StormDrains/Grate7",
+          "pos": [
+            4.5,
+            0.06,
+            28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Grate8",
+          "path": "Main/Level/StormDrains/Grate8",
+          "pos": [
+            38.0,
+            0.06,
+            17.5
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "enemy_spawn": [
+        {
+          "name": "EnemySpawn",
+          "path": "Main/Level/EnemySpawns/EnemySpawn",
+          "pos": [
+            -60.0,
+            0.08,
+            52.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn2",
+          "path": "Main/Level/EnemySpawns/EnemySpawn2",
+          "pos": [
+            -60.0,
+            0.08,
+            12.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn3",
+          "path": "Main/Level/EnemySpawns/EnemySpawn3",
+          "pos": [
+            -60.0,
+            0.08,
+            -22.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn4",
+          "path": "Main/Level/EnemySpawns/EnemySpawn4",
+          "pos": [
+            -59.0,
+            0.08,
+            -58.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn5",
+          "path": "Main/Level/EnemySpawns/EnemySpawn5",
+          "pos": [
+            -36.0,
+            0.08,
+            -59.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn6",
+          "path": "Main/Level/EnemySpawns/EnemySpawn6",
+          "pos": [
+            -10.0,
+            0.08,
+            -59.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn7",
+          "path": "Main/Level/EnemySpawns/EnemySpawn7",
+          "pos": [
+            14.0,
+            0.08,
+            -59.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn8",
+          "path": "Main/Level/EnemySpawns/EnemySpawn8",
+          "pos": [
+            46.0,
+            0.08,
+            -58.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn9",
+          "path": "Main/Level/EnemySpawns/EnemySpawn9",
+          "pos": [
+            56.0,
+            0.08,
+            -34.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn10",
+          "path": "Main/Level/EnemySpawns/EnemySpawn10",
+          "pos": [
+            58.5,
+            0.08,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn11",
+          "path": "Main/Level/EnemySpawns/EnemySpawn11",
+          "pos": [
+            59.0,
+            0.08,
+            28.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn12",
+          "path": "Main/Level/EnemySpawns/EnemySpawn12",
+          "pos": [
+            55.0,
+            0.08,
+            54.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn13",
+          "path": "Main/Level/EnemySpawns/EnemySpawn13",
+          "pos": [
+            18.0,
+            0.08,
+            57.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "EnemySpawn14",
+          "path": "Main/Level/EnemySpawns/EnemySpawn14",
+          "pos": [
+            -36.0,
+            0.08,
+            56.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "name": "MAPLE HOLLOW",
+      "player_spawn": [
+        {
+          "name": "PlayerSpawn",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn",
+          "pos": [
+            -5.2,
+            0.08,
+            35.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "PlayerSpawn2",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn2",
+          "pos": [
+            -2.8,
+            0.08,
+            35.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "PlayerSpawn3",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn3",
+          "pos": [
+            -5.2,
+            0.08,
+            37.4
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "PlayerSpawn4",
+          "path": "Main/Level/PlayerSpawns/PlayerSpawn4",
+          "pos": [
+            -2.8,
+            0.08,
+            37.4
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "puddles": [
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.5,
+          "name": "Pool",
+          "path": "Main/Level/Puddles/Pool",
+          "pos": [
+            -37.0,
+            0.04,
+            32.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Pool2",
+          "path": "Main/Level/Puddles/Pool2",
+          "pos": [
+            -24.0,
+            0.04,
+            33.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool2"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.4,
+          "name": "Pool3",
+          "path": "Main/Level/Puddles/Pool3",
+          "pos": [
+            8.0,
+            0.04,
+            30.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool3"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.4,
+          "name": "Pool4",
+          "path": "Main/Level/Puddles/Pool4",
+          "pos": [
+            28.0,
+            0.04,
+            24.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool4"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Pool5",
+          "path": "Main/Level/Puddles/Pool5",
+          "pos": [
+            44.0,
+            0.04,
+            16.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool5"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Pool6",
+          "path": "Main/Level/Puddles/Pool6",
+          "pos": [
+            -9.0,
+            0.04,
+            16.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool6"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Pool7",
+          "path": "Main/Level/Puddles/Pool7",
+          "pos": [
+            -11.0,
+            0.04,
+            -18.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool7"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Pool8",
+          "path": "Main/Level/Puddles/Pool8",
+          "pos": [
+            -26.0,
+            0.04,
+            -34.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool8"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.4,
+          "name": "Pool9",
+          "path": "Main/Level/Puddles/Pool9",
+          "pos": [
+            -37.0,
+            0.04,
+            -34.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool9"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Pool10",
+          "path": "Main/Level/Puddles/Pool10",
+          "pos": [
+            -56.5,
+            0.04,
+            -14.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool10"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Pool11",
+          "path": "Main/Level/Puddles/Pool11",
+          "pos": [
+            -56.5,
+            0.04,
+            14.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool11"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Pool12",
+          "path": "Main/Level/Puddles/Pool12",
+          "pos": [
+            -28.0,
+            0.04,
+            -3.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool12"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.6,
+          "name": "Pool13",
+          "path": "Main/Level/Puddles/Pool13",
+          "pos": [
+            19.0,
+            0.04,
+            -20.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool13"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.8,
+          "name": "Pool14",
+          "path": "Main/Level/Puddles/Pool14",
+          "pos": [
+            39.0,
+            0.04,
+            -28.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool14"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.5,
+          "name": "Pool15",
+          "path": "Main/Level/Puddles/Pool15",
+          "pos": [
+            53.0,
+            0.04,
+            -36.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool15"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Pool16",
+          "path": "Main/Level/Puddles/Pool16",
+          "pos": [
+            17.0,
+            0.04,
+            8.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Pool16"
+        }
+      ],
+      "shelter_areas": [
+        {
+          "name": "Culvert",
+          "path": "Main/Level/Geometry/MillCreek/Culvert",
+          "pos": [
+            -46.75,
+            -1.58,
+            -34.0
+          ],
+          "shape": "box",
+          "size": [
+            8.2,
+            2.42,
+            7.6
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Culvert2",
+          "path": "Main/Level/Geometry/MillCreek/Culvert2",
+          "pos": [
+            -46.75,
+            -1.58,
+            32.0
+          ],
+          "shape": "box",
+          "size": [
+            8.2,
+            2.42,
+            7.6
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "TankUnderside",
+          "path": "Main/Level/Geometry/MillCreek/MunicipalTank/TankUnderside",
+          "pos": [
+            -56.5,
+            4.9,
+            -47.0
+          ],
+          "shape": "box",
+          "size": [
+            6.5,
+            9.8,
+            6.5
+          ],
+          "yaw": 0.349
+        },
+        {
+          "name": "ChapelPorch",
+          "path": "Main/Level/Geometry/WaysideGrounds/WaysideChapel/ChapelPorch",
+          "pos": [
+            24.0,
+            1.84,
+            -35.75
+          ],
+          "shape": "box",
+          "size": [
+            5.2,
+            3.68,
+            2.85
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Portico",
+          "path": "Main/Level/Geometry/WaysideGrounds/LowellMausoleum/Portico",
+          "pos": [
+            47.0,
+            2.65,
+            -8.8
+          ],
+          "shape": "box",
+          "size": [
+            12.7,
+            5.3,
+            4.3
+          ],
+          "yaw": -3.142
+        },
+        {
+          "name": "RangerPorch",
+          "path": "Main/Level/Geometry/RangerTrailhead/RangerStation/RangerPorch",
+          "pos": [
+            -14.0,
+            1.75,
+            40.9
+          ],
+          "shape": "box",
+          "size": [
+            11.4,
+            3.3,
+            3.3
+          ],
+          "yaw": -3.142
+        },
+        {
+          "name": "TowerBase",
+          "path": "Main/Level/Geometry/FireTowerClearing/FireTower/TowerBase",
+          "pos": [
+            -12.0,
+            1.75,
+            -4.0
+          ],
+          "shape": "box",
+          "size": [
+            4.9,
+            3.45,
+            4.9
+          ],
+          "yaw": 0.209
+        },
+        {
+          "name": "PicnicPavilion",
+          "path": "Main/Level/Geometry/Campground/CampShelter/PicnicPavilion",
+          "pos": [
+            -12.0,
+            1.68,
+            -38.0
+          ],
+          "shape": "box",
+          "size": [
+            8.8,
+            3.3,
+            5.6
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "LeanToShelter",
+          "path": "Main/Level/Geometry/Campground/LeanTo/LeanToShelter",
+          "pos": [
+            -27.968,
+            1.35,
+            -45.962
+          ],
+          "shape": "box",
+          "size": [
+            4.9,
+            2.6,
+            3.0
+          ],
+          "yaw": 0.698
+        },
+        {
+          "name": "LeanToShelter",
+          "path": "Main/Level/Geometry/Campground/LeanTo2/LeanToShelter",
+          "pos": [
+            -29.95,
+            1.35,
+            11.996
+          ],
+          "shape": "box",
+          "size": [
+            4.9,
+            2.6,
+            3.0
+          ],
+          "yaw": 1.658
+        },
+        {
+          "name": "CabinPorch",
+          "path": "Main/Level/Geometry/Campground/WoodlandCabin/CabinPorch",
+          "pos": [
+            2.466,
+            1.6,
+            -47.683
+          ],
+          "shape": "box",
+          "size": [
+            6.9,
+            3.1,
+            2.55
+          ],
+          "yaw": 0.14
+        },
+        {
+          "name": "CabinPorch",
+          "path": "Main/Level/Geometry/Campground/WoodlandCabin2/CabinPorch",
+          "pos": [
+            -27.534,
+            1.6,
+            17.683
+          ],
+          "shape": "box",
+          "size": [
+            6.9,
+            3.1,
+            2.55
+          ],
+          "yaw": 3.002
+        },
+        {
+          "name": "LoggingShedDry",
+          "path": "Main/Level/Geometry/LoggingYard/LoggingShed/LoggingShedDry",
+          "pos": [
+            31.717,
+            1.68,
+            34.258
+          ],
+          "shape": "box",
+          "size": [
+            5.6,
+            3.3,
+            5.6
+          ],
+          "yaw": -0.314
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@132",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@132",
+          "pos": [
+            -36.971,
+            1.9,
+            -57.908
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@134",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@134",
+          "pos": [
+            -36.128,
+            1.9,
+            -53.325
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@136",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@136",
+          "pos": [
+            -35.312,
+            1.9,
+            -28.108
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@138",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@138",
+          "pos": [
+            -38.212,
+            1.9,
+            -18.231
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@140",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@140",
+          "pos": [
+            -37.837,
+            1.9,
+            -9.876
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@142",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@142",
+          "pos": [
+            -29.978,
+            1.9,
+            -60.421
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@144",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@144",
+          "pos": [
+            -28.459,
+            1.9,
+            -55.711
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@146",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@146",
+          "pos": [
+            -30.759,
+            1.9,
+            -28.558
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@148",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@148",
+          "pos": [
+            -29.177,
+            1.9,
+            -22.704
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@150",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@150",
+          "pos": [
+            -31.704,
+            1.9,
+            -11.047
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@152",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@152",
+          "pos": [
+            -23.175,
+            1.9,
+            -59.422
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@154",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@154",
+          "pos": [
+            -24.65,
+            1.9,
+            -25.521
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@156",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@156",
+          "pos": [
+            -24.577,
+            1.9,
+            -16.709
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@158",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@158",
+          "pos": [
+            -26.246,
+            1.9,
+            -12.337
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@160",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@160",
+          "pos": [
+            -15.738,
+            1.9,
+            -60.293
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@162",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@162",
+          "pos": [
+            -20.253,
+            1.9,
+            -53.494
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@164",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@164",
+          "pos": [
+            -18.63,
+            1.9,
+            -24.914
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@166",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@166",
+          "pos": [
+            -18.765,
+            1.9,
+            -18.892
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@168",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@168",
+          "pos": [
+            -9.831,
+            1.9,
+            -59.596
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@170",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@170",
+          "pos": [
+            -10.029,
+            1.9,
+            -54.011
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@172",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@172",
+          "pos": [
+            -6.142,
+            1.9,
+            -17.129
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@174",
+          "path": "Main/Level/Geometry/ForestNW/WorldCollision/@Area3D@174",
+          "pos": [
+            -1.915,
+            1.9,
+            -60.76
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@176",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@176",
+          "pos": [
+            1.137,
+            1.9,
+            -24.426
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@178",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@178",
+          "pos": [
+            1.658,
+            1.9,
+            -18.976
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@180",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@180",
+          "pos": [
+            7.296,
+            1.9,
+            -60.383
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@182",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@182",
+          "pos": [
+            6.62,
+            1.9,
+            -22.683
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@184",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@184",
+          "pos": [
+            6.123,
+            1.9,
+            -3.862
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@186",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@186",
+          "pos": [
+            13.017,
+            1.9,
+            -58.464
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@188",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@188",
+          "pos": [
+            12.23,
+            1.9,
+            -47.058
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@190",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@190",
+          "pos": [
+            13.596,
+            1.9,
+            -42.367
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@192",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@192",
+          "pos": [
+            23.273,
+            1.9,
+            -60.271
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@194",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@194",
+          "pos": [
+            25.38,
+            1.9,
+            -1.643
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@196",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@196",
+          "pos": [
+            34.741,
+            1.9,
+            -60.52
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@198",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@198",
+          "pos": [
+            35.992,
+            1.9,
+            -54.144
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@200",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@200",
+          "pos": [
+            44.186,
+            1.9,
+            -58.523
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@202",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@202",
+          "pos": [
+            50.24,
+            1.9,
+            -53.796
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@204",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@204",
+          "pos": [
+            54.51,
+            1.9,
+            -60.459
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@206",
+          "path": "Main/Level/Geometry/ForestNE/WorldCollision/@Area3D@206",
+          "pos": [
+            58.627,
+            1.9,
+            -55.245
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@208",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@208",
+          "pos": [
+            -37.65,
+            1.9,
+            42.221
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@210",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@210",
+          "pos": [
+            -35.726,
+            1.9,
+            48.483
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@212",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@212",
+          "pos": [
+            -36.136,
+            1.9,
+            53.334
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@214",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@214",
+          "pos": [
+            -36.591,
+            1.9,
+            58.725
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@216",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@216",
+          "pos": [
+            -29.669,
+            1.9,
+            43.802
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@218",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@218",
+          "pos": [
+            -29.643,
+            1.9,
+            48.752
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@220",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@220",
+          "pos": [
+            -29.815,
+            1.9,
+            57.973
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@222",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@222",
+          "pos": [
+            -25.732,
+            1.9,
+            46.506
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@224",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@224",
+          "pos": [
+            -23.858,
+            1.9,
+            54.897
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@226",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@226",
+          "pos": [
+            -19.923,
+            1.9,
+            11.992
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@228",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@228",
+          "pos": [
+            -16.839,
+            1.9,
+            17.893
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@230",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@230",
+          "pos": [
+            -18.166,
+            1.9,
+            22.335
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@232",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@232",
+          "pos": [
+            -17.059,
+            1.9,
+            53.623
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@234",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@234",
+          "pos": [
+            -18.299,
+            1.9,
+            60.661
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@236",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@236",
+          "pos": [
+            -13.393,
+            1.9,
+            55.781
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@238",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@238",
+          "pos": [
+            -4.265,
+            1.9,
+            54.084
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@240",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@240",
+          "pos": [
+            -4.494,
+            1.9,
+            59.631
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@242",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@242",
+          "pos": [
+            -1.093,
+            1.9,
+            4.946
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@244",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@244",
+          "pos": [
+            -0.252,
+            1.9,
+            10.062
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@246",
+          "path": "Main/Level/Geometry/ForestSW/WorldCollision/@Area3D@246",
+          "pos": [
+            -1.702,
+            1.9,
+            47.72
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@248",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@248",
+          "pos": [
+            0.125,
+            1.9,
+            18.53
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@250",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@250",
+          "pos": [
+            0.864,
+            1.9,
+            22.808
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@252",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@252",
+          "pos": [
+            1.853,
+            1.9,
+            59.21
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@254",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@254",
+          "pos": [
+            7.489,
+            1.9,
+            4.338
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@256",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@256",
+          "pos": [
+            5.411,
+            1.9,
+            10.963
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@258",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@258",
+          "pos": [
+            6.263,
+            1.9,
+            19.138
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@260",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@260",
+          "pos": [
+            5.605,
+            1.9,
+            43.365
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@262",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@262",
+          "pos": [
+            4.738,
+            1.9,
+            48.839
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@264",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@264",
+          "pos": [
+            6.296,
+            1.9,
+            59.587
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@266",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@266",
+          "pos": [
+            11.336,
+            1.9,
+            43.251
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@268",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@268",
+          "pos": [
+            10.49,
+            1.9,
+            49.472
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@270",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@270",
+          "pos": [
+            10.221,
+            1.9,
+            55.511
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@272",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@272",
+          "pos": [
+            12.402,
+            1.9,
+            61.204
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@274",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@274",
+          "pos": [
+            18.07,
+            1.9,
+            35.331
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@276",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@276",
+          "pos": [
+            18.736,
+            1.9,
+            43.007
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@278",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@278",
+          "pos": [
+            19.947,
+            1.9,
+            54.549
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@280",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@280",
+          "pos": [
+            18.996,
+            1.9,
+            59.727
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@282",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@282",
+          "pos": [
+            24.441,
+            1.9,
+            6.914
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@284",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@284",
+          "pos": [
+            24.17,
+            1.9,
+            16.481
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@286",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@286",
+          "pos": [
+            26.0,
+            1.9,
+            48.461
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@288",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@288",
+          "pos": [
+            23.522,
+            1.9,
+            58.766
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@290",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@290",
+          "pos": [
+            28.274,
+            1.9,
+            4.72
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@292",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@292",
+          "pos": [
+            31.578,
+            1.9,
+            11.15
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@294",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@294",
+          "pos": [
+            31.732,
+            1.9,
+            54.816
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@296",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@296",
+          "pos": [
+            28.167,
+            1.9,
+            58.969
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@298",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@298",
+          "pos": [
+            37.902,
+            1.9,
+            5.708
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@300",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@300",
+          "pos": [
+            34.517,
+            1.9,
+            50.085
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@302",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@302",
+          "pos": [
+            36.567,
+            1.9,
+            55.297
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@304",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@304",
+          "pos": [
+            41.579,
+            1.9,
+            49.459
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@306",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@306",
+          "pos": [
+            43.029,
+            1.9,
+            55.619
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@308",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@308",
+          "pos": [
+            40.598,
+            1.9,
+            60.702
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@310",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@310",
+          "pos": [
+            46.398,
+            1.9,
+            47.352
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@312",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@312",
+          "pos": [
+            49.669,
+            1.9,
+            54.984
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@314",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@314",
+          "pos": [
+            49.653,
+            1.9,
+            60.433
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@316",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@316",
+          "pos": [
+            56.057,
+            1.9,
+            31.431
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@318",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@318",
+          "pos": [
+            53.547,
+            1.9,
+            36.935
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@320",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@320",
+          "pos": [
+            53.339,
+            1.9,
+            41.796
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@322",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@322",
+          "pos": [
+            54.173,
+            1.9,
+            46.918
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@324",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@324",
+          "pos": [
+            54.472,
+            1.9,
+            60.259
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@326",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@326",
+          "pos": [
+            57.714,
+            1.9,
+            26.222
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@328",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@328",
+          "pos": [
+            61.389,
+            1.9,
+            36.248
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@330",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@330",
+          "pos": [
+            59.224,
+            1.9,
+            40.626
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@332",
+          "path": "Main/Level/Geometry/ForestSE/WorldCollision/@Area3D@332",
+          "pos": [
+            60.922,
+            1.9,
+            51.788
+          ],
+          "radius": 1.8,
+          "shape": "cylinder",
+          "yaw": 0.0
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@334",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple/WorldCollision/@Area3D@334",
+          "pos": [
+            8.0,
+            1.9,
+            -34.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": -1.082
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@336",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple2/WorldCollision/@Area3D@336",
+          "pos": [
+            31.0,
+            1.9,
+            -49.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": 0.14
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@338",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple3/WorldCollision/@Area3D@338",
+          "pos": [
+            10.0,
+            1.9,
+            -14.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": 0.14
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@340",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple4/WorldCollision/@Area3D@340",
+          "pos": [
+            -3.0,
+            1.9,
+            23.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": 0.942
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@342",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple5/WorldCollision/@Area3D@342",
+          "pos": [
+            -22.0,
+            1.9,
+            -34.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": 2.583
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@344",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple6/WorldCollision/@Area3D@344",
+          "pos": [
+            -24.0,
+            1.9,
+            2.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": -1.99
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@346",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple7/WorldCollision/@Area3D@346",
+          "pos": [
+            26.0,
+            1.9,
+            24.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": -2.758
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@348",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple8/WorldCollision/@Area3D@348",
+          "pos": [
+            50.0,
+            1.9,
+            12.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": -1.292
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@350",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple9/WorldCollision/@Area3D@350",
+          "pos": [
+            -56.0,
+            1.9,
+            22.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": 2.548
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@352",
+          "path": "Main/Level/Geometry/AutumnMaples/OctoberMaple10/WorldCollision/@Area3D@352",
+          "pos": [
+            -56.0,
+            1.9,
+            -24.0
+          ],
+          "radius": 2.5,
+          "shape": "cylinder",
+          "yaw": 0.14
+        }
+      ],
+      "vending_stations": [
+        {
+          "key": "ChapelSteps",
+          "pos": [
+            24.0,
+            0.24,
+            -36.5
+          ],
+          "server_path": "Main/RunLoot/ChapelSteps",
+          "yaw": -3.142
+        },
+        {
+          "key": "RangerStation",
+          "pos": [
+            -14.0,
+            0.24,
+            42.0
+          ],
+          "server_path": "Main/RunLoot/RangerStation",
+          "yaw": 0.0
+        },
+        {
+          "key": "Campground",
+          "pos": [
+            -12.0,
+            0.06,
+            -39.9
+          ],
+          "server_path": "Main/RunLoot/Campground",
+          "yaw": -3.142
+        }
+      ]
+    },
+    "pinecrest": {
+      "boss_anchor": [
+        {
+          "name": "BossAnchor",
+          "path": "Main/Level/BossAnchor",
+          "pos": [
+            0.0,
+            18.0,
+            0.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "crate_spawn": [
+        {
+          "name": "Crate0",
+          "path": "Main/Level/CrateSpawns/Crate0",
+          "pos": [
+            6.0,
+            0.0,
+            -44.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate1",
+          "path": "Main/Level/CrateSpawns/Crate1",
+          "pos": [
+            -6.0,
+            0.0,
+            -36.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate2",
+          "path": "Main/Level/CrateSpawns/Crate2",
+          "pos": [
+            0.0,
+            0.0,
+            -12.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate3",
+          "path": "Main/Level/CrateSpawns/Crate3",
+          "pos": [
+            -30.0,
+            0.0,
+            2.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate4",
+          "path": "Main/Level/CrateSpawns/Crate4",
+          "pos": [
+            28.0,
+            0.0,
+            -2.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate5",
+          "path": "Main/Level/CrateSpawns/Crate5",
+          "pos": [
+            -20.0,
+            0.0,
+            38.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate6",
+          "path": "Main/Level/CrateSpawns/Crate6",
+          "pos": [
+            4.0,
+            0.0,
+            42.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate7",
+          "path": "Main/Level/CrateSpawns/Crate7",
+          "pos": [
+            -53.0,
+            0.0,
+            37.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate8",
+          "path": "Main/Level/CrateSpawns/Crate8",
+          "pos": [
+            46.0,
+            0.0,
+            34.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate9",
+          "path": "Main/Level/CrateSpawns/Crate9",
+          "pos": [
+            -44.0,
+            0.0,
+            -36.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate10",
+          "path": "Main/Level/CrateSpawns/Crate10",
+          "pos": [
+            42.0,
+            0.0,
+            -34.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Crate11",
+          "path": "Main/Level/CrateSpawns/Crate11",
+          "pos": [
+            9.0,
+            0.0,
+            20.5
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "decon_showers": [
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/GarageWest/Interact",
+          "interact_pos": [
+            -21.843,
+            1.0,
+            -46.965
+          ],
+          "marker_path": "Main/Level/DeconShowers/GarageWest",
+          "name": "GarageWest",
+          "pos": [
+            -21.843,
+            0.0,
+            -46.965
+          ],
+          "radius": 2.2
+        },
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/Laundromat/Interact",
+          "interact_pos": [
+            -18.0,
+            1.0,
+            8.6
+          ],
+          "marker_path": "Main/Level/DeconShowers/Laundromat",
+          "name": "Laundromat",
+          "pos": [
+            -18.0,
+            0.0,
+            8.6
+          ],
+          "radius": 2.2
+        },
+        {
+          "hold_time": 1.0,
+          "interact_path": "Main/Level/DeconShowers/GasStation/Interact",
+          "interact_pos": [
+            49.0,
+            1.0,
+            22.0
+          ],
+          "marker_path": "Main/Level/DeconShowers/GasStation",
+          "name": "GasStation",
+          "pos": [
+            49.0,
+            0.0,
+            22.0
+          ],
+          "radius": 2.2
+        }
+      ],
+      "drain_spawn": [
+        {
+          "name": "Drain-40_4",
+          "path": "Main/Level/StormDrains/Drain-40_4",
+          "pos": [
+            -40.0,
+            0.0,
+            4.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Drain-12_-4",
+          "path": "Main/Level/StormDrains/Drain-12_-4",
+          "pos": [
+            -12.0,
+            0.0,
+            -4.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Drain14_4",
+          "path": "Main/Level/StormDrains/Drain14_4",
+          "pos": [
+            14.0,
+            0.0,
+            4.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Drain46_-4",
+          "path": "Main/Level/StormDrains/Drain46_-4",
+          "pos": [
+            46.0,
+            0.0,
+            -4.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Drain8_-36",
+          "path": "Main/Level/StormDrains/Drain8_-36",
+          "pos": [
+            8.0,
+            0.0,
+            -36.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Drain-15_40",
+          "path": "Main/Level/StormDrains/Drain-15_40",
+          "pos": [
+            -15.0,
+            0.0,
+            40.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Drain-50_8",
+          "path": "Main/Level/StormDrains/Drain-50_8",
+          "pos": [
+            -50.0,
+            0.0,
+            8.5
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "enemy_spawn": [
+        {
+          "name": "MainStWest",
+          "path": "Main/Level/EnemySpawns/MainStWest",
+          "pos": [
+            -58.0,
+            0.0,
+            2.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "MainStEast",
+          "path": "Main/Level/EnemySpawns/MainStEast",
+          "pos": [
+            58.0,
+            0.0,
+            2.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "ParkNorth",
+          "path": "Main/Level/EnemySpawns/ParkNorth",
+          "pos": [
+            -40.0,
+            0.0,
+            -61.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "BackyardsNorth",
+          "path": "Main/Level/EnemySpawns/BackyardsNorth",
+          "pos": [
+            40.0,
+            0.0,
+            -61.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "CulDeSacNorth",
+          "path": "Main/Level/EnemySpawns/CulDeSacNorth",
+          "pos": [
+            -8.0,
+            0.0,
+            -62.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "LotSouthWest",
+          "path": "Main/Level/EnemySpawns/LotSouthWest",
+          "pos": [
+            -25.0,
+            0.0,
+            61.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "LotSouthEast",
+          "path": "Main/Level/EnemySpawns/LotSouthEast",
+          "pos": [
+            20.0,
+            0.0,
+            61.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "GasBack",
+          "path": "Main/Level/EnemySpawns/GasBack",
+          "pos": [
+            61.0,
+            0.0,
+            40.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "name": "PINECREST",
+      "player_spawn": [
+        {
+          "name": "P1",
+          "path": "Main/Level/PlayerSpawns/P1",
+          "pos": [
+            -2.0,
+            0.0,
+            0.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "P2",
+          "path": "Main/Level/PlayerSpawns/P2",
+          "pos": [
+            2.0,
+            0.0,
+            0.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "P3",
+          "path": "Main/Level/PlayerSpawns/P3",
+          "pos": [
+            -2.0,
+            0.0,
+            3.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "P4",
+          "path": "Main/Level/PlayerSpawns/P4",
+          "pos": [
+            2.0,
+            0.0,
+            3.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "puddles": [
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.5,
+          "name": "MainW",
+          "path": "Main/Level/Puddles/MainW",
+          "pos": [
+            -32.0,
+            0.0,
+            2.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/MainW"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "MainC",
+          "path": "Main/Level/Puddles/MainC",
+          "pos": [
+            -6.0,
+            0.0,
+            -2.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/MainC"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.4,
+          "name": "MainE",
+          "path": "Main/Level/Puddles/MainE",
+          "pos": [
+            26.0,
+            0.0,
+            2.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/MainE"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "MainFarE",
+          "path": "Main/Level/Puddles/MainFarE",
+          "pos": [
+            56.0,
+            0.0,
+            -1.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/MainFarE"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 1.8,
+          "name": "Lane",
+          "path": "Main/Level/Puddles/Lane",
+          "pos": [
+            2.0,
+            0.0,
+            -20.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Lane"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "CircleW",
+          "path": "Main/Level/Puddles/CircleW",
+          "pos": [
+            -6.0,
+            0.0,
+            -45.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/CircleW"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "CircleE",
+          "path": "Main/Level/Puddles/CircleE",
+          "pos": [
+            7.0,
+            0.0,
+            -35.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/CircleE"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 3.0,
+          "name": "LotW",
+          "path": "Main/Level/Puddles/LotW",
+          "pos": [
+            -32.0,
+            0.0,
+            38.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/LotW"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.6,
+          "name": "LotC",
+          "path": "Main/Level/Puddles/LotC",
+          "pos": [
+            -4.0,
+            0.0,
+            39.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/LotC"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.4,
+          "name": "LotE",
+          "path": "Main/Level/Puddles/LotE",
+          "pos": [
+            16.0,
+            0.0,
+            40.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/LotE"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.0,
+          "name": "Square",
+          "path": "Main/Level/Puddles/Square",
+          "pos": [
+            -48.0,
+            0.0,
+            18.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Square"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.4,
+          "name": "Gas",
+          "path": "Main/Level/Puddles/Gas",
+          "pos": [
+            42.0,
+            0.0,
+            30.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Gas"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.6,
+          "name": "Park",
+          "path": "Main/Level/Puddles/Park",
+          "pos": [
+            -40.0,
+            0.0,
+            -36.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Park"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 2.2,
+          "name": "Backyards",
+          "path": "Main/Level/Puddles/Backyards",
+          "pos": [
+            45.0,
+            0.0,
+            -32.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Backyards"
+        },
+        {
+          "dry_time": 25.0,
+          "grow_time": 45.0,
+          "max_radius": 1.8,
+          "name": "Alley",
+          "path": "Main/Level/Puddles/Alley",
+          "pos": [
+            -9.5,
+            0.0,
+            16.0
+          ],
+          "sync_key": "/root/Main/Level/Puddles/Alley"
+        }
+      ],
+      "shelter_areas": [
+        {
+          "height": 4.4,
+          "name": "@Area3D@47",
+          "path": "Main/Level/Geometry/TownSquare/Tree-61_11/@Area3D@47",
+          "pos": [
+            -61.0,
+            1.9,
+            11.0
+          ],
+          "radius": 2.071,
+          "shape": "cylinder",
+          "yaw": 0.984
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@49",
+          "path": "Main/Level/Geometry/TownSquare/Tree-45_11/@Area3D@49",
+          "pos": [
+            -45.0,
+            1.9,
+            11.0
+          ],
+          "radius": 2.071,
+          "shape": "cylinder",
+          "yaw": -0.898
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@51",
+          "path": "Main/Level/Geometry/TownSquare/Tree-61_39/@Area3D@51",
+          "pos": [
+            -61.0,
+            1.9,
+            39.0
+          ],
+          "radius": 2.071,
+          "shape": "cylinder",
+          "yaw": -0.508
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@53",
+          "path": "Main/Level/Geometry/TownSquare/Tree-45_39/@Area3D@53",
+          "pos": [
+            -45.0,
+            1.9,
+            39.0
+          ],
+          "radius": 2.071,
+          "shape": "cylinder",
+          "yaw": 2.009
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@55",
+          "path": "Main/Level/Geometry/Trees/Tree0/@Area3D@55",
+          "pos": [
+            -60.0,
+            1.9,
+            -58.0
+          ],
+          "radius": 1.885,
+          "shape": "cylinder",
+          "yaw": 0.063
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@57",
+          "path": "Main/Level/Geometry/Trees/Tree1/@Area3D@57",
+          "pos": [
+            -40.0,
+            1.9,
+            -58.0
+          ],
+          "radius": 2.165,
+          "shape": "cylinder",
+          "yaw": 2.611
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@59",
+          "path": "Main/Level/Geometry/Trees/Tree2/@Area3D@59",
+          "pos": [
+            -58.0,
+            1.9,
+            -32.0
+          ],
+          "radius": 1.495,
+          "shape": "cylinder",
+          "yaw": 1.659
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@61",
+          "path": "Main/Level/Geometry/Trees/Tree3/@Area3D@61",
+          "pos": [
+            -34.0,
+            1.9,
+            -30.0
+          ],
+          "radius": 2.026,
+          "shape": "cylinder",
+          "yaw": -1.812
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@63",
+          "path": "Main/Level/Geometry/Trees/Tree4/@Area3D@63",
+          "pos": [
+            -26.0,
+            1.9,
+            -58.0
+          ],
+          "radius": 2.226,
+          "shape": "cylinder",
+          "yaw": 0.678
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@65",
+          "path": "Main/Level/Geometry/Trees/Tree5/@Area3D@65",
+          "pos": [
+            -58.0,
+            1.9,
+            -14.0
+          ],
+          "radius": 1.738,
+          "shape": "cylinder",
+          "yaw": -0.587
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@67",
+          "path": "Main/Level/Geometry/Trees/Tree6/@Area3D@67",
+          "pos": [
+            -36.0,
+            1.9,
+            -14.0
+          ],
+          "radius": 2.382,
+          "shape": "cylinder",
+          "yaw": -0.089
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@69",
+          "path": "Main/Level/Geometry/Trees/Tree7/@Area3D@69",
+          "pos": [
+            -20.0,
+            1.9,
+            -45.0
+          ],
+          "radius": 1.92,
+          "shape": "cylinder",
+          "yaw": 0.248
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@71",
+          "path": "Main/Level/Geometry/Trees/Tree8/@Area3D@71",
+          "pos": [
+            28.0,
+            1.9,
+            -58.0
+          ],
+          "radius": 1.754,
+          "shape": "cylinder",
+          "yaw": -0.963
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@73",
+          "path": "Main/Level/Geometry/Trees/Tree9/@Area3D@73",
+          "pos": [
+            58.0,
+            1.9,
+            -58.0
+          ],
+          "radius": 1.994,
+          "shape": "cylinder",
+          "yaw": -1.122
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@75",
+          "path": "Main/Level/Geometry/Trees/Tree10/@Area3D@75",
+          "pos": [
+            30.0,
+            1.9,
+            -32.0
+          ],
+          "radius": 2.203,
+          "shape": "cylinder",
+          "yaw": 2.578
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@77",
+          "path": "Main/Level/Geometry/Trees/Tree11/@Area3D@77",
+          "pos": [
+            58.0,
+            1.9,
+            -30.0
+          ],
+          "radius": 1.419,
+          "shape": "cylinder",
+          "yaw": 2.308
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@79",
+          "path": "Main/Level/Geometry/Trees/Tree12/@Area3D@79",
+          "pos": [
+            28.0,
+            1.9,
+            -8.5
+          ],
+          "radius": 2.267,
+          "shape": "cylinder",
+          "yaw": 0.842
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@81",
+          "path": "Main/Level/Geometry/Trees/Tree13/@Area3D@81",
+          "pos": [
+            -8.0,
+            1.9,
+            -27.0
+          ],
+          "radius": 2.362,
+          "shape": "cylinder",
+          "yaw": -1.624
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@83",
+          "path": "Main/Level/Geometry/Trees/Tree14/@Area3D@83",
+          "pos": [
+            8.0,
+            1.9,
+            -27.0
+          ],
+          "radius": 1.492,
+          "shape": "cylinder",
+          "yaw": -0.504
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@85",
+          "path": "Main/Level/Geometry/Trees/Tree15/@Area3D@85",
+          "pos": [
+            -28.0,
+            1.9,
+            58.0
+          ],
+          "radius": 2.177,
+          "shape": "cylinder",
+          "yaw": 1.763
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@87",
+          "path": "Main/Level/Geometry/Trees/Tree16/@Area3D@87",
+          "pos": [
+            -8.0,
+            1.9,
+            58.0
+          ],
+          "radius": 2.125,
+          "shape": "cylinder",
+          "yaw": 1.792
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@89",
+          "path": "Main/Level/Geometry/Trees/Tree17/@Area3D@89",
+          "pos": [
+            12.0,
+            1.9,
+            58.0
+          ],
+          "radius": 1.543,
+          "shape": "cylinder",
+          "yaw": 2.841
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@91",
+          "path": "Main/Level/Geometry/Trees/Tree18/@Area3D@91",
+          "pos": [
+            32.0,
+            1.9,
+            50.0
+          ],
+          "radius": 2.224,
+          "shape": "cylinder",
+          "yaw": 2.527
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@93",
+          "path": "Main/Level/Geometry/Trees/Tree19/@Area3D@93",
+          "pos": [
+            -50.0,
+            1.9,
+            52.0
+          ],
+          "radius": 2.054,
+          "shape": "cylinder",
+          "yaw": -0.933
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@95",
+          "path": "Main/Level/Geometry/Trees/Tree20/@Area3D@95",
+          "pos": [
+            62.0,
+            1.9,
+            48.0
+          ],
+          "radius": 1.763,
+          "shape": "cylinder",
+          "yaw": 0.896
+        },
+        {
+          "height": 4.4,
+          "name": "@Area3D@97",
+          "path": "Main/Level/Geometry/Trees/Tree21/@Area3D@97",
+          "pos": [
+            34.0,
+            1.9,
+            12.0
+          ],
+          "radius": 2.194,
+          "shape": "cylinder",
+          "yaw": -0.548
+        },
+        {
+          "name": "BlockAAwning",
+          "path": "Main/Level/ShelterAreas/BlockAAwning",
+          "pos": [
+            -28.0,
+            1.6,
+            8.2
+          ],
+          "shape": "box",
+          "size": [
+            29.5,
+            3.2,
+            3.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "BlockBAwning",
+          "path": "Main/Level/ShelterAreas/BlockBAwning",
+          "pos": [
+            9.0,
+            1.6,
+            8.2
+          ],
+          "shape": "box",
+          "size": [
+            29.5,
+            3.2,
+            3.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "Gazebo",
+          "path": "Main/Level/ShelterAreas/Gazebo",
+          "pos": [
+            -53.0,
+            1.7,
+            28.0
+          ],
+          "shape": "box",
+          "size": [
+            7.0,
+            3.4,
+            7.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "GasCanopy",
+          "path": "Main/Level/ShelterAreas/GasCanopy",
+          "pos": [
+            49.0,
+            2.2,
+            22.0
+          ],
+          "shape": "box",
+          "size": [
+            17.5,
+            4.4,
+            11.5
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "HouseWestGarage",
+          "path": "Main/Level/ShelterAreas/HouseWestGarage",
+          "pos": [
+            -21.843,
+            1.6,
+            -46.965
+          ],
+          "shape": "box",
+          "size": [
+            5.4,
+            3.2,
+            6.6
+          ],
+          "yaw": 1.616
+        },
+        {
+          "name": "HouseNorthWestCarport",
+          "path": "Main/Level/ShelterAreas/HouseNorthWestCarport",
+          "pos": [
+            -10.59,
+            1.45,
+            -60.826
+          ],
+          "shape": "box",
+          "size": [
+            5.8,
+            2.9,
+            6.8
+          ],
+          "yaw": 0.818
+        },
+        {
+          "name": "HouseNorthPorch",
+          "path": "Main/Level/ShelterAreas/HouseNorthPorch",
+          "pos": [
+            0.0,
+            1.35,
+            -54.92
+          ],
+          "shape": "box",
+          "size": [
+            5.0,
+            2.7,
+            2.6
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "HouseNorthEastPorch",
+          "path": "Main/Level/ShelterAreas/HouseNorthEastPorch",
+          "pos": [
+            12.374,
+            1.35,
+            -51.601
+          ],
+          "shape": "box",
+          "size": [
+            5.0,
+            2.7,
+            2.6
+          ],
+          "yaw": -0.818
+        },
+        {
+          "name": "HouseEastGarage",
+          "path": "Main/Level/ShelterAreas/HouseEastGarage",
+          "pos": [
+            21.174,
+            1.6,
+            -31.079
+          ],
+          "shape": "box",
+          "size": [
+            5.4,
+            3.2,
+            6.6
+          ],
+          "yaw": -1.616
+        },
+        {
+          "name": "LaneWestPorch",
+          "path": "Main/Level/ShelterAreas/LaneWestPorch",
+          "pos": [
+            -11.024,
+            1.35,
+            -19.0
+          ],
+          "shape": "box",
+          "size": [
+            5.0,
+            2.7,
+            2.6
+          ],
+          "yaw": 1.571
+        },
+        {
+          "name": "LaneEastCarport",
+          "path": "Main/Level/ShelterAreas/LaneEastCarport",
+          "pos": [
+            15.25,
+            1.45,
+            -11.409
+          ],
+          "shape": "box",
+          "size": [
+            5.8,
+            2.9,
+            6.8
+          ],
+          "yaw": -1.571
+        },
+        {
+          "name": "MainNorthEast1Garage",
+          "path": "Main/Level/ShelterAreas/MainNorthEast1Garage",
+          "pos": [
+            42.95,
+            1.6,
+            -17.305
+          ],
+          "shape": "box",
+          "size": [
+            5.4,
+            3.2,
+            6.6
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "MainNorthEast2Porch",
+          "path": "Main/Level/ShelterAreas/MainNorthEast2Porch",
+          "pos": [
+            52.0,
+            1.35,
+            -11.95
+          ],
+          "shape": "box",
+          "size": [
+            5.0,
+            2.7,
+            2.6
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "BackNorthEastPorch",
+          "path": "Main/Level/ShelterAreas/BackNorthEastPorch",
+          "pos": [
+            44.0,
+            1.35,
+            -52.013
+          ],
+          "shape": "box",
+          "size": [
+            5.0,
+            2.7,
+            2.6
+          ],
+          "yaw": -3.142
+        },
+        {
+          "name": "Pavilion",
+          "path": "Main/Level/ShelterAreas/Pavilion",
+          "pos": [
+            -44.0,
+            1.5,
+            -24.0
+          ],
+          "shape": "box",
+          "size": [
+            8.8,
+            3.0,
+            6.3
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "BusStopWest",
+          "path": "Main/Level/ShelterAreas/BusStopWest",
+          "pos": [
+            -27.0,
+            1.25,
+            -6.6
+          ],
+          "shape": "box",
+          "size": [
+            3.6,
+            2.5,
+            2.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "BusStopEast",
+          "path": "Main/Level/ShelterAreas/BusStopEast",
+          "pos": [
+            44.0,
+            1.25,
+            -6.6
+          ],
+          "shape": "box",
+          "size": [
+            3.6,
+            2.5,
+            2.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "vending_stations": [
+        {
+          "key": "HardwareStation",
+          "pos": [
+            -2.8,
+            0.055,
+            9.0
+          ],
+          "server_path": "Main/RunLoot/HardwareStation",
+          "yaw": 0.0
+        },
+        {
+          "key": "GasStationSurplus",
+          "pos": [
+            49.0,
+            0.08,
+            26.5
+          ],
+          "server_path": "Main/RunLoot/GasStationSurplus",
+          "yaw": 0.0
+        },
+        {
+          "key": "TownSquareStation",
+          "pos": [
+            -53.0,
+            0.08,
+            30.85
+          ],
+          "server_path": "Main/RunLoot/TownSquareStation",
+          "yaw": 0.0
+        }
+      ]
+    }
+  }
+}
