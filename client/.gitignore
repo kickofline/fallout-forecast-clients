@@ -1,0 +1,5 @@
+# Synced from ../assets by tools/sync_assets.py (not committed twice).
+/assets/
+.import/
+export.cfg
+build/
