@@ -5,6 +5,7 @@
 ## Start here
 
 - [Implementer guide](AGENTS.md): Tier selection, reading order, implementation checkpoints.
+- [Protocol changelog](CHANGELOG.md): Chronological wire, RPC, limit, and catalog changes with per-tier client actions.
 - [Common spec](spec-common.md): Framing, transports, handshake and versions.
 - [Thin spec](spec-thin.md): Controls, snapshots, events and binary layout.
 - [Full spec](spec-full.md): Lobby, run lifecycle, JSON and binary RPC framing.

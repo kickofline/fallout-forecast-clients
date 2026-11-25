@@ -15,25 +15,32 @@ Start with JSON and one transport; choose binary when bandwidth or an existing
 codec warrants it. TCP is convenient for native test clients; browser clients
 use WebSocket. Both tiers can coexist in one squad.
 
+## Updating an existing client
+
+Check [the protocol changelog](CHANGELOG.md) first: find the latest entry your
+client already targets (by date, Open Protocol `v`, or `game_protocol`) and
+apply every newer entry's **Client action** steps.
+
 ## Reading order
 
-1. [Common specification](spec-common.md) for ports, framing, hello, versions,
+1. [Protocol changelog](CHANGELOG.md) if updating an existing client.
+2. [Common specification](spec-common.md) for ports, framing, hello, versions,
    ping and leave.
-2. Read your tier in order.
+3. Read your tier in order.
    - **Thin:** [Thin specification](spec-thin.md) §§1–6, then §§8–12; read §7
      for the binary snapshot format.
    - **Full:** [Full specification](spec-full.md) §§1–7, 11–14 (also §§8–10
      for binary), then [client responsibilities](client-responsibilities.md).
      Use the [RPC catalog](rpc-catalog.md) to look up signatures, and the
      [machine-readable schema](open-protocol-schema.json) to generate bindings.
-3. [Game reference](game-reference.md), with [game data](game-data.json) and
+4. [Game reference](game-reference.md), with [game data](game-data.json) and
    [level markers](level-markers.json) for exact ids, rules and coordinates.
-4. Read one real session in your chosen encoding.
+5. Read one real session in your chosen encoding.
    - Thin [JSON transcript](transcripts/thin-json.md) or [binary transcript](transcripts/thin-bin.md)
    - Full [JSON transcript](transcripts/full-json.md) or [binary transcript](transcripts/full-bin.md)
 
    Each annotated transcript has a corresponding raw `.jsonl` capture.
-5. [Known issues](KNOWN_ISSUES.md) and [conformance instructions](conformance.md)
+6. [Known issues](KNOWN_ISSUES.md) and [conformance instructions](conformance.md)
    before testing.
 
 ## Implementation checkpoints
