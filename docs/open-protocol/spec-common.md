@@ -165,11 +165,13 @@ terminal `error` (§4.4) followed by close:
 - **Before or during the handshake**, and **any time on the Thin tier**, `error` is
   terminal: the server closes the connection right after it (the close flushes
   queued data for up to 1 s).
-- **On the Full tier after `welcome`**, `error` is a non-terminal diagnostic for a
-  bad frame; the connection stays open ([spec-full.md §11](spec-full.md#11-errors)).
-- The server can also close **without** an `error`: oversized or zero-length
-  frame, unread-input overflow, hello timeout, outbound-buffer overflow, or a
-  WebSocket protocol violation.
+- **On the Full tier after `welcome`**, errors for bad application frames are
+  non-terminal ([spec-full.md §11](spec-full.md#11-errors)). A server-initiated
+  close can also send an `error` before closing.
+- A server-initiated close sends a WebSocket close reason or a JSON `error` when
+  the transport can still write. Handle EOF or an abnormal WebSocket close even
+  if no diagnostic arrives (for instance, after transport loss, a missed
+  WebSocket pong, an upgrade failure, or a full outbound queue).
 
 ## 5. Version negotiation
 
@@ -212,11 +214,16 @@ The Full tier additionally has a game-level RTT probe (`Net._rtt_ping` /
 
 | Timer | Value | Effect |
 | --- | --- | --- |
-| Hello deadline | 5 s from TCP accept | Connection closed silently if no complete `hello` frame. |
+| Hello deadline | 5 s from TCP accept | Connection closes if no complete `hello` frame. Sends an error if framing is available. |
 | Close flush | ≤ 1 s | After `error`/`leave` the server flushes queued data, then drops the socket. |
+| WebSocket heartbeat | 20 s | The server sends WebSocket Ping control frames and waits up to one interval for a Pong. Applies to both tiers, including during load. |
 | Thin input watchdog | 500 ms | No valid `in` for 500 ms → movement and held buttons go neutral (view is kept). |
 | Full join deadline | 10 s from `welcome` | A Full peer not in the roster by then (no accepted `Net._hello`) is disconnected ([KNOWN_ISSUES.md](KNOWN_ISSUES.md#2-full-lobby-handshake-timeout)). |
-| Idle | none | There is no application idle timeout; WebSocket heartbeats detect dead peers. Raw TCP relies on OS keepalive/RST. |
+| Idle | none | WebSocket uses transport heartbeats. Raw TCP detects closure at the socket layer. |
+
+WebSocket clients MUST respond to control-frame Pings with Pongs. Most libraries
+do this while polling. The JSON `ping` and `pong` messages in §6 are independent
+of these control frames. Keep the transport polling during loading when possible.
 
 ## 8. Limits
 
@@ -229,11 +236,11 @@ The Full tier additionally has a game-level RTT probe (`Net._rtt_ping` /
 | Wrong join codes | 5 per address per minute (then a 60 s–1 h cooldown); 30 per minute server-wide |
 | Client → server message size | 1–65,536 bytes |
 | Server → client message size | up to 524,284 bytes |
-| Server outbound buffer per connection | 524,288 bytes (overflow closes) |
+| Server outbound buffer per connection | 524,288 bytes (reliable overflow closes; Thin snapshots wait for transport capacity) |
 | Callsign (Thin `hello.name`) | 18 characters after cleaning |
 | Full `Net._hello` name | 32 characters after cleaning; `Net._request_name` 18 |
 | Lobby chat | 100 characters, 1 message / 700 ms / player, server keeps the last 30 |
-| Thin snapshot rate | 2–20 Hz (default 20) |
+| Thin snapshot rate | 2–20 Hz target (default 20). The server sends up to 2 Hz until the client signals readiness or the 15 s loading grace period expires ([Thin §3](spec-thin.md#3-session-state-machine)). |
 | Thin input rate | SHOULD be 30 Hz; queue holds 32 frames |
 | Thin events buffered between snapshots | 256 |
 | Full RPC arguments | 0–255 per call |

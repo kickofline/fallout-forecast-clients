@@ -17,8 +17,9 @@ Read [spec-common.md](spec-common.md) first (framing, hello, errors, limits).
 | S → C | `lobby` | — | in state `lobby`, on every change (§4) |
 | C → S | `lobby` (actions) | — | states `lobby`, `results` (§4.1) |
 | S → C | `load` | — | after `status loading` (§3) |
+| C → S | `loaded` | — | optional, when ready to receive snapshots after `load` (§3) |
 | C → S | `in` | tag `0x01` (enc `bin`) | state `run`, 30 Hz (§5) |
-| S → C | `snap` | tag `0x02` (enc `bin`) | state `run`, at `rate` Hz (§6, §7) |
+| S → C | `snap` | tag `0x02` (enc `bin`) | state `run`, up to `rate` Hz (§6, §7) |
 | S → C | `ev` | — | after a snapshot when events are pending (§9) |
 | C → S | `map_req` | — | any time after `welcome` (§8) |
 | S → C | `map` | — | reply to `map_req` |
@@ -39,7 +40,7 @@ values in `welcome`:
 | Field | Type | Default | Rule |
 | --- | --- | --- | --- |
 | `name` | string | `"THIN PLAYER"` | Cleaned: outer whitespace trimmed, characters below U+0020 and U+007F removed, `[`→`(`, `]`→`)`, then cut to 18 characters. Blank or non-string → default. |
-| `rate` | integer | 20 | Snapshot rate in Hz, 2–20. Anything else (missing, non-integer, out of range) → 20. |
+| `rate` | integer | 20 | Target snapshot rate in Hz, 2–20. Anything else (missing, non-integer, out of range) → 20. Choose a rate the client can process in normal play. |
 | `radius` | number | 0 | Interest radius in metres (3D distance from your position). A positive finite value is clamped to 1–500; anything else → 0 = no filter. Filters `enemies`, `pickups`, `projectiles` and sorts each nearest-first. |
 | `max_enemies` | integer | -1 | Cap on `enemies` rows after the radius filter, 0–256. -1 = unlimited. When set, `enemies` is sorted nearest-first even without a radius. Anything else → -1. |
 
@@ -75,8 +76,8 @@ stateDiagram-v2
 | State | Server sends | Server accepts |
 | --- | --- | --- |
 | `lobby` | `lobby` on change | `lobby` actions, `map_req`, `ping`, `leave` |
-| `loading` | `load` once | `map_req`, `ping`, `leave` (inputs ignored) |
-| `run` | `snap`, `ev`, `draft`, `draft_done`, `tape` | `in`, `choice`, `map_req`, `ping`, `leave` |
+| `loading` | `load` once | `loaded`, `map_req`, `ping`, `leave` (inputs ignored) |
+| `run` | `snap`, `ev`, `draft`, `draft_done`, `tape` | `loaded`, `in`, `choice`, `map_req`, `ping`, `leave` |
 | `results` | `results` once | `lobby` actions (ready, vote, chat; `start` is ignored), `ping`, `leave` |
 | `disconnected` | — | — (socket closes) |
 
@@ -91,6 +92,15 @@ grants the **pump shotgun starter kit** (pump shotgun in the first hotbar slot, 
 frag grenades, one shield dome) in normal play. If a draft or tape choice is
 open, the server sends its state right away. See the
 [late-join starter issue](KNOWN_ISSUES.md#6-thin-starter-on-late-join) for that case.
+
+**Snapshot readiness:** After processing `load`, a client MAY send
+`{"t":"loaded"}` as soon as it can read snapshots. This is JSON in either
+encoding and is accepted before or after `status run`. Until then, the server
+sends a first snapshot as soon as possible in `run`, followed by snapshots at
+up to 2 Hz. The first valid `in` in `run` also enables the negotiated rate.
+With neither message, the server resumes the negotiated rate after 15 s from
+when it sent `load`. The grace period resets on each `load`. Clients that wait
+for the first snapshot to initialize their controls can keep doing so.
 
 Input sequence state resets on every `load` and on `results`: you MAY restart
 `seq` at 0 after each `load`.
@@ -209,7 +219,11 @@ valid `seq` is a protocol error: the server replies `error` and closes.
 
 ## 6. Snapshot (JSON)
 
-Sent in state `run` at `rate` Hz (first one immediately on entering `run`).
+Sent in state `run` up to `rate` Hz, subject to loading readiness (§3) and
+transport backpressure. While the server transport has pending outbound data,
+it skips snapshot sends. When writes drain it samples the latest state.
+Snapshots already handed to the network can still arrive late. Treat snapshots
+as replaceable state and use the newest one available each frame.
 Every list is **complete** for this snapshot (after the radius/cap filter):
 remove anything that is no longer listed. Ids are unique per category within a
 run and may be reused in a later run.
@@ -423,9 +437,12 @@ asset pack ([game-reference.md §7](game-reference.md#7-exported-asset-pack)).
 ## 9. Events
 
 `{"t":"ev","list":[...]}` follows a snapshot whenever events are pending
-(and is flushed once more before `results`). Each element has a string `e`.
-Events are transient and can be lost when more than 256 accumulate; snapshot
-lists stay authoritative. Ignore unknown `e` values.
+(and is flushed once more before `results`). While snapshot sends are delayed,
+the server batches pending events for the next send and combines damage in a
+single `hurt` event. Each element has a string `e`. Events are transient and
+can be lost when more than 256 accumulate. Snapshot lists stay authoritative.
+Draft transitions and results retain their order in the reliable stream.
+Ignore unknown `e` values.
 
 | `e` | Fields | Notes |
 | --- | --- | --- |

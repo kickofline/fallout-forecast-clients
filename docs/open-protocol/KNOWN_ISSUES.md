@@ -11,7 +11,7 @@ integral ping values to integers.
 
 ## 2. Full lobby handshake timeout
 
-The five-second transport hello deadline ends at `welcome`. After `welcome`, the server enforces a ten-second join deadline for `Net._hello` to add the peer to the lobby roster, disconnecting peers that do not finish joining in time. The server also ignores a `Net._hello` whose inner string does not parse to a dictionary. A client should send a valid inner JSON object immediately after `welcome` and impose its own deadline for a roster containing `welcome.you` or a `Net._reject` reply. Close on timeout.
+The five-second transport hello deadline ends at `welcome`. After `welcome`, the server enforces a ten-second join deadline for `Net._hello` to add the peer to the lobby roster. The server sends `Full tier join timed out` when it can still write and closes the connection. It ignores a `Net._hello` whose inner string does not parse to a dictionary. Send a valid inner JSON object immediately after `welcome` and impose your own deadline for a roster containing `welcome.you` or a `Net._reject` reply.
 
 ## 3. Full results broadcasts
 
@@ -47,3 +47,9 @@ automatic kit. There is no Thin starter retry action in v1. Treat an empty
 hotbar as authoritative and render it. The player can scavenge after play
 resumes. A new connection can receive the normal kit if it joins at a time
 when inventory actions are available.
+
+## 7. Abnormal WebSocket closure
+
+Godot reports a missed transport Pong and a socket lost without a close frame
+with the same close-code sentinel. The server logs both possible causes in
+that case. A client can receive an abnormal close without a server diagnostic.

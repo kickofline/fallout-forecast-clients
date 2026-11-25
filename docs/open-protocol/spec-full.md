@@ -477,8 +477,11 @@ These are **silently dropped** (server log only, no reply):
   not in run, rate limits). The game simply ignores the request; you see the
   authoritative state in later RPCs.
 
-The connection is closed (spec-common §4.4) on transport violations, after
-`Net._reject`, and on `leave`.
+The connection closes on transport violations, on the 10 s join deadline,
+after `Net._reject`, and on `leave`. A server-initiated close can also deliver
+an `error` or WebSocket close reason ([spec-common.md §4.4](spec-common.md#44-error-server--client)).
+Full keeps its ordered RPC stream and shares the 20 s WebSocket heartbeat
+interval with Thin.
 
 ## 12. Relayed RPCs (echo to the sender)
 

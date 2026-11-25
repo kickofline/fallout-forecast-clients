@@ -51,6 +51,18 @@ a test code on the server and pass a different code with
 payload statistics and a nonzero exit on failure. `--url` accepts a complete
 WebSocket URL for a TLS-enabled endpoint.
 
+To reproduce a blocked loading thread followed by a sustained read cap, run:
+
+```text
+uv run tools/thin_client/fake_client.py --port 17780 --stall-after-load=10 --read-rate=5 --rate=5 --require-results
+```
+
+The stall pauses all client I/O, including WebSocket Pongs. The read cap limits
+application messages consumed per second independently of the requested
+snapshot rate. With the cap enabled the checker skips the cadence assertion.
+Add `--send-loaded` to exercise the optional readiness message. Without it,
+the first valid input enables the negotiated rate.
+
 ## Full checker
 
 This checker uses Python 3.10+ and the standard library. Use `--mode check`

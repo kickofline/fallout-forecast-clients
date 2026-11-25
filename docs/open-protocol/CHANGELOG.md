@@ -24,6 +24,21 @@ Chronological log of every change affecting **Fallout Forecast**'s native multip
 
 ---
 
+## 2026-11-25 — Tolerate slow and blocked clients ([PR #2](https://github.com/kickofline/fallout-forecast/pull/2))
+
+- **Versions:** Open Protocol `v1` · `Net.PROTOCOL` `19`
+- **Tiers affected:** Common, Thin, Full
+- **Breaking:** No
+- **Changes:**
+  - Open Protocol WebSockets send a Ping every 20 s and allow 20 s for the matching Pong. Both intervals were 2 s.
+  - Thin automatically sends the first `snap` in `run`, then sends at up to 2 Hz until optional JSON `{"t":"loaded"}`, first valid `in`, or 15 s from `load`. `loaded` can arrive during `loading` or `run` for either encoding.
+  - Thin skips snapshot sends while its outbound transport queue is busy and samples fresh state when it drains. Pending events still batch within the 256-event cap. Draft and results messages stay ordered. The 524,288-byte reliable buffer cap stays in force.
+  - Server logs now include Open Protocol disconnect reasons and available WebSocket close codes. Server-initiated closes can send an `error` or WebSocket close reason. This includes framing and buffer errors, the 5 s hello and 10 s Full join deadlines, and game-level rejection. A missed WebSocket Pong can still surface as an abnormal close.
+- **Client action:**
+  - **Thin:** Existing clients can keep waiting for the first snapshot. Optionally send `loaded` when ready, or send valid input after `status run` to enable the negotiated rate. Request a sustainable rate and accept gaps in snapshots. Display a diagnostic if delivered and handle EOF or WebSocket close.
+  - **Full:** Keep answering WebSocket control Pings and game RTT probes. Treat a server-initiated disconnect as terminal, displaying any available error or close reason. RPC envelopes and catalog are unchanged.
+- **Docs updated:** `spec-common.md`, `spec-thin.md`, `spec-full.md`, `KNOWN_ISSUES.md`, `conformance.md`, `AGENTS.md`
+
 ## 2026-11-25 — CIDR support for `FALLOUT_TRUSTED_PROXIES` (`d7c89ff`)
 
 - **Versions:** Open Protocol `v1` · `Net.PROTOCOL` `19`
