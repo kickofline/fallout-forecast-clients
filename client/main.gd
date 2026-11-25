@@ -44,7 +44,7 @@ func _ready() -> void:
 	Net.connect("results", self, "_on_results")
 	Net.connect("failed", self, "_on_failed")
 	get_tree().connect("screen_resized", self, "_on_resized")
-	if "--capture" in OS.get_cmdline_args() or _has_arg("--capture="):
+	if "--capture" in Settings.args() or _has_arg("--capture="):
 		var cap = load("res://core/capture.gd").new()
 		cap.name = "Capture"
 		add_child(cap)
@@ -54,7 +54,7 @@ func _ready() -> void:
 
 
 func _has_arg(prefix: String) -> bool:
-	for a in OS.get_cmdline_args():
+	for a in Settings.args():
 		if str(a).begins_with(prefix):
 			return true
 	return false
@@ -94,6 +94,7 @@ func _on_failed(_why) -> void:
 func _on_results(data) -> void:
 	_results_data = data
 	_show_results = true
+	_screen_kind = ""  # rebuild even if status "results" already showed it
 	_end_run()
 	_refresh()
 

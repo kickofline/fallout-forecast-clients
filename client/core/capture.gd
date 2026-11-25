@@ -18,7 +18,7 @@ var _shot_index = 0
 
 func _ready() -> void:
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	for a in OS.get_cmdline_args():
+	for a in Settings.args():
 		var s = str(a)
 		if s.begins_with("--capture="):
 			dir = s.substr(10)
@@ -99,12 +99,12 @@ func _process(delta: float) -> void:
 				_go("done")
 	if _quit_after > 0.0:
 		_quit_after -= delta
-		if _quit_after <= 0.0 and "--exit-when-done" in OS.get_cmdline_args():
+		if _quit_after <= 0.0 and "--exit-when-done" in Settings.args():
 			get_tree().quit()
 
 
 func _arg(name: String, fallback: String) -> String:
-	for a in OS.get_cmdline_args():
+	for a in Settings.args():
 		if str(a).begins_with("--%s=" % name):
 			return str(a).substr(name.length() + 3)
 	return fallback

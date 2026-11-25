@@ -38,7 +38,8 @@ func set_item(id) -> void:
 		return
 	var scene = Assets.weapon_view(s)
 	if scene:
-		model = scene.instance()
+		var part = str(Assets.weapon(s).get("animated_part", ""))
+		model = RetroMat.instance_merged(scene, ["Muzzle", "Sight", "LeftHand", "RightHand", part])
 	else:
 		model = _placeholder()
 	add_child(model)

@@ -333,7 +333,7 @@ func _show_overlay(kind: String) -> void:
 	if kind == "draft":
 		var head = UI.label("PICK A SQUAD MUTATION", 28, UI.PAPER)
 		head.add_stylebox_override("normal", UI.panel(UI.OVERLAY, UI.CYAN))
-		UI.place(head, 0.5, 0.5, -150, -40)
+		UI.place(head, 0.5, 0.5, -150, -205)
 		_overlay.add_child(head)
 		var cards: Array = _draft.get("cards", []) if _draft.get("cards") is Array else []
 		var colors = [UI.ACID, UI.CYAN, Color("#7fb2ff")]
@@ -343,7 +343,7 @@ func _show_overlay(kind: String) -> void:
 				continue
 			var b = Button.new()
 			b.focus_mode = Control.FOCUS_NONE
-			UI.place(b, 0.5, 0.5, -460 + i * 310, 26)
+			UI.place(b, 0.5, 0.5, -460 + i * 310, -140)
 			b.rect_size = Vector2(300, 150)
 			var c: Color = colors[i % 3]
 			var box = StyleBoxFlat.new()
@@ -633,4 +633,4 @@ func _on_draw() -> void:
 	if _overlay_kind == "draft":
 		var total = float(_draft.get("time_left", 15.0)) if _draft.get("time_left") != null else 15.0
 		var k: float = clamp(_draft_left / max(1.0, total), 0.0, 1.0)
-		_draw.draw_rect(Rect2(Vector2(c.x - 460, c.y + 184), Vector2(920 * k, 4)), UI.CYAN)
+		_draw.draw_rect(Rect2(Vector2(c.x - 460, c.y + 18), Vector2(920 * k, 4)), UI.CYAN)

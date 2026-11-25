@@ -17,6 +17,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "assets")
 DST = os.path.join(ROOT, "client", "assets")
 SKIP_EXT = {".import", ".webp"}  # Godot 3 export doesn't need the webp copies
+# Only files of these types are ever deleted from client/assets; anything
+# Godot generates next to them (.import, extracted materials) is left alone.
+OWNED_EXT = {".glb", ".gltf", ".json", ".png", ".jpg", ".wav", ".ogg", ".ttf", ".otf", ".txt", ".md"}
 
 
 def main():
@@ -50,8 +53,12 @@ def main():
     for base, _dirs, files in os.walk(DST):
         for name in files:
             path = os.path.normpath(os.path.join(base, name))
-            source = path[:-7] if path.endswith(".import") else path
-            if source not in wanted:
+            if path.endswith(".import"):
+                if not os.path.exists(path[:-7]):
+                    os.remove(path)
+                    removed += 1
+                continue
+            if os.path.splitext(name)[1].lower() in OWNED_EXT and path not in wanted:
                 os.remove(path)
                 removed += 1
     print("assets: %d copied, %d unchanged, %d removed -> %s" % (copied, kept, removed, DST))

@@ -84,9 +84,30 @@ func _apply_volume() -> void:
 	AudioServer.set_bus_mute(bus, volume <= 0.001)
 
 
+var _args = null
+
+
+## Command-line args plus user://test_args.txt (one per line). The file lets
+## tests pass flags on Android, where the Godot 3 template takes none.
+func args() -> Array:
+	if _args != null:
+		return _args
+	_args = []
+	for a in OS.get_cmdline_args():
+		_args.append(str(a))
+	var f = File.new()
+	if f.file_exists("user://test_args.txt") and f.open("user://test_args.txt", File.READ) == OK:
+		for line in f.get_as_text().split(char(10)):
+			var t = line.strip_edges()
+			if not t.empty():
+				_args.append(t)
+		f.close()
+	return _args
+
+
 ## Command-line overrides for tests: --url=ws://... --name=... --no-retro --scale=0.5
 func apply_cmdline() -> void:
-	for arg in OS.get_cmdline_args():
+	for arg in args():
 		var a = str(arg)
 		if a.begins_with("--url="):
 			server_url = a.substr(6)

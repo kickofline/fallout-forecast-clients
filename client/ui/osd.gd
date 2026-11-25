@@ -78,7 +78,13 @@ func _process(delta: float) -> void:
 	if _log_left <= 0.0:
 		_log_left = 5.0
 		# Grepable perf line for adb logcat / desktop stdout.
-		print("PERF fps=%.1f mode=%s retro=%s scale=%.2f rtt=%d" % [_fps, _mode, str(Settings.retro_enabled), Settings.render_scale, int(Net.rtt_ms)])
+		print("PERF fps=%.1f mode=%s retro=%s scale=%.2f rtt=%d proc=%.1fms draws=%d verts=%d objs=%d nodes=%d" % [_fps, _mode,
+			str(Settings.retro_enabled), Settings.render_scale, int(Net.rtt_ms),
+			Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0,
+			Performance.get_monitor(Performance.RENDER_DRAW_CALLS_IN_FRAME),
+			Performance.get_monitor(Performance.RENDER_VERTICES_IN_FRAME),
+			Performance.get_monitor(Performance.RENDER_OBJECTS_IN_FRAME),
+			Performance.get_monitor(Performance.OBJECT_NODE_COUNT)])
 	var recording = Settings.reduced_flash or fmod(_clock, 1.0) < 0.6
 	_dot.visible = recording
 	# The original shows REC only over gameplay (title/lobby have their own OSD).

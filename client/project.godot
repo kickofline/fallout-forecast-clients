@@ -49,6 +49,22 @@ window/stretch/aspect="expand"
 
 common/drop_mouse_on_gui_input_disabled=true
 
+[importer_defaults]
+
+scene={
+"animation/import": false,
+"materials/keep_on_reimport": true,
+"materials/location": 1,
+"materials/storage": 0,
+"meshes/compress": false,
+"meshes/ensure_tangents": false,
+"meshes/light_baking": 0,
+"meshes/octahedral_compression": false,
+"meshes/storage": 0,
+"nodes/root_type": "Spatial",
+"skins/use_named_skins": true
+}
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
@@ -83,7 +99,9 @@ quality/shading/force_vertex_shading=true
 quality/shading/force_lambert_over_burley=true
 quality/shading/force_blinn_over_ggx=true
 quality/filters/use_nearest_mipmap_filter=true
+gles2/compatibility/disable_half_float=true
 limits/buffers/canvas_polygon_buffer_size_kb=256
 limits/buffers/canvas_polygon_index_buffer_size_kb=256
 environment/default_clear_color=Color( 0.047, 0.078, 0.133, 1 )
 quality/depth/hdr=false
+gles2/compatibility/disable_half_float.mobile=true

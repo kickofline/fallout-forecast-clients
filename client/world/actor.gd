@@ -23,6 +23,11 @@ const PLACEHOLDER_COLORS = {
 	"cloudburst": Color("#b48cff"), "cumulus": Color("#c8cbd8"), "turned": Color("#8ce64d"),
 }
 
+const PIVOTS = ["Rig", "Body", "Head", "Jaw", "ArmL", "ArmR", "ElbowL", "ElbowR", "LegL", "LegR", "KneeL", "KneeR",
+	"Hips", "Torso", "ForearmL", "ForearmR", "ShinL", "ShinR", "WeaponMount", "Sparks",
+	"MinibossMantle", "MinibossHalo", "MinibossGroundAura", "StormCrownOuter", "StormCrownInner",
+	"Sac0", "Sac1", "Sac2", "SacHalo0", "SacHalo1", "SacHalo2", "Core", "CoreRings", "Shell"]
+
 var kind = "enemy"        # enemy | player | turned | boss
 var type = ""
 var id = 0
@@ -59,7 +64,7 @@ func setup_enemy(enemy_type: String) -> void:
 	_gait = GAIT.get(type, GAIT["gutter"])
 	var scene = Assets.enemy_scene(type)
 	if scene:
-		_use_model(scene.instance())
+		_use_model(RetroMat.instance_merged(scene, PIVOTS))
 	else:
 		_use_model(_placeholder(PLACEHOLDER_COLORS.get(type, Color("#6fd65a")), type == "turned" or kind == "boss"))
 	if type == "cloudburst" and not scene:
@@ -71,7 +76,7 @@ func setup_player(model_id: String, suit: Color) -> void:
 	kind = "player"
 	var scene = Assets.player_scene(model_id)
 	if scene:
-		_use_model(scene.instance())
+		_use_model(RetroMat.instance_merged(scene, PIVOTS))
 	else:
 		_use_model(_placeholder(suit, true))
 
@@ -84,10 +89,7 @@ func _use_model(m: Spatial) -> void:
 	RetroMat.prepare(model)
 	parts.clear()
 	rest.clear()
-	for n in ["Rig", "Body", "Head", "Jaw", "ArmL", "ArmR", "ElbowL", "ElbowR", "LegL", "LegR", "KneeL", "KneeR",
-			"Hips", "Torso", "ForearmL", "ForearmR", "ShinL", "ShinR", "WeaponMount", "Sparks",
-			"MinibossMantle", "MinibossHalo", "MinibossGroundAura", "StormCrownOuter", "StormCrownInner",
-			"Sac0", "Sac1", "Sac2", "Core", "Shell"]:
+	for n in PIVOTS:
 		var node = model.find_node(n, true, false) as Spatial
 		if node:
 			parts[n] = node
@@ -156,7 +158,7 @@ func set_item(item_id) -> void:
 		return
 	var scene = Assets.weapon_view(id_s)
 	if scene:
-		var w: Spatial = scene.instance()
+		var w: Spatial = RetroMat.instance_merged(scene, ["Muzzle", "Sight", "LeftHand", "RightHand"])
 		w.scale = Vector3.ONE * 1.6
 		w.translation = -Vector3(0.026, -0.045, 0.033)
 		weapon_mount.add_child(w)

@@ -25,6 +25,7 @@ func reload() -> void:
 	environments = read_json(path(env_path)) if env_path is String else {}
 	var cos_path = manifest.get("cosmetics")
 	cosmetics = read_json(path(cos_path)) if cos_path is String else {}
+	print("ASSETS manifest=%s maps=%d enemies=%d weapons=%d" % [str(not manifest.empty()), ids("maps").size(), ids("enemies").size(), ids("weapons").size()])
 
 
 func has_manifest() -> bool:
@@ -65,6 +66,8 @@ func load_scene(rel) -> PackedScene:
 	var res: PackedScene = null
 	if ResourceLoader.exists(p):
 		res = load(p) as PackedScene
+	if res == null:
+		print("ASSETS missing scene ", p)
 	_cache[p] = res
 	return res
 
@@ -199,7 +202,9 @@ func read_json(p) -> Dictionary:
 	if not (p is String) or p.empty():
 		return {}
 	var f = File.new()
-	if not f.file_exists(p) or f.open(p, File.READ) != OK:
+	var err = f.open(p, File.READ)
+	if err != OK:
+		print("ASSETS cannot open %s (%d)" % [p, err])
 		return {}
 	var parsed = JSON.parse(f.get_as_text())
 	f.close()
