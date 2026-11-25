@@ -62,8 +62,9 @@ Send, reliably:
 
 - `hello` is a **JSON-encoded string** (a string argument whose content is
   JSON): `{"name":"<display name>","color":<0-9>,"skin":<0-4>,"colors":[<unlocked color indices>]}`.
-  - `name`: string, cut to 32 characters (not otherwise cleaned; keep it plain
-    printable text, see [KNOWN_ISSUES.md](KNOWN_ISSUES.md#4-full-callsign-cleaning)). Non-string → `"PLAYER"`.
+  - `name`: string, cleaned like a Thin callsign (control characters and bidi
+    overrides removed, `[`/`]` replaced with `(`/`)`) and cut to 32 characters,
+    see [KNOWN_ISSUES.md](KNOWN_ISSUES.md#4-full-callsign-cleaning). Non-string or empty after cleaning → `"PLAYER"`.
   - `color`: preferred suit colour index (number). If another player already
     wears it the server picks the next free one; the roster shows what you got.
   - `skin`: skin index, wrapped modulo 5.

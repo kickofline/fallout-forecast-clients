@@ -129,12 +129,19 @@ terminal `error` (§4.4) followed by close:
 1. The frame is a JSON object with string `t` → else `Expected an Open Protocol message`.
 2. `t == "hello"` and `v` is the integer `1` → else `Expected hello with Open Protocol v1`.
 3. Join code: if the server has one, `code` MUST equal it exactly → else `Invalid join code`.
+   An address with 5 wrong codes in a minute is refused for 60 s (doubling on
+   each repeat, up to 1 h), and after 30 wrong codes in a minute across all
+   addresses the server stops checking codes for the rest of that minute. In
+   both cases the answer is `Too many join attempts, try again later`. A
+   refused address can also be disconnected at TCP accept without any message.
 4. `enc` is `"json"` or `"bin"` (missing = `"json"`) → else `Unsupported encoding`.
-5. `tier` is `"thin"` or `"full"` (missing = `"thin"`) → else `Unsupported tier`.
+5. Fewer than 12 established Open Protocol connections (Thin sessions plus Full
+   peers) → else `Too many Open Protocol connections`.
+6. `tier` is `"thin"` or `"full"` (missing = `"thin"`) → else `Unsupported tier`.
    A Full hello on a server built without the Full tier → `full tier unavailable`;
    a server whose Full adapter is not running → `Full tier server is not active`
    or `Server is not accepting connections`.
-6. Thin only: fewer than 4 players in the roster → else `SERVER FULL`.
+7. Thin only: fewer than 4 players in the roster → else `SERVER FULL`.
    (Full peers are admitted to the transport first and rejected later by the game
    handshake with `Net._reject("SERVER FULL")`, see [spec-full.md §3](spec-full.md#3-game-handshake-net_hello).)
 
@@ -208,7 +215,7 @@ The Full tier additionally has a game-level RTT probe (`Net._rtt_ping` /
 | Hello deadline | 5 s from TCP accept | Connection closed silently if no complete `hello` frame. |
 | Close flush | ≤ 1 s | After `error`/`leave` the server flushes queued data, then drops the socket. |
 | Thin input watchdog | 500 ms | No valid `in` for 500 ms → movement and held buttons go neutral (view is kept). |
-| Full game hello | none | A Full peer that never sends `Net._hello` stays connected but is not a player ([KNOWN_ISSUES.md](KNOWN_ISSUES.md#2-full-lobby-handshake-timeout)). |
+| Full join deadline | 10 s from `welcome` | A Full peer not in the roster by then (no accepted `Net._hello`) is disconnected ([KNOWN_ISSUES.md](KNOWN_ISSUES.md#2-full-lobby-handshake-timeout)). |
 | Idle | none | There is no application idle timeout; WebSocket heartbeats detect dead peers. Raw TCP relies on OS keepalive/RST. |
 
 ## 8. Limits
@@ -216,13 +223,15 @@ The Full tier additionally has a game-level RTT probe (`Net._rtt_ping` /
 | Limit | Value |
 | --- | --- |
 | Players per server (all tiers + native combined) | **4** |
-| Concurrent Open Protocol connections in the listener (pending hellos + Thin sessions) | 12 (Full connections leave the listener after `welcome`) |
-| New connections accepted per listener per server frame | 4 (the server ticks at 60 Hz) |
+| Established Open Protocol connections (Thin sessions + Full peers) | 12 |
+| Pending connections (no valid `hello` yet) | 16 in total, 3 per client address |
+| New connections admitted per listener per server frame | 4 (the server ticks at 60 Hz); refused connections are closed at accept |
+| Wrong join codes | 5 per address per minute (then a 60 s–1 h cooldown); 30 per minute server-wide |
 | Client → server message size | 1–65,536 bytes |
 | Server → client message size | up to 524,284 bytes |
 | Server outbound buffer per connection | 524,288 bytes (overflow closes) |
 | Callsign (Thin `hello.name`) | 18 characters after cleaning |
-| Full `Net._hello` name | 32 characters; `Net._request_name` 18 |
+| Full `Net._hello` name | 32 characters after cleaning; `Net._request_name` 18 |
 | Lobby chat | 100 characters, 1 message / 700 ms / player, server keeps the last 30 |
 | Thin snapshot rate | 2–20 Hz (default 20) |
 | Thin input rate | SHOULD be 30 Hz; queue holds 32 frames |
@@ -262,6 +271,14 @@ The per-tier states inside `Thin` and `Full` are in
 ## 11. Security notes
 
 - The join code is a shared secret sent in cleartext unless a TLS proxy is used.
+  Use a long random code (12+ characters); the server rate-limits wrong codes
+  (§8) but a short code can still be guessed over days.
+- The join code gates only the Open Protocol listeners. The native Godot port
+  has no join code, and a Full client can do anything a native client can, so
+  setting a code does not make a server private.
+- The server cleans every callsign and chat line (control characters, bidi
+  overrides and `[`/`]` are removed or replaced) and escapes control characters
+  in its JSON output, so server JSON is always valid RFC 8259 JSON.
 - Thin clients cannot cheat on simulation: the server owns movement and combat.
   Full clients are trusted for their own movement and exposure, like native Godot
   clients; the server validates shots (origin within 3 m of the server-side

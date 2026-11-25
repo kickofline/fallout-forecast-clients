@@ -23,9 +23,11 @@ applying run state again on the next `Net._start_run`.
 
 ## 4. Full callsign cleaning
 
-The Full game handshake truncates the name to 32 characters without the Thin
-callsign cleanup. `Net._request_name` trims it to 18 and ignores empty names.
-Use a short printable callsign and render all names and chat as plain text.
+The Full game handshake applies the same cleaning as the Thin callsign but
+keeps up to 32 characters (Thin keeps 18). `Net._request_name` cleans and trims
+to 18 and ignores names that are empty after cleaning. A cleaned name can still
+hold emoji and combining marks, so 32 characters can be well over 32 bytes in
+UTF-8. Render all names and chat as plain text.
 
 ## 5. Packed array and typed dictionary decoding
 
