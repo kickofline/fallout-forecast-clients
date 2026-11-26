@@ -31,7 +31,10 @@ func _ready() -> void:
 	_box.size_flags_horizontal = SIZE_EXPAND_FILL
 	_box.add_constant_override("separation", 10)
 	scroll.add_child(_box)
-	_slider("LOOK SENSITIVITY", "look_sensitivity", 0.3, 3.0, 0.05, "%.2fx")
+	call_deferred("_attach_nav", back)
+	_slider("TOUCH LOOK SENSITIVITY", "look_sensitivity", 0.3, 3.0, 0.05, "%.2fx")
+	_slider("MOUSE SENSITIVITY", "mouse_sensitivity", 0.2, 4.0, 0.05, "%.2fx")
+	_slider("PAD LOOK SENSITIVITY", "pad_sensitivity", 0.3, 3.0, 0.05, "%.2fx")
 	_toggle("INVERT LOOK Y", "invert_y")
 	_slider("BUTTON SIZE", "button_size", 0.8, 1.4, 0.05, "%.2fx")
 	_toggle("RETRO VHS / PS1 LOOK", "retro_enabled")
@@ -127,3 +130,10 @@ func _on_choice(key: String, value, row: HBoxContainer) -> void:
 func _on_back() -> void:
 	Settings.save()
 	queue_free()
+
+
+func _attach_nav(back: Button) -> void:
+	UI.focusable(self)
+	var nav = preload("res://ui/focus_nav.gd").new().attach(self)
+	nav.first = back
+	nav.back_button = back

@@ -55,6 +55,36 @@ you connect, and verifies certificates for WSS connections. Vote for a map
 and ready up in the lobby. In the run, use the left stick to move and drag on
 the right to look. Use the on-screen actions and hotbar for combat and items.
 
+## Controls
+
+Keyboard + mouse, gamepad and touch all feed the `Controls` autoload
+(`core/controls.gd`); gameplay reads only that. The last device used becomes
+`Controls.device`. The on-screen touch layer shows only for touch, and the
+mouse is captured for mouse look while you play with keyboard + mouse (Esc
+releases it). Desktop has no touch layer unless you pass `--touch`.
+
+| Action | Keyboard + mouse | Gamepad | Touch |
+| --- | --- | --- | --- |
+| Move | WASD / arrows | Left stick | Left floating stick |
+| Look | Mouse | Right stick | Drag on the right half |
+| Fire / aim | LMB / RMB | RT / LT | FIRE / AIM |
+| Jump / crouch | Space / Ctrl or C | A / B | JUMP / CROUCH |
+| Sprint | Shift | L3 (latches until you stop or back up) | Push the stick past the rim |
+| Reload / interact (hold) | R / E | X / Y | RELOAD / USE |
+| Tarp (use_item) | T | D-pad up | ITEM |
+| Frag / Shield Dome | Q / F | D-pad left / right | Hotbar pouches |
+| Slots / cycle | 1–5 / wheel | RB / LB | Hotbar |
+| Drop item / ping | G / Z or MMB | R3 / D-pad down | — |
+| Ready up | H | Back | READY |
+| Pause / scoreboard | Esc / Tab | Start / Back | MENU |
+| Draft cards | 1 / 2 / 3 | Menu navigation | Tap a card |
+| Menus | Arrows, Enter, Esc | D-pad or left stick, A, B | Tap |
+
+Settings has separate touch, mouse and pad look sensitivities and inverted
+look for all devices. The pad uses a radial 0.2 deadzone with a response curve
+on the look stick and hot-plugs, on Android too. Screens can add
+`ui/focus_nav.gd` for keyboard and pad focus navigation.
+
 ## Quality settings
 
 | Setting | Default | Effect |
@@ -134,6 +164,21 @@ not draw-call-bound. Use it for Android behaviour and A/B direction, not
 absolute fps.
 
 ## Local verification
+
+Headless checks, run from `clients/car/` with Godot 3.6.3:
+
+- `-s ../../tools/godot_check.gd` compiles every script (`bad=0`).
+- `-s ../../tools/controls_check.gd` drives Controls and `ui/focus_nav.gd`
+  with synthetic keyboard, gamepad and touch input.
+- `-s ../../tools/physics_check.gd -- --verify=DIR` builds each map's collision
+  and navigation with `world/level_physics.gd`. It walks a player-size capsule
+  from every spawn, compares roof rays and shelter volumes with the native
+  game's results, and paths from every enemy and drain spawn to every player
+  spawn. `DIR` comes from the exporter's `--physics-verify=DIR`.
+- `-s ../../tools/thin_input_live.gd -- --url=wss://HOST/ --name=CarTest`
+  joins a Thin server and plays a short run with synthetic keyboard + mouse
+  and gamepad input. It force-starts only when the lobby is otherwise empty,
+  then leaves.
 
 Run the Python mock server from the root in a separate shell.
 

@@ -56,7 +56,9 @@ var pickups_list = []
 var glitch = 0.0
 var shake = 0.0
 
-# Look + input (written by the touch layer).
+# Look + input (gathered from the Controls autoload each frame).
+var input_blocked = false        # HUD menu open (set by hud.gd)
+var draft_open = false           # draft overlay up: 1/2/3 pick cards, not slots
 var yaw = 0.0
 var pitch = 0.0
 var look_ready = false
@@ -733,6 +735,7 @@ func _process_body(delta: float) -> void:
 	var mat = post_rect.material as ShaderMaterial
 	if mat:
 		mat.set_shader_param("glitch", glitch)
+	_gather_input()
 	_local_fire()
 	_send_left -= delta
 	if _send_left <= 0.0:
@@ -825,6 +828,40 @@ func _local_fire() -> void:
 
 
 # ------------------------------------------------------------------ input
+## Thin input from Controls (keyboard + mouse, gamepad, touch), once per
+## frame. Held actions map to the wire bits; presses are latched until the
+## next 30 Hz send so short taps are never lost. Wire `mv` is x = right,
+## y = back (+), so forward is negated.
+func _gather_input() -> void:
+	var l = Controls.take_look()
+	if input_blocked or Net.state != "run":
+		move = Vector2.ZERO
+		held_bits = 0
+		return
+	yaw = wrapf(yaw - l.x, -PI, PI)
+	pitch = clamp(pitch + l.y, -MAX_PITCH, MAX_PITCH)
+	var mv = Controls.move_vector()
+	move = Vector2(mv.x, -mv.y)
+	var bits = 0
+	for a in BITS:
+		if Controls.held(a):
+			bits |= BITS[a]
+		if Controls.pressed(a):
+			_latched_bits |= BITS[a]
+	if Controls.held("tarp"):
+		bits |= BITS.use_item
+	if Controls.pressed("tarp"):
+		_latched_bits |= BITS.use_item
+	held_bits = bits
+	for n in range(1, 6):
+		if Controls.pressed("slot_%d" % n) and not (draft_open and n <= 3):
+			select_slot(n)
+	if Controls.pressed("next_weapon"):
+		wheel(1)
+	elif Controls.pressed("prev_weapon"):
+		wheel(-1)
+
+
 func look(delta_px: Vector2, scale: float) -> void:
 	yaw -= delta_px.x * scale
 	pitch = clamp(pitch - delta_px.y * scale * (-1.0 if Settings.invert_y else 1.0), -MAX_PITCH, MAX_PITCH)

@@ -12,9 +12,17 @@ const CHUNK_CELL := 40.0
 ## halves the maps' material/draw-call count and renders identically on the
 ## Godot 3 client (fixed-camera A/B, 2026-11-25); the SGX is draw-call bound.
 var fold_colors := true
+## Write maps/<id>_physics.json (collision + navmesh) for every exported map
+## (on by default; --no-physics turns it off). physics_only skips the mesh
+## bake, sidecars and environments (--only=physics).
+var physics := true
+var physics_only := false
+## Optional directory for native-game verification fixtures (--physics-verify=DIR).
+var physics_verify_dir := ""
 
 
 func export_maps(tree: SceneTree, baker: RefCounted, out_dir: String, filter_maps: PackedStringArray, skip_decimate := false, chunked := false) -> Dictionary:
+	var physics_exp: RefCounted = (load((get_script() as Script).resource_path.get_base_dir().path_join("export_physics.gd")) as Script).new()
 	var maps_script: Variant = load("res://game/maps.gd")
 	var tree_shelter_script: Variant = load("res://props/tree_shelter.gd")
 	var restyle_script: Variant = load("res://props/building_restyle.gd")
@@ -56,6 +64,15 @@ func export_maps(tree: SceneTree, baker: RefCounted, out_dir: String, filter_map
 		# Install tree canopy shelter areas just like main.gd does.
 		tree_shelter_script.call("install", level)
 		await tree.physics_frame
+
+		var physics_info := {}
+		if physics or physics_only:
+			physics_info = await physics_exp.export_physics(level, map_id, out_dir, physics_verify_dir)
+		if physics_only:
+			results[map_id] = {"physics": physics_info}
+			level.queue_free()
+			await tree.process_frame
+			continue
 
 		# Extract environment before stripping anything.
 		var env_data := _extract_environment(level, map_id)
@@ -99,6 +116,9 @@ func export_maps(tree: SceneTree, baker: RefCounted, out_dir: String, filter_map
 			},
 			"bake_stats": baked.stats,
 		}
+		if not physics_info.is_empty():
+			map_info["physics"] = physics_info.file
+			map_info["physics_stats"] = physics_info
 
 		# Generate decimated variant if triangle count exceeds ~150k.
 		if not skip_decimate and int(baked.triangles) > DECIMATE_TRI_THRESHOLD:

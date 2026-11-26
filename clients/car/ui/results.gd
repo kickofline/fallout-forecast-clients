@@ -61,6 +61,10 @@ func _ready() -> void:
 	leave.rect_min_size = Vector2(180, 64)
 	row.add_child(leave)
 	Sound.play("results_win" if won else "results_loss")
+	UI.focusable(self)
+	var nav = preload("res://ui/focus_nav.gd").new().attach(self)
+	nav.first = back
+	nav.connect("back", self, "_on_back")
 
 
 func _map_name(id: String) -> String:
@@ -79,7 +83,3 @@ func _on_leave() -> void:
 	if main:
 		main.back_to_lobby()
 	net.leave()
-
-
-func nav_back() -> void:
-	_on_back()

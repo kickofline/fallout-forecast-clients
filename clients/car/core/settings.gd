@@ -16,6 +16,8 @@ var suit_color = 1                # Full tier cosmetics (game-reference §6)
 var suit_skin = 0
 var starter_index = 0             # Full starter kit: 0 pump shotgun, 1 nail driver, 2 revolver
 var look_sensitivity = 1.0      # multiplier on the base touch look rate
+var mouse_sensitivity = 1.0     # multiplier on the native mouse look rate (0.0025 rad/px)
+var pad_sensitivity = 1.0       # multiplier on the native right-stick look rate (3 rad/s)
 var invert_y = false
 var render_scale = 0.5          # 3D viewport scale when retro is off
 var retro_enabled = true        # PS1/VHS look: low-res 3D + VHS post
@@ -50,6 +52,8 @@ func load_settings() -> void:
 	starter_index = int(cfg.get_value("player", "starter", starter_index))
 	interp_ms = int(cfg.get_value("net", "interp_ms", interp_ms))
 	look_sensitivity = float(cfg.get_value("input", "look_sensitivity", look_sensitivity))
+	mouse_sensitivity = float(cfg.get_value("input", "mouse_sensitivity", mouse_sensitivity))
+	pad_sensitivity = float(cfg.get_value("input", "pad_sensitivity", pad_sensitivity))
 	invert_y = bool(cfg.get_value("input", "invert_y", invert_y))
 	button_size = float(cfg.get_value("input", "button_size", button_size))
 	render_scale = float(cfg.get_value("video", "render_scale", render_scale))
@@ -76,6 +80,8 @@ func save() -> void:
 	cfg.set_value("player", "starter", starter_index)
 	cfg.set_value("net", "interp_ms", interp_ms)
 	cfg.set_value("input", "look_sensitivity", look_sensitivity)
+	cfg.set_value("input", "mouse_sensitivity", mouse_sensitivity)
+	cfg.set_value("input", "pad_sensitivity", pad_sensitivity)
 	cfg.set_value("input", "invert_y", invert_y)
 	cfg.set_value("input", "button_size", button_size)
 	cfg.set_value("video", "render_scale", render_scale)

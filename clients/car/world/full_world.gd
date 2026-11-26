@@ -6,9 +6,9 @@ extends "res://world/world.gd"
 ## reads. Unlike Thin it simulates the local player (world/full_player.gd),
 ## computes exposure, streams 20 Hz transforms and renders the host's RPCs.
 ##
-## Input comes from the Controls autoload. Until the touch layer feeds
-## Controls, the legacy touch fields inherited from world.gd (move,
-## held_bits, press_bits, select_slot, look) are merged in as a fallback.
+## Input comes only from the Controls autoload (keyboard + mouse, gamepad and
+## the touch layer all feed it). The test fields inherited from world.gd
+## (auto_move, auto_bits, press_bits) are merged in for tests/full_drive.gd.
 
 signal group_warning(at)
 
@@ -57,7 +57,7 @@ var shelters = []
 var decons = []                     # {name, pos, path}
 var player_mutations = []
 var draft_hold = 0.0
-var draft_open = false
+var draft_active = false           # mutation draft dealt (inventory/interact blocked)
 var phase_id = 0
 var wave = 1
 var phase_left = 0.0
@@ -824,7 +824,7 @@ func _mutation_rpc(method: String, args: Array) -> void:
 	match method:
 		"_deal_rpc":
 			if args.size() >= 2 and args[1] is Array:
-				draft_open = true
+				draft_active = true
 				draft_hold = 9999.0
 				var cards = []
 				for id in args[1]:
@@ -836,7 +836,7 @@ func _mutation_rpc(method: String, args: Array) -> void:
 		"_votes_rpc":
 			pass
 		"_result_rpc":
-			draft_open = false
+			draft_active = false
 			draft_hold = 2.2
 			if args.size() >= 3 and args[2] is Array:
 				_set_mutations(args[2])
@@ -974,7 +974,7 @@ func _process_body(delta: float) -> void:
 	_update_effects(delta)
 	Settings.prof_add("w_sync", OS.get_ticks_usec() - _t)
 	_t = OS.get_ticks_usec()
-	var inp = _gather_input()
+	var inp = _full_input()
 	if ready_to_play and not net.finished:
 		_local_sim(delta, inp)
 	Settings.prof_add("w_local", OS.get_ticks_usec() - _t)
@@ -1002,7 +1002,7 @@ func _process_body(delta: float) -> void:
 
 
 func _update_weather(delta: float) -> void:
-	draft_hold = max(0.0, draft_hold - delta) if not draft_open else draft_hold
+	draft_hold = max(0.0, draft_hold - delta) if not draft_active else draft_hold
 	if draft_hold <= 0.0 or phase_id != 0:
 		phase_left = max(0.0, phase_left - delta)
 	var target = 0.0
@@ -1115,52 +1115,53 @@ func _update_effects(delta: float) -> void:
 
 
 # ------------------------------------------------------------------ input
-func _gather_input() -> Dictionary:
+func _full_input() -> Dictionary:
 	var lk = Controls.take_look()
-	if lk != Vector2.ZERO:
+	var blocked = input_blocked
+	if lk != Vector2.ZERO and not blocked:
 		var k = 0.6 if _aiming() else 1.0
 		yaw = wrapf(yaw - lk.x * k, -PI, PI)
-		pitch = clamp(pitch + lk.y * k * (-1.0 if Settings.invert_y else 1.0), -MAX_PITCH, MAX_PITCH)
-	var mv = Controls.move_vector()
-	if move != Vector2.ZERO:
-		mv += Vector2(move.x, -move.y)
+		pitch = clamp(pitch + lk.y * k, -MAX_PITCH, MAX_PITCH)
+	var mv = Vector2.ZERO if blocked else Controls.move_vector()
 	mv += Vector2(auto_move.x, -auto_move.y)
-	var bits = held_bits | auto_bits | _latched_bits
+	var bits = auto_bits | _latched_bits
 	_latched_bits = 0
 	var edge = bits & ~_prev_bits
 	_prev_bits = bits
-	var inp = {"move": mv.limit_length(1.0), "bits": bits, "edge": edge}
+	var inp = {"move": mv.limit_length(1.0)}
 	for a in ["fire", "aim", "jump", "crouch", "sprint", "reload", "interact"]:
-		inp[a] = Controls.held(a) or (bits & BITS[a]) != 0
-		inp[a + "_p"] = Controls.pressed(a) or (edge & BITS[a]) != 0
-	inp["use_item_p"] = Controls.pressed("use_item")
-	inp["tarp_p"] = Controls.pressed("tarp") or (edge & BITS.use_item) != 0
-	inp["ping_p"] = Controls.pressed("ping") or (edge & BITS.ping) != 0
-	inp["ready_p"] = (edge & BITS.ready_up) != 0
-	inp["frag_p"] = Controls.pressed("use_item") or (edge & BITS.throw_grenade) != 0
-	inp["dome_p"] = (edge & BITS.throw_dome) != 0
-	inp["drop_p"] = (edge & BITS.drop_item) != 0
+		inp[a] = (Controls.held(a) and not blocked) or (bits & BITS[a]) != 0
+		inp[a + "_p"] = (Controls.pressed(a) and not blocked) or (edge & BITS[a]) != 0
+	var ok = not blocked
+	inp["tarp_p"] = ok and Controls.pressed("tarp") or (edge & BITS.use_item) != 0
+	inp["ping_p"] = ok and Controls.pressed("ping") or (edge & BITS.ping) != 0
+	inp["ready_p"] = ok and Controls.pressed("ready_up") or (edge & BITS.ready_up) != 0
+	inp["frag_p"] = ok and Controls.pressed("throw_grenade") or (edge & BITS.throw_grenade) != 0
+	inp["dome_p"] = ok and Controls.pressed("throw_dome") or (edge & BITS.throw_dome) != 0
+	inp["drop_p"] = ok and Controls.pressed("drop_item") or (edge & BITS.drop_item) != 0
 	var slot = -1
-	for i in 4:
-		if Controls.pressed("slot_%d" % (i + 1)):
-			slot = i
+	if ok and not draft_active:
+		for i in 5:
+			if Controls.pressed("slot_%d" % (i + 1)):
+				slot = i
 	if _slot_frames > 0:
 		slot = _slot_pulse - 1
 		_slot_frames = 0
-	if Controls.pressed("next_weapon") or _wheel > 0:
+	if ok and (Controls.pressed("next_weapon") or _wheel > 0):
 		slot = _cycle_slot(1)
-	elif Controls.pressed("prev_weapon") or _wheel < 0:
+	elif ok and (Controls.pressed("prev_weapon") or _wheel < 0):
 		slot = _cycle_slot(-1)
 	_wheel = 0
 	inp["slot"] = slot
-	for i in 3:
-		if Controls.pressed("draft_%d" % (i + 1)):
-			inp["draft"] = i
+	if ok:
+		for i in 3:
+			if Controls.pressed("draft_%d" % (i + 1)):
+				inp["draft"] = i
 	return inp
 
 
 func _aiming() -> bool:
-	return my_state == "ok" and (Controls.held("aim") or ((held_bits | auto_bits) & BITS.aim) != 0)
+	return my_state == "ok" and ((Controls.held("aim") and not input_blocked) or (auto_bits & BITS.aim) != 0)
 
 
 func _cycle_slot(d: int) -> int:
@@ -1223,7 +1224,7 @@ func _starter(delta: float) -> void:
 	if not empty and starter_state == 1:
 		starter_state = 2
 		return
-	if my_state == "ok" and not draft_open and not tape_open:
+	if my_state == "ok" and not draft_active and not tape_open:
 		var idx = clamp(Settings.starter_index, 0, 2)
 		net.rpc_send("Main/RunLoot", "_request_starter", [run_id, idx])
 		print("FULL request_starter run=%d index=%d" % [run_id, idx])
@@ -1297,7 +1298,7 @@ func _combat(delta: float, inp: Dictionary) -> void:
 			_melee_left = 0.9
 			net.rpc_send(net.me_path(), "_request_melee", [])
 		return
-	if my_state != "ok" or draft_open or tape_open:
+	if my_state != "ok" or draft_active or tape_open:
 		_charge_left = -1.0
 		return
 	var row = held_row()
@@ -1401,12 +1402,12 @@ func _shoot(serial: int, id: String, w: Dictionary, is_gun: bool, interval: floa
 
 
 func _misc_actions(inp: Dictionary) -> void:
-	if inp.tarp_p and has_tarp and my_state == "ok" and not draft_open:
+	if inp.tarp_p and has_tarp and my_state == "ok" and not draft_active:
 		net.rpc_send(net.me_path(), "_push_tarp", [not tarp_up])
 	if inp.ready_p and my_state == "ok" and phase_id in [0, 4] and phase_left > 3.0:
 		net.rpc_send("GameManager", "_request_ready", [])
 		Sound.play("ui_click", -8.0)
-	if inp.has("draft") and draft_open:
+	if inp.has("draft") and draft_active:
 		net.choose("mutation", int(inp.draft))
 	elif inp.has("draft") and tape_open and net.first_peer == my_id:
 		net.choose("tape", int(inp.draft))
@@ -1477,7 +1478,7 @@ func _interact(delta: float, inp: Dictionary) -> void:
 
 
 func _best_interact() -> Dictionary:
-	if not (my_state in ["ok", "downed"]) or draft_open or tape_open:
+	if not (my_state in ["ok", "downed"]) or draft_active or tape_open:
 		return {}
 	var feet = me.feet()
 	var eye = _eye()
@@ -1640,7 +1641,7 @@ func _full_camera(delta: float, inp: Dictionary) -> void:
 	viewmodel.reloading = float(inv.reload_left) > 0.0
 	viewmodel.speed = hv
 	if ready_to_play:
-		var want_capture = Controls.device == "kbm" and not get_tree().paused
+		var want_capture = Controls.device == "kbm" and not input_blocked and OS.is_window_focused() and not net.finished
 		if want_capture != (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
 			Controls.capture_mouse(want_capture)
 

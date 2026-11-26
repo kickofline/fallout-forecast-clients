@@ -12,18 +12,15 @@ const FullWorld = preload("res://world/full_world.gd")
 const Hud = preload("res://ui/hud.gd")
 const Osd = preload("res://ui/osd.gd")
 const Backdrop = preload("res://ui/backdrop.gd")
-const MenuNav = preload("res://ui/menu_nav.gd")
 
 var world: Node
 var hud: Node
 var _ui_layer = CanvasLayer.new()
-var _nav_layer = CanvasLayer.new()
 var _screen_root = Control.new()
 var _backdrop: Control
 var _screen: Control
 var _screen_kind = ""
 var _osd: Node
-var _nav: Control
 var _results_data = {}
 var _show_results = false
 var _pending_map = ""
@@ -49,10 +46,6 @@ func _ready() -> void:
 	_screen_root.add_child(_backdrop)
 	_osd = Osd.new()
 	add_child(_osd)
-	_nav_layer.layer = 20
-	add_child(_nav_layer)
-	_nav = MenuNav.new()
-	_nav_layer.add_child(_nav)
 	for n in [Net, FullNet]:
 		n.connect("phase_changed", self, "_on_phase")
 		n.connect("status_changed", self, "_on_status")
@@ -149,25 +142,11 @@ func _process(_delta: float) -> void:
 		_load_wait -= 1
 		if _load_wait == 0:
 			_start_run(_pending_map)
-	_nav.set_root(_nav_root())
-	if hud and is_instance_valid(hud) and Controls.pressed("pause") and hud.has_method("toggle_menu"):
+	# Full / solo runs: pause key (the touch layer's glue handles Thin runs).
+	if FullNet.active and hud and is_instance_valid(hud) and Controls.pressed("pause"):
+		Controls.eat("pause")
 		hud.toggle_menu()
 	Controls.consume_frame()
-
-
-func _nav_root() -> Control:
-	var r: Control = null
-	if hud and is_instance_valid(hud) and hud.visible and hud.has_method("nav_root"):
-		r = hud.nav_root()
-	elif _screen and is_instance_valid(_screen):
-		r = _screen
-	if r:
-		# A settings sheet opened on top takes over.
-		for i in range(r.get_child_count() - 1, -1, -1):
-			var c = r.get_child(i)
-			if c is Control and c.visible and c.get_script() == preload("res://ui/settings_panel.gd"):
-				return c
-	return r
 
 
 func _start_run(map_id: String) -> void:

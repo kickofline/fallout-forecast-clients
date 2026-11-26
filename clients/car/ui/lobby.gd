@@ -82,6 +82,9 @@ func _ready() -> void:
 	actions.add_child(_start)
 	net.connect("lobby_updated", self, "_on_lobby")
 	refresh()
+	UI.focusable(self)
+	var nav = preload("res://ui/focus_nav.gd").new().attach(self)
+	nav.first = _ready
 
 
 func refresh() -> void:
@@ -165,7 +168,7 @@ func _build_maps(data: Dictionary) -> void:
 		var color: Color = CHANNEL_COLORS[i % CHANNEL_COLORS.size()]
 		var mine = id == _my_vote
 		var card = Button.new()
-		card.focus_mode = Control.FOCUS_NONE
+		card.focus_mode = Control.FOCUS_ALL
 		card.rect_min_size = Vector2(160, 250)
 		var normal = UI.button_box(Color("#3a2016") if mine else Color(0.08, 0.12, 0.16, 0.9), UI.PAPER if mine else Color("#3b5560"), 2, 10, 10)
 		normal.border_width_top = 2
@@ -237,7 +240,3 @@ func _on_quick(text: String) -> void:
 
 func _on_leave() -> void:
 	net.leave()
-
-
-func nav_back() -> void:
-	pass

@@ -7,6 +7,7 @@ extends Control
 
 const SettingsPanel = preload("res://ui/settings_panel.gd")
 const Glyph = preload("res://ui/glyph.gd")
+const FocusNav = preload("res://ui/focus_nav.gd")
 const MODES = [["thin", "CLOUD"], ["full", "CLOUD FULL"], ["solo", "SOLO"]]
 const SOLO_MAPS = [["pinecrest", "PINECREST"], ["harbor", "HARBOR POINT"], ["maple_hollow", "MAPLE HOLLOW"]]
 
@@ -23,6 +24,7 @@ var _counter: Label
 var _sub: Label
 var _t = 0.0
 var _mode = "thin"
+var _nav: Node
 
 
 func _ready() -> void:
@@ -114,6 +116,9 @@ func _ready() -> void:
 	_status.rect_min_size = Vector2(450, 0)
 	_menu.add_child(_status)
 	_apply_mode()
+	UI.focusable(self)
+	_nav = FocusNav.new().attach(self)
+	_nav.first = _connect
 	refresh()
 
 
@@ -234,6 +239,15 @@ func _on_settings() -> void:
 		return
 	_settings = SettingsPanel.new()
 	add_child(_settings)
+	# The sheet has its own navigator; park this one until it closes.
+	_nav.screen = null
+	_settings.connect("tree_exited", self, "_on_settings_closed")
+
+
+func _on_settings_closed() -> void:
+	if is_instance_valid(_nav):
+		_nav.screen = self
+		_nav.first = _connect
 
 
 func _on_quit() -> void:
