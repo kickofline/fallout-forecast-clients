@@ -4,7 +4,7 @@ extends SceneTree
 ## Usage:
 ##   Godot_v4.7.2-stable_win64_console.exe --headless --path "<game checkout>" \
 ##     --audio-driver Dummy -s "C:/Users/drewd/fallout-forecast-clients/exporter/export_all.gd" \
-##     -- --out=C:/Users/drewd/fallout-forecast-clients/assets [--only=maps,characters,weapons,audio] [--maps=pinecrest,harbor,maple_hollow]
+##     -- --out=C:/Users/drewd/fallout-forecast-clients/assets [--only=maps,physics,characters,weapons,audio] [--maps=pinecrest,harbor,maple_hollow]
 
 const DEFAULT_OUT := "C:/Users/drewd/fallout-forecast-clients/assets"
 
@@ -36,6 +36,9 @@ func _run() -> void:
 	var baker: RefCounted = (load(base_dir.path_join("lib/mesh_baker.gd")) as Script).new()
 	var map_exp: RefCounted = (load(base_dir.path_join("lib/export_maps.gd")) as Script).new()
 	map_exp.set("fold_colors", args.fold_colors)
+	map_exp.set("physics", args.physics)
+	map_exp.set("physics_only", not only.is_empty() and "physics" in only and not "maps" in only)
+	map_exp.set("physics_verify_dir", args.physics_verify)
 	var char_exp: RefCounted = (load(base_dir.path_join("lib/export_characters.gd")) as Script).new()
 	var wep_exp: RefCounted = (load(base_dir.path_join("lib/export_weapons.gd")) as Script).new()
 	var uia_exp: RefCounted = (load(base_dir.path_join("lib/export_ui_audio.gd")) as Script).new()
@@ -45,7 +48,17 @@ func _run() -> void:
 	manifest["target"] = "Godot 3.6 GLES2 / PowerVR SGX 544MP / Android 5.1"
 	manifest["exported_at_unix"] = int(Time.get_unix_time_from_system())
 
-	if only.is_empty() or "maps" in only:
+	if not only.is_empty() and "physics" in only and not "maps" in only:
+		# Physics only: patch the existing manifest map entries in place.
+		var phys_res: Dictionary = await map_exp.export_maps(self, baker, out_dir, map_filter, skip_decimate, chunked)
+		if not manifest.has("maps"):
+			manifest["maps"] = {}
+		for k in phys_res:
+			if not manifest["maps"].has(k):
+				manifest["maps"][k] = {"id": k}
+			manifest["maps"][k]["physics"] = phys_res[k].physics.file
+			manifest["maps"][k]["physics_stats"] = phys_res[k].physics
+	elif only.is_empty() or "maps" in only:
 		var maps_res: Dictionary = await map_exp.export_maps(self, baker, out_dir, map_filter, skip_decimate, chunked)
 		if not manifest.has("maps") or map_filter.is_empty():
 			manifest["maps"] = maps_res
@@ -109,6 +122,8 @@ func _parse_args() -> Dictionary:
 	var skip_decimate := false
 	var chunked := false
 	var fold_colors := true
+	var physics := true
+	var physics_verify := ""
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--out="):
 			out_dir = arg.substr(6)
@@ -122,7 +137,11 @@ func _parse_args() -> Dictionary:
 			chunked = true
 		elif arg == "--no-fold-colors":
 			fold_colors = false
-	return {"out": out_dir, "only": only, "maps": maps, "skip_decimate": skip_decimate, "chunked": chunked, "fold_colors": fold_colors}
+		elif arg == "--no-physics":
+			physics = false
+		elif arg.begins_with("--physics-verify="):
+			physics_verify = arg.substr(17).replace("\\", "/")
+	return {"out": out_dir, "only": only, "maps": maps, "skip_decimate": skip_decimate, "chunked": chunked, "fold_colors": fold_colors, "physics": physics, "physics_verify": physics_verify}
 
 
 func _load_existing_manifest(out_dir: String) -> Dictionary:
@@ -134,7 +153,22 @@ func _load_existing_manifest(out_dir: String) -> Dictionary:
 		return {}
 	var parsed: Variant = JSON.parse_string(f.get_as_text())
 	f.close()
-	return parsed if parsed is Dictionary else {}
+	return _ints(parsed) if parsed is Dictionary else {}
+
+
+## Godot's JSON parser returns every number as float. A partial export
+## (--only/--maps) rewrites the sections it didn't export, so restore integral
+## dictionary values (counts, bytes) to ints; array entries (vectors) stay floats.
+static func _ints(v: Variant, in_array := false) -> Variant:
+	if v is Dictionary:
+		for k in v:
+			v[k] = _ints(v[k])
+	elif v is Array:
+		for i in v.size():
+			v[i] = _ints(v[i], true)
+	elif v is float and not in_array and is_finite(v) and v == floorf(v) and absf(v) < 9.0e15:
+		return int(v)
+	return v
 
 
 func _dir_total_bytes(path: String) -> int:

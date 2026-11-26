@@ -1,7 +1,7 @@
 {
 	"schema_version": 1,
 	"target": "Godot 3.6 GLES2 / PowerVR SGX 544MP / Android 5.1",
-	"exported_at_unix": 1795645367,
+	"exported_at_unix": 1795665318,
 	"maps": {
 		"pinecrest": {
 			"id": "pinecrest",
@@ -34,7 +34,23 @@
 			"low_glb": "maps/pinecrest_low.glb",
 			"low_triangles": 103213,
 			"low_draw_calls": 74,
-			"low_bytes": 5928160
+			"low_bytes": 5928160,
+			"physics": "maps/pinecrest_physics.json",
+			"physics_stats": {
+				"boxes": 175,
+				"cylinders": 7,
+				"spheres": 0,
+				"capsules": 0,
+				"convex": 0,
+				"trimesh_triangles": 180,
+				"csg_primitive": 108,
+				"csg_baked": 5,
+				"concave_shapes": 0,
+				"nav_vertices": 1401,
+				"nav_polygons": 1480,
+				"file": "maps/pinecrest_physics.json",
+				"bytes": 68630
+			}
 		},
 		"harbor": {
 			"id": "harbor",
@@ -63,6 +79,22 @@
 				"mi_baked": 337,
 				"mm_baked": 0,
 				"labels_baked": 53
+			},
+			"physics": "maps/harbor_physics.json",
+			"physics_stats": {
+				"boxes": 310,
+				"cylinders": 28,
+				"spheres": 0,
+				"capsules": 0,
+				"convex": 15,
+				"trimesh_triangles": 0,
+				"csg_primitive": 0,
+				"csg_baked": 0,
+				"concave_shapes": 0,
+				"nav_vertices": 1832,
+				"nav_polygons": 1798,
+				"file": "maps/harbor_physics.json",
+				"bytes": 81715
 			}
 		},
 		"maple_hollow": {
@@ -92,6 +124,22 @@
 				"mi_baked": 269,
 				"mm_baked": 248,
 				"labels_baked": 12
+			},
+			"physics": "maps/maple_hollow_physics.json",
+			"physics_stats": {
+				"boxes": 222,
+				"cylinders": 118,
+				"spheres": 0,
+				"capsules": 0,
+				"convex": 0,
+				"trimesh_triangles": 0,
+				"csg_primitive": 0,
+				"csg_baked": 0,
+				"concave_shapes": 0,
+				"nav_vertices": 2087,
+				"nav_polygons": 2364,
+				"file": "maps/maple_hollow_physics.json",
+				"bytes": 95456
 			}
 		}
 	},
@@ -100,9 +148,9 @@
 		"drip": {
 			"id": "drip",
 			"glb": "characters/enemies/drip.glb",
-			"triangles": 504.0,
-			"draw_calls": 30.0,
-			"bytes": 67260.0,
+			"triangles": 504,
+			"draw_calls": 30,
+			"bytes": 67260,
 			"rest_reach_rad": 1.15,
 			"scale": [
 				1.0,
@@ -259,9 +307,9 @@
 		"gutter": {
 			"id": "gutter",
 			"glb": "characters/enemies/gutter.glb",
-			"triangles": 552.0,
-			"draw_calls": 31.0,
-			"bytes": 74624.0,
+			"triangles": 552,
+			"draw_calls": 31,
+			"bytes": 74624,
 			"rest_reach_rad": 0.55,
 			"scale": [
 				1.05,
@@ -418,9 +466,9 @@
 		"mister": {
 			"id": "mister",
 			"glb": "characters/enemies/mister.glb",
-			"triangles": 564.0,
-			"draw_calls": 33.0,
-			"bytes": 72532.0,
+			"triangles": 564,
+			"draw_calls": 33,
+			"bytes": 72532,
 			"rest_reach_rad": 0.3,
 			"scale": [
 				1.2,
@@ -577,9 +625,9 @@
 		"hailstone": {
 			"id": "hailstone",
 			"glb": "characters/enemies/hailstone.glb",
-			"triangles": 896.0,
-			"draw_calls": 21.0,
-			"bytes": 104784.0,
+			"triangles": 896,
+			"draw_calls": 21,
+			"bytes": 104784,
 			"rest_reach_rad": 0.25,
 			"scale": [
 				1.0,
@@ -724,9 +772,9 @@
 		"sleet": {
 			"id": "sleet",
 			"glb": "characters/enemies/sleet.glb",
-			"triangles": 540.0,
-			"draw_calls": 19.0,
-			"bytes": 58076.0,
+			"triangles": 540,
+			"draw_calls": 19,
+			"bytes": 58076,
 			"rest_reach_rad": 0.7,
 			"scale": [
 				1.0,
@@ -871,9 +919,9 @@
 		"smog": {
 			"id": "smog",
 			"glb": "characters/enemies/smog.glb",
-			"triangles": 704.0,
-			"draw_calls": 19.0,
-			"bytes": 79548.0,
+			"triangles": 704,
+			"draw_calls": 19,
+			"bytes": 79548,
 			"rest_reach_rad": 0.25,
 			"scale": [
 				1.0,
@@ -1018,9 +1066,9 @@
 		"static": {
 			"id": "static",
 			"glb": "characters/enemies/static.glb",
-			"triangles": 644.0,
-			"draw_calls": 18.0,
-			"bytes": 71544.0,
+			"triangles": 644,
+			"draw_calls": 18,
+			"bytes": 71544,
 			"rest_reach_rad": 0.57,
 			"scale": [
 				1.0,
@@ -1177,9 +1225,9 @@
 		"thunderhead": {
 			"id": "thunderhead",
 			"glb": "characters/enemies/thunderhead.glb",
-			"triangles": 940.0,
-			"draw_calls": 23.0,
-			"bytes": 79696.0,
+			"triangles": 940,
+			"draw_calls": 23,
+			"bytes": 79696,
 			"rest_reach_rad": 0.35,
 			"scale": [
 				1.0,
@@ -1324,9 +1372,9 @@
 		"undertow": {
 			"id": "undertow",
 			"glb": "characters/enemies/undertow.glb",
-			"triangles": 656.0,
-			"draw_calls": 20.0,
-			"bytes": 70760.0,
+			"triangles": 656,
+			"draw_calls": 20,
+			"bytes": 70760,
 			"rest_reach_rad": 0.24,
 			"scale": [
 				1.0,
@@ -1471,9 +1519,9 @@
 		"cloudburst": {
 			"id": "cloudburst",
 			"glb": "characters/enemies/cloudburst.glb",
-			"triangles": 1928.0,
-			"draw_calls": 43.0,
-			"bytes": 118020.0,
+			"triangles": 1928,
+			"draw_calls": 43,
+			"bytes": 118020,
 			"rest_reach_rad": 0.3,
 			"scale": [
 				3.0,
@@ -1642,9 +1690,9 @@
 		"cumulus": {
 			"id": "cumulus",
 			"glb": "characters/enemies/cumulus.glb",
-			"triangles": 4692.0,
-			"draw_calls": 15.0,
-			"bytes": 86928.0,
+			"triangles": 4692,
+			"draw_calls": 15,
+			"bytes": 86928,
 			"scale": [
 				1.42,
 				1.42,
@@ -1792,9 +1840,9 @@
 			"color_hex": "#c0e041",
 			"turned": true,
 			"glb": "characters/enemies/turned.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 33396.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 33396,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -1951,9 +1999,9 @@
 			"color_hex": "#ffd933",
 			"turned": false,
 			"glb": "characters/player/standard_hazmat_yellow.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 29908.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29908,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -2108,9 +2156,9 @@
 			"color_hex": "#2ec9c9",
 			"turned": false,
 			"glb": "characters/player/standard_teal.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 30096.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30096,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -2265,9 +2313,9 @@
 			"color_hex": "#ff4fa3",
 			"turned": false,
 			"glb": "characters/player/standard_hot_pink.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 29904.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29904,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -2422,9 +2470,9 @@
 			"color_hex": "#9be04a",
 			"turned": false,
 			"glb": "characters/player/standard_lime.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 30096.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30096,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -2579,9 +2627,9 @@
 			"color_hex": "#ff8a2a",
 			"turned": false,
 			"glb": "characters/player/standard_orange.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 29924.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29924,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -2736,9 +2784,9 @@
 			"color_hex": "#9a6bff",
 			"turned": false,
 			"glb": "characters/player/standard_purple.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 29916.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29916,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -2893,9 +2941,9 @@
 			"color_hex": "#e6e9ec",
 			"turned": false,
 			"glb": "characters/player/standard_white.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 30072.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30072,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -3050,9 +3098,9 @@
 			"color_hex": "#e8423a",
 			"turned": false,
 			"glb": "characters/player/standard_red.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 30112.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30112,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -3207,9 +3255,9 @@
 			"color_hex": "#3d7bff",
 			"turned": false,
 			"glb": "characters/player/standard_storm_blue.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 29928.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 29928,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -3364,9 +3412,9 @@
 			"color_hex": "#b5653a",
 			"turned": false,
 			"glb": "characters/player/standard_rust.glb",
-			"triangles": 336.0,
-			"draw_calls": 27.0,
-			"bytes": 30104.0,
+			"triangles": 336,
+			"draw_calls": 27,
+			"bytes": 30104,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -3521,9 +3569,9 @@
 			"color_hex": "#ffd933",
 			"turned": false,
 			"glb": "characters/player/gas_mask_hazmat_yellow.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39348.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39348,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -3678,9 +3726,9 @@
 			"color_hex": "#2ec9c9",
 			"turned": false,
 			"glb": "characters/player/gas_mask_teal.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39536.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39536,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -3835,9 +3883,9 @@
 			"color_hex": "#ff4fa3",
 			"turned": false,
 			"glb": "characters/player/gas_mask_hot_pink.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39344.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39344,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -3992,9 +4040,9 @@
 			"color_hex": "#9be04a",
 			"turned": false,
 			"glb": "characters/player/gas_mask_lime.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39536.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39536,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -4149,9 +4197,9 @@
 			"color_hex": "#ff8a2a",
 			"turned": false,
 			"glb": "characters/player/gas_mask_orange.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39364.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39364,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -4306,9 +4354,9 @@
 			"color_hex": "#9a6bff",
 			"turned": false,
 			"glb": "characters/player/gas_mask_purple.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39356.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39356,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -4463,9 +4511,9 @@
 			"color_hex": "#e6e9ec",
 			"turned": false,
 			"glb": "characters/player/gas_mask_white.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39512.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39512,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -4620,9 +4668,9 @@
 			"color_hex": "#e8423a",
 			"turned": false,
 			"glb": "characters/player/gas_mask_red.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39552.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39552,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -4777,9 +4825,9 @@
 			"color_hex": "#3d7bff",
 			"turned": false,
 			"glb": "characters/player/gas_mask_storm_blue.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39368.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39368,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -4934,9 +4982,9 @@
 			"color_hex": "#b5653a",
 			"turned": false,
 			"glb": "characters/player/gas_mask_rust.glb",
-			"triangles": 408.0,
-			"draw_calls": 28.0,
-			"bytes": 39540.0,
+			"triangles": 408,
+			"draw_calls": 28,
+			"bytes": 39540,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -5091,9 +5139,9 @@
 			"color_hex": "#ffd933",
 			"turned": false,
 			"glb": "characters/player/firefighter_hazmat_yellow.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35188.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35188,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -5248,9 +5296,9 @@
 			"color_hex": "#2ec9c9",
 			"turned": false,
 			"glb": "characters/player/firefighter_teal.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35364.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35364,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -5405,9 +5453,9 @@
 			"color_hex": "#ff4fa3",
 			"turned": false,
 			"glb": "characters/player/firefighter_hot_pink.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35184.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35184,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -5562,9 +5610,9 @@
 			"color_hex": "#9be04a",
 			"turned": false,
 			"glb": "characters/player/firefighter_lime.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35360.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35360,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -5719,9 +5767,9 @@
 			"color_hex": "#ff8a2a",
 			"turned": false,
 			"glb": "characters/player/firefighter_orange.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35196.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35196,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -5876,9 +5924,9 @@
 			"color_hex": "#9a6bff",
 			"turned": false,
 			"glb": "characters/player/firefighter_purple.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35192.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35192,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -6033,9 +6081,9 @@
 			"color_hex": "#e6e9ec",
 			"turned": false,
 			"glb": "characters/player/firefighter_white.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35336.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35336,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -6190,9 +6238,9 @@
 			"color_hex": "#e8423a",
 			"turned": false,
 			"glb": "characters/player/firefighter_red.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35372.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35372,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -6347,9 +6395,9 @@
 			"color_hex": "#3d7bff",
 			"turned": false,
 			"glb": "characters/player/firefighter_storm_blue.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35208.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35208,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -6504,9 +6552,9 @@
 			"color_hex": "#b5653a",
 			"turned": false,
 			"glb": "characters/player/firefighter_rust.glb",
-			"triangles": 432.0,
-			"draw_calls": 32.0,
-			"bytes": 35364.0,
+			"triangles": 432,
+			"draw_calls": 32,
+			"bytes": 35364,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -6661,9 +6709,9 @@
 			"color_hex": "#ffd933",
 			"turned": false,
 			"glb": "characters/player/bio_tech_hazmat_yellow.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37128.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37128,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -6818,9 +6866,9 @@
 			"color_hex": "#2ec9c9",
 			"turned": false,
 			"glb": "characters/player/bio_tech_teal.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37324.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37324,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -6975,9 +7023,9 @@
 			"color_hex": "#ff4fa3",
 			"turned": false,
 			"glb": "characters/player/bio_tech_hot_pink.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37128.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37128,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -7132,9 +7180,9 @@
 			"color_hex": "#9be04a",
 			"turned": false,
 			"glb": "characters/player/bio_tech_lime.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37320.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37320,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -7289,9 +7337,9 @@
 			"color_hex": "#ff8a2a",
 			"turned": false,
 			"glb": "characters/player/bio_tech_orange.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37148.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37148,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -7446,9 +7494,9 @@
 			"color_hex": "#9a6bff",
 			"turned": false,
 			"glb": "characters/player/bio_tech_purple.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37140.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37140,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -7603,9 +7651,9 @@
 			"color_hex": "#e6e9ec",
 			"turned": false,
 			"glb": "characters/player/bio_tech_white.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37296.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37296,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -7760,9 +7808,9 @@
 			"color_hex": "#e8423a",
 			"turned": false,
 			"glb": "characters/player/bio_tech_red.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37340.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37340,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -7917,9 +7965,9 @@
 			"color_hex": "#3d7bff",
 			"turned": false,
 			"glb": "characters/player/bio_tech_storm_blue.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37156.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37156,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -8074,9 +8122,9 @@
 			"color_hex": "#b5653a",
 			"turned": false,
 			"glb": "characters/player/bio_tech_rust.glb",
-			"triangles": 444.0,
-			"draw_calls": 34.0,
-			"bytes": 37328.0,
+			"triangles": 444,
+			"draw_calls": 34,
+			"bytes": 37328,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -8231,9 +8279,9 @@
 			"color_hex": "#ffd933",
 			"turned": false,
 			"glb": "characters/player/ion_rig_hazmat_yellow.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46104.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46104,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -8388,9 +8436,9 @@
 			"color_hex": "#2ec9c9",
 			"turned": false,
 			"glb": "characters/player/ion_rig_teal.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46276.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46276,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -8545,9 +8593,9 @@
 			"color_hex": "#ff4fa3",
 			"turned": false,
 			"glb": "characters/player/ion_rig_hot_pink.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46100.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46100,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -8702,9 +8750,9 @@
 			"color_hex": "#9be04a",
 			"turned": false,
 			"glb": "characters/player/ion_rig_lime.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46276.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46276,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -8859,9 +8907,9 @@
 			"color_hex": "#ff8a2a",
 			"turned": false,
 			"glb": "characters/player/ion_rig_orange.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46116.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46116,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -9016,9 +9064,9 @@
 			"color_hex": "#9a6bff",
 			"turned": false,
 			"glb": "characters/player/ion_rig_purple.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46116.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46116,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -9173,9 +9221,9 @@
 			"color_hex": "#e6e9ec",
 			"turned": false,
 			"glb": "characters/player/ion_rig_white.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46256.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46256,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -9330,9 +9378,9 @@
 			"color_hex": "#e8423a",
 			"turned": false,
 			"glb": "characters/player/ion_rig_red.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46288.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46288,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -9487,9 +9535,9 @@
 			"color_hex": "#3d7bff",
 			"turned": false,
 			"glb": "characters/player/ion_rig_storm_blue.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46124.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46124,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -9644,9 +9692,9 @@
 			"color_hex": "#b5653a",
 			"turned": false,
 			"glb": "characters/player/ion_rig_rust.glb",
-			"triangles": 432.0,
-			"draw_calls": 28.0,
-			"bytes": 46276.0,
+			"triangles": 432,
+			"draw_calls": 28,
+			"bytes": 46276,
 			"pivots": {
 				"WeaponMount": {
 					"pos": [
@@ -9803,13 +9851,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/service_revolver.glb",
-			"view_triangles": 356.0,
-			"view_draw_calls": 16.0,
-			"view_bytes": 21836.0,
+			"view_triangles": 356,
+			"view_draw_calls": 16,
+			"view_bytes": 21836,
 			"pickup_glb": "weapons/pickup/service_revolver.glb",
-			"pickup_triangles": 236.0,
-			"pickup_draw_calls": 4.0,
-			"pickup_bytes": 34736.0,
+			"pickup_triangles": 236,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 34736,
 			"pose_action": "swing",
 			"animated_part": "Cylinder",
 			"support_grip_z": -0.018,
@@ -9833,17 +9881,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 55.0,
+			"view_scale": 1,
+			"ads_fov": 55,
 			"ads_eye_relief": 0.36,
 			"tracer_color": "#ffd966",
 			"shot_sound": "gun_revolver",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.32,
 			"reload_time": 1.5,
-			"mag_size": 6.0,
+			"mag_size": 6,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -9854,13 +9902,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/pump_shotgun.glb",
-			"view_triangles": 560.0,
-			"view_draw_calls": 29.0,
-			"view_bytes": 32396.0,
+			"view_triangles": 560,
+			"view_draw_calls": 29,
+			"view_bytes": 32396,
 			"pickup_glb": "weapons/pickup/pump_shotgun.glb",
-			"pickup_triangles": 440.0,
-			"pickup_draw_calls": 7.0,
-			"pickup_bytes": 63044.0,
+			"pickup_triangles": 440,
+			"pickup_draw_calls": 7,
+			"pickup_bytes": 63044,
 			"pose_action": "tube",
 			"animated_part": "Pump",
 			"support_grip_z": -0.18,
@@ -9885,16 +9933,16 @@
 				0.0
 			],
 			"view_scale": 0.8,
-			"ads_fov": 60.0,
+			"ads_fov": 60,
 			"ads_eye_relief": 0.72,
 			"tracer_color": "#ffcc59",
 			"shot_sound": "gun_shotgun",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.85,
 			"reload_time": 0.48,
-			"mag_size": 6.0,
+			"mag_size": 6,
 			"automatic": false,
 			"shell_reload": true,
 			"cursed": false
@@ -9905,13 +9953,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/spray_rifle.glb",
-			"view_triangles": 742.0,
-			"view_draw_calls": 45.0,
-			"view_bytes": 45004.0,
+			"view_triangles": 742,
+			"view_draw_calls": 45,
+			"view_bytes": 45004,
 			"pickup_glb": "weapons/pickup/spray_rifle.glb",
-			"pickup_triangles": 622.0,
-			"pickup_draw_calls": 6.0,
-			"pickup_bytes": 86424.0,
+			"pickup_triangles": 622,
+			"pickup_draw_calls": 6,
+			"pickup_bytes": 86424,
 			"pose_action": "mag",
 			"animated_part": "Magazine",
 			"support_grip_z": -0.15,
@@ -9936,16 +9984,16 @@
 				0.0
 			],
 			"view_scale": 0.8,
-			"ads_fov": 42.0,
+			"ads_fov": 42,
 			"ads_eye_relief": 0.42,
 			"tracer_color": "#ffd180",
 			"shot_sound": "gun_rifle",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.085,
 			"reload_time": 1.8,
-			"mag_size": 40.0,
+			"mag_size": 40,
 			"automatic": true,
 			"shell_reload": false,
 			"cursed": false
@@ -9956,13 +10004,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/nail_driver.glb",
-			"view_triangles": 584.0,
-			"view_draw_calls": 28.0,
-			"view_bytes": 32248.0,
+			"view_triangles": 584,
+			"view_draw_calls": 28,
+			"view_bytes": 32248,
 			"pickup_glb": "weapons/pickup/nail_driver.glb",
-			"pickup_triangles": 248.0,
-			"pickup_draw_calls": 5.0,
-			"pickup_bytes": 37236.0,
+			"pickup_triangles": 248,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 37236,
 			"pose_action": "mag",
 			"animated_part": "Magazine",
 			"support_grip_z": -0.075,
@@ -9982,17 +10030,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#f0b873",
 			"shot_sound": "gun_nail_driver",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.085,
 			"reload_time": 1.65,
-			"mag_size": 24.0,
+			"mag_size": 24,
 			"automatic": true,
 			"shell_reload": false,
 			"cursed": false
@@ -10003,13 +10051,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/hunting_rifle.glb",
-			"view_triangles": 964.0,
-			"view_draw_calls": 30.0,
-			"view_bytes": 73248.0,
+			"view_triangles": 964,
+			"view_draw_calls": 30,
+			"view_bytes": 73248,
 			"pickup_glb": "weapons/pickup/hunting_rifle.glb",
-			"pickup_triangles": 364.0,
-			"pickup_draw_calls": 5.0,
-			"pickup_bytes": 52276.0,
+			"pickup_triangles": 364,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 52276,
 			"pose_action": "bolt",
 			"animated_part": "Bolt",
 			"support_grip_z": -0.14,
@@ -10033,17 +10081,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 27.0,
+			"view_scale": 1,
+			"ads_fov": 27,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#f9cd98",
 			"shot_sound": "gun_hunting_rifle",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 1.3,
 			"reload_time": 2.65,
-			"mag_size": 5.0,
+			"mag_size": 5,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10054,13 +10102,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/pressure_washer.glb",
-			"view_triangles": 832.0,
-			"view_draw_calls": 26.0,
-			"view_bytes": 36516.0,
+			"view_triangles": 832,
+			"view_draw_calls": 26,
+			"view_bytes": 36516,
 			"pickup_glb": "weapons/pickup/pressure_washer.glb",
-			"pickup_triangles": 208.0,
-			"pickup_draw_calls": 5.0,
-			"pickup_bytes": 26568.0,
+			"pickup_triangles": 208,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 26568,
 			"pose_action": "hose",
 			"animated_part": "Wand",
 			"support_grip_z": -0.095,
@@ -10080,17 +10128,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#70e8f8",
 			"shot_sound": "gun_pressure_washer",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.11,
 			"reload_time": 1.85,
-			"mag_size": 56.0,
+			"mag_size": 56,
 			"automatic": true,
 			"shell_reload": false,
 			"cursed": false
@@ -10101,13 +10149,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/rock_salt.glb",
-			"view_triangles": 712.0,
-			"view_draw_calls": 26.0,
-			"view_bytes": 31288.0,
+			"view_triangles": 712,
+			"view_draw_calls": 26,
+			"view_bytes": 31288,
 			"pickup_glb": "weapons/pickup/rock_salt.glb",
-			"pickup_triangles": 304.0,
-			"pickup_draw_calls": 3.0,
-			"pickup_bytes": 42272.0,
+			"pickup_triangles": 304,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 42272,
 			"pose_action": "break",
 			"animated_part": "Barrel",
 			"support_grip_z": -0.08,
@@ -10131,17 +10179,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#f5e6cf",
 			"shot_sound": "gun_rock_salt",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.33,
 			"reload_time": 1.75,
-			"mag_size": 2.0,
+			"mag_size": 2,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10152,13 +10200,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/battery_zapper.glb",
-			"view_triangles": 680.0,
-			"view_draw_calls": 32.0,
-			"view_bytes": 32648.0,
+			"view_triangles": 680,
+			"view_draw_calls": 32,
+			"view_bytes": 32648,
 			"pickup_glb": "weapons/pickup/battery_zapper.glb",
-			"pickup_triangles": 488.0,
-			"pickup_draw_calls": 6.0,
-			"pickup_bytes": 67408.0,
+			"pickup_triangles": 488,
+			"pickup_draw_calls": 6,
+			"pickup_bytes": 67408,
 			"pose_action": "charge",
 			"animated_part": "Clamps",
 			"support_grip_z": -0.1,
@@ -10178,17 +10226,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#fff267",
 			"shot_sound": "gun_battery_zapper",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.39,
 			"reload_time": 2.1,
-			"mag_size": 12.0,
+			"mag_size": 12,
 			"automatic": true,
 			"shell_reload": false,
 			"cursed": false
@@ -10199,13 +10247,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/flare_launcher.glb",
-			"view_triangles": 592.0,
-			"view_draw_calls": 26.0,
-			"view_bytes": 47776.0,
+			"view_triangles": 592,
+			"view_draw_calls": 26,
+			"view_bytes": 47776,
 			"pickup_glb": "weapons/pickup/flare_launcher.glb",
-			"pickup_triangles": 232.0,
-			"pickup_draw_calls": 3.0,
-			"pickup_bytes": 33424.0,
+			"pickup_triangles": 232,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 33424,
 			"pose_action": "flare",
 			"animated_part": "Barrel",
 			"support_grip_z": -0.055,
@@ -10225,17 +10273,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#ff733b",
 			"shot_sound": "gun_flare_launcher",
 			"deploy_sound": "gun_flare",
 			"blast_sound": "explosion",
-			"effect_radius": 4.0,
+			"effect_radius": 4,
 			"fire_interval": 0.75,
-			"reload_time": 2.0,
-			"mag_size": 3.0,
+			"reload_time": 2,
+			"mag_size": 3,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10246,13 +10294,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/harpoon.glb",
-			"view_triangles": 836.0,
-			"view_draw_calls": 29.0,
-			"view_bytes": 34680.0,
+			"view_triangles": 836,
+			"view_draw_calls": 29,
+			"view_bytes": 34680,
 			"pickup_glb": "weapons/pickup/harpoon.glb",
-			"pickup_triangles": 296.0,
-			"pickup_draw_calls": 6.0,
-			"pickup_bytes": 44544.0,
+			"pickup_triangles": 296,
+			"pickup_draw_calls": 6,
+			"pickup_bytes": 44544,
 			"pose_action": "reel",
 			"animated_part": "Spool",
 			"support_grip_z": -0.095,
@@ -10272,17 +10320,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#b9eacc",
 			"shot_sound": "gun_harpoon",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.55,
 			"reload_time": 1.35,
-			"mag_size": 1.0,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10293,13 +10341,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/leaf_blower.glb",
-			"view_triangles": 722.0,
-			"view_draw_calls": 31.0,
-			"view_bytes": 49344.0,
+			"view_triangles": 722,
+			"view_draw_calls": 31,
+			"view_bytes": 49344,
 			"pickup_glb": "weapons/pickup/leaf_blower.glb",
-			"pickup_triangles": 410.0,
-			"pickup_draw_calls": 4.0,
-			"pickup_bytes": 56716.0,
+			"pickup_triangles": 410,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 56716,
 			"pose_action": "fan",
 			"animated_part": "Fan",
 			"support_grip_z": -0.085,
@@ -10319,17 +10367,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#baf4a7",
 			"shot_sound": "gun_leaf_blower",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.2,
 			"reload_time": 1.85,
-			"mag_size": 52.0,
+			"mag_size": 52,
 			"automatic": true,
 			"shell_reload": false,
 			"cursed": false
@@ -10340,13 +10388,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/disruptor.glb",
-			"view_triangles": 1860.0,
-			"view_draw_calls": 49.0,
-			"view_bytes": 76732.0,
+			"view_triangles": 1860,
+			"view_draw_calls": 49,
+			"view_bytes": 76732,
 			"pickup_glb": "weapons/pickup/disruptor.glb",
-			"pickup_triangles": 756.0,
-			"pickup_draw_calls": 9.0,
-			"pickup_bytes": 96840.0,
+			"pickup_triangles": 756,
+			"pickup_draw_calls": 9,
+			"pickup_bytes": 96840,
 			"pose_action": "tune",
 			"animated_part": "Dish",
 			"support_grip_z": -0.1,
@@ -10366,8 +10414,8 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#f99bdc",
 			"shot_sound": "gun_disruptor",
@@ -10376,7 +10424,7 @@
 			"effect_radius": 7.5,
 			"fire_interval": 0.75,
 			"reload_time": 2.1,
-			"mag_size": 4.0,
+			"mag_size": 4,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10387,13 +10435,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/leaky_nailgun.glb",
-			"view_triangles": 240.0,
-			"view_draw_calls": 16.0,
-			"view_bytes": 18020.0,
+			"view_triangles": 240,
+			"view_draw_calls": 16,
+			"view_bytes": 18020,
 			"pickup_glb": "weapons/pickup/leaky_nailgun.glb",
-			"pickup_triangles": 120.0,
-			"pickup_draw_calls": 4.0,
-			"pickup_bytes": 20000.0,
+			"pickup_triangles": 120,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 20000,
 			"pose_action": "mag",
 			"animated_part": "Magazine",
 			"support_grip_z": -0.12,
@@ -10413,17 +10461,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#8cff4d",
 			"shot_sound": "gun_leaky_nailgun",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.22,
-			"reload_time": 2.0,
-			"mag_size": 24.0,
+			"reload_time": 2,
+			"mag_size": 24,
 			"automatic": true,
 			"shell_reload": false,
 			"cursed": true
@@ -10434,13 +10482,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/boombox_launcher.glb",
-			"view_triangles": 528.0,
-			"view_draw_calls": 20.0,
-			"view_bytes": 22364.0,
+			"view_triangles": 528,
+			"view_draw_calls": 20,
+			"view_bytes": 22364,
 			"pickup_glb": "weapons/pickup/boombox_launcher.glb",
-			"pickup_triangles": 408.0,
-			"pickup_draw_calls": 7.0,
-			"pickup_bytes": 50964.0,
+			"pickup_triangles": 408,
+			"pickup_draw_calls": 7,
+			"pickup_bytes": 50964,
 			"pose_action": "tube",
 			"animated_part": "",
 			"support_grip_z": -0.055,
@@ -10460,8 +10508,8 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#ff4dcc",
 			"shot_sound": "gun_boombox_launcher",
@@ -10470,7 +10518,7 @@
 			"effect_radius": 6.5,
 			"fire_interval": 1.1,
 			"reload_time": 2.4,
-			"mag_size": 4.0,
+			"mag_size": 4,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": true
@@ -10481,13 +10529,13 @@
 			"category": "gun",
 			"is_pouch": false,
 			"view_glb": "weapons/view/lucky_penny_revolver.glb",
-			"view_triangles": 356.0,
-			"view_draw_calls": 16.0,
-			"view_bytes": 21832.0,
+			"view_triangles": 356,
+			"view_draw_calls": 16,
+			"view_bytes": 21832,
 			"pickup_glb": "weapons/pickup/lucky_penny_revolver.glb",
-			"pickup_triangles": 236.0,
-			"pickup_draw_calls": 4.0,
-			"pickup_bytes": 34728.0,
+			"pickup_triangles": 236,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 34728,
 			"pose_action": "swing",
 			"animated_part": "Cylinder",
 			"support_grip_z": -0.018,
@@ -10511,17 +10559,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 55.0,
+			"view_scale": 1,
+			"ads_fov": 55,
 			"ads_eye_relief": 0.36,
 			"tracer_color": "#ffd933",
 			"shot_sound": "gun_lucky_penny_revolver",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.38,
 			"reload_time": 1.6,
-			"mag_size": 6.0,
+			"mag_size": 6,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": true
@@ -10532,13 +10580,13 @@
 			"category": "item",
 			"is_pouch": true,
 			"view_glb": "weapons/view/frag.glb",
-			"view_triangles": 848.0,
-			"view_draw_calls": 21.0,
-			"view_bytes": 35240.0,
+			"view_triangles": 848,
+			"view_draw_calls": 21,
+			"view_bytes": 35240,
 			"pickup_glb": "weapons/pickup/frag.glb",
-			"pickup_triangles": 728.0,
-			"pickup_draw_calls": 3.0,
-			"pickup_bytes": 95964.0,
+			"pickup_triangles": 728,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 95964,
 			"pose_action": "lob",
 			"animated_part": "",
 			"support_grip_z": -0.015,
@@ -10558,17 +10606,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#ff9940",
 			"shot_sound": "gun_frag_throw",
 			"deploy_sound": "",
 			"blast_sound": "gun_frag_blast",
-			"effect_radius": 6.0,
+			"effect_radius": 6,
 			"fire_interval": 0.9,
 			"reload_time": 0.6,
-			"mag_size": 1.0,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10579,13 +10627,13 @@
 			"category": "item",
 			"is_pouch": true,
 			"view_glb": "weapons/view/shield_dome.glb",
-			"view_triangles": 408.0,
-			"view_draw_calls": 18.0,
-			"view_bytes": 19992.0,
+			"view_triangles": 408,
+			"view_draw_calls": 18,
+			"view_bytes": 19992,
 			"pickup_glb": "weapons/pickup/shield_dome.glb",
-			"pickup_triangles": 288.0,
-			"pickup_draw_calls": 4.0,
-			"pickup_bytes": 41592.0,
+			"pickup_triangles": 288,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 41592,
 			"pose_action": "toss",
 			"animated_part": "",
 			"support_grip_z": -0.016,
@@ -10605,8 +10653,8 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 60.0,
+			"view_scale": 1,
+			"ads_fov": 60,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#59f2ff",
 			"shot_sound": "gun_dome_throw",
@@ -10615,7 +10663,7 @@
 			"effect_radius": 6.5,
 			"fire_interval": 0.8,
 			"reload_time": 0.9,
-			"mag_size": 1.0,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10626,13 +10674,13 @@
 			"category": "item",
 			"is_pouch": false,
 			"view_glb": "weapons/view/umbrella.glb",
-			"view_triangles": 916.0,
-			"view_draw_calls": 24.0,
-			"view_bytes": 33652.0,
+			"view_triangles": 916,
+			"view_draw_calls": 24,
+			"view_bytes": 33652,
 			"pickup_glb": "weapons/pickup/umbrella.glb",
-			"pickup_triangles": 244.0,
-			"pickup_draw_calls": 4.0,
-			"pickup_bytes": 23848.0,
+			"pickup_triangles": 244,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 23848,
 			"pose_action": "lob",
 			"animated_part": "Canopy",
 			"support_grip_z": -0.07,
@@ -10652,8 +10700,8 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#ab85fe",
 			"shot_sound": "gun_umbrella",
@@ -10661,8 +10709,8 @@
 			"blast_sound": "explosion",
 			"effect_radius": 4.2,
 			"fire_interval": 0.7,
-			"reload_time": 2.0,
-			"mag_size": 1.0,
+			"reload_time": 2,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10673,13 +10721,13 @@
 			"category": "item",
 			"is_pouch": false,
 			"view_glb": "weapons/view/bleach_bomb.glb",
-			"view_triangles": 504.0,
-			"view_draw_calls": 21.0,
-			"view_bytes": 26932.0,
+			"view_triangles": 504,
+			"view_draw_calls": 21,
+			"view_bytes": 26932,
 			"pickup_glb": "weapons/pickup/bleach_bomb.glb",
-			"pickup_triangles": 276.0,
-			"pickup_draw_calls": 3.0,
-			"pickup_bytes": 38688.0,
+			"pickup_triangles": 276,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 38688,
 			"pose_action": "lob",
 			"animated_part": "Cap",
 			"support_grip_z": -0.035,
@@ -10699,8 +10747,8 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#b8ffd7",
 			"shot_sound": "gun_bleach_bomb",
@@ -10708,8 +10756,8 @@
 			"blast_sound": "explosion",
 			"effect_radius": 4.3,
 			"fire_interval": 0.7,
-			"reload_time": 2.0,
-			"mag_size": 1.0,
+			"reload_time": 2,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10720,13 +10768,13 @@
 			"category": "item",
 			"is_pouch": false,
 			"view_glb": "weapons/view/bait_radio.glb",
-			"view_triangles": 576.0,
-			"view_draw_calls": 28.0,
-			"view_bytes": 29220.0,
+			"view_triangles": 576,
+			"view_draw_calls": 28,
+			"view_bytes": 29220,
 			"pickup_glb": "weapons/pickup/bait_radio.glb",
-			"pickup_triangles": 192.0,
-			"pickup_draw_calls": 5.0,
-			"pickup_bytes": 27064.0,
+			"pickup_triangles": 192,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 27064,
 			"pose_action": "toss",
 			"animated_part": "Antenna",
 			"support_grip_z": -0.04,
@@ -10746,17 +10794,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#ed9556",
 			"shot_sound": "gun_bait_radio",
 			"deploy_sound": "gun_bait_activate",
 			"blast_sound": "explosion",
-			"effect_radius": 20.0,
+			"effect_radius": 20,
 			"fire_interval": 0.7,
-			"reload_time": 2.0,
-			"mag_size": 1.0,
+			"reload_time": 2,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10767,13 +10815,13 @@
 			"category": "item",
 			"is_pouch": false,
 			"view_glb": "weapons/view/sandbag.glb",
-			"view_triangles": 380.0,
-			"view_draw_calls": 24.0,
-			"view_bytes": 32532.0,
+			"view_triangles": 380,
+			"view_draw_calls": 24,
+			"view_bytes": 32532,
 			"pickup_glb": "weapons/pickup/sandbag.glb",
-			"pickup_triangles": 152.0,
-			"pickup_draw_calls": 2.0,
-			"pickup_bytes": 22148.0,
+			"pickup_triangles": 152,
+			"pickup_draw_calls": 2,
+			"pickup_bytes": 22148,
 			"pose_action": "place",
 			"animated_part": "Sack",
 			"support_grip_z": -0.06,
@@ -10793,17 +10841,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#cfad73",
 			"shot_sound": "gun_sandbag",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.65,
-			"reload_time": 2.0,
-			"mag_size": 1.0,
+			"reload_time": 2,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10814,13 +10862,13 @@
 			"category": "item",
 			"is_pouch": false,
 			"view_glb": "weapons/view/lightning_rod.glb",
-			"view_triangles": 780.0,
-			"view_draw_calls": 22.0,
-			"view_bytes": 29852.0,
+			"view_triangles": 780,
+			"view_draw_calls": 22,
+			"view_bytes": 29852,
 			"pickup_glb": "weapons/pickup/lightning_rod.glb",
-			"pickup_triangles": 528.0,
-			"pickup_draw_calls": 3.0,
-			"pickup_bytes": 69780.0,
+			"pickup_triangles": 528,
+			"pickup_draw_calls": 3,
+			"pickup_bytes": 69780,
 			"pose_action": "plant",
 			"animated_part": "Spike",
 			"support_grip_z": -0.07,
@@ -10840,17 +10888,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#fff16a",
 			"shot_sound": "gun_lightning_rod",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 7.0,
+			"effect_radius": 7,
 			"fire_interval": 0.7,
-			"reload_time": 2.0,
-			"mag_size": 1.0,
+			"reload_time": 2,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10861,13 +10909,13 @@
 			"category": "item",
 			"is_pouch": false,
 			"view_glb": "weapons/view/med_tin.glb",
-			"view_triangles": 336.0,
-			"view_draw_calls": 20.0,
-			"view_bytes": 21284.0,
+			"view_triangles": 336,
+			"view_draw_calls": 20,
+			"view_bytes": 21284,
 			"pickup_glb": "weapons/pickup/med_tin.glb",
-			"pickup_triangles": 60.0,
-			"pickup_draw_calls": 4.0,
-			"pickup_bytes": 9208.0,
+			"pickup_triangles": 60,
+			"pickup_draw_calls": 4,
+			"pickup_bytes": 9208,
 			"pose_action": "open",
 			"animated_part": "Lid",
 			"support_grip_z": -0.045,
@@ -10887,17 +10935,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#ff7190",
 			"shot_sound": "gun_med_tin",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.5,
-			"reload_time": 2.0,
-			"mag_size": 1.0,
+			"reload_time": 2,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10908,13 +10956,13 @@
 			"category": "item",
 			"is_pouch": false,
 			"view_glb": "weapons/view/suit_patch.glb",
-			"view_triangles": 348.0,
-			"view_draw_calls": 29.0,
-			"view_bytes": 20896.0,
+			"view_triangles": 348,
+			"view_draw_calls": 29,
+			"view_bytes": 20896,
 			"pickup_glb": "weapons/pickup/suit_patch.glb",
-			"pickup_triangles": 60.0,
-			"pickup_draw_calls": 5.0,
-			"pickup_bytes": 10164.0,
+			"pickup_triangles": 60,
+			"pickup_draw_calls": 5,
+			"pickup_bytes": 10164,
 			"pose_action": "press",
 			"animated_part": "Patch",
 			"support_grip_z": -0.035,
@@ -10934,17 +10982,17 @@
 				0.0,
 				0.0
 			],
-			"view_scale": 1.0,
-			"ads_fov": 52.0,
+			"view_scale": 1,
+			"ads_fov": 52,
 			"ads_eye_relief": 0.32,
 			"tracer_color": "#7dc6fb",
 			"shot_sound": "gun_suit_patch",
 			"deploy_sound": "",
 			"blast_sound": "explosion",
-			"effect_radius": 5.0,
+			"effect_radius": 5,
 			"fire_interval": 0.5,
-			"reload_time": 2.0,
-			"mag_size": 1.0,
+			"reload_time": 2,
+			"mag_size": 1,
 			"automatic": false,
 			"shell_reload": false,
 			"cursed": false
@@ -10954,202 +11002,202 @@
 		"bug_bomb_canister": {
 			"id": "bug_bomb_canister",
 			"glb": "props/bug_bomb_canister.glb",
-			"triangles": 608.0,
-			"draw_calls": 6.0,
-			"bytes": 24224.0
+			"triangles": 608,
+			"draw_calls": 6,
+			"bytes": 24224
 		},
 		"pickup_ammo": {
 			"id": "pickup_ammo",
 			"glb": "props/pickup_ammo.glb",
-			"triangles": 1032.0,
-			"draw_calls": 9.0,
-			"bytes": 27000.0
+			"triangles": 1032,
+			"draw_calls": 9,
+			"bytes": 27000
 		},
 		"pickup_health": {
 			"id": "pickup_health",
 			"glb": "props/pickup_health.glb",
-			"triangles": 384.0,
-			"draw_calls": 9.0,
-			"bytes": 20572.0
+			"triangles": 384,
+			"draw_calls": 9,
+			"bytes": 20572
 		},
 		"pickup_suit": {
 			"id": "pickup_suit",
 			"glb": "props/pickup_suit.glb",
-			"triangles": 780.0,
-			"draw_calls": 6.0,
-			"bytes": 25880.0
+			"triangles": 780,
+			"draw_calls": 6,
+			"bytes": 25880
 		},
 		"pickup_supply": {
 			"id": "pickup_supply",
 			"glb": "props/pickup_supply.glb",
-			"triangles": 720.0,
-			"draw_calls": 10.0,
-			"bytes": 28712.0
+			"triangles": 720,
+			"draw_calls": 10,
+			"bytes": 28712
 		},
 		"pickup_scrap": {
 			"id": "pickup_scrap",
 			"glb": "props/pickup_scrap.glb",
-			"triangles": 544.0,
-			"draw_calls": 2.0,
-			"bytes": 45204.0
+			"triangles": 544,
+			"draw_calls": 2,
+			"bytes": 45204
 		},
 		"pickup_scrap_large": {
 			"id": "pickup_scrap_large",
 			"glb": "props/pickup_scrap_large.glb",
-			"triangles": 1088.0,
-			"draw_calls": 4.0,
-			"bytes": 48712.0
+			"triangles": 1088,
+			"draw_calls": 4,
+			"bytes": 48712
 		},
 		"vending_station": {
 			"id": "vending_station",
 			"glb": "props/vending_station.glb",
-			"triangles": 2376.0,
-			"draw_calls": 21.0,
-			"bytes": 234228.0
+			"triangles": 2376,
+			"draw_calls": 21,
+			"bytes": 234228
 		},
 		"crate_station": {
 			"id": "crate_station",
 			"glb": "props/crate_station.glb",
-			"triangles": 3252.0,
-			"draw_calls": 17.0,
-			"bytes": 355592.0
+			"triangles": 3252,
+			"draw_calls": 17,
+			"bytes": 355592
 		},
 		"airdrop": {
 			"id": "airdrop",
 			"glb": "props/airdrop.glb",
-			"triangles": 4000.0,
-			"draw_calls": 20.0,
-			"bytes": 388804.0
+			"triangles": 4000,
+			"draw_calls": 20,
+			"bytes": 388804
 		},
 		"shield_dome": {
 			"id": "shield_dome",
 			"glb": "props/shield_dome.glb",
-			"triangles": 712.0,
-			"draw_calls": 2.0,
-			"bytes": 25996.0,
+			"triangles": 712,
+			"draw_calls": 2,
+			"bytes": 25996,
 			"radius": 6.5,
 			"warning_color": "#ffc365"
 		},
 		"umbrella_open": {
 			"id": "umbrella_open",
 			"glb": "props/umbrella_open.glb",
-			"triangles": 1296.0,
-			"draw_calls": 22.0,
-			"bytes": 32740.0
+			"triangles": 1296,
+			"draw_calls": 22,
+			"bytes": 32740
 		},
 		"sandbag_wall": {
 			"id": "sandbag_wall",
 			"glb": "props/sandbag_wall.glb",
-			"triangles": 1520.0,
-			"draw_calls": 20.0,
-			"bytes": 29200.0
+			"triangles": 1520,
+			"draw_calls": 20,
+			"bytes": 29200
 		},
 		"lightning_rod_planted": {
 			"id": "lightning_rod_planted",
 			"glb": "props/lightning_rod_planted.glb",
-			"triangles": 528.0,
-			"draw_calls": 9.0,
-			"bytes": 18148.0
+			"triangles": 528,
+			"draw_calls": 9,
+			"bytes": 18148
 		},
 		"decon_shower_cells": {
 			"id": "decon_shower_cells",
 			"glb": "props/decon_shower_cells.glb",
-			"triangles": 1584.0,
-			"draw_calls": 14.0,
-			"bytes": 31448.0
+			"triangles": 1584,
+			"draw_calls": 14,
+			"bytes": 31448
 		}
 	},
 	"projectiles": {
 		"nail_driver": {
 			"id": "nail_driver",
 			"glb": "projectiles/nail_driver.glb",
-			"triangles": 125.0,
-			"draw_calls": 3.0,
-			"bytes": 8404.0
+			"triangles": 125,
+			"draw_calls": 3,
+			"bytes": 8404
 		},
 		"harpoon": {
 			"id": "harpoon",
 			"glb": "projectiles/harpoon.glb",
-			"triangles": 132.0,
-			"draw_calls": 3.0,
-			"bytes": 8968.0
+			"triangles": 132,
+			"draw_calls": 3,
+			"bytes": 8968
 		},
 		"flare_launcher": {
 			"id": "flare_launcher",
 			"glb": "projectiles/flare_launcher.glb",
-			"triangles": 204.0,
-			"draw_calls": 4.0,
-			"bytes": 12412.0
+			"triangles": 204,
+			"draw_calls": 4,
+			"bytes": 12412
 		},
 		"boombox_launcher": {
 			"id": "boombox_launcher",
 			"glb": "projectiles/boombox_launcher.glb",
-			"triangles": 120.0,
-			"draw_calls": 2.0,
-			"bytes": 6420.0
+			"triangles": 120,
+			"draw_calls": 2,
+			"bytes": 6420
 		},
 		"frag": {
 			"id": "frag",
 			"glb": "projectiles/frag.glb",
-			"triangles": 728.0,
-			"draw_calls": 11.0,
-			"bytes": 29032.0
+			"triangles": 728,
+			"draw_calls": 11,
+			"bytes": 29032
 		},
 		"shield_dome": {
 			"id": "shield_dome",
 			"glb": "projectiles/shield_dome.glb",
-			"triangles": 288.0,
-			"draw_calls": 8.0,
-			"bytes": 13800.0
+			"triangles": 288,
+			"draw_calls": 8,
+			"bytes": 13800
 		},
 		"bug_bomb": {
 			"id": "bug_bomb",
 			"glb": "projectiles/bug_bomb.glb",
-			"triangles": 608.0,
-			"draw_calls": 6.0,
-			"bytes": 24280.0
+			"triangles": 608,
+			"draw_calls": 6,
+			"bytes": 24280
 		},
 		"bleach_bomb": {
 			"id": "bleach_bomb",
 			"glb": "projectiles/bleach_bomb.glb",
-			"triangles": 276.0,
-			"draw_calls": 3.0,
-			"bytes": 38784.0
+			"triangles": 276,
+			"draw_calls": 3,
+			"bytes": 38784
 		},
 		"bait_radio": {
 			"id": "bait_radio",
 			"glb": "projectiles/bait_radio.glb",
-			"triangles": 192.0,
-			"draw_calls": 5.0,
-			"bytes": 27160.0
+			"triangles": 192,
+			"draw_calls": 5,
+			"bytes": 27160
 		},
 		"sandbag": {
 			"id": "sandbag",
 			"glb": "projectiles/sandbag.glb",
-			"triangles": 152.0,
-			"draw_calls": 2.0,
-			"bytes": 22188.0
+			"triangles": 152,
+			"draw_calls": 2,
+			"bytes": 22188
 		},
 		"umbrella": {
 			"id": "umbrella",
 			"glb": "projectiles/umbrella.glb",
-			"triangles": 244.0,
-			"draw_calls": 4.0,
-			"bytes": 23900.0
+			"triangles": 244,
+			"draw_calls": 4,
+			"bytes": 23900
 		},
 		"spore_glob": {
 			"id": "spore_glob",
 			"glb": "projectiles/spore_glob.glb",
-			"triangles": 168.0,
-			"draw_calls": 1.0,
-			"bytes": 7500.0
+			"triangles": 168,
+			"draw_calls": 1,
+			"bytes": 7500
 		},
 		"acid_glob": {
 			"id": "acid_glob",
 			"glb": "projectiles/acid_glob.glb",
-			"triangles": 168.0,
-			"draw_calls": 1.0,
-			"bytes": 7524.0
+			"triangles": 168,
+			"draw_calls": 1,
+			"bytes": 7524
 		}
 	},
 	"weapons_metadata": "weapons/weapons.json",
@@ -11201,8 +11249,8 @@
 			"audio/music/forecast_storm.wav",
 			"audio/music/forecast_theme.wav"
 		],
-		"sfx_count": 122.0
+		"sfx_count": 122
 	},
-	"total_bytes": 49879347,
-	"total_mb": 47.57
+	"total_bytes": 50146014,
+	"total_mb": 47.82
 }
