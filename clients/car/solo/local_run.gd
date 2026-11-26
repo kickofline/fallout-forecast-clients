@@ -470,6 +470,8 @@ func _go_out() -> void:
 
 
 func _tick_player(dt: float) -> void:
+	if locked:
+		return
 	grace = max(0.0, grace - dt)
 	revive_grace = max(0.0, revive_grace - dt)
 	var protection = loot.protection(self, pos + Vector3.UP)
@@ -486,7 +488,7 @@ func _tick_player(dt: float) -> void:
 		if bleed <= 0.0:
 			_go_out()
 		return
-	if state != "ok" or revive_grace > 0.0 or locked:
+	if state != "ok" or revive_grace > 0.0:
 		return
 	var drain = 0.0
 	if exposed and (in_puddle or _rain_warning <= 0.0):

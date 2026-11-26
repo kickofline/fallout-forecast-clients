@@ -57,9 +57,9 @@ func open(hello: Dictionary) -> void:
 		_terminal("Unsupported tier")
 	else:
 		if _data.empty():
-			_data = _read("game_data.json")
-			_markers = _read("level_markers.json").get("maps", {})
-			_requests = _read("rpc_requests.json")
+			_data = _read("res://data/game_data.json")
+			_markers = _read("res://solo/level_markers.json").get("maps", {})
+			_requests = _read("res://solo/rpc_requests.json")
 		if _data.get("game_protocol") != GAME_PROTOCOL or _markers.empty() or _requests.empty():
 			_terminal("Full tier solo data unavailable")
 			return
@@ -364,9 +364,9 @@ static func _clean(value, limit: int) -> String:
 	return cleaned.replace("[", "(").replace("]", ")").strip_edges().substr(0, limit)
 
 
-static func _read(name: String) -> Dictionary:
+static func _read(path: String) -> Dictionary:
 	var file = File.new()
-	if file.open("res://solo/" + name, File.READ) != OK:
+	if file.open(path, File.READ) != OK:
 		return {}
 	var parsed = JSON.parse(file.get_as_text())
 	file.close()
