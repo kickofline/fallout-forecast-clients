@@ -14,7 +14,7 @@ Godot 4.7.2 accepts an external absolute path to `-s` while `--path` points at t
 ```powershell
 C:/Users/drewd/Desktop/Godot_v4.7.2-stable_win64_console.exe `
   --headless `
-  --path "C:/Users/drewd/OneDrive - Ouachita Baptist University/CSCI 3103 VIDEO GAME DEVT/fallout-forecast" `
+  --path "C:/path/to/fallout-forecast" `
   --audio-driver Dummy `
   -s "C:/Users/drewd/fallout-forecast-clients/exporter/export_all.gd" `
   -- --out=C:/Users/drewd/fallout-forecast-clients/assets
@@ -57,7 +57,7 @@ Run **without** `--headless` (and with `FALLOUT_TELEMETRY_URL=http://127.0.0.1:1
 ```powershell
 $env:FALLOUT_TELEMETRY_URL = "http://127.0.0.1:1/"
 C:/Users/drewd/Desktop/Godot_v4.7.2-stable_win64_console.exe `
-  --path "C:/Users/drewd/OneDrive - Ouachita Baptist University/CSCI 3103 VIDEO GAME DEVT/fallout-forecast" `
+  --path "C:/path/to/fallout-forecast" `
   --audio-driver Dummy `
   -s "C:/Users/drewd/fallout-forecast-clients/exporter/validate_and_capture.gd" `
   -- --assets=C:/Users/drewd/fallout-forecast-clients/assets `
