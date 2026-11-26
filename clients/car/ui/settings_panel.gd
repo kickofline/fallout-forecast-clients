@@ -31,7 +31,9 @@ func _ready() -> void:
 	_box.size_flags_horizontal = SIZE_EXPAND_FILL
 	_box.add_constant_override("separation", 10)
 	scroll.add_child(_box)
-	_slider("LOOK SENSITIVITY", "look_sensitivity", 0.3, 3.0, 0.05, "%.2fx")
+	_slider("TOUCH LOOK SENSITIVITY", "look_sensitivity", 0.3, 3.0, 0.05, "%.2fx")
+	_slider("MOUSE SENSITIVITY", "mouse_sensitivity", 0.2, 4.0, 0.05, "%.2fx")
+	_slider("PAD LOOK SENSITIVITY", "pad_sensitivity", 0.3, 3.0, 0.05, "%.2fx")
 	_toggle("INVERT LOOK Y", "invert_y")
 	_slider("BUTTON SIZE", "button_size", 0.8, 1.4, 0.05, "%.2fx")
 	_toggle("RETRO VHS / PS1 LOOK", "retro_enabled")

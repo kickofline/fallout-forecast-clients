@@ -9,6 +9,8 @@ const DEFAULT_URL = "wss://fallout-thin.drew.place/"
 var player_name = "Honda"
 var server_url = DEFAULT_URL
 var look_sensitivity = 1.0      # multiplier on the base touch look rate
+var mouse_sensitivity = 1.0     # multiplier on the native mouse look rate (0.0025 rad/px)
+var pad_sensitivity = 1.0       # multiplier on the native right-stick look rate (3 rad/s)
 var invert_y = false
 var render_scale = 0.5          # 3D viewport scale when retro is off
 var retro_enabled = true        # PS1/VHS look: low-res 3D + VHS post
@@ -37,6 +39,8 @@ func load_settings() -> void:
 	server_url = str(cfg.get_value("net", "server_url", server_url))
 	interp_ms = int(cfg.get_value("net", "interp_ms", interp_ms))
 	look_sensitivity = float(cfg.get_value("input", "look_sensitivity", look_sensitivity))
+	mouse_sensitivity = float(cfg.get_value("input", "mouse_sensitivity", mouse_sensitivity))
+	pad_sensitivity = float(cfg.get_value("input", "pad_sensitivity", pad_sensitivity))
 	invert_y = bool(cfg.get_value("input", "invert_y", invert_y))
 	button_size = float(cfg.get_value("input", "button_size", button_size))
 	render_scale = float(cfg.get_value("video", "render_scale", render_scale))
@@ -57,6 +61,8 @@ func save() -> void:
 	cfg.set_value("net", "server_url", server_url)
 	cfg.set_value("net", "interp_ms", interp_ms)
 	cfg.set_value("input", "look_sensitivity", look_sensitivity)
+	cfg.set_value("input", "mouse_sensitivity", mouse_sensitivity)
+	cfg.set_value("input", "pad_sensitivity", pad_sensitivity)
 	cfg.set_value("input", "invert_y", invert_y)
 	cfg.set_value("input", "button_size", button_size)
 	cfg.set_value("video", "render_scale", render_scale)

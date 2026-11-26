@@ -4,9 +4,15 @@ extends Control
 ## Left: floating move stick (push past the rim = sprint). Right half: drag
 ## to look. Buttons: FIRE (hold, also drags look), AIM, JUMP, CROUCH, RELOAD,
 ## USE (when there is a prompt), ITEM, MENU, READY; hotbar cells select slots
-## and pouches. Desktop: WASD/mouse/keys map to the same bits for testing.
+## and pouches. Everything feeds the Controls autoload (touch_hold /
+## touch_press / touch_move / touch_look); keyboard, mouse and gamepad come in
+## through Controls directly. The layer only shows while Controls.device is
+## "touch" (a real touchscreen, or --touch on desktop).
+##
+## Run-wide input glue also lives here because this node has both the world
+## and the HUD: pause toggles the menu, draft_1..3 pick a mutation card, and
+## the mouse is captured for mouse look while playing with keyboard + mouse.
 
-const BASE_LOOK = 0.0042      # radians per UI pixel at sensitivity 1.0
 const STICK_R = 78.0
 const SPRINT_EDGE = 1.18
 const LOOK_DEADZONE = 4.0
@@ -24,8 +30,6 @@ var _stick_center = Vector2.ZERO
 var _stick_tip = Vector2.ZERO
 var _buttons = {}
 var _held = {}
-var _keys = {}
-var _mouse_look = false
 
 
 func _ready() -> void:
@@ -89,11 +93,12 @@ func _target(at: Vector2):
 
 
 func _input(event: InputEvent) -> void:
-	if not is_visible_in_tree() or world == null:
+	if not is_visible_in_tree() or world == null or not Controls.accepts_touch():
 		return
 	if event is InputEventScreenTouch:
 		if hud and hud.blocks_touch(event.position):
 			return
+		Controls.set_device("touch")
 		if event.pressed:
 			_begin(event.index, event.position)
 		else:
@@ -108,29 +113,6 @@ func _input(event: InputEvent) -> void:
 		elif role is String and (role == "look" or (role == "fire" and not ("look" in _contacts.values()))):
 			_drag_look(event.index, event.position)
 		get_tree().set_input_as_handled()
-	elif event is InputEventKey and not event.echo:
-		_keys[event.scancode] = event.pressed
-		if event.pressed:
-			match event.scancode:
-				KEY_1, KEY_2, KEY_3, KEY_4, KEY_5:
-					world.select_slot(event.scancode - KEY_1 + 1)
-				KEY_Q:
-					world.press_bits(world.BITS.throw_grenade)
-				KEY_F:
-					world.press_bits(world.BITS.throw_dome)
-				KEY_H:
-					world.press_bits(world.BITS.ready_up)
-				KEY_ESCAPE:
-					if hud:
-						hud.toggle_menu()
-	elif event is InputEventMouseButton and not event.is_echo():
-		# Desktop testing: right mouse = aim, wheel = weapon_next/prev.
-		if event.button_index == BUTTON_WHEEL_UP and event.pressed:
-			world.wheel(-1)
-		elif event.button_index == BUTTON_WHEEL_DOWN and event.pressed:
-			world.wheel(1)
-		elif event.button_index == BUTTON_RIGHT:
-			_held["aim_mouse"] = event.pressed
 
 
 func _begin(index: int, at: Vector2) -> void:
@@ -147,19 +129,18 @@ func _begin(index: int, at: Vector2) -> void:
 	if role is Dictionary:
 		var cell: int = role.slot
 		if cell < 5:
-			world.select_slot(cell + 1)
+			Controls.touch_press("slot_%d" % (cell + 1))
 		elif cell == 5:
-			world.press_bits(world.BITS.throw_grenade)
+			Controls.touch_press("throw_grenade")
 		else:
-			world.press_bits(world.BITS.throw_dome)
+			Controls.touch_press("throw_dome")
 		Sound.play("ui_tick", -10.0)
 		return
 	if role == "menu":
-		if hud:
-			hud.toggle_menu()
+		Controls.touch_press("pause")
 		return
 	if role == "ready_up":
-		world.press_bits(world.BITS.ready_up)
+		Controls.touch_press("ready_up")
 		Sound.play("ui_click", -8.0)
 		return
 	_contacts[index] = role
@@ -168,7 +149,7 @@ func _begin(index: int, at: Vector2) -> void:
 	_look_live[index] = false
 	if role != "move" and role != "look":
 		_held[role] = true
-		world.press_bits(world.BITS[role])
+		Controls.touch_hold(role, true)
 	update()
 
 
@@ -184,6 +165,7 @@ func _end(index: int) -> void:
 			_stick_tip = _stick_home
 		elif role != "look":
 			_held.erase(role)
+			Controls.touch_hold(role, false)
 	update()
 
 
@@ -203,16 +185,14 @@ func _drag_look(index: int, at: Vector2) -> void:
 	_last[index] = at
 	d = d.limit_length(90.0)
 	var aim_k = 0.6 if bool(world.you.get("aiming", false)) else 1.0
-	world.look(d, BASE_LOOK * Settings.look_sensitivity * aim_k)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	# Desktop mouse-look while the right button or middle is held is handled
-	# by touch emulation (left button = touch). Nothing else here.
-	pass
+	Controls.touch_look(d, aim_k)
 
 
 func cancel_all() -> void:
+	for role in _held:
+		Controls.touch_hold(role, false)
+	Controls.touch_hold("sprint", false)
+	Controls.touch_move(Vector2.ZERO)
 	_contacts.clear()
 	_held.clear()
 	_stick_center = _stick_home
@@ -229,42 +209,51 @@ func _process(_delta: float) -> void:
 func _process_body(_delta: float) -> void:
 	if world == null:
 		return
-	# Movement vector: stick, else keyboard.
-	var mv = Vector2.ZERO
-	var sprint = false
+	_run_glue()
+	# Move stick -> Controls (x right, y forward).
 	if "move" in _contacts.values():
 		var off = (_stick_tip - _stick_center) / STICK_R
-		sprint = off.length() >= SPRINT_EDGE and off.y < 0.3
-		mv = off.limit_length(1.0)
+		var sprint = off.length() >= SPRINT_EDGE and off.y < 0.3
+		var mv = off.limit_length(1.0)
 		if mv.length() < 0.12:
 			mv = Vector2.ZERO
+		Controls.touch_move(Vector2(mv.x, -mv.y))
+		Controls.touch_hold("sprint", sprint)
 	else:
-		mv.x = float(_key(KEY_D)) - float(_key(KEY_A))
-		mv.y = float(_key(KEY_S)) - float(_key(KEY_W))
-		mv = mv.normalized() if mv.length() > 0.0 else mv
-		sprint = _key(KEY_SHIFT)
-	world.move = mv
-	var bits = 0
-	for a in _held:
-		if world.BITS.has(a):
-			bits |= world.BITS[a]
-	if _held.get("aim_mouse", false):
-		bits |= world.BITS.aim
-	if sprint:
-		bits |= world.BITS.sprint
-	for pair in [[KEY_SPACE, "jump"], [KEY_C, "crouch"], [KEY_CONTROL, "crouch"], [KEY_R, "reload"],
-			[KEY_E, "interact"], [KEY_T, "use_item"], [KEY_G, "drop_item"], [KEY_Z, "ping"], [KEY_ENTER, "fire"]]:
-		if _key(pair[0]):
-			bits |= world.BITS[pair[1]]
-	world.held_bits = bits
-	# Arrow keys look (desktop tests).
-	var look = Vector2(float(_key(KEY_RIGHT)) - float(_key(KEY_LEFT)), float(_key(KEY_DOWN)) - float(_key(KEY_UP)))
-	if look != Vector2.ZERO:
-		world.look(look * 6.0, BASE_LOOK)
+		Controls.touch_move(Vector2.ZERO)
+		Controls.touch_hold("sprint", false)
 
 
-func _key(code: int) -> bool:
-	return bool(_keys.get(code, false))
+func _menu_open() -> bool:
+	var m = hud.get("_menu") if hud else null
+	return m != null and is_instance_valid(m)
+
+
+## Pause / draft keys and mouse capture for the Thin run.
+func _run_glue() -> void:
+	var in_run = Net.state == "run"
+	if in_run and Controls.pressed("pause") and hud:
+		Controls.eat("pause")
+		cancel_all()
+		hud.toggle_menu()
+	if hud and str(hud.get("_overlay_kind")) == "draft":
+		for n in 3:
+			if Controls.pressed("draft_%d" % (n + 1)):
+				Controls.eat("draft_%d" % (n + 1))
+				hud._choose("mutation", n)
+	var capture = in_run and world.look_ready and not _menu_open() and Controls.device == "kbm" and OS.is_window_focused()
+	if capture != _captured:
+		_captured = capture
+		Controls.capture_mouse(capture)
+
+
+var _captured = false
+
+
+func _exit_tree() -> void:
+	if _captured:
+		Controls.capture_mouse(false)
+	cancel_all()
 
 
 var _draw_sig = ""

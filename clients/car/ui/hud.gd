@@ -461,7 +461,10 @@ func _process_body(delta: float) -> void:
 	elif not lost and _signal and is_instance_valid(_signal):
 		_signal.queue_free()
 		_signal = null
-	_touch.visible = (_menu == null or not is_instance_valid(_menu)) and Net.state == "run" and not Settings.has_arg("--no-touch")
+	var menu_open = _menu != null and is_instance_valid(_menu)
+	world.input_blocked = menu_open
+	world.draft_open = _overlay_kind == "draft"
+	_touch.visible = not menu_open and Net.state == "run" and Controls.device == "touch" and not Settings.has_arg("--no-touch")
 	if Settings.has_arg("--no-compass"):
 		_compass.visible = false
 	for c in _root.get_children():
