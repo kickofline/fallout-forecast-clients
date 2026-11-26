@@ -15,6 +15,10 @@ extends Node
 ##   --drive-probe               local server only: teleport through shelter,
 ##                                vending, decon and ping checks and inject a
 ##                                draft and a tape prompt to exercise the UI
+##   --drive-hud                 local server / solo only: after the probe (or the
+##                                starter kit) walk the HUD through its states on
+##                                kbm, pad and touch (tests/hud_probe.gd)
+##   --drive-tag=S               suffix for screenshot names (e.g. a resolution)
 ##   --exit-when-done
 ##   --drive-wire-check          exit nonzero if any required F check is missing
 
@@ -38,11 +42,16 @@ var _probe = false
 var _probe_t = 0.0
 var _probe_step = 0
 var _live = false
+var _hud_probe = null
+var shot_suffix = ""
 
 
 func _ready() -> void:
 	main = get_parent()
 	_live = Settings.has_arg("--drive-live")
+	if Settings.has_arg("--drive-hud"):
+		_hud_probe = load("res://tests/hud_probe.gd").new()
+		_hud_probe.drive = self
 	for a in Settings.args():
 		var s = str(a)
 		if s.begins_with("--full-drive="):
@@ -53,6 +62,8 @@ func _ready() -> void:
 			_leave_after = float(s.substr(20))
 		elif s == "--drive-probe":
 			_probe = true
+		elif s.begins_with("--drive-tag="):
+			shot_suffix = "_" + s.substr(12)
 		elif s.begins_with("--drive-shots="):
 			_shot_dir = s.substr(14)
 	if not _shot_dir.empty():
@@ -114,6 +125,7 @@ func _shot(tag: String) -> void:
 	if _shot_dir.empty() or _shots_taken.has(tag):
 		return
 	_shots_taken[tag] = true
+	tag += shot_suffix
 	yield(VisualServer, "frame_post_draw")
 	var img = get_viewport().get_texture().get_data()
 	img.flip_y()
@@ -189,6 +201,11 @@ func _play(delta: float) -> void:
 		var en = "enemies spawn=%d sync=%d" % [int(n.rpc_in.get("_spawn_enemy", 0)), int(n.rpc_in.get("_sync_enemies", 0))]
 		if int(n.rpc_in.get("_sync_enemies", 0)) > 0 and int(n.rpc_in.get("_spawn_enemy", 0)) > 0:
 			_pass("F6", "pushes=%d phases=%d vitals=%d %s" % [int(n.rpc_out.get("_push_transform", 0)), int(n.rpc_in.get("_receive_phase", 0)), int(n.rpc_in.get("_apply_vitals", 0)), en])
+	if _hud_probe and not _hud_probe.done and w.starter_state == 2 and (not _probe or _probe_step >= 99) and _run_t > 1.5:
+		w.auto_move = Vector2.ZERO
+		w.auto_bits = 0
+		_hud_probe.step(w, delta)
+		return
 	if _probe and _probe_step < 99 and w.starter_state == 2:
 		_run_probe(w, delta)
 		return

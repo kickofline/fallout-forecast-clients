@@ -33,8 +33,7 @@ func _ready() -> void:
 	UI.place(head, 0.5, 0.0, -460, 40, 300, 44)
 	add_child(head)
 	_stash = UI.label("", 22, UI.MUTED)
-	UI.place(_stash, 0.5, 0.0, -150, 52, 610, 30)
-	_stash.align = Label.ALIGN_RIGHT
+	UI.place(_stash, 0.5, 0.0, -460, 452, 920, 30)
 	add_child(_stash)
 	for i in 5:
 		var b = Button.new()

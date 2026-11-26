@@ -320,7 +320,8 @@ func _on_draft(data: Dictionary) -> void:
 
 
 func _on_draft_done() -> void:
-	if _overlay_kind == "draft":
+	# Also sent when the host closes the tape choice (another player chose).
+	if _overlay_kind in ["draft", "tape"]:
 		_show_overlay("")
 
 
@@ -392,7 +393,7 @@ func toggle_menu() -> void:
 	board.world = world
 	board.net = net
 	board.run_seconds = _run_clock
-	UI.place(board, 1.0, 0.0, -680, 70, 640, 300)
+	UI.place(board, 1.0, 0.0, -680, 100, 640, 300)
 	_menu.add_child(board)
 	UI.focusable(_menu)
 	_menu_nav = FocusNav.new().attach(_menu)

@@ -17,7 +17,7 @@ var _left = 0.0
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	rect_min_size = Vector2(W, 300)
+	rect_min_size = Vector2(W, 0)
 
 
 func _process(delta: float) -> void:
