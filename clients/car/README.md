@@ -83,7 +83,8 @@ releases it). Desktop has no touch layer unless you pass `--touch`.
 | Slots / cycle | 1–5 / wheel | RB / LB | Hotbar |
 | Drop item / ping | G / Z or MMB | R3 / D-pad down | — |
 | Ready up | H | Back | READY |
-| Pause / scoreboard | Esc / Tab | Start / Back | MENU |
+| Pause / scoreboard (hold) | Esc / Tab | Start / Back | MENU (scoreboard in the menu) |
+| Loadout / squad chat | I / Enter | Pause menu | Pause menu |
 | Draft cards | 1 / 2 / 3 | Menu navigation | Tap a card |
 | Menus | Arrows, Enter, Esc | D-pad or left stick, A, B | Tap |
 
@@ -160,6 +161,57 @@ listener, normally on port 7781.
 The Full tier adds about 1 to 1.5 ms of script per frame on a desktop
 (`w_local`, `w_sync`, `w_rpc` and `n_rpc` in `PROF`) over Thin. Draw counts
 match Thin (`draws2d` about 55, 3D 65 to 190 draws on Pinecrest).
+
+### Full HUD parity with the native game
+
+The run HUD is `ui/hud.gd`. The pieces that come and go (boss strip, wave
+progress, countdown, wave card, popups, teammate cards, feed, mutation row,
+health trail) share one batched canvas, `ui/hud_panels.gd`, which redraws only
+when its state changes. The loadout (`ui/loadout.gd`), squad chat
+(`ui/quick_chat.gd`) and scoreboard (`ui/scoreboard.gd`) are built only while
+open. Prompts use `Controls.hint`, so they show the key or button for the
+current device. Touch shows no key labels because it has on-screen buttons.
+The HUD reads the Full world's read-only state (`boss`, `enemy_mutations`,
+`feat_log`, and teammates' `hp`/`suit` in `others`). Thin has none of these,
+so the matching pieces stay hidden there.
+
+Compared with the native HUD (`ui/hud.gd`, `juice_hud.gd`, `ping_hud.gd`,
+`inventory_menu.gd`, `pause_menu.gd`, `results.gd` in the game repo):
+
+| Native feature | Car Full client |
+| --- | --- |
+| Vitals: health, suit, hazard (dry / acid rain / acid pool / suit breach), decon charges | Implemented. Text labels replace the icons. |
+| Tarp ready and raised with its key, static charge %, invulnerable tint | Implemented. |
+| Ammo, reserve, mag pips, low ammo and jam colours, reload progress | Implemented. The reload and jam state show on the reticle. |
+| Weapon hint (THROW / STOW for pouches, USE for items) | Simplified. It shows only device keys, not the per-item stat hint. |
+| Reticle styles, spread, hit / crit / kill markers, interact hold arc | Implemented (existing). Rings are now batched quads. |
+| Disruptor charge ring, downed bleed-out ring with seconds | Implemented. |
+| Hotbar, belt pouches, scrap counter | Implemented (existing). |
+| Inventory / loadout menu (equip, move, drop, stats, stash) | Implemented: I, or LOADOUT in the pause menu. Works with pad focus, touch and mouse. No drag and drop. |
+| Vending prompt with price and affordability, airdrop / decon prompts | Implemented. The price turns pink with NEED N MORE. The native item stat card is not done. |
+| Interact prompts with device keys, RELOAD prompt on an empty mag | Implemented. |
+| Downed / turned / out: state flash, ATTACK prompt, CALL FOR HELP, SPECTATING name | Implemented. The downed heartbeat plays. The desaturated downed view is not done. |
+| Forecast chip: phase, wave, Calm timer, endless counter, READY hint with tally | Implemented. The weather icon and wave pips are text. |
+| Calm countdown (last 5 s) with the tick sound | Implemented. |
+| Wave intro card | Implemented. The subtitle comes from the wave (storm, flood, acid storm). The forecast modifier text is not sent. |
+| Enemies left and wave progress bar | Implemented. The count stays as text. |
+| Cumulus boss bar: three sacs, then the core with burn flash; Cloudburst miniboss bar | Implemented. Sac maxima are learned from the first `_sync`. |
+| Compass: infected, elites, boss, teammates, drops, stations, group warning | Implemented (existing). Pings are not on the compass. |
+| Teammate cards (name, health, suit, state) and name tags | Implemented. Tags show distance, and a downed teammate off screen gets an edge arrow. |
+| Supply drop plate and edge arrow | Implemented. |
+| Screen-space damage direction markers, damage vignette, acid suit flash | Implemented. The direction markers are wedges with a tip. |
+| Damage numbers, popups (scrap, multikill, pickups, feats), health damage trail | Implemented. |
+| Rain drips, suit breach beep | Not done (extra full-screen layers cost too much on the car). |
+| Pings: world markers, sound, ping feed | Implemented. The ping is contextual (enemy, go, or revive while downed), with no ping wheel. |
+| Chat: receive in run, send | Implemented. Received lines go to the feed. SQUAD CHAT (Enter, or the pause menu) has eight quick messages for pad and touch, plus a text line. |
+| Scoreboard | Car addition (the native game has none): hold Tab or pad Back, and it also shows in the pause menu. Kills only reach the client in results. |
+| Mutation draft (cards, enemy forecast, timer) | Implemented. Pick with 1-3 on a keyboard, focus + A on a pad, or a tap. Vote tallies are not shown. |
+| Mutation icons (enemy | squad) | Implemented as two-letter chips. |
+| Endless tape choice | Implemented. Pick with 1 / 2, focus + A, or a tap. It blocks gameplay input, and it closes when another player chooses. |
+| Feats / achievements | Simplified. Each `_feat_event` shows a popup and is listed on the results. There is no persistent unlock tracking, because the feat table is not in `game-data.json`. |
+| Pause menu | Implemented: resume, loadout, squad chat, settings, leave, scoreboard and a controls line. Solo pauses the authority. |
+| Results: title, wave segments, time / waves / kills / score tallies with skip, per-player kills / revives / turned / weapon, MVP, squad mutations, feats | Implemented. Suit unlock cards are not done (no cosmetics unlock tracking). |
+| Settings: starter kit | Implemented (STARTER KIT, used by Full and solo). HUD scale is not done. |
 
 ## Performance notes (Honda head unit, PowerVR SGX 544MP)
 
@@ -257,7 +309,12 @@ benchmark the codec against the spec examples and binary transcript.
 `res://tests/wire_tcp.gd` checks TCP framing, RTT and disconnects on loopback.
 
 `--drive-probe` also checks shelter exposure, vending, decon, pings, and the
-draft and tape overlays. It teleports the player, so use it only on a local
+draft and tape overlays. `--drive-hud` (`tests/hud_probe.gd`) injects host RPCs
+to step the HUD through 13 states on keyboard + mouse, pad and touch: miniboss,
+Cumulus sacs and core, teammate card, feed, popups, downed, spectate, draft,
+tape, scoreboard, loadout, chat, pause, countdown and wave card. It checks each
+state, and `--drive-tag=S` adds a suffix to the screenshot names (for example a
+`--resolution`). It teleports the player, so use it only on a local
 server. Use `--drive-leave-after=N` for short live runs and
 `--drive-live` to leave an occupied lobby after the handshake.
 `--drive-shots=DIR` saves screenshots.

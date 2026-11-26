@@ -15,6 +15,7 @@ var results = {}
 var done = false
 var _shot_taken = false
 var _downed_prompt = ""
+var _out_label = ""
 
 # [tag, seconds, device]
 const STEPS = [
@@ -117,6 +118,8 @@ func _hold(tag: String, w, hud) -> void:
 				_downed_prompt = hud._prompt.text
 		"hud_out":
 			w.handle_rpc("Main/Players/P_%d" % w.my_id, "_apply_vitals", [0.0, 40.0, "out", 0.0, false, 100.0, 0.0, false])
+			if "SPECTATING" in hud._state_label.text:
+				_out_label = hud._state_label.text
 	if tag in ["hud_kbm", "hud_boss", "hud_boss_core", "hud_downed", "hud_out", "hud_scoreboard"]:
 		w.handle_rpc("Main/Players/P_%d" % FAKE_MATE, "_relay_transform", [_ahead(w, 6.0) + Vector3(2, 0, 0), 0.0, 0.0, Vector3.ZERO])
 
@@ -142,8 +145,8 @@ func _check(tag: String, w, hud) -> void:
 			ok = hud._reticle.bleed_seconds == 14 and ("[D-DOWN]" in _downed_prompt or "[Y]" in _downed_prompt)
 			info = "bleed=%ds prompt='%s'" % [hud._reticle.bleed_seconds, _downed_prompt]
 		"hud_out":
-			ok = "SPECTATING ZED" in hud._state_label.text
-			info = "label='%s'" % hud._state_label.text
+			ok = "SPECTATING ZED" in _out_label
+			info = "label='%s'" % _out_label
 		"hud_pad_draft":
 			var f = hud._root.get_focus_owner()
 			ok = hud._overlay_kind == "draft" and f is Button
