@@ -156,10 +156,72 @@ listener, normally on port 7781.
   instead of at 60 Hz physics, which is cheaper on the head unit.
 - `data/game_data.json` is a copy of `docs/open-protocol/game-data.json`
   (game protocol 19). Copy it again when `game_protocol` changes.
+- `world/full_fx.gd` draws the Full-only world presentation from a handful of
+  shared meshes and per-colour cached materials, with fixed pools and no
+  per-frame allocation: deployed-effect zones, enemy telegraphs, the harpoon
+  winch, casings, death fragments, splats, ping pillars, the airdrop beacon
+  and tarp sheets.
+- `core/loadout.gd` holds the starter kit, suit colour and skin choices and
+  the suit-unlock feats. The title (CLOUD FULL and SOLO) and the Full lobby
+  show **KIT / SUIT / SKIN** buttons, and each press cycles to the next
+  unlocked choice with touch, keyboard or gamepad. `Net._hello` sends the
+  unlocked colours, and a lobby change sends `Net._request_cosmetic`.
+  `GameManager/Feats._feat_event` progress is stored in
+  `user://car_feats.cfg` and unlocks colours and skins as in the native game.
+
+#### Native feature parity (world and gameplay)
+
+Status: ✅ implemented, 🟡 simplified for the car, ❌ not done. "Probe"
+means `tests/full_drive.gd --drive-probe` checks it, and "squad" means the
+two-client `--drive-squad` run checks it.
+
+| Feature | Status | Notes |
+| --- | --- | --- |
+| Movement, crouch, sprint, jump, downed crawl, turned speed, Undertow pull | ✅ | `full_player.gd`, native constants |
+| Roof ray, shelter volumes, own and teammate raised tarps (r 2 m, h 2.6 m, state `ok`) | ✅ | Probe `EXPOSURE`, `TARP` |
+| Tarp sheet on yourself and on teammates (3.4 m, 2.3 m up) | ✅ | One shared mesh and material |
+| Puddle growth: ×3 on every Flood wave (wave 3 and endless rotation), sandbag-wall cap, `_sync_puddles` correction | ✅ | `wave_plan.gd` modifier table from game data |
+| Puddle look | 🟡 | Two shared materials (rain or acid). No ripples or hazard rim. |
+| Starter kit choice, suit colour and skin, unlocked colours in `_hello`, `_request_cosmetic` | ✅ | Probe `KIT`, `COSMETIC` |
+| Feats that unlock suits (`_feat_event`) | ✅ | Probe `FEATS`. Achievement list UI not done. |
+| Hitscan guns: tracers, pellets (shotgun fan), impact puff by surface, metal sparks, flesh thud | ✅ | From `_shot_fx` traces (host-resolved spread) |
+| Stream weapons (pressure washer, leaf blower, zapper, disruptor): beams, no flash | ✅ | Wide beam for wash or gust |
+| Harpoon: bolt flight, hold, reel on the winch cable, reel tick | ✅ | Probe `HARPOON`. The cable follows the contact point, not a moving enemy. |
+| Recoil camera kick (per-gun degrees, ADS ×0.65, Hyper Focus ×0.5), shake, shell casings, pump rack | ✅ | Local shots only, like native |
+| Spread or bloom on the reticle | ❌ | HUD reticle (worker F) |
+| Projectiles in flight (nails, flares, harpoon bolts, frags, domes, bleach, bait radio, boombox) | ✅ | `_effect_spawn` / `_flight` with gravity |
+| Deployed zones: rim ring, shield dome or bleach or disruptor shell, end-of-life dome warning pulse, umbrella canopy, sandbag wall, lightning-rod charge sweep and sparks, blasts | ✅ | Probe `ZONES`. No OmniLights (GLES2 cost). |
+| Bait radio tune | 🟡 | One-shot cue on deploy. No 3D loop. |
+| Enemies: all nine kinds, Cloudburst, Cumulus (sacs/core from `_sync`), split smalls, elites (×1.12 size) | ✅ | Exported rigs and procedural gaits |
+| Wind-up telegraphs: orange ground ring sized by attack range, Gutter lunge lane, Thunderhead swell | ✅ | Probe `TELL` |
+| Enemy attack-flash overlay and through-wall reveal | ❌ | Needs a second material pass per enemy |
+| Cloudburst spore landing ring, Mister and Smog spore arcs, acid clouds | ✅ | Clouds are one shared sphere material |
+| Deaths: topple along the throw vector, 2.4 s corpse, sink (max 6 at once), fragments, acid splat | ✅ | Probe `CORPSE` |
+| Molt sparks, impact flinch, group warning, progress | ✅ | |
+| Weather phases, intensity easing, acid storm, rain particles, sky | ✅ | `weather.gd` |
+| Lightning: ambient and tactical strikes, thunder delayed by distance, tactical flash and shake | ✅ | |
+| Airdrop: 5.8 m descent, parachute model with sway, landing thud, pulsing beacon beam and ring | ✅ | Probe `AIRDROP`. No smoke puffs. |
+| Vending cabinets: offer models in the bays when within 9 m, prompts, hold-to-buy | ✅ | Probe `OFFERS`, `VEND_*`. Models are merged per material. No price or title labels. |
+| Supplies, scrap, ammo and health packs, weapon pickups (spin and bob) | ✅ | |
+| Pings: world pillar plus HUD marker and sound | ✅ | Probe `PING` |
+| Downed (low camera, glitch, crawl), revive hold and prompt, self-revive in solo | ✅ | Squad `DOWNED`, `REVIVE_OK`, `REVIVED` |
+| Turned: teammates drawn with the turned rig, own viewmodel hidden, melee on fire | ✅ | Squad `TURNED`, `TURNED_MODEL`, `MELEE` |
+| Out: spectate a living teammate, fire or jump cycles | ✅ | Squad `OUT`, `SPECTATE` |
+| Decon showers: hold, spray FX | ✅ | Probe `DECON_PROMPT` |
+| Map signs (neon lettering, pictograms) | ❌ | Not in the asset export (`labels_baked: 0`). Godot 3 has no Label3D. |
+| Through-wall teammate outlines | 🟡 | HUD name markers instead |
+
 
 The Full tier adds about 1 to 1.5 ms of script per frame on a desktop
 (`w_local`, `w_sync`, `w_rpc` and `n_rpc` in `PROF`) over Thin. Draw counts
-match Thin (`draws2d` about 55, 3D 65 to 190 draws on Pinecrest).
+match Thin (`draws2d` about 55, 3D 65 to 190 draws on Pinecrest). The
+world-parity visuals do not change that. In a wave-1 Downpour on Pinecrest
+with two players and 30 to 40 infected (2026-11-26, desktop), `world` was
+1.2 to 1.5 ms, `actors` 0.5 to 0.9 ms and `fx` under 0.1 ms. 3D draws were 85
+to 130 with the horde off screen and peaked at 660 when facing all of it.
+Each infected rig costs about 15 draws, so the horde dominates the frame,
+not the new effects. Idle effect pools draw nothing, and an active zone adds
+one or two draws.
 
 ## Performance notes (Honda head unit, PowerVR SGX 544MP)
 
@@ -256,11 +318,26 @@ and `--full-enc=bin` for the local wire matrix. Run
 benchmark the codec against the spec examples and binary transcript.
 `res://tests/wire_tcp.gd` checks TCP framing, RTT and disconnects on loopback.
 
-`--drive-probe` also checks shelter exposure, vending, decon, pings, and the
-draft and tape overlays. It teleports the player, so use it only on a local
+`--drive-probe` also checks shelter exposure, vending, decon, pings, the
+draft and tape overlays, and the world parity features: starter kit,
+cosmetics, own tarp, deployed zones, harpoon, a telegraph, a corpse, vending
+bay models, a feat unlock (the local feat store is restored afterwards) and
+an airdrop. It teleports the player, so use it only on a local
 server. Use `--drive-leave-after=N` for short live runs and
 `--drive-live` to leave an occupied lobby after the handshake.
 `--drive-shots=DIR` saves screenshots.
+
+Two clients on one local server check co-op states. Start the medic
+first, then the victim:
+
+```text
+--path clients/car -- --full-drive --full-url=ws://127.0.0.1:7780/ --drive-squad=medic --drive-no-force --starter=1 --exit-when-done
+--path clients/car -- --full-drive --full-url=ws://127.0.0.1:7780/ --drive-squad=victim --drive-no-force --exit-when-done
+```
+
+The victim waits in the rain until it is downed. The medic revives it once,
+then lets the second down bleed out. The turned victim swings, the medic
+shoots it out, and the victim spectates.
 
 For Android captures, boot a rootable API 22 x86 Android SDK emulator and
 run the following from Bash. Set `EMU` if its serial differs from
