@@ -73,8 +73,8 @@ releases it). Desktop has no touch layer unless you pass `--touch`.
 | Reload / interact (hold) | R / E | X / Y | RELOAD / USE |
 | Tarp (use_item) | T | D-pad up | ITEM |
 | Frag / Shield Dome | Q / F | D-pad left / right | Hotbar pouches |
-| Slots / cycle | 1–5 / wheel | RB / LB | Hotbar |
-| Drop item / ping | G / Z or MMB | R3 / D-pad down | — |
+| Slots / cycle | 1â€“5 / wheel | RB / LB | Hotbar |
+| Drop item / ping | G / Z or MMB | R3 / D-pad down | â€” |
 | Ready up | H | Back | READY |
 | Pause / scoreboard | Esc / Tab | Start / Back | MENU |
 | Draft cards | 1 / 2 / 3 | Menu navigation | Tap a card |

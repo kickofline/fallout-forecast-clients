@@ -25,7 +25,9 @@ C:/Users/drewd/Desktop/Godot_v4.7.2-stable_win64_console.exe `
 Pass after `--`:
 
 - `--out=<dir>` — Output directory (default: `C:/Users/drewd/fallout-forecast-clients/assets`)
-- `--only=<sections>` — Comma-separated subset of `maps,characters,weapons,audio` (default: all)
+- `--only=<sections>` — Comma-separated subset of `maps,physics,characters,weapons,audio` (default: all). `physics` alone writes only the collision/navigation files and patches their manifest entries without rebaking the map meshes
+- `--no-physics` — Skip `<map>_physics.json` during a maps export
+- `--physics-verify=<dir>` — Also write `<map>_physics_verify.json` fixtures (native roof-ray / shelter-volume answers and nav paths) for `tools/physics_check.gd`
 - `--maps=<ids>` — Comma-separated subset of `pinecrest,harbor,maple_hollow`
 - `--skip-decimate` — Skip generating `<map>_low.glb` when a map exceeds 150k triangles
 - `--no-fold-colors` — Keep one material per solid colour (by default untextured opaque solids are folded into vertex colours, which halves the maps' draw calls and renders identically on the client)
@@ -46,6 +48,7 @@ Pass after `--`:
   - **Triplanar tag**: materials whose triplanar UVs were baked get a `tri_` name; the car client skips PS1 vertex snapping on them like the original's triplanar path (snapped ground and road layers z-fought).
   - **Decimation**: generates `<map>_low.glb` via normal-octant-aware spatial vertex clustering if a map exceeds 150,000 triangles.
 - `lib/export_maps.gd` — Instances `pinecrest`, `harbor`, `maple_hollow` (with `building_restyle.gd`, `map_signs.gd`, and `tree_shelter.gd`), extracts sidecar JSONs (`puddles` with raycasted `floor_y`, `shelters`, spawns, `vending_stations`, `decon_showers`, `boss_anchors`, `lights`) and per-weather environment tables (`maps/environments.json`).
+- `lib/export_physics.gd` — Writes `maps/<map>_physics.json`: the level's physics-layer-1 collision (StaticBody3D shapes, plus CSG roots with `use_collision`) and the baked NavigationRegion3D navmesh. It keeps the game's primitives: boxes, cylinders, spheres, capsules and convex hulls with orthonormal transforms and the scale baked into their sizes. Only CSG trees become triangles. Pinecrest has 175 boxes, 7 cylinders and 180 triangles (67 KB). Harbor has 310 boxes, 28 cylinders and 15 hulls (80 KB). Maple Hollow has 222 boxes and 118 cylinders (93 KB). The navmesh keeps its vertices and polygons as baked, and `floor_offset` records how far its vertices sit above the floor (about 0.45 to 0.5 m). Shelter areas come from the map sidecar's `shelters`.
 - `lib/export_characters.gd` — Exports all 12 enemy types (`drip`, `gutter`, `mister`, `hailstone`, `sleet`, `smog`, `static`, `thunderhead`, `undertow`, `cloudburst`, `cumulus`, `turned`) and all 50 player skin × suit-color combinations with clean articulated node hierarchies and rest poses.
 - `lib/export_weapons.gd` — Exports all 24 firearms/items (first-person viewmodels with `LeftHand`/`RightHand` + animated pivots + `Muzzle`/`Sight` markers, and world pickups), ground supply drops, vending station, crate station, airdrop + parachute + beacon, decon shower cells, shield dome, deployed props, and projectiles.
 - `lib/export_ui_audio.gd` — Copies fonts, UI icons & map previews (plus PNG conversions of `.webp` previews), and all `.wav`/`.ogg` music & SFX with `audio/sound_map.json`.
