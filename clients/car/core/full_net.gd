@@ -1,8 +1,7 @@
 extends Node
 ## Full-tier session (autoload `FullNet`): Open Protocol handshake, the game
 ## handshake (Net._hello), roster/lobby, RTT answers and the run lifecycle of
-## spec-full.md §5. It talks ONLY to a FullLink (core/ws_full_link.gd online,
-## solo/local_link.gd solo), so solo play runs exactly this code.
+## spec-full.md §5. The session talks to a FullLink for WebSocket, TCP or solo.
 ##
 ## It exposes the same surface as the Thin `Net` autoload (phase, state,
 ## lobby, maps, signals, lobby_action, choose, leave) so the shared screens and
@@ -30,6 +29,7 @@ const GAME_PROTOCOL = 19
 const CLIENT = "fallout-car/0.2"
 const JOIN_DEADLINE = 10.0
 const WsLink = preload("res://core/ws_full_link.gd")
+const TcpLink = preload("res://core/tcp_full_link.gd")
 const LocalLink = preload("res://solo/local_link.gd")
 const GAME_DATA = "res://data/game_data.json"
 
@@ -115,7 +115,8 @@ func is_online() -> bool:
 func connect_full(url: String, player_name: String) -> void:
 	mode = "full"
 	_url = url
-	_start(WsLink.new(url), player_name, "")
+	var tcp = url.begins_with("tcp://") or Settings.full_uses_tcp()
+	_start(TcpLink.new(url) if tcp else WsLink.new(url), player_name, "")
 
 
 func start_solo(map_id: String, player_name: String) -> void:
@@ -124,6 +125,8 @@ func start_solo(map_id: String, player_name: String) -> void:
 
 
 func _start(new_link, player_name: String, solo_map: String) -> void:
+	if link:
+		link.close()
 	_drop_link()
 	active = true
 	_name = player_name.strip_edges()
@@ -157,7 +160,12 @@ func _start(new_link, player_name: String, solo_map: String) -> void:
 	state = "joining"
 	status_msg = "SOLO" if mode == "solo" else ""
 	_set_phase("connecting")
-	link.open({"v": 1, "tier": "full", "enc": "json", "client": CLIENT})
+	link.open({"v": 1, "tier": "full", "enc": "json" if link.is_local() else Settings.full_encoding(), "client": CLIENT})
+
+
+func _exit_tree() -> void:
+	if link:
+		link.close()
 
 
 func leave() -> void:
@@ -270,7 +278,7 @@ func _on_message(msg: Dictionary) -> void:
 			rpc_in[method] = int(rpc_in.get(method, 0)) + 1
 			var _t = OS.get_ticks_usec()
 			if str(msg.get("node", "")) == "Net":
-				_on_net_rpc(method, msg.get("args", []))
+				_on_net_rpc(method, msg.get("args", []), msg.get("rtt_answered", false))
 			else:
 				_route(msg)
 			Settings.prof_add("n_rpc", OS.get_ticks_usec() - _t)
@@ -300,11 +308,12 @@ func _on_welcome(msg: Dictionary) -> void:
 	emit_signal("status_changed", state, status_msg)
 
 
-func _on_net_rpc(method: String, args: Array) -> void:
+func _on_net_rpc(method: String, args: Array, rtt_answered := false) -> void:
 	match method:
 		"_rtt_ping":
 			if args.size() >= 1:
-				link.send({"t": "rpc", "node": "Net", "method": "_rtt_pong", "args": [int(args[0])], "rel": false})
+				if not rtt_answered:
+					link.send({"t": "rpc", "node": "Net", "method": "_rtt_pong", "args": [int(args[0])], "rel": false, "mode": 0})
 				if args.size() >= 2:
 					server_rtt = float(args[1])
 					if link.is_local() or rtt_ms < 0.0:

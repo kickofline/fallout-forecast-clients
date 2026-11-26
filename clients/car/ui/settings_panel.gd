@@ -32,6 +32,8 @@ func _ready() -> void:
 	_box.add_constant_override("separation", 10)
 	scroll.add_child(_box)
 	call_deferred("_attach_nav", back)
+	_choice("CLOUD FULL CONNECTION", "full_wire", [["ws/json", "WS JSON"], ["ws/bin", "WS BIN"],
+		["tcp/json", "TCP JSON"], ["tcp/bin", "TCP BIN"]])
 	_slider("TOUCH LOOK SENSITIVITY", "look_sensitivity", 0.3, 3.0, 0.05, "%.2fx")
 	_slider("MOUSE SENSITIVITY", "mouse_sensitivity", 0.2, 4.0, 0.05, "%.2fx")
 	_slider("PAD LOOK SENSITIVITY", "pad_sensitivity", 0.3, 3.0, 0.05, "%.2fx")

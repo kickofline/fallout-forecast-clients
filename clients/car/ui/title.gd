@@ -151,19 +151,25 @@ func _apply_mode() -> void:
 		UI.accent(b, UI.ACID if on else UI.MUTED.darkened(0.2))
 		b.modulate = Color(1, 1, 1, 1.0 if on else 0.7)
 	var solo = _mode == "solo"
-	_url_cap.text = "SOLO DISTRICT" if solo else ("SERVER (WSS, FULL TIER)" if _mode == "full" else "SERVER (WSS)")
+	_url_cap.text = "SOLO DISTRICT" if solo else "SERVER (WSS)"
+	if _mode == "full":
+		_url_cap.text = "SERVER (TCP HOST:PORT)" if Settings.full_uses_tcp() else "SERVER (WS / WSS)"
 	_url_edit.visible = not solo
 	_maps_row.visible = solo
 	for b in _maps_row.get_children():
 		var on2 = b.get_meta("map") == Settings.solo_map
 		UI.accent(b, UI.CYAN if on2 else UI.MUTED.darkened(0.2))
 		b.modulate = Color(1, 1, 1, 1.0 if on2 else 0.7)
-	_url_edit.text = Settings.full_url if _mode == "full" else Settings.server_url
+	_url_edit.text = Settings.full_endpoint() if _mode == "full" else Settings.server_url
 	_sub.text = {"thin": "CAR RECEIVER  ·  CLOUD PLAY", "full": "CAR RECEIVER  ·  CLOUD FULL", "solo": "CAR RECEIVER  ·  SOLO TAPE"}[_mode]
 
 
 func _store_url() -> void:
 	if _mode == "solo":
+		return
+	if _mode == "full" and Settings.full_uses_tcp():
+		var address = _url_edit.text.strip_edges()
+		Settings.full_tcp_address = Settings.DEFAULT_FULL_TCP if address.empty() else address
 		return
 	var url = _clean_url(_url_edit.text)
 	if _mode == "full":
@@ -225,8 +231,8 @@ func _on_connect() -> void:
 		"full":
 			if Net.phase != "offline":
 				Net.leave()
-			_url_edit.text = Settings.full_url
-			FullNet.connect_full(Settings.full_url, Settings.player_name)
+			_url_edit.text = Settings.full_endpoint()
+			FullNet.connect_full(Settings.full_endpoint(), Settings.player_name)
 		"solo":
 			if Net.phase != "offline":
 				Net.leave()
@@ -237,6 +243,8 @@ func _on_connect() -> void:
 func _on_settings() -> void:
 	if _settings and is_instance_valid(_settings):
 		return
+	if _mode == "full":
+		_store_url()
 	_settings = SettingsPanel.new()
 	add_child(_settings)
 	# The sheet has its own navigator; park this one until it closes.
@@ -245,6 +253,8 @@ func _on_settings() -> void:
 
 
 func _on_settings_closed() -> void:
+	if _mode == "full":
+		_apply_mode()
 	if is_instance_valid(_nav):
 		_nav.screen = self
 		_nav.first = _connect
