@@ -289,7 +289,7 @@ func _dispatch(batch: Array) -> void:
 				close_reason = str(ev[3])
 				print("NET server close request code=%d reason='%s'" % [close_code, close_reason])
 			"closed":
-				var why = _close_text(bool(ev[2]))
+				var why = _close_text(bool(ev[2])) if _want_online else "LEFT"
 				print("NET closed clean=%s code=%d reason='%s' -> %s" % [str(ev[2]), close_code, close_reason, why])
 				_lost(why)
 			"data":
