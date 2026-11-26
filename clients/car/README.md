@@ -246,7 +246,7 @@ Compared with the native HUD (`ui/hud.gd`, `juice_hud.gd`, `ping_hud.gd`,
 | Tarp ready and raised with its key, static charge %, invulnerable tint | Implemented. |
 | Ammo, reserve, mag pips, low ammo and jam colours, reload progress | Implemented. The reload and jam state show on the reticle. |
 | Weapon hint (THROW / STOW for pouches, USE for items) | Simplified. It shows only device keys, not the per-item stat hint. |
-| Reticle styles, spread, hit / crit / kill markers, interact hold arc | Implemented (existing). Rings are now batched quads. |
+| Reticle styles, per-weapon spread and bloom, hit / crit / kill markers, interact hold arc | Implemented. Spread is the native projection of the weapon's `spread_degrees`, burst heat, recoil, move and air bloom, ADS easing and Hyper Focus. Thin keeps an estimate from the weapon category. Rings are batched quads. |
 | Disruptor charge ring, downed bleed-out ring with seconds | Implemented. |
 | Hotbar, belt pouches, scrap counter | Implemented (existing). |
 | Inventory / loadout menu (equip, move, drop, stats, stash) | Implemented: I, or LOADOUT in the pause menu. Works with pad focus, touch and mouse. No drag and drop. |
