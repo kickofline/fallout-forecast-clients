@@ -10,12 +10,16 @@ const Reticle = preload("res://ui/reticle.gd")
 const Hotbar = preload("res://ui/hotbar.gd")
 const Touch = preload("res://ui/touch.gd")
 const SettingsPanel = preload("res://ui/settings_panel.gd")
+const FocusNav = preload("res://ui/focus_nav.gd")
 const DAMAGE = preload("res://shaders/damage.shader")
 const PHASE_NAMES = {"calm": "CALM", "drizzle": "DRIZZLE", "downpour": "DOWNPOUR", "acid_storm": "ACID STORM", "clearing": "CLEARING"}
 const PHASE_COLORS = {"calm": Color("#66dfda"), "drizzle": Color("#9fd8ff"), "downpour": Color("#adbaff"), "acid_storm": Color("#b8e56d"), "clearing": Color("#b8e56d")}
 const BAR_W = 200.0
 
 var world: Node
+var net: Node = null
+var _menu_toggled_ms = -1000
+var _menu_nav: Node
 var _root = Control.new()
 var _compass: Control
 var _reticle: Control
@@ -68,6 +72,7 @@ var _toast_left = 0.0
 
 
 func _ready() -> void:
+	net = FullNet.current()
 	layer = 5
 	_root.set_anchors_and_margins_preset(Control.PRESET_WIDE)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -102,10 +107,12 @@ func _ready() -> void:
 	world.connect("hurt", self, "_on_hurt")
 	world.connect("banner", self, "_on_banner")
 	world.connect("picked", self, "_on_picked")
-	Net.connect("draft", self, "_on_draft")
-	Net.connect("draft_done", self, "_on_draft_done")
-	Net.connect("tape", self, "_on_tape")
-	Net.connect("events", self, "_on_events")
+	net.connect("draft", self, "_on_draft")
+	net.connect("draft_done", self, "_on_draft_done")
+	net.connect("tape", self, "_on_tape")
+	net.connect("events", self, "_on_events")
+	if world.has_signal("group_warning"):
+		world.connect("group_warning", _compass, "warn")
 	# Test switch: --hud-hide=2,5 hides those _root children (on-car A/B).
 	for a in Settings.args():
 		if str(a).begins_with("--hud-hide="):
@@ -293,6 +300,11 @@ func blocks_touch(at: Vector2) -> bool:
 
 
 func toggle_menu() -> void:
+	# The touch layer and Controls can both report the same key press.
+	var now = OS.get_ticks_msec()
+	if now - _menu_toggled_ms < 150:
+		return
+	_menu_toggled_ms = now
 	if _menu and is_instance_valid(_menu):
 		_menu.queue_free()
 		_menu = null
@@ -311,23 +323,37 @@ func toggle_menu() -> void:
 	box.add_constant_override("separation", 10)
 	_menu.add_child(box)
 	box.add_child(UI.label("PAUSE", 26, UI.MUTED))
-	box.add_child(UI.label("CLOUD PLAY KEEPS RUNNING", 22, UI.AMBER))
+	box.add_child(UI.label("SOLO TAPE KEEPS RUNNING" if net == FullNet and FullNet.mode == "solo" else "CLOUD PLAY KEEPS RUNNING", 22, UI.AMBER))
+	var first: Button
 	for spec in [["RESUME", "toggle_menu"], ["SETTINGS", "_open_settings"], ["LEAVE RUN", "_leave"]]:
 		var b = UI.button(spec[0], self, spec[1])
 		b.rect_min_size = Vector2(420, 60)
 		b.align = Button.ALIGN_LEFT
 		if spec[0] == "RESUME":
 			UI.primary(b)
+			first = b
 		box.add_child(b)
+	UI.focusable(_menu)
+	_menu_nav = FocusNav.new().attach(_menu)
+	_menu_nav.first = first
+	_menu_nav.connect("back", self, "toggle_menu")
 
 
 func _open_settings() -> void:
 	var s = SettingsPanel.new()
 	_root.add_child(s)
+	if _menu_nav and is_instance_valid(_menu_nav):
+		_menu_nav.screen = null
+		s.connect("tree_exited", self, "_on_settings_closed")
+
+
+func _on_settings_closed() -> void:
+	if _menu_nav and is_instance_valid(_menu_nav) and _menu and is_instance_valid(_menu):
+		_menu_nav.screen = _menu
 
 
 func _leave() -> void:
-	Net.leave()
+	net.leave()
 
 
 func _show_overlay(kind: String) -> void:
@@ -354,7 +380,7 @@ func _show_overlay(kind: String) -> void:
 			if not (card is Dictionary):
 				continue
 			var b = Button.new()
-			b.focus_mode = Control.FOCUS_NONE
+			b.focus_mode = Control.FOCUS_ALL
 			UI.place(b, 0.5, 0.5, -460 + i * 310, -140)
 			b.rect_size = Vector2(300, 150)
 			var c: Color = colors[i % 3]
@@ -401,9 +427,16 @@ func _show_overlay(kind: String) -> void:
 				UI.accent(b2, specs[j][2])
 				_overlay.add_child(b2)
 
+	UI.focusable(_overlay)
+	var onav = FocusNav.new().attach(_overlay)
+	for c in _overlay.get_children():
+		if c is BaseButton:
+			onav.first = c
+			break
+
 
 func _choose(kind: String, i: int) -> void:
-	Net.choose(kind, i)
+	net.choose(kind, i)
 	Sound.play("ui_click")
 	if kind == "tape":
 		_show_overlay("")
@@ -453,9 +486,9 @@ func _process_body(delta: float) -> void:
 		_numbers.pop_front()
 	if _overlay_kind == "draft":
 		_draft_left = max(0.0, _draft_left - delta)
-	var lost = Net.phase == "retuning"
+	var lost = net.phase == "retuning"
 	if lost and (_signal == null or not is_instance_valid(_signal)):
-		_signal = UI.label("SIGNAL LOST  ·  RETUNING  ·  " + Net.last_error, 40, UI.PINK, 2)
+		_signal = UI.label("SIGNAL LOST  ·  RETUNING  ·  " + net.last_error, 40, UI.PINK, 2)
 		UI.place(_signal, 0.5, 0.5, -250, -160)
 		_root.add_child(_signal)
 	elif not lost and _signal and is_instance_valid(_signal):
@@ -464,7 +497,7 @@ func _process_body(delta: float) -> void:
 	var menu_open = _menu != null and is_instance_valid(_menu)
 	world.input_blocked = menu_open
 	world.draft_open = _overlay_kind == "draft"
-	_touch.visible = not menu_open and Net.state == "run" and Controls.device == "touch" and not Settings.has_arg("--no-touch")
+	_touch.visible = not menu_open and net.state == "run" and Controls.device == "touch" and not Settings.has_arg("--no-touch")
 	if Settings.has_arg("--no-compass"):
 		_compass.visible = false
 	for c in _root.get_children():
@@ -472,7 +505,7 @@ func _process_body(delta: float) -> void:
 			c.visible = false
 	_touch.update()
 	# The overlay only has content with arcs, teammates, numbers or a draft.
-	var busy = not _arcs.empty() or not world.others.empty() or not _numbers.empty() or _overlay_kind == "draft"
+	var busy = not _arcs.empty() or not world.others.empty() or not _numbers.empty() or _overlay_kind == "draft" 		or ("pings" in world and not world.pings.empty())
 	if busy or _draw_busy:
 		_draw.update()
 	_draw_busy = busy
@@ -655,6 +688,16 @@ func _on_draw_body() -> void:
 		var txt: String = str(o.name).to_upper() + ("  DOWN" if o.state == "downed" else "")
 		UI.draw_text_centered(_draw, p.x, p.y, txt, 20, col)
 		_draw.draw_colored_polygon(PoolVector2Array([p + Vector2(-4, 4), p + Vector2(4, 4), p + Vector2(0, 9)]), col)
+	# Squad pings (Full tier).
+	if "pings" in world:
+		for pg in world.pings:
+			var pp = world.to_screen(pg[0] + Vector3(0, 0.6, 0), size)
+			if pp == null:
+				continue
+			var pc: Color = UI.PINK if pg[1] in ["enemy", "danger"] else (UI.ACID if pg[1] in ["go", "shelter"] else UI.AMBER)
+			pc.a = clamp(pg[2], 0.0, 1.0)
+			_diamond(pp, 9.0, pc)
+			UI.draw_text_centered(_draw, pp.x, pp.y - 14, str(pg[1]).to_upper(), 18, pc)
 	# Damage numbers.
 	for n in _numbers:
 		var p2 = world.to_screen(n[0], size)
@@ -667,3 +710,7 @@ func _on_draw_body() -> void:
 		var total = float(_draft.get("time_left", 15.0)) if _draft.get("time_left") != null else 15.0
 		var k: float = clamp(_draft_left / max(1.0, total), 0.0, 1.0)
 		_draw.draw_rect(Rect2(Vector2(c.x - 460, c.y + 18), Vector2(920 * k, 4)), UI.CYAN)
+
+
+func _diamond(at: Vector2, r: float, color: Color) -> void:
+	_draw.draw_colored_polygon(PoolVector2Array([at + Vector2(0, -r), at + Vector2(r, 0), at + Vector2(0, r), at + Vector2(-r, 0)]), color)

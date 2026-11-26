@@ -49,11 +49,18 @@ adb devices -l
 adb -s HEAD_UNIT_SERIAL install -r build/fallout-car.apk
 ```
 
-Open **Fallout Car** and use **Cloud Play**. The server field defaults to
-`wss://fallout-thin.drew.place/`. The app saves the URL and display name when
-you connect, and verifies certificates for WSS connections. Vote for a map
-and ready up in the lobby. In the run, use the left stick to move and drag on
-the right to look. Use the on-screen actions and hotbar for combat and items.
+Open **Fallout Car**, pick a mode on the title screen, then connect.
+
+| Mode | Tier | Server field default |
+| --- | --- | --- |
+| CLOUD | Thin: the server simulates the player | `wss://fallout-thin.drew.place/` |
+| CLOUD FULL | Full: the car simulates its own player | `wss://fallout-open.drew.place/` |
+| SOLO | Full rules against the in-process solo authority (`solo/local_link.gd`) | choose a district instead |
+
+The app saves the mode, URLs and display name when you connect, and verifies
+certificates for WSS connections. Vote for a map and ready up in the lobby.
+In the run, use the left stick to move and drag on the right to look. Use the
+on-screen actions and hotbar for combat and items.
 
 ## Controls
 
@@ -113,9 +120,41 @@ look, and touch button sizing.
   cover missing asset IDs. The loading card covers enemy-rig merging, combat
   effect warm-up, and the first draw of the populated world.
 
-The [Open Protocol specification](../../docs/open-protocol.md) describes Thin
-and Full. This client uses Thin JSON WebSocket messages. It has no join-code
+The [Open Protocol specification](../../docs/open-protocol/) describes Thin
+and Full. Both modes use JSON over WebSocket. The client has no join-code
 field.
+
+### Full tier (CLOUD FULL and SOLO)
+
+- `core/ws_full_link.gd` is the transport. It polls the socket from a helper
+  thread like `core/net.gd`, and during a main-loop stall it answers
+  `Net._rtt_ping` from that thread. `core/variant_codec.gd` maps Godot 3
+  values to the spec §7 tags. Godot 3 parses every JSON number as a float, so
+  the codec turns integral numbers back into ints.
+- `core/full_net.gd` (autoload `FullNet`) runs the hello and `game_protocol`
+  check, `Net._hello`, the roster and lobby, RTT answers and the spec-full §5
+  run lifecycle. It talks only to a FullLink, so solo play runs the same
+  code. It mimics the Thin `Net` surface, and the shared screens and HUD read
+  `FullNet.current()`. Run RPCs are queued until the world registers, run
+  requests are gated on `_confirm_run_ready`, and RPCs after `_finish` are
+  dropped.
+- `world/full_world.gd` extends `world/world.gd` and reuses its renderer,
+  loader, weather, actors, viewmodel and effects. It builds collision with
+  `world/level_physics.gd` and spawns each roster peer at
+  `player_spawn[i % n]`. It streams `_push_transform` at 20 Hz, reports
+  exposure from the roof ray, shelter volumes, teammate tarps and growing
+  puddles, and renders the host's enemy, loot, effect, vending, weather,
+  draft and tape RPCs. Shots, throws, reloads, slot changes, pickups, decon,
+  revive, vending holds and pings go to the host as requests.
+- `world/full_player.gd` is the local KinematicBody with the native game's
+  movement numbers. It steps once per rendered frame (sub-stepped to 1/30 s)
+  instead of at 60 Hz physics, which is cheaper on the head unit.
+- `data/game_data.json` is a copy of `docs/open-protocol/game-data.json`
+  (game protocol 19). Copy it again when `game_protocol` changes.
+
+The Full tier adds about 1 to 1.5 ms of script per frame on a desktop
+(`w_local`, `w_sync`, `w_rpc` and `n_rpc` in `PROF`) over Thin. Draw counts
+match Thin (`draws2d` about 55, 3D 65 to 190 draws on Pinecrest).
 
 ## Performance notes (Honda head unit, PowerVR SGX 544MP)
 
@@ -191,6 +230,24 @@ For desktop captures, launch the project with Godot 3.6.3 using
 The capture harness drives the lobby and run, then saves screenshots and
 frame-rate samples. Use an absolute path for `--capture` if launching from
 outside the repository.
+
+Full-tier checks use `tests/full_drive.gd` (not exported). It drives the
+real client through conformance checks F1 to F8, a short run (spawn, move,
+shoot, take damage, results) and a clean leave, printing `DRIVE ... PASS`
+lines. Run it against a local dedicated server's Open Protocol port, briefly
+against a live server (it force-starts only an otherwise empty lobby), or
+against solo.
+
+```text
+--path clients/car -- --full-drive --full-url=ws://127.0.0.1:7780/ --drive-probe --exit-when-done
+--path clients/car -- --full-drive=reject --hello-protocol=18 --full-url=ws://127.0.0.1:7780/ --exit-when-done
+--path clients/car -- --full-drive=solo --exit-when-done
+```
+
+`--drive-probe` also checks shelter exposure, vending, decon, pings, and the
+draft and tape overlays. It teleports the player, so use it only on a local
+server. Use `--drive-leave-after=N` for short live runs and
+`--drive-shots=DIR` to save screenshots.
 
 For Android captures, boot a rootable API 22 x86 Android SDK emulator and
 run the following from Bash. Set `EMU` if its serial differs from

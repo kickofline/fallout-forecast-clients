@@ -67,7 +67,16 @@ func theme() -> Theme:
 				bg = INK
 				accent = MUTED.darkened(0.45)
 			if state == "focus":
-				t.set_stylebox(state, type, StyleBoxEmpty.new())
+				# Keyboard / pad focus (ui/focus_nav.gd): an amber frame.
+				var fb = StyleBoxFlat.new()
+				fb.draw_center = false
+				fb.border_color = AMBER
+				fb.set_border_width_all(3)
+				fb.expand_margin_left = 2
+				fb.expand_margin_right = 2
+				fb.expand_margin_top = 2
+				fb.expand_margin_bottom = 2
+				t.set_stylebox(state, type, fb)
 			else:
 				t.set_stylebox(state, type, button_box(bg, accent, 3, 8, 16))
 		t.set_color("font_color", type, PAPER)
@@ -305,3 +314,11 @@ func place(c: Control, ax: float, ay: float, x: float, y: float, w := -1.0, h :=
 	c.margin_top = y
 	c.margin_right = x + size.x
 	c.margin_bottom = y + size.y
+
+
+## Let ui/focus_nav.gd reach every button, slider and field under `n`.
+func focusable(n: Node) -> void:
+	for c in n.get_children():
+		if c is BaseButton or c is LineEdit or (c is Range and not (c is ProgressBar or c is ScrollBar)):
+			c.focus_mode = Control.FOCUS_ALL
+		focusable(c)

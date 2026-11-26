@@ -15,9 +15,11 @@ var _status: Label
 var _me_ready = false
 var _my_vote = ""
 var _last_maps_key = ""
+var net: Node = null
 
 
 func _ready() -> void:
+	net = FullNet.current()
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	var title = UI.label("LOBBY", 56, UI.PAPER)
 	title.rect_position = Vector2(40, 14)
@@ -78,17 +80,20 @@ func _ready() -> void:
 	_start.add_font_override("font", UI.font(30))
 	UI.accent(_start, UI.AMBER)
 	actions.add_child(_start)
-	Net.connect("lobby_updated", self, "_on_lobby")
+	net.connect("lobby_updated", self, "_on_lobby")
 	refresh()
+	UI.focusable(self)
+	var nav = preload("res://ui/focus_nav.gd").new().attach(self)
+	nav.first = _ready
 
 
 func refresh() -> void:
-	_on_lobby(Net.lobby)
+	_on_lobby(net.lobby)
 
 
 func _process(_delta: float) -> void:
-	var rtt = "%d MS" % int(Net.rtt_ms) if Net.rtt_ms >= 0.0 else "-- MS"
-	_status.text = "CLOUD PLAY  ·  ON AIR  ·  " + rtt
+	var rtt = "%d MS" % int(net.rtt_ms) if net.rtt_ms >= 0.0 else "-- MS"
+	_status.text = ("CLOUD FULL" if net != Net else "CLOUD PLAY") + "  ·  ON AIR  ·  " + rtt
 
 
 func _on_lobby(data: Dictionary) -> void:
@@ -101,7 +106,7 @@ func _on_lobby(data: Dictionary) -> void:
 	for p in players:
 		if not (p is Dictionary):
 			continue
-		var own: bool = int(p.get("id", -1)) == Net.you
+		var own: bool = int(p.get("id", -1)) == net.you
 		if own:
 			_me_ready = bool(p.get("ready", false))
 			if p.get("vote") is String:
@@ -148,7 +153,7 @@ func _build_maps(data: Dictionary) -> void:
 		for p in players:
 			if p is Dictionary and p.get("vote") is String:
 				counts[p.vote] = int(counts.get(p.vote, 0)) + 1
-	var maps: Array = Net.maps
+	var maps: Array = net.maps
 	var key = to_json([maps, counts, _my_vote])
 	if key == _last_maps_key:
 		return
@@ -163,7 +168,7 @@ func _build_maps(data: Dictionary) -> void:
 		var color: Color = CHANNEL_COLORS[i % CHANNEL_COLORS.size()]
 		var mine = id == _my_vote
 		var card = Button.new()
-		card.focus_mode = Control.FOCUS_NONE
+		card.focus_mode = Control.FOCUS_ALL
 		card.rect_min_size = Vector2(160, 250)
 		var normal = UI.button_box(Color("#3a2016") if mine else Color(0.08, 0.12, 0.16, 0.9), UI.PAPER if mine else Color("#3b5560"), 2, 10, 10)
 		normal.border_width_top = 2
@@ -215,23 +220,23 @@ func _build_maps(data: Dictionary) -> void:
 func _on_vote(id: String) -> void:
 	_my_vote = id
 	_last_maps_key = ""
-	Net.lobby_action("vote", {"map": id})
-	_build_maps(Net.lobby)
+	net.lobby_action("vote", {"map": id})
+	_build_maps(net.lobby)
 
 
 func _on_ready() -> void:
 	_me_ready = not _me_ready
 	_ready.text = "UNREADY" if _me_ready else "READY"
-	Net.lobby_action("ready", {"v": _me_ready})
+	net.lobby_action("ready", {"v": _me_ready})
 
 
 func _on_start() -> void:
-	Net.lobby_action("start")
+	net.lobby_action("start")
 
 
 func _on_quick(text: String) -> void:
-	Net.lobby_action("chat", {"text": text})
+	net.lobby_action("chat", {"text": text})
 
 
 func _on_leave() -> void:
-	Net.leave()
+	net.leave()

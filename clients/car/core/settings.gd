@@ -5,9 +5,16 @@ signal changed
 
 const PATH = "user://car_settings.cfg"
 const DEFAULT_URL = "wss://fallout-thin.drew.place/"
+const DEFAULT_FULL_URL = "wss://fallout-open.drew.place/"
 
 var player_name = "Honda"
 var server_url = DEFAULT_URL
+var full_url = DEFAULT_FULL_URL   # Open Protocol Full tier (CLOUD FULL)
+var play_mode = "thin"            # last title mode: thin | full | solo
+var solo_map = "pinecrest"
+var suit_color = 1                # Full tier cosmetics (game-reference §6)
+var suit_skin = 0
+var starter_index = 0             # Full starter kit: 0 pump shotgun, 1 nail driver, 2 revolver
 var look_sensitivity = 1.0      # multiplier on the base touch look rate
 var mouse_sensitivity = 1.0     # multiplier on the native mouse look rate (0.0025 rad/px)
 var pad_sensitivity = 1.0       # multiplier on the native right-stick look rate (3 rad/s)
@@ -37,6 +44,12 @@ func load_settings() -> void:
 		return
 	player_name = str(cfg.get_value("player", "name", player_name))
 	server_url = str(cfg.get_value("net", "server_url", server_url))
+	full_url = str(cfg.get_value("net", "full_url", full_url))
+	play_mode = str(cfg.get_value("net", "play_mode", play_mode))
+	solo_map = str(cfg.get_value("net", "solo_map", solo_map))
+	suit_color = int(cfg.get_value("player", "suit_color", suit_color))
+	suit_skin = int(cfg.get_value("player", "suit_skin", suit_skin))
+	starter_index = int(cfg.get_value("player", "starter", starter_index))
 	interp_ms = int(cfg.get_value("net", "interp_ms", interp_ms))
 	look_sensitivity = float(cfg.get_value("input", "look_sensitivity", look_sensitivity))
 	mouse_sensitivity = float(cfg.get_value("input", "mouse_sensitivity", mouse_sensitivity))
@@ -59,6 +72,12 @@ func save() -> void:
 	var cfg = ConfigFile.new()
 	cfg.set_value("player", "name", player_name)
 	cfg.set_value("net", "server_url", server_url)
+	cfg.set_value("net", "full_url", full_url)
+	cfg.set_value("net", "play_mode", play_mode)
+	cfg.set_value("net", "solo_map", solo_map)
+	cfg.set_value("player", "suit_color", suit_color)
+	cfg.set_value("player", "suit_skin", suit_skin)
+	cfg.set_value("player", "starter", starter_index)
 	cfg.set_value("net", "interp_ms", interp_ms)
 	cfg.set_value("input", "look_sensitivity", look_sensitivity)
 	cfg.set_value("input", "mouse_sensitivity", mouse_sensitivity)
@@ -155,6 +174,10 @@ func apply_cmdline() -> void:
 		var a = str(arg)
 		if a.begins_with("--url="):
 			server_url = a.substr(6)
+		elif a.begins_with("--full-url="):
+			full_url = a.substr(11)
+		elif a.begins_with("--starter="):
+			starter_index = int(a.substr(10))
 		elif a.begins_with("--name="):
 			player_name = a.substr(7)
 		elif a == "--no-retro":

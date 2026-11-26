@@ -3,12 +3,14 @@ extends Control
 
 var data = {}
 var main: Node
+var net: Node = null
 
 
 func _ready() -> void:
+	net = FullNet.current()
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	var won = bool(data.get("won", false))
-	var district = _map_name(Net.current_map).to_upper()
+	var district = _map_name(str(data.get("map", net.current_map))).to_upper()
 	var box = VBoxContainer.new()
 	box.rect_position = Vector2(80, 40)
 	box.add_constant_override("separation", 6)
@@ -59,10 +61,14 @@ func _ready() -> void:
 	leave.rect_min_size = Vector2(180, 64)
 	row.add_child(leave)
 	Sound.play("results_win" if won else "results_loss")
+	UI.focusable(self)
+	var nav = preload("res://ui/focus_nav.gd").new().attach(self)
+	nav.first = back
+	nav.connect("back", self, "_on_back")
 
 
 func _map_name(id: String) -> String:
-	for m in Net.maps:
+	for m in net.maps:
 		if m is Dictionary and str(m.get("id", "")) == id:
 			return str(m.get("name", id))
 	return id.replace("_", " ")
@@ -76,4 +82,4 @@ func _on_back() -> void:
 func _on_leave() -> void:
 	if main:
 		main.back_to_lobby()
-	Net.leave()
+	net.leave()

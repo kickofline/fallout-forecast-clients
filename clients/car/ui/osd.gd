@@ -101,7 +101,7 @@ func _process(delta: float) -> void:
 		_fps = _fps_frames / _fps_acc
 		_fps_acc = 0.0
 		_fps_frames = 0
-		var rtt = ("%d" % int(Net.rtt_ms)) if Net.rtt_ms >= 0.0 else "--"
+		var rtt = ("%d" % int(FullNet.current().rtt_ms)) if FullNet.current().rtt_ms >= 0.0 else "--"
 		_perf.text = "%d FPS  %d MS  PING %s" % [int(round(_fps)), int(_worst * 1000.0), rtt]
 		_worst = 0.0
 	_perf.visible = Settings.fps_overlay and not Settings.has_arg("--no-osd")
@@ -119,7 +119,7 @@ func _process(delta: float) -> void:
 		_log_frames = 0
 		# Grepable perf line for adb logcat / desktop stdout.
 		print("PERF fps=%.1f mode=%s retro=%s scale=%.2f rtt=%d proc=%.1fms draws=%d verts=%d objs=%d nodes=%d" % [_fps, _mode,
-			str(Settings.retro_enabled), Settings.render_scale, int(Net.rtt_ms),
+			str(Settings.retro_enabled), Settings.render_scale, int(FullNet.current().rtt_ms),
 			Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0,
 			Performance.get_monitor(Performance.RENDER_DRAW_CALLS_IN_FRAME),
 			Performance.get_monitor(Performance.RENDER_VERTICES_IN_FRAME),

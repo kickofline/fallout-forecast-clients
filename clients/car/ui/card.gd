@@ -44,6 +44,10 @@ func _ready() -> void:
 	spacer.rect_min_size = Vector2(0, 24)
 	box.add_child(spacer)
 	box.add_child(leave)
+	leave.focus_mode = Control.FOCUS_ALL
+	var nav = preload("res://ui/focus_nav.gd").new().attach(self)
+	nav.first = leave
+	nav.back_button = leave
 
 
 func _process(delta: float) -> void:
@@ -56,4 +60,4 @@ func _process(delta: float) -> void:
 
 
 func _on_cancel() -> void:
-	Net.leave()
+	FullNet.current().leave()
