@@ -206,7 +206,7 @@ Compared with the native HUD (`ui/hud.gd`, `juice_hud.gd`, `ping_hud.gd`,
 | Chat: receive in run, send | Implemented. Received lines go to the feed. SQUAD CHAT (Enter, or the pause menu) has eight quick messages for pad and touch, plus a text line. |
 | Scoreboard | Car addition (the native game has none): hold Tab or pad Back, and it also shows in the pause menu. Kills only reach the client in results. |
 | Mutation draft (cards, enemy forecast, timer) | Implemented. Pick with 1-3 on a keyboard, focus + A on a pad, or a tap. Vote tallies are not shown. |
-| Mutation icons (enemy | squad) | Implemented as two-letter chips. |
+| Mutation icons (enemy and squad) | Implemented as two-letter chips. |
 | Endless tape choice | Implemented. Pick with 1 / 2, focus + A, or a tap. It blocks gameplay input, and it closes when another player chooses. |
 | Feats / achievements | Simplified. Each `_feat_event` shows a popup and is listed on the results. There is no persistent unlock tracking, because the feat table is not in `game-data.json`. |
 | Pause menu | Implemented: resume, loadout, squad chat, settings, leave, scoreboard and a controls line. Solo pauses the authority. |
