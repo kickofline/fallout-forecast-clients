@@ -100,6 +100,7 @@ var _cap_wait_until = 0.0
 var _load_test = false
 var _reset_phase = 0
 var _previous_run = 0
+var _probe_packets = {}
 var _revive_wave = 0
 
 
@@ -303,6 +304,38 @@ func _test_restart() -> void:
 	_rpc("Net", "_report_in_run", [true])
 	_link.poll(0.0)
 	_expect(_reset_phase == 3 and _run == _previous_run + 1, "next run has a new run id")
+	if _reset_phase == 3:
+		_test_actions()
+
+
+func _test_actions() -> void:
+	_probe_packets.clear()
+	_rpc("Main/RunLoot", "_request_starter", [_run, 2])
+	_rpc(_player, "_report_exposure", [false, true])
+	_rpc("GameManager", "_request_ready", [])
+	for _step in range(32):
+		_link.poll(0.25)
+	var vitals = _probe_packets.get("_apply_vitals", [])
+	_expect(not vitals.empty() and vitals[1] < 98.0, "reported exposure drains the suit")
+	var shower = _maps[_id].decon_showers[0]
+	var at = _vector(shower.pos)
+	_rpc(_player, "_push_transform", [at, 0.0, 0.0, Vector3.ZERO])
+	_rpc("GameManager", "_request_interact", [NodePath("/root/" + shower.interact_path)])
+	_link.poll(0.0)
+	_expect(_probe_packets.has("play_spray") and _probe_packets.get("_sync_decon") == [3]
+		and _probe_packets.get("_apply_vitals", [0.0, 0.0])[1] == 100.0, "decon repairs and consumes a charge")
+	_rpc(_player, "_report_exposure", [true, false])
+	_rpc(_holder, "_action", [_run, "select_pouch", 0, 0])
+	_link.poll(0.25)
+	var eye = at + Vector3.UP * 1.65
+	_rpc(_holder, "_request_throw", [_run, "frag", eye, Vector3.UP])
+	_link.poll(0.0)
+	var spawn = _probe_packets.get("_effect_spawn", [])
+	_expect(not spawn.empty() and spawn[2][0] == "frag" and _probe_packets.has("_throw_fx")
+		and _probe_packets.get("_private_state")[7] == 1, "pouch throw consumes a frag and spawns a projectile")
+	for _step in range(28):
+		_link.poll(0.1)
+	_expect(_probe_packets.has("_effect_end"), "grenade ends")
 
 
 func _message(msg: Dictionary) -> void:
@@ -325,6 +358,7 @@ func _handle(msg: Dictionary) -> void:
 	_validate(msg)
 	var a = msg.args
 	if _reset_phase > 0:
+		_probe_packets[msg.method] = a
 		if msg.method == "_start_run" and a[0] == _id:
 			_reset_phase = 2
 		elif msg.method == "_snapshot":

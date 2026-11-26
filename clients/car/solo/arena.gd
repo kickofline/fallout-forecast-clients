@@ -826,7 +826,7 @@ func spawn_boss(run) -> void:
 		return
 	var at = run.markers.boss_anchor[0].pos
 	_boss = {"pos": at, "center": _flat(at), "anchor": at, "hp": BOSS_MAX.duplicate(), "sacs": 3, "burn": 0.0,
-		"attack": run.clock + 3.0, "summon": run.clock + 10.5, "sync": run.clock, "t": 0.0}
+		"attack": run.clock + 3.0, "summon": run.clock + 10.5, "sync": run.clock, "t": 0.0, "pattern": 0}
 	run.rpc(run.GAME, "_spawn_boss", [at])
 	run.set_override(1.0)
 	run.rpc(run.GAME, "_banner", ["CUMULUS", Color("#8fd65a"), 2.2])
@@ -835,7 +835,7 @@ func spawn_boss(run) -> void:
 func _tick_boss(run, dt: float) -> void:
 	_boss.t += dt
 	var ground = _flat(run.pos)
-	var radius = 9.0 if _boss.sacs == 0 else 5.0
+	var radius = 5.4 if _boss.sacs == 0 else 5.0
 	var orbit = _boss.t * (0.85 if _boss.sacs == 0 else 0.35)
 	_boss.center = _boss.center.move_toward(ground, 8.2 * dt)
 	var position = _boss.center + Vector3(cos(orbit), 0, sin(orbit)) * radius
@@ -849,22 +849,50 @@ func _tick_boss(run, dt: float) -> void:
 			if _boss.hp[i] > 0.0:
 				_boss.hp[i] = min(_boss.hp[i] + regen, BOSS_MAX[i])
 	if run.clock >= _boss.attack:
-		_boss.attack = run.clock + (0.9 if _boss.sacs == 0 else max(1.35, 1.9 - 0.22 * (3 - _boss.sacs)))
-		var target = run.pos + _flat(run.vel) * 0.65
-		var start = _boss.pos - Vector3.UP * 1.1
-		if run.clear_path(start, target + Vector3.UP * 0.5):
-			_spore(run, start, target, 1.35, 13.0, true)
-			if _boss.sacs == 0:
-				for i in range(2):
-					_spore(run, start, target + Vector3(4.2, 0, 0).rotated(Vector3.UP, i * PI + orbit), 1.45, 13.0, true)
+		_boss.attack = run.clock + (1.35 if _boss.sacs == 0 else max(1.35, 1.9 - 0.22 * (3 - _boss.sacs)))
+		if run.state == "ok":
+			_boss_attack(run)
 	if run.clock >= _boss.summon:
 		_boss.summon = run.clock + 10.5
-		for i in range(min(3, run.alive_cap - enemies.size())):
-			_spawn(run, GUTTER if i == 1 else DRIP, _marker(run, "enemy_spawn"))
+		var kinds = [MISTER, MISTER if _boss.sacs == 0 else DRIP, GUTTER]
+		for i in range(min(kinds.size(), run.alive_cap - enemies.size())):
+			_spawn(run, kinds[i], _marker(run, "drain_spawn" if kinds[i] == GUTTER else "enemy_spawn"))
 			_extras += 1
 	if run.clock >= _boss.sync:
 		_boss.sync = run.clock + 0.1
 		_sync_boss(run)
+
+
+func _boss_attack(run) -> void:
+	var origin = _boss.pos - Vector3.UP * 3.0
+	var target = run.pos
+	if not run.clear_path(origin, target + Vector3.UP * 0.5):
+		return
+	if _boss.sacs > 0:
+		for i in range(1 + 3 - _boss.sacs):
+			var spread = 1.8 if i == 0 else 2.6
+			var offset = Vector3(run.rng.randf_range(-spread, spread), 0, run.rng.randf_range(-spread, spread))
+			_spore(run, origin, target + offset, 1.45, 11.0, true)
+		return
+	var direction = _flat(target - origin).normalized()
+	if direction == Vector3.ZERO:
+		direction = Vector3.FORWARD
+	match _boss.pattern:
+		0:
+			_spore(run, origin, target, 1.15, 13.0, true)
+			for i in range(3):
+				_spore(run, origin, target + direction.rotated(Vector3.UP, i * TAU / 3.0) * 4.2, 1.45, 13.0, true)
+		1:
+			var across = direction.cross(Vector3.UP)
+			for i in range(4):
+				_spore(run, origin, target + across * ((i - 1.5) * 4.4), 1.05 + i * 0.18, 13.0, true)
+		2:
+			var velocity = _flat(run.vel)
+			var along = velocity.normalized() if velocity.length_squared() > 1.0 else direction
+			_spore(run, origin, target, 1.05, 13.0, false)
+			_spore(run, origin, target + along * 4.0, 1.3, 13.0, true)
+			_spore(run, origin, target + along * 7.5, 1.55, 13.0, true)
+	_boss.pattern = (_boss.pattern + 1) % 3
 
 
 func _sync_boss(run) -> void:
