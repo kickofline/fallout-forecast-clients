@@ -56,4 +56,8 @@ func _process(delta: float) -> void:
 
 
 func _on_cancel() -> void:
-	Net.leave()
+	FullNet.current().leave()
+
+
+func nav_back() -> void:
+	_on_cancel()
