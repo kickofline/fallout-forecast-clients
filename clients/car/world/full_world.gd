@@ -68,6 +68,10 @@ var progress = {"wave": 1, "left": 0, "total": 0, "recovery": 0.0, "score": 0}
 var endless = false
 var tape_open = false
 var pings = []                      # [pos, kind, life, peer]
+# HUD read-only state (ui/hud.gd, ui/hud_panels.gd)
+var boss = {}                       # Cumulus: {parts: [3 sacs + core], max: [...], sacs, burn}
+var enemy_mutations = []            # active enemy mutation ids
+var feat_log = []                   # [[id, amount], ...] from GameManager/Feats this run
 var ready_tally = ""
 var prompt = ""
 var hold_progress = 0.0
@@ -291,7 +295,8 @@ func handle_rpc(node: String, method: String, args: Array) -> void:
 			"WeatherManager":
 				_weather_rpc(method, args)
 			"GameManager/Feats":
-				pass
+				if method == "_feat_event" and args.size() >= 2:
+					feat_log.append([str(args[0]), int(args[1])])
 			_:
 				if method == "play_spray":
 					for d in decons:
@@ -332,6 +337,9 @@ func _player_rpc(id: int, method: String, args: Array) -> void:
 			var st = str(args[2])
 			e.state = st
 			e.tarp = bool(args[4])
+			e.hp = float(args[0])
+			e.suit = float(args[1])
+			e.max_hp = float(args[5]) if args.size() > 5 else 100.0
 			if id == my_id:
 				var old_state = my_state
 				vit.hp = float(args[0])
@@ -585,12 +593,18 @@ func _boss_rpc(method: String, args: Array) -> void:
 				_etarget[0] = [args[0], a.rotation.y]
 				var sacs = int(args[2])
 				a.hp = [0.2, 0.4, 0.75, 1.0][int(clamp(sacs, 0, 3))]
+			if args.size() >= 4 and args[1] is Array:
+				var mx = boss.get("max", [1.0, 1.0, 1.0, 1.0])
+				for i in min(4, args[1].size()):
+					mx[i] = max(float(mx[i]), float(args[1][i]))
+				boss = {"parts": args[1], "max": mx, "sacs": int(args[2]), "burn": float(args[3])}
 		"_died":
 			if a and is_instance_valid(a):
 				a.kill()
 				Sound.play("explosion_big")
 			enemies.erase(0)
 			_etarget.erase(0)
+			boss = {}
 
 
 func _loot_rpc(method: String, args: Array) -> void:
@@ -840,14 +854,19 @@ func _mutation_rpc(method: String, args: Array) -> void:
 			draft_hold = 2.2
 			if args.size() >= 3 and args[2] is Array:
 				_set_mutations(args[2])
+			if args.size() >= 2 and args[1] is Array:
+				enemy_mutations = Array(args[1])
 			net.emit_signal("draft_done")
 		"_sync_active":
 			if args.size() >= 2 and args[1] is Array:
 				_set_mutations(args[1])
+			if not args.empty() and args[0] is Array:
+				enemy_mutations = Array(args[0])
 		"_reset_run_rpc":
 			_set_mutations([])
+			enemy_mutations = []
 		"_clear_rpc":
-			pass
+			enemy_mutations = []
 
 
 func _set_mutations(list: Array) -> void:
@@ -1057,7 +1076,8 @@ func _update_remote(delta: float) -> void:
 			a.pitch = e.pitch
 			a.state = e.state
 			a.visible = e.state != "out"
-		others.append({"id": id, "name": e.name, "pos": e.pos, "state": e.state, "color": Weather.hex(e.get("hex", "#66dfda"), Color("#66dfda"))})
+		others.append({"id": id, "name": e.name, "pos": e.pos, "state": e.state, "color": Weather.hex(e.get("hex", "#66dfda"), Color("#66dfda")),
+			"hp": e.get("hp", 100.0), "suit": e.get("suit", 100.0), "max_hp": e.get("max_hp", 100.0), "item": e.get("item", "")})
 	enemy_points.clear()
 	for id in _etarget:
 		var a = enemies.get(id)

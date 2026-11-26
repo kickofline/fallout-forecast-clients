@@ -286,8 +286,8 @@ func _draw_body() -> void:
 	# Stick.
 	var moving = "move" in _contacts.values()
 	var ring = Color(UI.PAPER.r, UI.PAPER.g, UI.PAPER.b, 0.35 if moving else 0.18)
-	draw_arc(_stick_center, STICK_R, 0, TAU, 40, ring, 2.0, false)
-	draw_arc(_stick_center, STICK_R * SPRINT_EDGE, -PI * 0.85, -PI * 0.15, 24, Color(UI.AMBER.r, UI.AMBER.g, UI.AMBER.b, 0.35 if moving else 0.15), 2.0, false)
+	UI.ring(self, _stick_center, STICK_R, 0, TAU, ring, 2.0, 28)
+	UI.ring(self, _stick_center, STICK_R * SPRINT_EDGE, -PI * 0.85, -PI * 0.15, Color(UI.AMBER.r, UI.AMBER.g, UI.AMBER.b, 0.35 if moving else 0.15), 2.0, 12)
 	var tip = _stick_center + (_stick_tip - _stick_center).limit_length(STICK_R * SPRINT_EDGE)
 	var sprinting = (world.held_bits & world.BITS.sprint) != 0
 	draw_circle(tip, 30.0, Color(UI.AMBER.r, UI.AMBER.g, UI.AMBER.b, 0.55) if sprinting else Color(UI.CYAN.r, UI.CYAN.g, UI.CYAN.b, 0.32 if moving else 0.18))

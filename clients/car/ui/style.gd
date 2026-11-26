@@ -253,6 +253,21 @@ func seg(ci: CanvasItem, a: Vector2, b: Vector2, color: Color, w := 1.0) -> void
 	ci.draw_colored_polygon(PoolVector2Array([a - n, b - n, b + n, a + n]), color)
 
 
+## Arc of width w from angle a0 to a1 as quads (draw_arc never batches).
+func ring(ci: CanvasItem, c: Vector2, r: float, a0: float, a1: float, color: Color, w := 2.0, segs := 24) -> void:
+	if a1 <= a0:
+		return
+	var n = max(1, int(ceil(segs * (a1 - a0) / TAU)))
+	var ri = r - w * 0.5
+	var ro = r + w * 0.5
+	var prev = Vector2(cos(a0), sin(a0))
+	for i in range(1, n + 1):
+		var a = lerp(a0, a1, float(i) / n)
+		var d = Vector2(cos(a), sin(a))
+		ci.draw_colored_polygon(PoolVector2Array([c + prev * ri, c + prev * ro, c + d * ro, c + d * ri]), color)
+		prev = d
+
+
 const _OUTLINE_OFFSETS = [Vector2(-2, 0), Vector2(2, 0), Vector2(0, -2), Vector2(0, 2), Vector2(-1, -1), Vector2(1, -1),
 	Vector2(-1, 1), Vector2(1, 1), Vector2(-2, -1), Vector2(2, -1), Vector2(-2, 1), Vector2(2, 1), Vector2(-1, -2),
 	Vector2(1, -2), Vector2(-1, 2), Vector2(1, 2)]

@@ -108,7 +108,7 @@ func _draw_body() -> void:
 			if abs(ang) > ARC:
 				_edge(pt, ang, OBJECTIVE)
 			elif p.kind == "airdrop":
-				draw_arc(pt + Vector2(0, -1), 6.0, PI, TAU, 12, OBJECTIVE, 1.5, false)
+				UI.ring(self, pt + Vector2(0, -1), 6.0, PI, TAU, OBJECTIVE, 1.5, 8)
 				draw_rect(Rect2(pt + Vector2(-2, 3), Vector2(4, 4)), OBJECTIVE)
 			else:
 				UI.frame_rect(self, Rect2(pt - Vector2(5, 5), Vector2(10, 10)), OBJECTIVE, 1.5)

@@ -1,12 +1,20 @@
 extends Control
 ## ui/reticle.gd port: dynamic spread crosshair (cross / shotgun brackets),
-## hit / crit / kill markers, reload ring, hold-to-interact arc, downed bleed.
+## hit / crit / kill markers, reload ring, hold-to-interact arc, downed
+## bleed-out ring + seconds, jam tint and the Disruptor charge ring. Rings are
+## quads (UI.ring), not antialiased arcs, so they batch on the car's GPU.
 
 var progress = 0.0
 var targeted = false
 var reload = false
 var downed = false
 var style = "cross"
+var bleed = -1.0            # downed: bleed-out fraction left (Full); <0 = pulse
+var bleed_seconds = 0
+var jammed = false
+var charging = false
+var charge = 0.0
+var reload_frac = -1.0      # real reload progress (Full); <0 = looping ring
 var target_spread = 8.0
 var ads = false
 var _spread = 8.0
@@ -47,19 +55,29 @@ func _process_body(delta: float) -> void:
 func _draw() -> void:
 	var c = rect_size * 0.5
 	if downed:
-		draw_arc(c, 30, 0, TAU, 48, Color(UI.INK.r, UI.INK.g, UI.INK.b, 0.65), 6, false)
-		var pulse = 0.6 + 0.4 * sin(_clock * 5.0)
-		draw_arc(c, 30, -PI / 2, -PI / 2 + TAU * pulse, 48, UI.PINK, 4, false)
-		UI.draw_text_centered(self, c.x, c.y + 9, "DOWN", 22, UI.PINK)
+		UI.ring(self, c, 30, 0, TAU, Color(UI.INK.r, UI.INK.g, UI.INK.b, 0.65), 6, 32)
+		var k = bleed if bleed >= 0.0 else 0.6 + 0.4 * sin(_clock * 5.0)
+		UI.ring(self, c, 30, -PI / 2, -PI / 2 + TAU * clamp(k, 0.0, 1.0), UI.PINK, 4, 32)
+		var txt = str(bleed_seconds) if bleed >= 0.0 else "DOWN"
+		UI.draw_text_centered(self, c.x, c.y + 9, txt, 26 if bleed >= 0.0 else 22, UI.PINK)
 	else:
 		var color = UI.CYAN if targeted else Color(1, 1, 1, 0.92 if ads else 0.80)
+		if jammed:
+			color = UI.PINK
+		elif charging:
+			color = UI.AMBER if charge >= 1.0 else UI.CYAN.linear_interpolate(UI.PINK, charge)
 		_draw_reticle(c, color)
 	if progress > 0.0:
-		draw_arc(c, 22, -PI / 2, -PI / 2 + TAU * clamp(progress, 0.0, 1.0), 40, UI.CYAN, 4, false)
+		UI.ring(self, c, 22, -PI / 2, -PI / 2 + TAU * clamp(progress, 0.0, 1.0), UI.CYAN, 4, 28)
+	elif charging:
+		UI.ring(self, c, 18, 0, TAU, Color(UI.INK.r, UI.INK.g, UI.INK.b, 0.55), 4, 24)
+		UI.ring(self, c, 18, -PI / 2, -PI / 2 + TAU * clamp(charge, 0.0, 1.0), UI.AMBER if charge >= 1.0 else UI.CYAN, 3, 24)
 	elif reload:
-		var r: float = fmod(_reload_t, 1.2) / 1.2
-		draw_arc(c, 16, 0, TAU, 32, Color(UI.INK.r, UI.INK.g, UI.INK.b, 0.6), 3, false)
-		draw_arc(c, 16, -PI / 2, -PI / 2 + TAU * r, 32, UI.PAPER, 2, false)
+		var r: float = reload_frac if reload_frac >= 0.0 else fmod(_reload_t, 1.2) / 1.2
+		UI.ring(self, c, 16, 0, TAU, Color(UI.INK.r, UI.INK.g, UI.INK.b, 0.6), 3, 24)
+		UI.ring(self, c, 16, -PI / 2, -PI / 2 + TAU * clamp(r, 0.0, 1.0), UI.PAPER, 2, 24)
+	if jammed and not downed:
+		UI.draw_text_centered(self, c.x, c.y + 40, "JAMMED", 18, UI.PINK)
 	if _hit_left > 0.0:
 		var hit_color = Color("#ffd56a") if _critical else (UI.PINK if _killed else Color.white)
 		var duration = 0.28 if _killed else 0.13
@@ -95,8 +113,8 @@ func _draw_reticle(c: Vector2, color: Color) -> void:
 				UI.seg(self, corner, v_end, color, 2.2)
 	elif style == "launcher":
 		var r2: float = clamp(_spread, 13.0, 32.0)
-		draw_arc(c, r2, PI * 0.16, PI * 0.84, 20, outline, 4.0, false)
-		draw_arc(c, r2, PI * 0.16, PI * 0.84, 20, color, 2.0, false)
+		UI.ring(self, c, r2, PI * 0.16, PI * 0.84, outline, 4.0, 10)
+		UI.ring(self, c, r2, PI * 0.16, PI * 0.84, color, 2.0, 10)
 	else:
 		var gap: float = clamp(_spread, 4.5, 76.0)
 		var tick = 6.0 if ads else 7.5
