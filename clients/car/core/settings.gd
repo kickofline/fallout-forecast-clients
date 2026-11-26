@@ -6,10 +6,14 @@ signal changed
 const PATH = "user://car_settings.cfg"
 const DEFAULT_URL = "wss://fallout-thin.drew.place/"
 const DEFAULT_FULL_URL = "wss://fallout-open.drew.place/"
+const DEFAULT_FULL_TCP = "127.0.0.1:7781"
+const FULL_WIRES = ["ws/json", "ws/bin", "tcp/json", "tcp/bin"]
 
 var player_name = "Honda"
 var server_url = DEFAULT_URL
 var full_url = DEFAULT_FULL_URL   # Open Protocol Full tier (CLOUD FULL)
+var full_tcp_address = DEFAULT_FULL_TCP
+var full_wire = "ws/json"
 var play_mode = "thin"            # last title mode: thin | full | solo
 var solo_map = "pinecrest"
 var suit_color = 1                # Full tier cosmetics (game-reference §6)
@@ -45,6 +49,10 @@ func load_settings() -> void:
 	player_name = str(cfg.get_value("player", "name", player_name))
 	server_url = str(cfg.get_value("net", "server_url", server_url))
 	full_url = str(cfg.get_value("net", "full_url", full_url))
+	full_tcp_address = str(cfg.get_value("net", "full_tcp_address", full_tcp_address))
+	var saved_wire = str(cfg.get_value("net", "full_wire", full_wire))
+	if saved_wire in FULL_WIRES:
+		full_wire = saved_wire
 	play_mode = str(cfg.get_value("net", "play_mode", play_mode))
 	solo_map = str(cfg.get_value("net", "solo_map", solo_map))
 	suit_color = int(cfg.get_value("player", "suit_color", suit_color))
@@ -73,6 +81,8 @@ func save() -> void:
 	cfg.set_value("player", "name", player_name)
 	cfg.set_value("net", "server_url", server_url)
 	cfg.set_value("net", "full_url", full_url)
+	cfg.set_value("net", "full_tcp_address", full_tcp_address)
+	cfg.set_value("net", "full_wire", full_wire)
 	cfg.set_value("net", "play_mode", play_mode)
 	cfg.set_value("net", "solo_map", solo_map)
 	cfg.set_value("player", "suit_color", suit_color)
@@ -168,6 +178,18 @@ func args() -> Array:
 	return _args
 
 
+func full_uses_tcp() -> bool:
+	return full_wire.begins_with("tcp/")
+
+
+func full_encoding() -> String:
+	return "bin" if full_wire.ends_with("/bin") else "json"
+
+
+func full_endpoint() -> String:
+	return full_tcp_address if full_uses_tcp() else full_url
+
+
 ## Command-line overrides for tests: --url=ws://... --name=... --no-retro --scale=0.5
 func apply_cmdline() -> void:
 	for arg in args():
@@ -175,7 +197,17 @@ func apply_cmdline() -> void:
 		if a.begins_with("--url="):
 			server_url = a.substr(6)
 		elif a.begins_with("--full-url="):
-			full_url = a.substr(11)
+			var url = a.substr(11)
+			if url.begins_with("tcp://"):
+				full_tcp_address = url.substr(6)
+				full_wire = "tcp/" + full_encoding()
+			else:
+				full_url = url
+				full_wire = "ws/" + full_encoding()
+		elif a.begins_with("--full-enc="):
+			var encoding = a.substr(11)
+			if encoding in ["json", "bin"]:
+				full_wire = ("tcp/" if full_uses_tcp() else "ws/") + encoding
 		elif a.begins_with("--starter="):
 			starter_index = int(a.substr(10))
 		elif a.begins_with("--name="):

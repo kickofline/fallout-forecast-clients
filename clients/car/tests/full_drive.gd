@@ -4,17 +4,19 @@ extends Node
 ## conformance checkpoints F1–F8 (docs/open-protocol/conformance.md) and a
 ## short run: spawn, move, shoot an enemy, take damage, results.
 ##
-##   --full-drive                 online Full against Settings.full_url (--full-url=)
+##   --full-drive                 online Full (--full-url= and --full-enc=)
 ##   --full-drive=solo            solo (solo/local_link.gd)
 ##   --full-drive=reject          F8 only: run with --hello-protocol=18
 ##   --drive-seconds=N            give up after N s (default 240)
 ##   --drive-no-force             do not force start (live server etiquette)
+##   --drive-live                 skip lobby actions when others are present
 ##   --drive-leave-after=N        leave N s after confirm instead of waiting for results
 ##   --drive-shots=DIR            save screenshots to DIR
 ##   --drive-probe               local server only: teleport through shelter,
 ##                                vending, decon and ping checks and inject a
 ##                                draft and a tape prompt to exercise the UI
 ##   --exit-when-done
+##   --drive-wire-check          exit nonzero if any required F check is missing
 
 var main: Node
 var _mode = "full"
@@ -25,7 +27,7 @@ var _checks = {}
 var _done = false
 var _step = "connect"
 var _run_t = 0.0
-var _ping_sent = false
+var _ping_ms = -1
 var _hp0 = -1.0
 var _hurt = false
 var _shot_dir = ""
@@ -35,10 +37,12 @@ var _skip_calm_sent = 0.0
 var _probe = false
 var _probe_t = 0.0
 var _probe_step = 0
+var _live = false
 
 
 func _ready() -> void:
 	main = get_parent()
+	_live = Settings.has_arg("--drive-live")
 	for a in Settings.args():
 		var s = str(a)
 		if s.begins_with("--full-drive="):
@@ -61,11 +65,12 @@ func _ready() -> void:
 
 func _begin() -> void:
 	var name = "CarTest"
-	print("DRIVE begin mode=%s url=%s" % [_mode, Settings.full_url])
+	print("DRIVE begin mode=%s endpoint=%s wire=%s" % [_mode, Settings.full_endpoint(), Settings.full_wire])
 	if _mode == "solo":
 		FullNet.start_solo(Settings.solo_map, name)
 	else:
-		FullNet.connect_full(Settings.full_url, name)
+		FullNet.connect_full(Settings.full_endpoint(), name)
+		FullNet.link.connect("message", self, "_on_wire_message")
 
 
 func _pass(id: String, what: String) -> void:
@@ -76,7 +81,17 @@ func _pass(id: String, what: String) -> void:
 
 
 func _on_welcome(msg) -> void:
-	_pass("F1a", "welcome tier=%s enc=%s you=%d game_protocol=%d" % [str(msg.get("tier")), str(msg.get("enc")), int(msg.get("you", 0)), int(msg.get("game_protocol", 0))])
+	var enc = "json" if _mode == "solo" else Settings.full_encoding()
+	if msg.get("tier") == "full" and msg.get("enc") == enc and int(msg.get("you", 0)) >= 2 and int(msg.get("game_protocol", 0)) == FullNet.GAME_PROTOCOL:
+		_pass("F1a", "welcome tier=full enc=%s you=%d game_protocol=%d" % [enc, int(msg.you), int(msg.game_protocol)])
+		if _mode != "solo" and _mode != "reject":
+			_ping_ms = OS.get_ticks_msec() - 1
+			FullNet.link.send({"t": "ping", "ms": _ping_ms})
+
+
+func _on_wire_message(msg: Dictionary) -> void:
+	if _ping_ms >= 0 and msg.get("t") == "pong" and msg.get("ms") == _ping_ms:
+		_pass("F1", "control pong echoed ms=%d" % _ping_ms)
 
 
 func _on_failed(why) -> void:
@@ -115,12 +130,15 @@ func _process(delta: float) -> void:
 		_finish()
 		return
 	var n = FullNet
-	if n.phase == "online" and not _ping_sent and n.link:
-		_ping_sent = true
-	if n.rtt_ms >= 0.0 and _checks.has("F1a"):
-		_pass("F1", "control ping/pong rtt=%.0fms" % n.rtt_ms)
+	if _mode == "solo" and n.rtt_ms >= 0.0 and _checks.has("F1a"):
+		_pass("F1", "local link rtt=%.0fms" % n.rtt_ms)
 	if n.roster.has(n.you) and n.you != 0:
 		_pass("F2", "own id %d in decoded roster (size %d)" % [n.you, n.roster.size()])
+		if _live and _step == "connect" and n.roster.size() > 1:
+			if _checks.has("F1"):
+				print("DRIVE live lobby occupied; leaving after handshake")
+				_finish()
+			return
 	if _mode == "reject":
 		return
 	match _step:
@@ -132,7 +150,8 @@ func _process(delta: float) -> void:
 				_shot("lobby")
 				if _mode != "solo":
 					n.lobby_action("vote", {"map": "pinecrest"})
-					n.lobby_action("chat", {"text": "car full client test"})
+					if not _live:
+						n.lobby_action("chat", {"text": "car full client test"})
 					n.lobby_action("ready", {"v": true})
 					if n.roster.size() == 1 and not Settings.has_arg("--drive-no-force"):
 						n.lobby_action("start")
@@ -244,8 +263,15 @@ func _finish() -> void:
 	print("DRIVE rpc_in=%s" % str(n.rpc_in))
 	print("DRIVE rpc_out=%s" % str(n.rpc_out))
 	if Settings.has_arg("--exit-when-done"):
+		var code = 0
+		if Settings.has_arg("--drive-wire-check"):
+			var required = ["F1a", "F8"] if _mode == "reject" else ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "LEAVE"]
+			for id in required:
+				if not _checks.has(id):
+					print("DRIVE missing %s" % id)
+					code = 1
 		yield(get_tree().create_timer(1.0), "timeout")
-		get_tree().quit(0)
+		get_tree().quit(code)
 
 
 ## Scripted checks for the parts a short fight does not reach.

@@ -121,16 +121,21 @@ look, and touch button sizing.
   effect warm-up, and the first draw of the populated world.
 
 The [Open Protocol specification](../../docs/open-protocol/) describes Thin
-and Full. Both modes use JSON over WebSocket. The client has no join-code
-field.
+and Full. The client has no join-code field.
 
 ### Full tier (CLOUD FULL and SOLO)
 
-- `core/ws_full_link.gd` is the transport. It polls the socket from a helper
-  thread like `core/net.gd`, and during a main-loop stall it answers
-  `Net._rtt_ping` from that thread. `core/variant_codec.gd` maps Godot 3
-  values to the spec §7 tags. Godot 3 parses every JSON number as a float, so
-  the codec turns integral numbers back into ints.
+**Settings → CLOUD FULL CONNECTION** saves the transport and encoding.
+**WS JSON** is the default. **WS BIN**, **TCP JSON** and **TCP BIN** are also
+available. Enter a `ws://` or `wss://` URL, or a TCP `host:port`, in the
+CLOUD FULL server field. The client remembers the WebSocket and TCP
+addresses separately. Raw TCP is plaintext and requires the server's TCP
+listener, normally on port 7781.
+
+- `core/ws_full_link.gd` and `core/tcp_full_link.gd` poll on a helper thread
+  and answer `Net._rtt_ping` during main-loop stalls. `core/variant_codec.gd`
+  handles JSON values. `core/variant_bin.gd` handles the Godot 4 binary RPC
+  and raw frames and gives the session the same Godot 3 value types.
 - `core/full_net.gd` (autoload `FullNet`) runs the hello and `game_protocol`
   check, `Net._hello`, the roster and lobby, RTT answers and the spec-full §5
   run lifecycle. It talks only to a FullLink, so solo play runs the same
@@ -240,14 +245,22 @@ against solo.
 
 ```text
 --path clients/car -- --full-drive --full-url=ws://127.0.0.1:7780/ --drive-probe --exit-when-done
---path clients/car -- --full-drive=reject --hello-protocol=18 --full-url=ws://127.0.0.1:7780/ --exit-when-done
+--path clients/car -- --full-drive --full-url=tcp://127.0.0.1:7781 --full-enc=bin --drive-leave-after=24 --drive-wire-check --exit-when-done
+--path clients/car -- --full-drive=reject --hello-protocol=18 --full-url=ws://127.0.0.1:7780/ --drive-wire-check --exit-when-done
 --path clients/car -- --full-drive=solo --exit-when-done
 ```
+
+Repeat the normal and reject checks with both URLs and `--full-enc=json`
+and `--full-enc=bin` for the local wire matrix. Run
+`--path clients/car --no-window -s res://tests/wire_codec.gd` to check and
+benchmark the codec against the spec examples and binary transcript.
+`res://tests/wire_tcp.gd` checks TCP framing, RTT and disconnects on loopback.
 
 `--drive-probe` also checks shelter exposure, vending, decon, pings, and the
 draft and tape overlays. It teleports the player, so use it only on a local
 server. Use `--drive-leave-after=N` for short live runs and
-`--drive-shots=DIR` to save screenshots.
+`--drive-live` to leave an occupied lobby after the handshake.
+`--drive-shots=DIR` saves screenshots.
 
 For Android captures, boot a rootable API 22 x86 Android SDK emulator and
 run the following from Bash. Set `EMU` if its serial differs from

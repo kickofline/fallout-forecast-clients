@@ -1,20 +1,22 @@
 extends Reference
 ## Transport contract for the Full-tier client (docs/open-protocol/spec-full.md).
 ##
-## The Full client (core/full_net.gd) only ever talks to a FullLink. Two
+## The Full client (core/full_net.gd) only ever talks to a FullLink. Three
 ## implementations exist:
-##   - core/ws_full_link.gd  : WebSocket to a real server (wss://.../ , tier "full")
+##   - core/ws_full_link.gd  : WebSocket to a Full server (ws:// or wss://)
+##   - core/tcp_full_link.gd : length-prefixed TCP to a Full server
 ##   - solo/local_link.gd    : in-process solo authority (no network)
-## Both must behave identically from the client's point of view, so solo play
+## All behave identically from the client's point of view, so solo play
 ## exercises exactly the same client code as online play.
 ##
 ## Messages are Dictionaries shaped like the spec §6 JSON envelope, but with
 ## RPC arguments ALREADY DECODED to native Godot 3 Variants (Vector3, Basis,
 ## Transform, Color, PoolVector3Array, Dictionary, int, float, ...), never the
-## {"_t":...} wire form. The WebSocket link does the §7 encode/decode.
+## {"_t":...} wire form. Online links handle the negotiated encoding.
 ##
 ##   control: {"t":"hello"|"welcome"|"error"|"ping"|"pong"|"leave", ...}  (spec-common)
 ##   rpc:     {"t":"rpc", "node":"Net", "method":"_push_roster", "args":[...], "rel":true}
+##   raw:     {"t":"raw", "data":PoolByteArray(...), "ch":0, "rel":true}
 ##
 ## Threading: emit signals ONLY from poll(), which the client calls once per
 ## main-loop frame. A link may service its socket on a helper thread (see the
