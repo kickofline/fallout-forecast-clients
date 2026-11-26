@@ -1,0 +1,130 @@
+{
+ "Main/Enemies/BossCumulus": {
+  "_died": false,
+  "_sync": false
+ },
+ "Main/Enemies": {
+  "_despawn_enemy": false,
+  "_enemy_impacts": false,
+  "_play_enemy_molt": false,
+  "_play_enemy_tell": false,
+  "_receive_group_warning": false,
+  "_retire_enemies": false,
+  "_spawn_enemy": false,
+  "_sync_enemies": false,
+  "_sync_miniboss_hp": false,
+  "_sync_progress": false
+ },
+ "GameManager/CrateManager": {
+  "_airdrop_spawn": false,
+  "_announce_drop": false,
+  "_hold_request": [["int","String","String","String","int"],[]],
+  "_remove_drop": false,
+  "_reveal": false,
+  "_snapshot": false,
+  "_stock": false
+ },
+ "GameManager/Feats": {
+  "_feat_event": false
+ },
+ "GameManager": {
+  "_banner": false,
+  "_disperse_cloud": false,
+  "_draw_arc": false,
+  "_draw_blast": false,
+  "_finish": false,
+  "_ready_changed": false,
+  "_request_interact": [["NodePath"],[]],
+  "_request_pause_rpc": [["bool","String"],[]],
+  "_request_ready": [[],[]],
+  "_request_tape_choice": [["bool"],[]],
+  "_spawn_boss": false,
+  "_spawn_cloud": false,
+  "_spawn_spore": false,
+  "_sync_decon": false,
+  "_sync_pause": false,
+  "_sync_tape_state": false,
+  "_weapon_unlocked": false
+ },
+ "GameManager/MutationRoll": {
+  "_clear_rpc": false,
+  "_deal_rpc": false,
+  "_request_vote": [["int"],[]],
+  "_reset_run_rpc": false,
+  "_result_rpc": false,
+  "_sync_active": false,
+  "_votes_rpc": false
+ },
+ "Net": {
+  "_chat_rpc": false,
+  "_confirm_run_ready": false,
+  "_hello": [["String","int"],[0]],
+  "_push_roster": false,
+  "_reject": false,
+  "_report_in_run": [["bool"],[]],
+  "_request_chat": [["String"],[]],
+  "_request_cosmetic": [["int","int","Array"],[null]],
+  "_request_force_start": [[],[]],
+  "_request_map_vote": [["String"],[]],
+  "_request_name": [["String"],[]],
+  "_request_ready": [["bool"],[]],
+  "_rtt_ping": false,
+  "_rtt_pong": [["int"],[]],
+  "_start_run": false
+ },
+ "Main/Pings": {
+  "_request_ping": [["String","Vector3","int"],[]],
+  "_show_ping": false
+ },
+ "Main/Players/P_<peer_id>": {
+  "_apply_tarp": false,
+  "_apply_vitals": false,
+  "_grant_tarp": false,
+  "_push_tarp": [["bool"],[]],
+  "_push_transform": [["Vector3","float","float","Vector3"],[]],
+  "_receive_enemy_pull": false,
+  "_receive_hits": false,
+  "_receive_hurt_from": false,
+  "_relay_transform": false,
+  "_report_exposure": [["bool","bool"],[]],
+  "_request_melee": [[],[]],
+  "_teleport": false
+ },
+ "Main/Level/DeconShowers/<decon_marker>/Interact": {
+  "play_spray": false
+ },
+ "Main/RunLoot": {
+  "_claim": [["int","int","int","int"],[]],
+  "_discover": false,
+  "_effect_deploy": false,
+  "_effect_end": false,
+  "_effect_spawn": false,
+  "_flight": false,
+  "_release": false,
+  "_remove": false,
+  "_request_starter": [["int","int"],[]],
+  "_snapshot": false,
+  "_spawn": false,
+  "_starter_accepted": false
+ },
+ "Main/Players/P_<peer_id>/Head/Camera3D/WeaponHolder": {
+  "_action": [["int","String","int","int"],[]],
+  "_equip_state": false,
+  "_jam": false,
+  "_play_charge": false,
+  "_pouch_full_feedback": false,
+  "_private_state": false,
+  "_request_shot": [["int","int","Vector3","Vector3","bool","bool"],[]],
+  "_request_throw": [["int","String","Vector3","Vector3"],[]],
+  "_scrap_feedback": false,
+  "_shot_fx": false,
+  "_throw_fx": false
+ },
+ "WeatherManager": {
+  "_override": false,
+  "_receive_intensity": false,
+  "_receive_phase": false,
+  "_strike": false,
+  "_sync_puddles": false
+ }
+}

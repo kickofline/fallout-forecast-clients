@@ -1,0 +1,2096 @@
+{
+ "generated_by": "tools/open_protocol/gen_reference.gd",
+ "maps": {
+  "harbor": {
+   "boss_anchor": [
+    {
+     "name": "BossAnchor",
+     "path": "Main/Level/BossAnchor",
+     "pos": [
+      36.0,
+      16.0,
+      49.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "crate_spawn": [
+    {
+     "name": "CrateSpawn",
+     "path": "Main/Level/CrateSpawns/CrateSpawn",
+     "pos": [
+      -57.0,
+      0.08,
+      -28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn2",
+     "path": "Main/Level/CrateSpawns/CrateSpawn2",
+     "pos": [
+      -23.0,
+      0.08,
+      -28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn3",
+     "path": "Main/Level/CrateSpawns/CrateSpawn3",
+     "pos": [
+      11.0,
+      0.08,
+      -28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn4",
+     "path": "Main/Level/CrateSpawns/CrateSpawn4",
+     "pos": [
+      48.0,
+      0.08,
+      -32.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn5",
+     "path": "Main/Level/CrateSpawns/CrateSpawn5",
+     "pos": [
+      -26.0,
+      0.08,
+      -1.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn6",
+     "path": "Main/Level/CrateSpawns/CrateSpawn6",
+     "pos": [
+      -14.0,
+      0.08,
+      9.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn7",
+     "path": "Main/Level/CrateSpawns/CrateSpawn7",
+     "pos": [
+      -21.0,
+      0.08,
+      24.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn8",
+     "path": "Main/Level/CrateSpawns/CrateSpawn8",
+     "pos": [
+      8.9,
+      0.08,
+      23.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn9",
+     "path": "Main/Level/CrateSpawns/CrateSpawn9",
+     "pos": [
+      32.0,
+      0.08,
+      24.5
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn10",
+     "path": "Main/Level/CrateSpawns/CrateSpawn10",
+     "pos": [
+      9.0,
+      0.08,
+      38.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn11",
+     "path": "Main/Level/CrateSpawns/CrateSpawn11",
+     "pos": [
+      50.0,
+      0.08,
+      39.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn12",
+     "path": "Main/Level/CrateSpawns/CrateSpawn12",
+     "pos": [
+      14.0,
+      0.08,
+      51.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn13",
+     "path": "Main/Level/CrateSpawns/CrateSpawn13",
+     "pos": [
+      -49.0,
+      0.08,
+      53.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "decon_showers": [
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/IceHouse/Interact",
+     "interact_pos": [
+      -48.0,
+      1.0,
+      -35.0
+     ],
+     "marker_path": "Main/Level/DeconShowers/IceHouse",
+     "name": "IceHouse",
+     "pos": [
+      -48.0,
+      0.0,
+      -35.0
+     ],
+     "radius": 2.2
+    },
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/FishExchange/Interact",
+     "interact_pos": [
+      -5.5,
+      1.0,
+      26.0
+     ],
+     "marker_path": "Main/Level/DeconShowers/FishExchange",
+     "name": "FishExchange",
+     "pos": [
+      -5.5,
+      0.0,
+      26.0
+     ],
+     "radius": 2.2
+    },
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/IceMarket/Interact",
+     "interact_pos": [
+      19.5,
+      1.0,
+      44.0
+     ],
+     "marker_path": "Main/Level/DeconShowers/IceMarket",
+     "name": "IceMarket",
+     "pos": [
+      19.5,
+      0.0,
+      44.0
+     ],
+     "radius": 2.2
+    },
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/RescueBay/Interact",
+     "interact_pos": [
+      -34.8,
+      1.0,
+      19.0
+     ],
+     "marker_path": "Main/Level/DeconShowers/RescueBay",
+     "name": "RescueBay",
+     "pos": [
+      -34.8,
+      0.0,
+      19.0
+     ],
+     "radius": 2.2
+    }
+   ],
+   "drain_spawn": [
+    {
+     "name": "Grate",
+     "path": "Main/Level/StormDrains/Grate",
+     "pos": [
+      -54.0,
+      0.02,
+      -29.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate2",
+     "path": "Main/Level/StormDrains/Grate2",
+     "pos": [
+      -26.0,
+      0.02,
+      -28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate3",
+     "path": "Main/Level/StormDrains/Grate3",
+     "pos": [
+      0.0,
+      0.02,
+      -28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate4",
+     "path": "Main/Level/StormDrains/Grate4",
+     "pos": [
+      32.0,
+      0.02,
+      -28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate5",
+     "path": "Main/Level/StormDrains/Grate5",
+     "pos": [
+      -30.0,
+      0.02,
+      5.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate6",
+     "path": "Main/Level/StormDrains/Grate6",
+     "pos": [
+      35.0,
+      0.02,
+      8.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate7",
+     "path": "Main/Level/StormDrains/Grate7",
+     "pos": [
+      17.0,
+      0.02,
+      34.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate8",
+     "path": "Main/Level/StormDrains/Grate8",
+     "pos": [
+      49.0,
+      0.02,
+      40.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate9",
+     "path": "Main/Level/StormDrains/Grate9",
+     "pos": [
+      -29.0,
+      0.02,
+      23.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate10",
+     "path": "Main/Level/StormDrains/Grate10",
+     "pos": [
+      10.0,
+      0.02,
+      28.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "enemy_spawn": [
+    {
+     "name": "EnemySpawn",
+     "path": "Main/Level/EnemySpawns/EnemySpawn",
+     "pos": [
+      -59.0,
+      0.08,
+      -52.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn2",
+     "path": "Main/Level/EnemySpawns/EnemySpawn2",
+     "pos": [
+      -43.0,
+      0.08,
+      -59.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn3",
+     "path": "Main/Level/EnemySpawns/EnemySpawn3",
+     "pos": [
+      -5.0,
+      0.08,
+      -60.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn4",
+     "path": "Main/Level/EnemySpawns/EnemySpawn4",
+     "pos": [
+      37.0,
+      0.08,
+      -59.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn5",
+     "path": "Main/Level/EnemySpawns/EnemySpawn5",
+     "pos": [
+      59.0,
+      0.08,
+      -46.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn6",
+     "path": "Main/Level/EnemySpawns/EnemySpawn6",
+     "pos": [
+      60.0,
+      0.08,
+      -13.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn7",
+     "path": "Main/Level/EnemySpawns/EnemySpawn7",
+     "pos": [
+      61.0,
+      0.08,
+      32.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn8",
+     "path": "Main/Level/EnemySpawns/EnemySpawn8",
+     "pos": [
+      62.0,
+      0.08,
+      58.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn9",
+     "path": "Main/Level/EnemySpawns/EnemySpawn9",
+     "pos": [
+      4.0,
+      0.08,
+      61.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn10",
+     "path": "Main/Level/EnemySpawns/EnemySpawn10",
+     "pos": [
+      -21.0,
+      0.08,
+      58.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn11",
+     "path": "Main/Level/EnemySpawns/EnemySpawn11",
+     "pos": [
+      -52.0,
+      0.08,
+      38.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn12",
+     "path": "Main/Level/EnemySpawns/EnemySpawn12",
+     "pos": [
+      -60.0,
+      0.08,
+      -24.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn13",
+     "path": "Main/Level/EnemySpawns/EnemySpawn13",
+     "pos": [
+      10.0,
+      0.08,
+      41.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn14",
+     "path": "Main/Level/EnemySpawns/EnemySpawn14",
+     "pos": [
+      35.0,
+      0.08,
+      36.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn15",
+     "path": "Main/Level/EnemySpawns/EnemySpawn15",
+     "pos": [
+      -20.0,
+      0.08,
+      25.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "name": "HARBOR POINT",
+   "player_spawn": [
+    {
+     "name": "PlayerSpawn",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn",
+     "pos": [
+      -39.3,
+      0.08,
+      3.7
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "PlayerSpawn2",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn2",
+     "pos": [
+      -36.8,
+      0.08,
+      3.7
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "PlayerSpawn3",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn3",
+     "pos": [
+      -39.3,
+      0.08,
+      6.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "PlayerSpawn4",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn4",
+     "pos": [
+      -36.8,
+      0.08,
+      6.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "puddles": [
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.0,
+     "name": "Pool",
+     "path": "Main/Level/Puddles/Pool",
+     "pos": [
+      -57.0,
+      0.04,
+      -20.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.0,
+     "name": "Pool2",
+     "path": "Main/Level/Puddles/Pool2",
+     "pos": [
+      -33.0,
+      0.04,
+      -30.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool2"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.2,
+     "name": "Pool3",
+     "path": "Main/Level/Puddles/Pool3",
+     "pos": [
+      -10.0,
+      0.04,
+      -23.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool3"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Pool4",
+     "path": "Main/Level/Puddles/Pool4",
+     "pos": [
+      2.0,
+      0.04,
+      -32.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool4"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.0,
+     "name": "Pool5",
+     "path": "Main/Level/Puddles/Pool5",
+     "pos": [
+      30.0,
+      0.04,
+      -25.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool5"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.0,
+     "name": "Pool6",
+     "path": "Main/Level/Puddles/Pool6",
+     "pos": [
+      55.0,
+      0.04,
+      -33.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool6"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.0,
+     "name": "Pool7",
+     "path": "Main/Level/Puddles/Pool7",
+     "pos": [
+      -26.0,
+      0.04,
+      -3.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool7"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.5,
+     "name": "Pool8",
+     "path": "Main/Level/Puddles/Pool8",
+     "pos": [
+      -4.0,
+      0.04,
+      5.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool8"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.8,
+     "name": "Pool9",
+     "path": "Main/Level/Puddles/Pool9",
+     "pos": [
+      34.0,
+      0.04,
+      0.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool9"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.4,
+     "name": "Pool10",
+     "path": "Main/Level/Puddles/Pool10",
+     "pos": [
+      48.0,
+      0.04,
+      6.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool10"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Pool11",
+     "path": "Main/Level/Puddles/Pool11",
+     "pos": [
+      0.0,
+      0.04,
+      15.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool11"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.5,
+     "name": "Pool12",
+     "path": "Main/Level/Puddles/Pool12",
+     "pos": [
+      12.0,
+      0.04,
+      35.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool12"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.5,
+     "name": "Pool13",
+     "path": "Main/Level/Puddles/Pool13",
+     "pos": [
+      32.0,
+      0.04,
+      48.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool13"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Pool14",
+     "path": "Main/Level/Puddles/Pool14",
+     "pos": [
+      -1.0,
+      0.04,
+      52.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool14"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.5,
+     "name": "Pool15",
+     "path": "Main/Level/Puddles/Pool15",
+     "pos": [
+      44.0,
+      0.04,
+      54.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool15"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Pool16",
+     "path": "Main/Level/Puddles/Pool16",
+     "pos": [
+      -50.0,
+      0.04,
+      5.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool16"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Pool17",
+     "path": "Main/Level/Puddles/Pool17",
+     "pos": [
+      32.0,
+      0.04,
+      24.5
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool17"
+    }
+   ],
+   "vending_stations": [
+    {
+     "key": "CanneryStation",
+     "pos": [
+      12.5,
+      0.0,
+      -38.03
+     ],
+     "server_path": "Main/RunLoot/CanneryStation",
+     "yaw": -3.142
+    },
+    {
+     "key": "BaitShopStation",
+     "pos": [
+      53.85,
+      0.0,
+      10.26
+     ],
+     "server_path": "Main/RunLoot/BaitShopStation",
+     "yaw": -3.142
+    },
+    {
+     "key": "FishExchangeStation",
+     "pos": [
+      -5.7,
+      0.0,
+      23.7
+     ],
+     "server_path": "Main/RunLoot/FishExchangeStation",
+     "yaw": -1.571
+    },
+    {
+     "key": "RescueStation",
+     "pos": [
+      -35.6,
+      0.0,
+      22.1
+     ],
+     "server_path": "Main/RunLoot/RescueStation",
+     "yaw": -1.571
+    }
+   ]
+  },
+  "maple_hollow": {
+   "boss_anchor": [
+    {
+     "name": "BossAnchor",
+     "path": "Main/Level/BossAnchor",
+     "pos": [
+      46.0,
+      18.0,
+      -26.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "crate_spawn": [
+    {
+     "name": "CrateSpawn",
+     "path": "Main/Level/CrateSpawns/CrateSpawn",
+     "pos": [
+      -56.0,
+      0.08,
+      20.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn2",
+     "path": "Main/Level/CrateSpawns/CrateSpawn2",
+     "pos": [
+      -56.0,
+      0.08,
+      -16.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn3",
+     "path": "Main/Level/CrateSpawns/CrateSpawn3",
+     "pos": [
+      -30.0,
+      0.08,
+      -26.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn4",
+     "path": "Main/Level/CrateSpawns/CrateSpawn4",
+     "pos": [
+      -12.0,
+      0.08,
+      -24.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn5",
+     "path": "Main/Level/CrateSpawns/CrateSpawn5",
+     "pos": [
+      -2.0,
+      0.08,
+      -42.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn6",
+     "path": "Main/Level/CrateSpawns/CrateSpawn6",
+     "pos": [
+      21.0,
+      0.08,
+      -22.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn7",
+     "path": "Main/Level/CrateSpawns/CrateSpawn7",
+     "pos": [
+      46.0,
+      0.08,
+      -34.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn8",
+     "path": "Main/Level/CrateSpawns/CrateSpawn8",
+     "pos": [
+      46.0,
+      0.08,
+      -16.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn9",
+     "path": "Main/Level/CrateSpawns/CrateSpawn9",
+     "pos": [
+      34.0,
+      0.08,
+      12.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn10",
+     "path": "Main/Level/CrateSpawns/CrateSpawn10",
+     "pos": [
+      20.0,
+      0.08,
+      28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn11",
+     "path": "Main/Level/CrateSpawns/CrateSpawn11",
+     "pos": [
+      -4.0,
+      0.08,
+      14.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CrateSpawn12",
+     "path": "Main/Level/CrateSpawns/CrateSpawn12",
+     "pos": [
+      -22.0,
+      0.08,
+      -2.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "decon_showers": [
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/RangerDecon/Interact",
+     "interact_pos": [
+      -21.0,
+      1.0,
+      38.5
+     ],
+     "marker_path": "Main/Level/DeconShowers/RangerDecon",
+     "name": "RangerDecon",
+     "pos": [
+      -21.0,
+      0.0,
+      38.5
+     ],
+     "radius": 2.2
+    },
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/CampgroundDecon/Interact",
+     "interact_pos": [
+      -19.5,
+      1.0,
+      -35.0
+     ],
+     "marker_path": "Main/Level/DeconShowers/CampgroundDecon",
+     "name": "CampgroundDecon",
+     "pos": [
+      -19.5,
+      0.0,
+      -35.0
+     ],
+     "radius": 2.2
+    },
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/ChapelDecon/Interact",
+     "interact_pos": [
+      28.5,
+      1.0,
+      -35.8
+     ],
+     "marker_path": "Main/Level/DeconShowers/ChapelDecon",
+     "name": "ChapelDecon",
+     "pos": [
+      28.5,
+      0.0,
+      -35.8
+     ],
+     "radius": 2.2
+    }
+   ],
+   "drain_spawn": [
+    {
+     "name": "Grate",
+     "path": "Main/Level/StormDrains/Grate",
+     "pos": [
+      -39.0,
+      0.06,
+      -34.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate2",
+     "path": "Main/Level/StormDrains/Grate2",
+     "pos": [
+      -39.0,
+      0.06,
+      -2.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate3",
+     "path": "Main/Level/StormDrains/Grate3",
+     "pos": [
+      -39.0,
+      0.06,
+      30.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate4",
+     "path": "Main/Level/StormDrains/Grate4",
+     "pos": [
+      -46.75,
+      -2.76,
+      -28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate5",
+     "path": "Main/Level/StormDrains/Grate5",
+     "pos": [
+      -46.75,
+      -2.76,
+      5.5
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate6",
+     "path": "Main/Level/StormDrains/Grate6",
+     "pos": [
+      18.5,
+      0.06,
+      -15.5
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate7",
+     "path": "Main/Level/StormDrains/Grate7",
+     "pos": [
+      4.5,
+      0.06,
+      28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Grate8",
+     "path": "Main/Level/StormDrains/Grate8",
+     "pos": [
+      38.0,
+      0.06,
+      17.5
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "enemy_spawn": [
+    {
+     "name": "EnemySpawn",
+     "path": "Main/Level/EnemySpawns/EnemySpawn",
+     "pos": [
+      -60.0,
+      0.08,
+      52.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn2",
+     "path": "Main/Level/EnemySpawns/EnemySpawn2",
+     "pos": [
+      -60.0,
+      0.08,
+      12.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn3",
+     "path": "Main/Level/EnemySpawns/EnemySpawn3",
+     "pos": [
+      -60.0,
+      0.08,
+      -22.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn4",
+     "path": "Main/Level/EnemySpawns/EnemySpawn4",
+     "pos": [
+      -59.0,
+      0.08,
+      -58.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn5",
+     "path": "Main/Level/EnemySpawns/EnemySpawn5",
+     "pos": [
+      -36.0,
+      0.08,
+      -59.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn6",
+     "path": "Main/Level/EnemySpawns/EnemySpawn6",
+     "pos": [
+      -10.0,
+      0.08,
+      -59.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn7",
+     "path": "Main/Level/EnemySpawns/EnemySpawn7",
+     "pos": [
+      14.0,
+      0.08,
+      -59.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn8",
+     "path": "Main/Level/EnemySpawns/EnemySpawn8",
+     "pos": [
+      46.0,
+      0.08,
+      -58.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn9",
+     "path": "Main/Level/EnemySpawns/EnemySpawn9",
+     "pos": [
+      56.0,
+      0.08,
+      -34.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn10",
+     "path": "Main/Level/EnemySpawns/EnemySpawn10",
+     "pos": [
+      58.5,
+      0.08,
+      1.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn11",
+     "path": "Main/Level/EnemySpawns/EnemySpawn11",
+     "pos": [
+      59.0,
+      0.08,
+      28.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn12",
+     "path": "Main/Level/EnemySpawns/EnemySpawn12",
+     "pos": [
+      55.0,
+      0.08,
+      54.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn13",
+     "path": "Main/Level/EnemySpawns/EnemySpawn13",
+     "pos": [
+      18.0,
+      0.08,
+      57.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "EnemySpawn14",
+     "path": "Main/Level/EnemySpawns/EnemySpawn14",
+     "pos": [
+      -36.0,
+      0.08,
+      56.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "name": "MAPLE HOLLOW",
+   "player_spawn": [
+    {
+     "name": "PlayerSpawn",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn",
+     "pos": [
+      -5.2,
+      0.08,
+      35.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "PlayerSpawn2",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn2",
+     "pos": [
+      -2.8,
+      0.08,
+      35.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "PlayerSpawn3",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn3",
+     "pos": [
+      -5.2,
+      0.08,
+      37.4
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "PlayerSpawn4",
+     "path": "Main/Level/PlayerSpawns/PlayerSpawn4",
+     "pos": [
+      -2.8,
+      0.08,
+      37.4
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "puddles": [
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.5,
+     "name": "Pool",
+     "path": "Main/Level/Puddles/Pool",
+     "pos": [
+      -37.0,
+      0.04,
+      32.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Pool2",
+     "path": "Main/Level/Puddles/Pool2",
+     "pos": [
+      -24.0,
+      0.04,
+      33.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool2"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.4,
+     "name": "Pool3",
+     "path": "Main/Level/Puddles/Pool3",
+     "pos": [
+      8.0,
+      0.04,
+      30.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool3"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.4,
+     "name": "Pool4",
+     "path": "Main/Level/Puddles/Pool4",
+     "pos": [
+      28.0,
+      0.04,
+      24.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool4"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Pool5",
+     "path": "Main/Level/Puddles/Pool5",
+     "pos": [
+      44.0,
+      0.04,
+      16.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool5"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Pool6",
+     "path": "Main/Level/Puddles/Pool6",
+     "pos": [
+      -9.0,
+      0.04,
+      16.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool6"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Pool7",
+     "path": "Main/Level/Puddles/Pool7",
+     "pos": [
+      -11.0,
+      0.04,
+      -18.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool7"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Pool8",
+     "path": "Main/Level/Puddles/Pool8",
+     "pos": [
+      -26.0,
+      0.04,
+      -34.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool8"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.4,
+     "name": "Pool9",
+     "path": "Main/Level/Puddles/Pool9",
+     "pos": [
+      -37.0,
+      0.04,
+      -34.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool9"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Pool10",
+     "path": "Main/Level/Puddles/Pool10",
+     "pos": [
+      -56.5,
+      0.04,
+      -14.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool10"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Pool11",
+     "path": "Main/Level/Puddles/Pool11",
+     "pos": [
+      -56.5,
+      0.04,
+      14.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool11"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Pool12",
+     "path": "Main/Level/Puddles/Pool12",
+     "pos": [
+      -28.0,
+      0.04,
+      -3.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool12"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.6,
+     "name": "Pool13",
+     "path": "Main/Level/Puddles/Pool13",
+     "pos": [
+      19.0,
+      0.04,
+      -20.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool13"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.8,
+     "name": "Pool14",
+     "path": "Main/Level/Puddles/Pool14",
+     "pos": [
+      39.0,
+      0.04,
+      -28.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool14"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.5,
+     "name": "Pool15",
+     "path": "Main/Level/Puddles/Pool15",
+     "pos": [
+      53.0,
+      0.04,
+      -36.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool15"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Pool16",
+     "path": "Main/Level/Puddles/Pool16",
+     "pos": [
+      17.0,
+      0.04,
+      8.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Pool16"
+    }
+   ],
+   "vending_stations": [
+    {
+     "key": "ChapelSteps",
+     "pos": [
+      24.0,
+      0.24,
+      -36.5
+     ],
+     "server_path": "Main/RunLoot/ChapelSteps",
+     "yaw": -3.142
+    },
+    {
+     "key": "RangerStation",
+     "pos": [
+      -14.0,
+      0.24,
+      42.0
+     ],
+     "server_path": "Main/RunLoot/RangerStation",
+     "yaw": 0.0
+    },
+    {
+     "key": "Campground",
+     "pos": [
+      -12.0,
+      0.06,
+      -39.9
+     ],
+     "server_path": "Main/RunLoot/Campground",
+     "yaw": -3.142
+    }
+   ]
+  },
+  "pinecrest": {
+   "boss_anchor": [
+    {
+     "name": "BossAnchor",
+     "path": "Main/Level/BossAnchor",
+     "pos": [
+      0.0,
+      18.0,
+      0.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "crate_spawn": [
+    {
+     "name": "Crate0",
+     "path": "Main/Level/CrateSpawns/Crate0",
+     "pos": [
+      6.0,
+      0.0,
+      -44.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate1",
+     "path": "Main/Level/CrateSpawns/Crate1",
+     "pos": [
+      -6.0,
+      0.0,
+      -36.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate2",
+     "path": "Main/Level/CrateSpawns/Crate2",
+     "pos": [
+      0.0,
+      0.0,
+      -12.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate3",
+     "path": "Main/Level/CrateSpawns/Crate3",
+     "pos": [
+      -30.0,
+      0.0,
+      2.5
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate4",
+     "path": "Main/Level/CrateSpawns/Crate4",
+     "pos": [
+      28.0,
+      0.0,
+      -2.5
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate5",
+     "path": "Main/Level/CrateSpawns/Crate5",
+     "pos": [
+      -20.0,
+      0.0,
+      38.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate6",
+     "path": "Main/Level/CrateSpawns/Crate6",
+     "pos": [
+      4.0,
+      0.0,
+      42.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate7",
+     "path": "Main/Level/CrateSpawns/Crate7",
+     "pos": [
+      -53.0,
+      0.0,
+      37.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate8",
+     "path": "Main/Level/CrateSpawns/Crate8",
+     "pos": [
+      46.0,
+      0.0,
+      34.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate9",
+     "path": "Main/Level/CrateSpawns/Crate9",
+     "pos": [
+      -44.0,
+      0.0,
+      -36.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate10",
+     "path": "Main/Level/CrateSpawns/Crate10",
+     "pos": [
+      42.0,
+      0.0,
+      -34.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Crate11",
+     "path": "Main/Level/CrateSpawns/Crate11",
+     "pos": [
+      9.0,
+      0.0,
+      20.5
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "decon_showers": [
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/GarageWest/Interact",
+     "interact_pos": [
+      -21.843,
+      1.0,
+      -46.965
+     ],
+     "marker_path": "Main/Level/DeconShowers/GarageWest",
+     "name": "GarageWest",
+     "pos": [
+      -21.843,
+      0.0,
+      -46.965
+     ],
+     "radius": 2.2
+    },
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/Laundromat/Interact",
+     "interact_pos": [
+      -18.0,
+      1.0,
+      8.6
+     ],
+     "marker_path": "Main/Level/DeconShowers/Laundromat",
+     "name": "Laundromat",
+     "pos": [
+      -18.0,
+      0.0,
+      8.6
+     ],
+     "radius": 2.2
+    },
+    {
+     "hold_time": 1.0,
+     "interact_path": "Main/Level/DeconShowers/GasStation/Interact",
+     "interact_pos": [
+      49.0,
+      1.0,
+      22.0
+     ],
+     "marker_path": "Main/Level/DeconShowers/GasStation",
+     "name": "GasStation",
+     "pos": [
+      49.0,
+      0.0,
+      22.0
+     ],
+     "radius": 2.2
+    }
+   ],
+   "drain_spawn": [
+    {
+     "name": "Drain-40_4",
+     "path": "Main/Level/StormDrains/Drain-40_4",
+     "pos": [
+      -40.0,
+      0.0,
+      4.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Drain-12_-4",
+     "path": "Main/Level/StormDrains/Drain-12_-4",
+     "pos": [
+      -12.0,
+      0.0,
+      -4.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Drain14_4",
+     "path": "Main/Level/StormDrains/Drain14_4",
+     "pos": [
+      14.0,
+      0.0,
+      4.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Drain46_-4",
+     "path": "Main/Level/StormDrains/Drain46_-4",
+     "pos": [
+      46.0,
+      0.0,
+      -4.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Drain8_-36",
+     "path": "Main/Level/StormDrains/Drain8_-36",
+     "pos": [
+      8.0,
+      0.0,
+      -36.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Drain-15_40",
+     "path": "Main/Level/StormDrains/Drain-15_40",
+     "pos": [
+      -15.0,
+      0.0,
+      40.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "Drain-50_8",
+     "path": "Main/Level/StormDrains/Drain-50_8",
+     "pos": [
+      -50.0,
+      0.0,
+      8.5
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "enemy_spawn": [
+    {
+     "name": "MainStWest",
+     "path": "Main/Level/EnemySpawns/MainStWest",
+     "pos": [
+      -58.0,
+      0.0,
+      2.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "MainStEast",
+     "path": "Main/Level/EnemySpawns/MainStEast",
+     "pos": [
+      58.0,
+      0.0,
+      2.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "ParkNorth",
+     "path": "Main/Level/EnemySpawns/ParkNorth",
+     "pos": [
+      -40.0,
+      0.0,
+      -61.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "BackyardsNorth",
+     "path": "Main/Level/EnemySpawns/BackyardsNorth",
+     "pos": [
+      40.0,
+      0.0,
+      -61.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "CulDeSacNorth",
+     "path": "Main/Level/EnemySpawns/CulDeSacNorth",
+     "pos": [
+      -8.0,
+      0.0,
+      -62.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "LotSouthWest",
+     "path": "Main/Level/EnemySpawns/LotSouthWest",
+     "pos": [
+      -25.0,
+      0.0,
+      61.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "LotSouthEast",
+     "path": "Main/Level/EnemySpawns/LotSouthEast",
+     "pos": [
+      20.0,
+      0.0,
+      61.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "GasBack",
+     "path": "Main/Level/EnemySpawns/GasBack",
+     "pos": [
+      61.0,
+      0.0,
+      40.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "name": "PINECREST",
+   "player_spawn": [
+    {
+     "name": "P1",
+     "path": "Main/Level/PlayerSpawns/P1",
+     "pos": [
+      -2.0,
+      0.0,
+      0.5
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "P2",
+     "path": "Main/Level/PlayerSpawns/P2",
+     "pos": [
+      2.0,
+      0.0,
+      0.5
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "P3",
+     "path": "Main/Level/PlayerSpawns/P3",
+     "pos": [
+      -2.0,
+      0.0,
+      3.0
+     ],
+     "yaw": 0.0
+    },
+    {
+     "name": "P4",
+     "path": "Main/Level/PlayerSpawns/P4",
+     "pos": [
+      2.0,
+      0.0,
+      3.0
+     ],
+     "yaw": 0.0
+    }
+   ],
+   "puddles": [
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.5,
+     "name": "MainW",
+     "path": "Main/Level/Puddles/MainW",
+     "pos": [
+      -32.0,
+      0.0,
+      2.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/MainW"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "MainC",
+     "path": "Main/Level/Puddles/MainC",
+     "pos": [
+      -6.0,
+      0.0,
+      -2.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/MainC"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.4,
+     "name": "MainE",
+     "path": "Main/Level/Puddles/MainE",
+     "pos": [
+      26.0,
+      0.0,
+      2.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/MainE"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "MainFarE",
+     "path": "Main/Level/Puddles/MainFarE",
+     "pos": [
+      56.0,
+      0.0,
+      -1.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/MainFarE"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 1.8,
+     "name": "Lane",
+     "path": "Main/Level/Puddles/Lane",
+     "pos": [
+      2.0,
+      0.0,
+      -20.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Lane"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "CircleW",
+     "path": "Main/Level/Puddles/CircleW",
+     "pos": [
+      -6.0,
+      0.0,
+      -45.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/CircleW"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "CircleE",
+     "path": "Main/Level/Puddles/CircleE",
+     "pos": [
+      7.0,
+      0.0,
+      -35.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/CircleE"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 3.0,
+     "name": "LotW",
+     "path": "Main/Level/Puddles/LotW",
+     "pos": [
+      -32.0,
+      0.0,
+      38.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/LotW"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.6,
+     "name": "LotC",
+     "path": "Main/Level/Puddles/LotC",
+     "pos": [
+      -4.0,
+      0.0,
+      39.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/LotC"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.4,
+     "name": "LotE",
+     "path": "Main/Level/Puddles/LotE",
+     "pos": [
+      16.0,
+      0.0,
+      40.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/LotE"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.0,
+     "name": "Square",
+     "path": "Main/Level/Puddles/Square",
+     "pos": [
+      -48.0,
+      0.0,
+      18.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Square"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.4,
+     "name": "Gas",
+     "path": "Main/Level/Puddles/Gas",
+     "pos": [
+      42.0,
+      0.0,
+      30.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Gas"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.6,
+     "name": "Park",
+     "path": "Main/Level/Puddles/Park",
+     "pos": [
+      -40.0,
+      0.0,
+      -36.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Park"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 2.2,
+     "name": "Backyards",
+     "path": "Main/Level/Puddles/Backyards",
+     "pos": [
+      45.0,
+      0.0,
+      -32.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Backyards"
+    },
+    {
+     "dry_time": 25.0,
+     "grow_time": 45.0,
+     "max_radius": 1.8,
+     "name": "Alley",
+     "path": "Main/Level/Puddles/Alley",
+     "pos": [
+      -9.5,
+      0.0,
+      16.0
+     ],
+     "sync_key": "/root/Main/Level/Puddles/Alley"
+    }
+   ],
+   "vending_stations": [
+    {
+     "key": "HardwareStation",
+     "pos": [
+      -2.8,
+      0.055,
+      9.0
+     ],
+     "server_path": "Main/RunLoot/HardwareStation",
+     "yaw": 0.0
+    },
+    {
+     "key": "GasStationSurplus",
+     "pos": [
+      49.0,
+      0.08,
+      26.5
+     ],
+     "server_path": "Main/RunLoot/GasStationSurplus",
+     "yaw": 0.0
+    },
+    {
+     "key": "TownSquareStation",
+     "pos": [
+      -53.0,
+      0.08,
+      30.85
+     ],
+     "server_path": "Main/RunLoot/TownSquareStation",
+     "yaw": 0.0
+    }
+   ]
+  }
+ }
+}
