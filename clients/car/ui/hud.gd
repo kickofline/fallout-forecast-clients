@@ -12,7 +12,7 @@ const Touch = preload("res://ui/touch.gd")
 const SettingsPanel = preload("res://ui/settings_panel.gd")
 const FocusNav = preload("res://ui/focus_nav.gd")
 const Panels = preload("res://ui/hud_panels.gd")
-const Loadout = preload("res://ui/loadout.gd")
+const LoadoutMenu = preload("res://ui/loadout.gd")
 const QuickChat = preload("res://ui/quick_chat.gd")
 const Scoreboard = preload("res://ui/scoreboard.gd")
 const DAMAGE = preload("res://shaders/damage.shader")
@@ -87,6 +87,10 @@ var _last_phase_id = ""
 var _heart_left = 0.0
 var _state_flash = 0.0
 var _last_state = ""
+var _spread_heat = 0.0
+var _spread_recoil = 0.0
+var _spread_aim = 0.0
+var _spread_shots = 0
 
 
 func _ready() -> void:
@@ -431,7 +435,7 @@ func open_modal(kind: String) -> void:
 		return
 	_touch.cancel_all()
 	if kind == "loadout":
-		_modal = Loadout.new()
+		_modal = LoadoutMenu.new()
 		_modal.world = world
 	else:
 		_modal = QuickChat.new()
@@ -446,7 +450,7 @@ func _on_modal_closed() -> void:
 
 func modal_kind() -> String:
 	if _modal and is_instance_valid(_modal):
-		return "loadout" if _modal is Loadout else "chat"
+		return "loadout" if _modal is LoadoutMenu else "chat"
 	return ""
 
 
@@ -888,16 +892,76 @@ func _update_armory(you: Dictionary, state: String, delta: float) -> void:
 	_reticle.charging = cl != null and float(cl) >= 0.0 and ct > 0.0
 	_reticle.charge = clamp(1.0 - float(cl) / ct, 0.0, 1.0) if _reticle.charging else 0.0
 	_pips.update()
-	# Reticle style from the weapon.
-	var meta = Assets.weapon(id)
-	var cat = str(meta.get("category", "gun"))
-	_reticle.style = "shotgun" if ("shotgun" in id or "rock_salt" in id) else ("launcher" if cat != "gun" or "launcher" in id or id in ["harpoon", "flare_launcher"] else "cross")
-	var moving: float = world._v(you.get("vel")).length()
+	# Reticle style and spread from the weapon (native hud.gd + WeaponHolder.current_spread_degrees).
 	var aiming = bool(you.get("aiming", false))
-	var base = 26.0 if _reticle.style == "shotgun" else 6.0
-	_reticle.target_spread = base * (0.55 if aiming else 1.0) + moving * (2.2 if _reticle.style == "shotgun" else 1.6) + world.viewmodel.recoil * 10.0
+	_update_spread(id, you, aiming, delta)
 	_reticle.ads = aiming
 	_reticle.reload = bool(you.get("reloading", false))
+
+
+## Native angular spread projected to pixels: base spread + burst heat +
+## recoil, movement / airborne bloom eased out by ADS, then
+## (vh / 2) * tan(spread) / tan(fov / 2). Heat and recoil follow the local
+## shots (Full: predicted_shots) with the native rise and decay rates.
+func _update_spread(id: String, you: Dictionary, aiming: bool, delta: float) -> void:
+	var w = {}
+	if net.has_method("item") and not id.empty():
+		var it = net.item(id)
+		w = it.get("weapon", {}) if it.get("weapon") is Dictionary else {}
+	var shots = int(world.get("predicted_shots")) if world.get("predicted_shots") != null else 0
+	if shots > _spread_shots and not w.empty():
+		var heavy = int(w.get("pellets", 1)) > 1 or str(w.get("mechanic", "")) == "reel"
+		_spread_heat = min(1.0, _spread_heat + 0.24)
+		_spread_recoil = min(_spread_recoil + (0.28 if heavy else 0.10), 0.55)
+	_spread_shots = shots
+	_spread_recoil = move_toward(_spread_recoil, 0.0, delta * 2.8)
+	_spread_heat = move_toward(_spread_heat, 0.0, delta * 1.6)
+	_spread_aim = lerp(_spread_aim, 1.0 if aiming else 0.0, 1.0 - exp(-14.0 * delta))
+	if w.empty():
+		# Thin (no item table) or nothing held: the old category guess.
+		var cat = str(Assets.weapon(id).get("category", "gun"))
+		_reticle.style = "shotgun" if ("shotgun" in id or "rock_salt" in id) else ("launcher" if cat != "gun" or "launcher" in id or id in ["harpoon", "flare_launcher"] else "cross")
+		var moving: float = world._v(you.get("vel")).length()
+		var base = 26.0 if _reticle.style == "shotgun" else 6.0
+		_reticle.target_spread = base * (0.55 if aiming else 1.0) + moving * (2.2 if _reticle.style == "shotgun" else 1.6) + world.viewmodel.recoil * 10.0
+		_reticle.ads_tight = false
+		return
+	var pellets = int(w.get("pellets", 1))
+	var mech = str(w.get("mechanic", ""))
+	var pm = world.get("player_mutations")
+	var ads_scale = 0.25 if pm is Array and "hyper_focus" in pm else 0.45
+	var aim_factor = lerp(1.0, ads_scale, _spread_aim)
+	var base_deg = float(w.get("spread_degrees", 0.0)) + float(w.get("burst_spread", 0.0)) * _spread_heat + _spread_recoil * (1.8 if pellets > 1 else 1.1)
+	var v = world._v(you.get("vel"))
+	var bloom = clamp(Vector2(v.x, v.z).length() / 7.2, 0.0, 1.0) * (0.55 if pellets > 1 else 0.40)
+	var me = world.get("me")
+	if me and me.get("grounded") == false:
+		bloom += 0.85
+	var deg = max(0.0, (base_deg + bloom * (1.0 - _spread_aim * 0.72)) * aim_factor)
+	if mech == "gust":
+		deg = 10.5
+	elif mech == "wash":
+		deg = max(base_deg * aim_factor, 2.2)
+	var vh = max(1.0, _root.rect_size.y)
+	var fov = world.camera.fov if world.camera else 75.0
+	var px = (vh * 0.5) * tan(deg2rad(deg)) / max(tan(deg2rad(fov * 0.5)), 0.01)
+	var hitscan = str(w.get("fire_kind", "hitscan")) == "hitscan"
+	if float(w.get("charge_time", 0.0)) > 0.0:
+		_reticle.style = "cross"
+		_reticle.target_spread = clamp(px, 12.0, 26.0)
+	elif pellets > 1:
+		_reticle.style = "shotgun"
+		_reticle.target_spread = clamp(px, 14.0, 92.0)
+	elif mech in ["wash", "gust"]:
+		_reticle.style = "shotgun"
+		_reticle.target_spread = clamp(px, 18.0, 84.0)
+	elif not hitscan:
+		_reticle.style = "launcher"
+		_reticle.target_spread = 15.0
+	else:
+		_reticle.style = "cross"
+		_reticle.target_spread = clamp(px, 4.5, 74.0)
+	_reticle.ads_tight = _spread_aim > 0.5 and deg <= 0.45
 
 
 func _draw_pips() -> void:

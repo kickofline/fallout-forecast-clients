@@ -8,6 +8,7 @@ extends Control
 const SettingsPanel = preload("res://ui/settings_panel.gd")
 const Glyph = preload("res://ui/glyph.gd")
 const FocusNav = preload("res://ui/focus_nav.gd")
+const Loadout = preload("res://core/loadout.gd")
 const MODES = [["thin", "CLOUD"], ["full", "CLOUD FULL"], ["solo", "SOLO"]]
 const SOLO_MAPS = [["pinecrest", "PINECREST"], ["harbor", "HARBOR POINT"], ["maple_hollow", "MAPLE HOLLOW"]]
 
@@ -25,6 +26,11 @@ var _sub: Label
 var _t = 0.0
 var _mode = "thin"
 var _nav: Node
+var _loadout_cap: Label
+var _loadout_row = HBoxContainer.new()
+var _kit_btn: Button
+var _suit_btn: Button
+var _skin_btn: Button
 
 
 func _ready() -> void:
@@ -95,6 +101,14 @@ func _ready() -> void:
 		mb.add_font_override("font", UI.font(20))
 		mb.set_meta("map", m[0])
 		_maps_row.add_child(mb)
+	_loadout_cap = UI.label("LOADOUT  (FULL / SOLO)", 18, UI.MUTED)
+	_menu.add_child(_loadout_cap)
+	_loadout_row.add_constant_override("separation", 6)
+	_menu.add_child(_loadout_row)
+	_kit_btn = _loadout_button("kit")
+	_suit_btn = _loadout_button("suit")
+	_skin_btn = _loadout_button("skin")
+	_update_loadout()
 	_connect = UI.button("CLOUD PLAY", self, "_on_connect")
 	_connect.rect_min_size = Vector2(450, 58)
 	_connect.align = Button.ALIGN_LEFT
@@ -155,6 +169,8 @@ func _apply_mode() -> void:
 	if _mode == "full":
 		_url_cap.text = "SERVER (TCP HOST:PORT)" if Settings.full_uses_tcp() else "SERVER (WS / WSS)"
 	_url_edit.visible = not solo
+	_loadout_cap.visible = _mode != "thin"
+	_loadout_row.visible = _mode != "thin"
 	_maps_row.visible = solo
 	for b in _maps_row.get_children():
 		var on2 = b.get_meta("map") == Settings.solo_map
@@ -258,6 +274,41 @@ func _on_settings_closed() -> void:
 	if is_instance_valid(_nav):
 		_nav.screen = self
 		_nav.first = _connect
+
+
+func _loadout_button(kind: String) -> Button:
+	var b = UI.button("", self, "_on_loadout", [kind])
+	b.rect_min_size = Vector2(146, 44)
+	b.add_font_override("font", UI.font(18))
+	b.clip_text = true
+	_loadout_row.add_child(b)
+	return b
+
+
+## Gamepad / keyboard / touch all press the button; each press cycles.
+func _on_loadout(kind: String) -> void:
+	match kind:
+		"kit":
+			Settings.starter_index = posmod(int(Settings.starter_index) + 1, 3)
+		"suit":
+			Settings.suit_color = Loadout.cycle("color", int(Settings.suit_color), 1)
+		"skin":
+			Settings.suit_skin = Loadout.cycle("skin", int(Settings.suit_skin), 1)
+	Settings.save()
+	_update_loadout()
+	Sound.play("ui_tick", -8.0)
+
+
+func _update_loadout() -> void:
+	if not Loadout.color_unlocked(int(Settings.suit_color)):
+		Settings.suit_color = Loadout.cycle("color", int(Settings.suit_color), 1)
+	if not Loadout.skin_unlocked(int(Settings.suit_skin)):
+		Settings.suit_skin = 0
+	_kit_btn.text = Loadout.starter_label(int(Settings.starter_index))
+	var c = posmod(int(Settings.suit_color), Loadout.COLOR_NAMES.size())
+	_suit_btn.text = Loadout.COLOR_NAMES[c]
+	UI.accent(_suit_btn, Color(Loadout.COLOR_HEX[c]))
+	_skin_btn.text = Loadout.SKINS[posmod(int(Settings.suit_skin), Loadout.SKINS.size())]
 
 
 func _on_quit() -> void:

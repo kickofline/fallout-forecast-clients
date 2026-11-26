@@ -57,6 +57,12 @@ var _attack = 0.0
 var _down = 0.0
 var _gait: Array = GAIT["drip"]
 var _lod_acc = 0.0
+var _fall_axis = Vector3.RIGHT
+var _fall_dir = Vector3.ZERO
+var _linger = 0.0
+var _fall_from = Vector3.ZERO
+var _model_rest = Transform()
+var tarp: MeshInstance            # Full: raised-tarp sheet (world/full_fx.gd make_tarp)
 
 
 func setup_enemy(enemy_type: String) -> void:
@@ -186,9 +192,23 @@ func set_anim(a: String) -> void:
 	anim = a
 
 
-func kill() -> void:
+## Death. With a throw vector the body topples along it (enemy_base
+## make_corpse: 84 degrees in 0.38 s, slides 0.6 m), lies for `linger` s and
+## sinks; without one it is the short Thin fall.
+func kill(throw_vec := Vector3.ZERO, linger := 0.0) -> void:
 	dying = true
 	die_left = 0.9
+	_linger = linger
+	var d = Vector3(throw_vec.x, 0, throw_vec.z)
+	if linger > 0.0:
+		if d.length_squared() < 0.01:
+			d = global_transform.basis.z
+		_fall_dir = d.normalized()
+		_fall_axis = Vector3.UP.cross(_fall_dir).normalized()
+		_fall_from = translation
+		if model:
+			_model_rest = model.transform
+		die_left = 0.38 + linger + 1.2
 
 
 func _process(delta: float) -> void:
@@ -213,6 +233,15 @@ func _process_body(delta: float) -> void:
 		model.translation.y = -spawn_left * 2.0
 	elif not dying:
 		model.translation.y = 0.0
+	if dying and _linger > 0.0:
+		die_left -= delta
+		var t = 0.38 + _linger + 1.2 - die_left
+		var k2: float = clamp(t / 0.38, 0.0, 1.0)
+		model.transform = Transform(Basis(global_transform.basis.xform_inv(_fall_axis).normalized(), deg2rad(84.0) * k2 * k2), Vector3.ZERO) * _model_rest
+		translation = _fall_from + _fall_dir * 0.6 * k2 + Vector3(0, -0.8 * clamp((t - 0.38 - _linger) / 1.2, 0.0, 1.0), 0)
+		if die_left <= 0.0:
+			queue_free()
+		return
 	if dying:
 		die_left -= delta
 		var k: float = clamp(1.0 - die_left / 0.9, 0.0, 1.0)

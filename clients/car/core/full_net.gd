@@ -31,6 +31,7 @@ const JOIN_DEADLINE = 10.0
 const WsLink = preload("res://core/ws_full_link.gd")
 const TcpLink = preload("res://core/tcp_full_link.gd")
 const LocalLink = preload("res://solo/local_link.gd")
+const Loadout = preload("res://core/loadout.gd")
 const GAME_DATA = "res://data/game_data.json"
 
 ## true once the user picked CLOUD FULL / SOLO (until they pick Thin again).
@@ -297,7 +298,7 @@ func _on_welcome(msg: Dictionary) -> void:
 		return
 	_set_phase("online")
 	emit_signal("welcomed", msg)
-	var hello = {"name": _name.substr(0, 32), "color": int(Settings.suit_color), "skin": int(Settings.suit_skin), "colors": []}
+	var hello = {"name": _name.substr(0, 32), "color": int(Settings.suit_color), "skin": int(Settings.suit_skin), "colors": Loadout.unlocked_colors()}
 	var proto = GAME_PROTOCOL
 	for a in Settings.args():
 		if str(a).begins_with("--hello-protocol="):  # test switch (conformance F8)
@@ -377,7 +378,8 @@ func _build_lobby() -> void:
 		var r = roster[k]
 		if r is Dictionary:
 			players.append({"id": int(k), "name": str(r.get("name", "PLAYER")), "ready": bool(r.get("ready", false)),
-				"vote": my_vote if int(k) == you else null, "car": int(k) == you})
+				"vote": my_vote if int(k) == you else null, "car": int(k) == you, "color": int(r.get("color", 1)),
+				"skin": int(r.get("skin", 0))})
 	lobby = {"players": players, "chat": chat, "vote_counts": vote_counts, "maps": maps}
 	emit_signal("lobby_updated", lobby)
 
@@ -499,6 +501,8 @@ func lobby_action(action: String, extra := {}) -> void:
 			rpc_send("Net", "_request_force_start", [])
 		"chat":
 			rpc_send("Net", "_request_chat", [str(extra.get("text", "")).substr(0, 100)])
+		"cosmetic":
+			rpc_send("Net", "_request_cosmetic", [int(Settings.suit_color), int(Settings.suit_skin), Loadout.unlocked_colors()])
 
 
 ## Draft / tape choices from the HUD overlays.

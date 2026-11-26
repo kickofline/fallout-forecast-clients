@@ -26,6 +26,8 @@ func _ready() -> void:
 		mi.material_override = m
 		mi.visible = false
 		mi.set_meta("life", 0.0)
+		mi.set_meta("w", 0.025)
+		mi.set_meta("full", false)
 		add_child(mi)
 		_tracers.append(mi)
 	for i in SPARKS:
@@ -106,7 +108,9 @@ func warmup(root: Spatial) -> void:
 		sparks.emitting = true
 
 
-func tracer(from: Vector3, to: Vector3, color := Color(1.0, 0.85, 0.5)) -> void:
+## `width` 0.025 is a bullet streak; `full` draws the whole segment at once
+## (stream weapons: washer, leaf blower, zapper, disruptor).
+func tracer(from: Vector3, to: Vector3, color := Color(1.0, 0.85, 0.5), width := 0.025, full := false) -> void:
 	var length = from.distance_to(to)
 	if length < 0.3:
 		return
@@ -116,7 +120,9 @@ func tracer(from: Vector3, to: Vector3, color := Color(1.0, 0.85, 0.5)) -> void:
 	mi.set_meta("from", from)
 	mi.set_meta("to", to)
 	mi.set_meta("life", 0.0)
-	mi.set_meta("dur", clamp(length / 260.0, 0.04, 0.12))
+	mi.set_meta("dur", clamp(length / 260.0, 0.04, 0.12) if not full else 0.09)
+	mi.set_meta("w", width)
+	mi.set_meta("full", full)
 	(mi.material_override as SpatialMaterial).albedo_color = Color(color.r, color.g, color.b, 0.9)
 	mi.visible = true
 	_place_tracer(mi, 0.0)
@@ -129,20 +135,24 @@ func _place_tracer(mi: MeshInstance, t: float) -> void:
 	var streak: float = min(length, 4.0)
 	var head = from.linear_interpolate(to, clamp(t, 0.0, 1.0))
 	var tail = head - (to - from).normalized() * streak * clamp(t * 3.0, 0.2, 1.0)
+	if mi.get_meta("full"):
+		head = to
+		tail = from
 	var mid = (head + tail) * 0.5
 	var dir = head - tail
 	if dir.length() < 0.01:
 		return
 	var up = Vector3.UP if abs(dir.normalized().dot(Vector3.UP)) < 0.95 else Vector3.RIGHT
 	var basis = Transform().looking_at(dir, up).basis
-	mi.global_transform = Transform(basis.scaled(Vector3(0.025, 0.025, dir.length())), mid)
+	var w = float(mi.get_meta("w"))
+	mi.global_transform = Transform(basis.scaled(Vector3(w, w, dir.length())), mid)
 
 
-func flash(at: Vector3, size := 0.5, color := Color(1.0, 0.8, 0.4)) -> void:
+func flash(at: Vector3, size := 0.5, color := Color(1.0, 0.8, 0.4), life := 0.06) -> void:
 	var f: MeshInstance = _flashes[_flash_i]
 	_flash_i = (_flash_i + 1) % FLASHES
 	f.global_transform = Transform(Basis().scaled(Vector3.ONE * size / 0.5), at)
-	f.set_meta("life", 0.06)
+	f.set_meta("life", life)
 	(f.material_override as SpatialMaterial).albedo_color = color
 	f.visible = true
 

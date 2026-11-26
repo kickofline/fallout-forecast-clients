@@ -14,6 +14,13 @@ signal group_warning(at)
 
 const FullPlayer = preload("res://world/full_player.gd")
 const LevelPhysics = preload("res://world/level_physics.gd")
+const FullFx = preload("res://world/full_fx.gd")
+const Loadout = preload("res://core/loadout.gd")
+const RECOIL_DEG = {"harpoon": 1.8, "hunting_rifle": 2.8, "pump_shotgun": 1.8, "rock_salt": 2.8, "spray_rifle": 0.7}
+const STREAMS = ["wash", "gust", "zap", "suppress"]
+const CASING_MECHANICS = ["", "pin", "hunt", "salt"]
+const OFFER_RANGE = 9.0
+const DROP_HEIGHT = 5.8
 const KINDS = ["drip", "gutter", "mister", "sleet", "hailstone", "undertow", "static", "smog", "thunderhead"]
 const PHASES = {0: "calm", 1: "calm", 2: "drizzle", 3: "downpour", 4: "clearing"}
 const PUSH_DT = 0.05
@@ -95,6 +102,13 @@ var _run_ready = false
 var _ready_frames = 2
 var _you_dirty = true
 var _stats_left = 5.0
+var ffx: Spatial                    # world/full_fx.gd
+var spectate_id = 0
+var _my_tarp: MeshInstance
+var _kick = 0.0                     # camera recoil (rad), decays 8 deg/s
+var _thunder = []                   # [seconds left, pos]
+var _corpse_ms = []
+var _was_airborne = false
 var _cloud_mat = SpatialMaterial.new()
 var _cloud_mesh = SphereMesh.new()
 
@@ -157,6 +171,11 @@ func _finish_load() -> void:
 	me = FullPlayer.new()
 	me.name = "Me"
 	scene.add_child(me)
+	ffx = FullFx.new()
+	ffx.name = "FullFx"
+	scene.add_child(ffx)
+	_my_tarp = ffx.make_tarp()
+	me.add_child(_my_tarp)
 	var spawn = _spawn_for(my_id, net.roster_ids)
 	me.teleport(spawn[0])
 	yaw = spawn[1]
@@ -240,6 +259,8 @@ func _ensure_actor(id: int) -> void:
 	var hexc = str(colors[e.color].get("hex", "#2ec9c9")) if e.color >= 0 and e.color < colors.size() else "#2ec9c9"
 	var skin = str(skins[e.skin].get("name", "STANDARD")) if e.skin >= 0 and e.skin < skins.size() else "STANDARD"
 	var model_id = Assets.player_model_id(skin, hexc)
+	if e.state == "turned" and Assets.enemy_scene("turned"):
+		model_id = "turned"
 	var actor = players.get(id)
 	if actor and is_instance_valid(actor) and actor.get_meta("model") == model_id:
 		return
@@ -249,10 +270,17 @@ func _ensure_actor(id: int) -> void:
 	actor.id = id
 	actor.set_meta("model", model_id)
 	scene.add_child(actor)
-	actor.setup_player(model_id, Weather.hex(hexc, Color("#2ec9c9")))
+	if model_id == "turned":
+		actor.setup_enemy("turned")
+		actor.spawn_left = 0.0
+	else:
+		actor.setup_player(model_id, Weather.hex(hexc, Color("#2ec9c9")))
+	if ffx:
+		actor.tarp = ffx.make_tarp()
+		actor.add_child(actor.tarp)
 	actor.translation = e.pos
 	actor.rotation.y = e.yaw
-	actor.set_item(e.item)
+	actor.set_item(e.item if e.state != "turned" else "")
 	players[id] = actor
 	e["hex"] = hexc
 
@@ -297,6 +325,9 @@ func handle_rpc(node: String, method: String, args: Array) -> void:
 			"GameManager/Feats":
 				if method == "_feat_event" and args.size() >= 2:
 					feat_log.append([str(args[0]), int(args[1])])
+					for reward in Loadout.feat_event(str(args[0]), int(args[1])):
+						emit_signal("banner", "UNLOCKED " + str(reward))
+						print("FULL feat unlock %s" % str(reward))
 			_:
 				if method == "play_spray":
 					for d in decons:
@@ -335,6 +366,9 @@ func _player_rpc(id: int, method: String, args: Array) -> void:
 			if args.size() < 5:
 				return
 			var st = str(args[2])
+			if id != my_id and (st == "turned") != (str(e.state) == "turned"):
+				e.state = st
+				_ensure_actor(id)
 			e.state = st
 			e.tarp = bool(args[4])
 			e.hp = float(args[0])
@@ -467,36 +501,95 @@ func _on_hits(hits) -> void:
 		net.emit_events(evs)
 
 
+## HOLDER._shot_fx (weapon_combat.gd play_fx): streams draw beams with no
+## flash, the harpoon flies and reels on its cable, pellets fan out, impacts
+## puff by surface (2 = flesh) and sparks on metal.
 func _on_shot_fx(id: int, item_id: String, origin, dir, traces, predicted: bool) -> void:
 	if not (origin is Vector3):
 		return
 	var meta = Assets.weapon(item_id)
+	var w = net.item(item_id).get("weapon", {})
+	w = w if w is Dictionary else {}
+	var mech = str(w.get("mechanic", ""))
+	var stream = mech in STREAMS
 	var color: Color = Color(meta.get("tracer_color")) if meta.get("tracer_color") is String else Color(1.0, 0.85, 0.5)
 	var mine = id == my_id
-	var from: Vector3 = origin
+	var from: Vector3 = origin + (dir * 0.55 if dir is Vector3 else Vector3.ZERO)
+	var fresh = not (mine and predicted)
 	if mine:
 		accepted_shots += 1
 		from = viewmodel.muzzle_position()
 		if not predicted:
 			viewmodel.fire()
-			fx.flash(from, 0.35, color.lightened(0.3))
-			Sound.play(str(meta.get("shot_sound", "")))
-	else:
-		fx.flash(from, 0.45, color.lightened(0.3))
-		Sound.play_at(str(meta.get("shot_sound", "")), from)
-	if traces is Array:
-		var n = 0
-		for tr in traces:
-			if not (tr is Array) or tr.size() < 2 or not (tr[0] is Vector3):
-				continue
-			n += 1
-			if n > 10:
-				break
+			_shot_juice(item_id, w)
+	if fresh:
+		if not stream:
+			fx.flash(from, 0.35 if mine else 0.45, color.lightened(0.3))
+		var cue = str(meta.get("shot_sound", ""))
+		if mine:
+			Sound.play(cue, -2.5)
+		else:
+			Sound.play_at(cue, from, -4.5)
+	if not (traces is Array) or str(w.get("fire_kind", "hitscan")) != "hitscan":
+		return
+	if mech == "reel":
+		if not traces.empty() and traces[0] is Array and traces[0].size() >= 2 and traces[0][0] is Vector3:
+			var bolt = _make_projectile("harpoon")
+			ffx.harpoon(bolt, from, traces[0][0], color)
+			_impact(int(traces[0][1]), traces[0][0], from, false)
+		return
+	var n = 0
+	var flesh = 0
+	for tr in traces:
+		if not (tr is Array) or tr.size() < 2 or not (tr[0] is Vector3):
+			continue
+		n += 1
+		if n > 10:
+			break
+		if stream:
+			fx.tracer(from, tr[0], color, 0.14 if mech in ["wash", "gust"] else 0.06, true)
+		else:
 			fx.tracer(from, tr[0], color)
-			var impact = int(tr[1])
-			if impact == 1 or impact == 3:
-				if n <= 3:
-					fx.spark(tr[0], Color(1.0, 0.9, 0.55) if impact == 3 else Color(0.7, 0.65, 0.55), 0.6)
+		var impact = int(tr[1])
+		if impact == 2:
+			flesh += 1
+		if n <= 3:
+			_impact(impact, tr[0], from, stream)
+	if flesh > 0 and not stream:
+		Sound.play_at("hit_flesh", from, -18.0 + min(6.0, 2.0 * (flesh - 1)))
+
+
+func _impact(impact: int, at: Vector3, from: Vector3, stream: bool) -> void:
+	match impact:
+		1:
+			fx.flash(at, 0.22, Color("#bbad99"), 0.17)
+		2:
+			fx.flash(at, 0.22, Color("#b0f580"), 0.17)
+		3:
+			if stream:
+				fx.flash(at, 0.22, Color("#bbad99"), 0.17)
+			else:
+				fx.spark(at, Color(1.0, 0.9, 0.55), 0.6)
+
+
+## Local shot feel (weapon_holder _local_shot_motion / _shot_juice): camera
+## kick by the weapon's recoil, shake for pellets, ejected casing, pump.
+func _shot_juice(item_id: String, w: Dictionary) -> void:
+	var mech = str(w.get("mechanic", ""))
+	var ads = _aiming()
+	var k = (0.5 if "hyper_focus" in player_mutations else 0.65) if ads else 1.0
+	_kick = min(_kick + deg2rad(float(RECOIL_DEG.get(item_id, 0.6))) * k, deg2rad(5.0))
+	var heavy = int(w.get("pellets", 1)) > 1
+	if mech == "reel":
+		shake = min(1.0, shake + 0.36)
+		return
+	if str(w.get("fire_kind", "hitscan")) != "hitscan" or not (mech in CASING_MECHANICS):
+		return
+	shake = min(1.0, shake + (0.28 if heavy else 0.05))
+	var right = camera.global_transform.basis.x
+	ffx.casing(viewmodel.muzzle_position() - camera.global_transform.basis.z * -0.25 + right * 0.05, right, heavy)
+	if item_id == "pump_shotgun":
+		get_tree().create_timer(float(w.get("fire_interval", 0.85)) * 0.2).connect("timeout", Sound, "play", ["shotgun_pump", -11.0])
 
 
 func _enemies_rpc(method: String, args: Array) -> void:
@@ -519,6 +612,9 @@ func _enemies_rpc(method: String, args: Array) -> void:
 				a.scale = Vector3.ONE * 0.65
 			var at: Vector3 = args[2] if args[2] is Vector3 else Vector3.ZERO
 			a.translation = at
+			if args.size() > 4 and bool(args[4]):
+				a.scale *= 1.12
+				a.set_meta("elite", true)
 			enemies[id] = a
 			_etarget[id] = [at, 0.0]
 			Settings.spike_ctx.append("spawn:" + type)
@@ -540,9 +636,20 @@ func _enemies_rpc(method: String, args: Array) -> void:
 			var a = enemies.get(id)
 			enemies.erase(id)
 			_etarget.erase(id)
+			_tells.erase(id)
 			if a and is_instance_valid(a):
-				a.kill()
-				fx.spark(a.translation + Vector3(0, 1.0, 0), Color(0.55, 1.0, 0.3), 1.4)
+				var throw: Vector3 = args[3] if args.size() > 3 and args[3] is Vector3 else Vector3.ZERO
+				var crit = args.size() > 4 and bool(args[4])
+				var at2: Vector3 = args[2] if args.size() > 2 and args[2] is Vector3 else a.translation
+				var now = OS.get_ticks_msec()
+				while not _corpse_ms.empty() and now - int(_corpse_ms[0]) > 4000:
+					_corpse_ms.pop_front()
+				var linger = 2.4 if _corpse_ms.size() < 6 else 0.0
+				if linger > 0.0:
+					_corpse_ms.append(now)
+				a.kill(throw, linger)
+				ffx.fragments(at2, throw, crit)
+				ffx.splat(at2, 0.55 if a.scale.x < 0.9 else 0.8)
 				Sound.play_at("enemy_death", a.translation, -4.0)
 		"_retire_enemies":
 			if args.empty():
@@ -559,11 +666,14 @@ func _enemies_rpc(method: String, args: Array) -> void:
 				if a and is_instance_valid(a):
 					a.set_anim("windup")
 					_tells[int(args[0])] = max(0.2, float(args[2]))
-					Sound.play_at(str(args[1]), a.translation)
+					Sound.play_at(str(args[1]), a.translation + Vector3(0, 0.2 if a.type == "gutter" else 1.0, 0), float(args[3]) if args.size() > 3 else 0.0)
+					if float(args[2]) > 0.0:
+						ffx.tell(a, a.type, float(args[2]), _tell_radius(a.type) * a.scale.x)
 		"_play_enemy_molt":
 			var a = enemies.get(int(args[0])) if not args.empty() else null
 			if a and is_instance_valid(a):
-				fx.spark(a.translation + Vector3(0, 1.2, 0), Color(0.8, 0.9, 1.0), 1.2)
+				fx.spark(a.translation + Vector3(0, 1.1, 0), Color(0.8, 0.9, 1.0), 1.2)
+				Sound.play_at("hit_flesh", a.translation + Vector3(0, 1, 0), -12.0)
 		"_enemy_impacts":
 			if not args.empty() and args[0] is Array:
 				for row in args[0]:
@@ -583,6 +693,13 @@ func _enemies_rpc(method: String, args: Array) -> void:
 		"_sync_progress":
 			if args.size() >= 5:
 				progress = {"wave": int(args[0]), "left": int(args[1]), "total": int(args[2]), "recovery": float(args[3]), "score": int(args[4])}
+
+
+func _tell_radius(type: String) -> float:
+	for k in net.data.get("enemy_kinds", []):
+		if k is Dictionary and str(k.get("id", "")) == type:
+			return clamp(float(k.get("attack_range", 1.6)), 1.0, 6.0)
+	return 1.6
 
 
 func _boss_rpc(method: String, args: Array) -> void:
@@ -673,6 +790,8 @@ func _loot_rpc(method: String, args: Array) -> void:
 					ef.node.translation = ef.pos
 					if args.size() > 4:
 						ef.node.rotation = Vector3(0, float(args[4]), 0)
+					ef["yaw"] = float(args[4]) if args.size() > 4 else 0.0
+					_open_zone(int(args[1]), ef, float(args[3]) if args.size() > 3 else 0.0)
 					var ds = str(Assets.weapon(ef.id).get("deploy_sound", ""))
 					Sound.play_at("dome_deploy" if ef.id == "shield_dome" else (ds if not ds.empty() else "gun_field_deploy"), ef.pos)
 		"_effect_end":
@@ -683,6 +802,9 @@ func _loot_rpc(method: String, args: Array) -> void:
 				var at: Vector3 = args[2] if args.size() > 2 and args[2] is Vector3 else (ef.pos if ef else Vector3.ZERO)
 				if ef and is_instance_valid(ef.node):
 					ef.node.queue_free()
+				ffx.zone_close(seq)
+				if ef and ef.id == "shield_dome" and ef.deployed and not (args.size() > 3 and bool(args[3])):
+					Sound.play_at("dome_collapse", at, -10.0)
 				if args.size() > 3 and bool(args[3]):
 					var col = Color(1.0, 0.6, 0.25)
 					fx.spark(at, col, 2.2)
@@ -751,7 +873,25 @@ func _effect_spawn(seq: int, row) -> void:
 		node.rotation.y = float(row[6])
 	var w = net.item(id).get("weapon", {})
 	effects[seq] = {"node": node, "id": id, "pos": pos, "vel": row[2] if row[2] is Vector3 else Vector3.ZERO,
-		"grav": float(w.get("projectile_gravity", 1.0)) if w is Dictionary else 1.0, "deployed": deployed}
+		"grav": float(w.get("projectile_gravity", 1.0)) if w is Dictionary else 1.0, "deployed": deployed,
+		"yaw": float(row[6]) if row.size() > 6 else 0.0}
+	if deployed:
+		_open_zone(seq, effects[seq], float(row[5]) if row.size() > 5 else 0.0)
+
+
+## projectile.gd deploy/_build_zone: rim + dome/sweep sized by effect_radius.
+func _open_zone(seq: int, ef: Dictionary, life: float) -> void:
+	var w = net.item(ef.id).get("weapon", {})
+	var radius = float(w.get("effect_radius", 0.0)) if w is Dictionary else 0.0
+	if ef.id == "sandbag":
+		radius = 0.0
+	var meta = Assets.weapon(ef.id)
+	var color: Color = Color(meta.get("tracer_color")) if meta.get("tracer_color") is String else Color(0.7, 0.9, 1.0)
+	ffx.zone_open(seq, ef.id, ef.pos, float(ef.get("yaw", 0.0)), radius, color, life)
+	if ef.id == "lightning_rod":
+		Sound.play_at("static_power", ef.pos + Vector3(0, 0.95, 0), -4.0)
+	elif ef.id == "bait_radio":
+		Sound.play_at("gun_bait_loop", ef.pos, -10.0)
 
 
 func _gm_rpc(method: String, args: Array) -> void:
@@ -813,6 +953,8 @@ func _gm_rpc(method: String, args: Array) -> void:
 				scene.add_child(node)
 				node.translation = args[1]
 				spores.append({"node": node, "from": args[1], "to": args[2], "flight": max(0.1, float(args[3])), "t": 0.0})
+				if args.size() > 6 and bool(args[6]):
+					ffx.ground_ring(args[2], 3.0, max(0.1, float(args[3])), Color(0.72, 0.55, 1.0) if not acid else Color(0.72, 1.0, 0.34))
 				Sound.play_at("smog_spit", args[1], -4.0)
 		"_draw_arc":
 			if not args.empty() and args[0] is Array:
@@ -906,6 +1048,7 @@ func _crate_rpc(method: String, args: Array) -> void:
 			if not drop.empty() and is_instance_valid(drop.node):
 				drop.node.queue_free()
 			drop = {}
+			ffx.beacon(null, false)
 			_rebuild_pickups_list()
 
 
@@ -922,9 +1065,45 @@ func _cabinet(key: String, offers) -> void:
 		scene.add_child(node)
 		node.translation = pos
 		node.rotation.y = y
-		c = {"node": node, "pos": pos, "yaw": y, "offers": []}
+		c = {"node": node, "pos": pos, "yaw": y, "offers": [], "shown": [], "mounts": []}
 		cabinets[key] = c
 	c.offers = offers if offers is Array else []
+	c.shown = []      # rebuild the bay models next time the player is near
+
+
+## Native supply_station set_offers: each bay shows its item at 0.44 scale.
+## Built (merged per material) only within OFFER_RANGE, freed beyond it.
+func _update_offers() -> void:
+	if me == null or Engine.get_frames_drawn() % 10 != 0:
+		return
+	var feet = me.feet()
+	for key in cabinets:
+		var c = cabinets[key]
+		var near = feet.distance_to(c.pos) < OFFER_RANGE
+		var want = []
+		if near:
+			for off in c.offers:
+				want.append(str(off[0]) if off is Array and off.size() >= 1 else "")
+		if want == c.shown:
+			continue
+		for m in c.mounts:
+			if is_instance_valid(m):
+				m.queue_free()
+		c.mounts = []
+		c.shown = want
+		var basis = Basis(Vector3.UP, c.yaw)
+		for i in min(3, want.size()):
+			if want[i].empty():
+				continue
+			var packed = Assets.weapon_pickup(want[i])
+			if packed == null:
+				continue
+			var item: Spatial = RetroMat.instance_merged(packed, [])
+			RetroMat.prepare(item)
+			item.transform = Transform(basis * Basis(Vector3(deg2rad(0.0), deg2rad(-75.0), deg2rad(6.0))).scaled(Vector3.ONE * 0.44),
+				c.pos + basis.xform(Vector3([-0.62, 0.0, 0.62][i], 1.24, -0.50)))
+			scene.add_child(item)
+			c.mounts.append(item)
 
 
 func _airdrop(at: Vector3, descent: float) -> void:
@@ -932,8 +1111,9 @@ func _airdrop(at: Vector3, descent: float) -> void:
 		drop.node.queue_free()
 	var node = _make_pickup({"kind": "airdrop", "item": "airdrop"})
 	scene.add_child(node)
-	drop = {"node": node, "pos": at, "descent": max(0.0, descent), "t": max(0.0, descent)}
-	node.translation = at + Vector3(0, drop.t * 8.0, 0)
+	drop = {"node": node, "pos": at, "descent": max(0.0, descent), "t": max(0.0, descent), "chute": node.find_node("Parachute", true, false)}
+	node.translation = at + Vector3(0, drop.t * DROP_HEIGHT, 0)
+	_was_airborne = drop.t > 0.0
 
 
 func _weather_rpc(method: String, args: Array) -> void:
@@ -960,7 +1140,14 @@ func _weather_rpc(method: String, args: Array) -> void:
 			if not args.empty() and args[0] is Vector3:
 				weather.strike(args[0])
 				glitch = max(glitch, Settings.flash_scale())
-				Sound.play("thunder", -4.0)
+				var tactical = args.size() > 1 and int(args[1]) >= 0
+				var dist = args[0].distance_to(me.feet()) if me else 0.0
+				if tactical:
+					fx.spark(args[0] + Vector3(0, 0.3, 0), Color("#9fd8ff"), 2.0)
+					fx.flash(args[0] + Vector3(0, 1.0, 0), 4.0, Color("#9fd8ff"), 0.15)
+					if dist < 14.0:
+						shake = min(1.0, shake + 0.6)
+				_thunder.append([clamp(dist / 343.0, 0.0, 2.5), -2.0 if dist < 30.0 else -8.0])
 		"_sync_puddles":
 			if not args.empty() and args[0] is Dictionary:
 				for k in args[0]:
@@ -974,6 +1161,8 @@ func _show_ping(peer: int, kind: String, pos) -> void:
 	if not (pos is Vector3):
 		return
 	pings.append([pos, kind, 6.0, peer])
+	if ffx:
+		ffx.ping(pos, kind)
 	while pings.size() > 8:
 		pings.pop_front()
 	Sound.play(PING_SOUNDS.get(kind, "ping_item"), -6.0)
@@ -1043,16 +1232,35 @@ func _update_weather(delta: float) -> void:
 		var dt = 0.1 - _puddle_left
 		_puddle_left = 0.1
 		var raining = (intensity > 0.02 and phase_id in [2, 3]) or override > 0.001
-		var rate = 3.0 if wave == 3 else 1.0
+		var rate = 3.0 if _modifier(wave) == "FLOOD" else 1.0
+		var walls = []
+		for seq in effects:
+			if effects[seq].id == "sandbag" and effects[seq].deployed:
+				walls.append(effects[seq])
 		for p in puddles:
 			if raining:
-				p.growth = min(p.growth + intensity * rate * dt / max(1.0, p.grow), 1.0)
+				var cap = 1.0
+				for wl in walls:
+					var lo: Vector3 = (p.pos - wl.pos).rotated(Vector3.UP, -float(wl.get("yaw", 0.0)))
+					if abs(lo.y) <= 0.7:
+						var edge = Vector2(max(abs(lo.x) - 0.9, 0.0), max(abs(lo.z) - 0.36, 0.0)).length()
+						cap = min(cap, clamp(edge / max(p.max_r, 0.01), 0.0, 1.0))
+				p.growth = min(p.growth + intensity * rate * dt / max(1.0, p.grow), cap)
 			else:
 				p.growth = max(p.growth - dt / max(1.0, p.dry), 0.0)
 			var r = p.max_r * p.growth
 			if abs(r - p.shown) > 0.08 or (r <= 0.25) != (p.shown <= 0.25):
 				p.shown = r
 				weather.puddle({"id": p.name, "on": r > 0.25, "pos": [p.pos.x, p.floor, p.pos.z], "radius": r})
+
+
+## enemies/wave_plan.gd modifier(): waves 1-5 then endless rotation.
+func _modifier(w: int) -> String:
+	var mods = net.data.get("weather", {}).get("wave_modifiers", ["", "BLACKOUT", "FLOOD", "SWARM", "HEAVY WEATHER"])
+	var endl = net.data.get("weather", {}).get("endless_modifiers", ["HEAVY WEATHER", "FLOOD", "BLACKOUT", "SWARM"])
+	if w <= mods.size():
+		return str(mods[max(0, w - 1)])
+	return str(endl[(w - mods.size() - 1) % endl.size()])
 
 
 func _update_remote(delta: float) -> void:
@@ -1076,6 +1284,8 @@ func _update_remote(delta: float) -> void:
 			a.pitch = e.pitch
 			a.state = e.state
 			a.visible = e.state != "out"
+			if a.tarp:
+				a.tarp.visible = e.tarp and e.state == "ok"
 		others.append({"id": id, "name": e.name, "pos": e.pos, "state": e.state, "color": Weather.hex(e.get("hex", "#66dfda"), Color("#66dfda")),
 			"hp": e.get("hp", 100.0), "suit": e.get("suit", 100.0), "max_hp": e.get("max_hp", 100.0), "item": e.get("item", "")})
 	enemy_points.clear()
@@ -1126,7 +1336,22 @@ func _update_effects(delta: float) -> void:
 	if not drop.empty():
 		drop.t = max(0.0, drop.t - delta)
 		if is_instance_valid(drop.node):
-			drop.node.translation = drop.pos + Vector3(0, drop.t * 8.0, 0)
+			drop.node.translation = drop.pos + Vector3(0, drop.t * DROP_HEIGHT, 0)
+			var chute = drop.get("chute")
+			if chute and is_instance_valid(chute) and drop.t <= 0.0:
+				chute.rotation = Vector3(sin(_anim_time * 1.15) * 0.024, chute.rotation.y, sin(_anim_time * 0.84) * 0.032)
+		if _was_airborne and drop.t <= 0.0:
+			_was_airborne = false
+			Sound.play_at("airdrop_land", drop.pos, -4.0)
+			fx.flash(drop.pos + Vector3(0, 0.25, 0), 1.9, Color(0.67, 0.50, 0.35), 0.5)
+		ffx.beacon(drop.pos, drop.t > 0.0)
+	_update_offers()
+	for i in range(_thunder.size() - 1, -1, -1):
+		_thunder[i][0] -= delta
+		if _thunder[i][0] <= 0.0:
+			Sound.play("thunder", float(_thunder[i][1]))
+			_thunder.remove(i)
+	ffx.tick(delta, fx)
 	for id in loot:
 		var n = loot[id].node
 		if is_instance_valid(n) and n.get_meta("spin"):
@@ -1274,8 +1499,9 @@ func _update_exposure() -> void:
 	if not shel:
 		for id in squad:
 			var e = squad[id]
-			if id != my_id and e.tarp and e.state == "ok":
-				var d2: Vector3 = eye - e.pos
+			var tp = e.pos if id != my_id else feet
+			if (e.tarp if id != my_id else tarp_up) and (e.state if id != my_id else my_state) == "ok":
+				var d2: Vector3 = eye - tp
 				if d2.y >= 0.0 and d2.y <= 2.6 and d2.x * d2.x + d2.z * d2.z <= 4.0:
 					shel = true
 					break
@@ -1411,10 +1637,12 @@ func _shoot(serial: int, id: String, w: Dictionary, is_gun: bool, interval: floa
 	predicted_shots += 1
 	viewmodel.fire()
 	var muzzle = viewmodel.muzzle_position()
-	fx.flash(muzzle, 0.35, viewmodel.tracer_color().lightened(0.3))
+	if not (str(w.get("mechanic", "")) in STREAMS):
+		fx.flash(muzzle, 0.35, viewmodel.tracer_color().lightened(0.3))
 	var cue = str(Assets.weapon(id).get("shot_sound", w.get("shot_sound", "")))
 	if not cue.empty():
-		Sound.play(cue)
+		Sound.play(cue, -2.5)
+	_shot_juice(id, w)
 	var row = held_row()
 	if is_gun and not row.empty():
 		row[3] = max(0, int(row[3]) - 1)
@@ -1628,14 +1856,17 @@ func _finish_interact(cand: Dictionary) -> void:
 func _full_camera(delta: float, inp: Dictionary) -> void:
 	var feet = me.feet()
 	var origin = feet + Vector3(0, me.eye_height(), 0)
-	var basis = Basis(Vector3.UP, yaw) * Basis(Vector3.RIGHT, pitch)
+	_kick = move_toward(_kick, 0.0, delta * deg2rad(8.0))
+	var basis = Basis(Vector3.UP, yaw) * Basis(Vector3.RIGHT, pitch + _kick)
+	if _my_tarp:
+		_my_tarp.visible = tarp_up and my_state == "ok"
 	if my_state == "out":
-		for o in others:
-			if o.state in ["ok", "downed"]:
-				var look = Basis(Vector3.UP, yaw)
-				origin = o.pos + Vector3(0, 2.6, 0) + look.z * 4.0
-				basis = look * Basis(Vector3.RIGHT, -0.3)
-				break
+		var target = _spectate_target(inp.get("fire_p", false) or inp.get("jump_p", false))
+		if not target.empty():
+			var look = Basis(Vector3.UP, yaw)
+			origin = target.pos + Vector3(0, 2.6, 0) + look.z * 4.0
+			basis = look * Basis(Vector3.RIGHT, -0.3)
+			prompt = "SPECTATING " + str(target.name).to_upper()
 	shake = max(0.0, shake - delta * 3.0)
 	if shake > 0.0 and not Settings.reduced_flash:
 		origin += Vector3(rand_range(-1, 1), rand_range(-1, 1), 0) * shake * 0.03
@@ -1661,6 +1892,26 @@ func _full_camera(delta: float, inp: Dictionary) -> void:
 		var want_capture = Controls.device == "kbm" and not input_blocked and OS.is_window_focused() and not net.finished
 		if want_capture != (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
 			Controls.capture_mouse(want_capture)
+
+
+## Out: follow a living teammate; fire / jump cycles to the next one.
+func _spectate_target(next: bool) -> Dictionary:
+	var alive = []
+	for o in others:
+		if o.state in ["ok", "downed"]:
+			alive.append(o)
+	if alive.empty():
+		spectate_id = 0
+		return {}
+	var idx = 0
+	for i in alive.size():
+		if alive[i].id == spectate_id:
+			idx = i
+	if next:
+		idx = (idx + 1) % alive.size()
+		Sound.play("ui_tick", -8.0)
+	spectate_id = alive[idx].id
+	return alive[idx]
 
 
 func current_slot() -> Dictionary:

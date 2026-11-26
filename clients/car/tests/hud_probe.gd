@@ -131,7 +131,11 @@ func _check(tag: String, w, hud) -> void:
 		"hud_kbm":
 			var b = hud._panels._boss()
 			ok = b.get("name") == "CLOUDBURST" and w.others.size() >= 1 and not hud._panels._feed.empty() and not hud._panels._pops.empty()
-			info = "miniboss=%s frac=%.2f mates=%d feed=%d pops=%d chip='%s'" % [str(b.get("name")), float(b.get("frac", 0)), w.others.size(), hud._panels._feed.size(), hud._panels._pops.size(), hud._chip_wave.text]
+			# Reticle spread is the native projection of the held weapon's spread.
+			var held = str(w.current_slot().get("item", ""))
+			var want = "shotgun" if int(FullNet.item(held).get("weapon", {}).get("pellets", 1)) > 1 else "cross"
+			ok = ok and (held.empty() or hud._reticle.style == want) and hud._reticle.target_spread > 0.0
+			info = "miniboss=%s frac=%.2f mates=%d feed=%d pops=%d chip='%s' reticle=%s/%.1fpx (%s)" % [str(b.get("name")), float(b.get("frac", 0)), w.others.size(), hud._panels._feed.size(), hud._panels._pops.size(), hud._chip_wave.text, hud._reticle.style, hud._reticle.target_spread, held]
 		"hud_boss":
 			var b2 = hud._panels._boss()
 			ok = b2.get("name") == "CUMULUS" and b2.sacs.size() == 3

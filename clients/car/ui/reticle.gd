@@ -17,6 +17,7 @@ var charge = 0.0
 var reload_frac = -1.0      # real reload progress (Full); <0 = looping ring
 var target_spread = 8.0
 var ads = false
+var ads_tight = false       # ADS with near-zero spread (native: brighter, shorter ticks)
 var _spread = 8.0
 var _hit_left = 0.0
 var _critical = false
@@ -61,7 +62,7 @@ func _draw() -> void:
 		var txt = str(bleed_seconds) if bleed >= 0.0 else "DOWN"
 		UI.draw_text_centered(self, c.x, c.y + 9, txt, 26 if bleed >= 0.0 else 22, UI.PINK)
 	else:
-		var color = UI.CYAN if targeted else Color(1, 1, 1, 0.92 if ads else 0.80)
+		var color = UI.CYAN if targeted else Color(1, 1, 1, 0.92 if ads_tight else 0.80)
 		if jammed:
 			color = UI.PINK
 		elif charging:
@@ -117,7 +118,7 @@ func _draw_reticle(c: Vector2, color: Color) -> void:
 		UI.ring(self, c, r2, PI * 0.16, PI * 0.84, color, 2.0, 10)
 	else:
 		var gap: float = clamp(_spread, 4.5, 76.0)
-		var tick = 6.0 if ads else 7.5
+		var tick = 6.0 if ads_tight else 7.5
 		for d in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
 			UI.seg(self, c + d * gap, c + d * (gap + tick), outline, 4.0)
 			UI.seg(self, c + d * gap, c + d * (gap + tick), color, 2.0)

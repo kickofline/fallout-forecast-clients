@@ -2,6 +2,7 @@ extends Control
 ## Cloud Play lobby: squad roster, district vote "channels", ready / force
 ## start, quick chat. Mirrors the original's console layout at 1240x606.
 
+const Loadout = preload("res://core/loadout.gd")
 const QUICK = ["READY?", "ONE SEC", "LET'S GO", "GG"]
 const CHANNEL_COLORS = [Color("#66dfda"), Color("#9fb8ff"), Color("#ffbf68"), Color("#ff5689")]
 
@@ -16,6 +17,10 @@ var _me_ready = false
 var _my_vote = ""
 var _last_maps_key = ""
 var net: Node = null
+var _kit_btn: Button
+var _suit_btn: Button
+var _skin_btn: Button
+var _lock: Label
 
 
 func _ready() -> void:
@@ -80,6 +85,17 @@ func _ready() -> void:
 	_start.add_font_override("font", UI.font(30))
 	UI.accent(_start, UI.AMBER)
 	actions.add_child(_start)
+	if net != Net:
+		right.add_child(UI.label("LOADOUT", 26, UI.MUTED))
+		var lrow = HBoxContainer.new()
+		lrow.add_constant_override("separation", 10)
+		right.add_child(lrow)
+		_kit_btn = _loadout_button(lrow, "kit")
+		_suit_btn = _loadout_button(lrow, "suit")
+		_skin_btn = _loadout_button(lrow, "skin")
+		_lock = UI.label("", 18, UI.MUTED)
+		right.add_child(_lock)
+		_update_loadout()
 	net.connect("lobby_updated", self, "_on_lobby")
 	refresh()
 	UI.focusable(self)
@@ -116,6 +132,9 @@ func _on_lobby(data: Dictionary) -> void:
 		var dot = ColorRect.new()
 		dot.rect_min_size = Vector2(4, 30)
 		dot.color = UI.CYAN if own else UI.MUTED.darkened(0.3)
+		if p.get("color") != null:
+			dot.color = Color(Loadout.COLOR_HEX[posmod(int(p.color), Loadout.COLOR_HEX.size())])
+			dot.rect_min_size = Vector2(10, 30)
 		row.add_child(dot)
 		var name = UI.label(str(p.get("name", "PLAYER")).to_upper(), 28, UI.PAPER)
 		name.rect_min_size = Vector2(230, 0)
@@ -236,6 +255,50 @@ func _on_start() -> void:
 
 func _on_quick(text: String) -> void:
 	net.lobby_action("chat", {"text": text})
+
+
+func _loadout_button(row: HBoxContainer, kind: String) -> Button:
+	var b = UI.button("", self, "_on_loadout", [kind])
+	b.rect_min_size = Vector2(216, 52)
+	b.add_font_override("font", UI.font(20))
+	b.clip_text = true
+	row.add_child(b)
+	return b
+
+
+## Starter kit is requested at run start; colour and skin go to the server
+## now (Net._request_cosmetic) and the roster shows what was granted.
+func _on_loadout(kind: String) -> void:
+	match kind:
+		"kit":
+			Settings.starter_index = posmod(int(Settings.starter_index) + 1, 3)
+		"suit":
+			Settings.suit_color = Loadout.cycle("color", int(Settings.suit_color), 1)
+		"skin":
+			Settings.suit_skin = Loadout.cycle("skin", int(Settings.suit_skin), 1)
+	Settings.save()
+	if kind != "kit":
+		net.lobby_action("cosmetic")
+	_update_loadout()
+	Sound.play("ui_tick", -8.0)
+
+
+func _update_loadout() -> void:
+	_kit_btn.text = "KIT: " + Loadout.starter_label(int(Settings.starter_index))
+	var c = posmod(int(Settings.suit_color), Loadout.COLOR_NAMES.size())
+	_suit_btn.text = Loadout.COLOR_NAMES[c]
+	UI.accent(_suit_btn, Color(Loadout.COLOR_HEX[c]))
+	_skin_btn.text = Loadout.SKINS[posmod(int(Settings.suit_skin), Loadout.SKINS.size())]
+	var locked = []
+	for i in Loadout.COLOR_NAMES.size():
+		if not Loadout.color_unlocked(i):
+			locked.append(Loadout.COLOR_NAMES[i])
+	for i in Loadout.SKINS.size():
+		if not Loadout.skin_unlocked(i):
+			locked.append(Loadout.SKINS[i])
+	_lock.text = ("LOCKED: " + PoolStringArray(locked).join(", ")) if not locked.empty() else "ALL SUITS UNLOCKED"
+	_lock.clip_text = true
+	_lock.rect_min_size = Vector2(680, 0)
 
 
 func _on_leave() -> void:

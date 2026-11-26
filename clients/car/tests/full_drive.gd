@@ -21,7 +21,13 @@ extends Node
 ##   --drive-tag=S               suffix for screenshot names (e.g. a resolution)
 ##   --exit-when-done
 ##   --drive-wire-check          exit nonzero if any required F check is missing
+##   --drive-squad=victim|medic   two-client local test: the victim stands in
+##                                the rain until downed (medic revives once),
+##                                then turns, swings (melee) and is shot out
+##                                by the medic, then spectates
+##   --drive-color=N --drive-skin=N  cosmetics sent in Net._hello
 
+const Loadout = preload("res://core/loadout.gd")
 var main: Node
 var _mode = "full"
 var _t = 0.0
@@ -44,6 +50,11 @@ var _probe_step = 0
 var _live = false
 var _hud_probe = null
 var shot_suffix = ""
+var _squad = ""
+var _revives = 0
+var _was_downed = false
+var _medic_hold = 0.0
+var _feat_backup = ""
 
 
 func _ready() -> void:
@@ -60,6 +71,12 @@ func _ready() -> void:
 			_limit = float(s.substr(16))
 		elif s.begins_with("--drive-leave-after="):
 			_leave_after = float(s.substr(20))
+		elif s.begins_with("--drive-squad="):
+			_squad = s.substr(14)
+		elif s.begins_with("--drive-color="):
+			Settings.suit_color = int(s.substr(14))
+		elif s.begins_with("--drive-skin="):
+			Settings.suit_skin = int(s.substr(13))
 		elif s == "--drive-probe":
 			_probe = true
 		elif s.begins_with("--drive-tag="):
@@ -197,6 +214,13 @@ func _play(delta: float) -> void:
 		_shot("spawn")
 	if w.starter_state == 2:
 		_pass("F5", "starter kit accepted (slot0=%s)" % str(w.you.get("slots", [null])[0]))
+		var s0 = w.you.get("slots", [null])[0]
+		var want = ["pump_shotgun", "nail_driver", "service_revolver"][int(clamp(Settings.starter_index, 0, 2))]
+		if s0 is Dictionary and str(s0.get("item", "")) == want:
+			_pass("KIT", "starter index %d -> %s" % [Settings.starter_index, want])
+	var mine = n.roster.get(n.you, {})
+	if mine is Dictionary and int(mine.get("skin", -1)) == posmod(Settings.suit_skin, 5):
+		_pass("COSMETIC", "roster color=%d skin=%d (hello colors=%s)" % [int(mine.get("color", -1)), int(mine.get("skin", -1)), str(Loadout.unlocked_colors())])
 	if int(n.rpc_out.get("_push_transform", 0)) >= 20 and int(n.rpc_in.get("_receive_phase", 0)) > 0 and int(n.rpc_in.get("_apply_vitals", 0)) > 0:
 		var en = "enemies spawn=%d sync=%d" % [int(n.rpc_in.get("_spawn_enemy", 0)), int(n.rpc_in.get("_sync_enemies", 0))]
 		if int(n.rpc_in.get("_sync_enemies", 0)) > 0 and int(n.rpc_in.get("_spawn_enemy", 0)) > 0:
@@ -208,6 +232,9 @@ func _play(delta: float) -> void:
 		return
 	if _probe and _probe_step < 99 and w.starter_state == 2:
 		_run_probe(w, delta)
+		return
+	if not _squad.empty():
+		_squad_play(w, delta)
 		return
 	if _hp0 < 0.0 and w.vit.hp > 0.0:
 		_hp0 = w.vit.hp
@@ -261,6 +288,102 @@ func _play(delta: float) -> void:
 		if not _checks.has("SQUAD"):
 			_pass("SQUAD", "remote players rendered: %s (roster %d)" % [str(ids), n.roster.size()])
 			_shot("squad")
+	if _leave_after > 0.0 and _run_t > _leave_after:
+		print("DRIVE leaving after %.0fs in run" % _run_t)
+		_finish()
+
+
+## Two-client co-op checks on a local server (see --drive-squad).
+func _squad_play(w, delta: float) -> void:
+	var n = FullNet
+	if w.phase_id == 0 and w.phase_left > 4.0 and _skip_calm_sent <= 0.0 and _run_t > 2.0:
+		_skip_calm_sent = 5.0
+		w.press_bits(w.BITS.ready_up)
+	_skip_calm_sent -= delta
+	w.auto_move = Vector2.ZERO
+	w.auto_bits = 0
+	if _squad == "victim":
+		if _run_t < 1.0:
+			w.me.teleport(Vector3(-2.0, 0.1, -9.0))
+		match w.my_state:
+			"downed":
+				if not _was_downed:
+					_was_downed = true
+					_pass("DOWNED", "hp=%.0f bleed=%.1f eye=%.2f" % [w.vit.hp, w.vit.bleed, w.me.eye_height()])
+					_shot("downed")
+			"ok":
+				if _was_downed:
+					_was_downed = false
+					_revives += 1
+					_pass("REVIVED", "back on feet hp=%.0f" % w.vit.hp)
+			"turned":
+				_was_downed = false
+				_pass("TURNED", "bled out -> turned, viewmodel hidden=%s" % str(not w.viewmodel.visible))
+				_shot("turned")
+				if int(fmod(_run_t * 2.0, 2.0)) == 0:
+					w.auto_bits = w.BITS.fire
+				if int(n.rpc_out.get("_request_melee", 0)) > 0:
+					_pass("MELEE", "_request_melee sent %d" % int(n.rpc_out.get("_request_melee", 0)))
+			"out":
+				_pass("OUT", "killed while turned")
+				if w.prompt.begins_with("SPECTATING"):
+					_pass("SPECTATE", "camera follows teammate: '%s'" % w.prompt)
+					_shot("spectate")
+					if _leave_after < 0.0:
+						_leave_after = _run_t + 3.0
+	else:
+		# Medic: fight from the awning, revive the first down, shoot the turned.
+		var target = 0
+		for id in w.squad:
+			if id != n.you:
+				target = id
+		var e = w.squad.get(target, {})
+		var st = str(e.get("state", ""))
+		var a = w.players.get(target)
+		if st == "turned" and a and is_instance_valid(a) and a.get_meta("model") == "turned":
+			_pass("TURNED_MODEL", "teammate %d drawn with the turned rig" % target)
+		if st == "downed" and _revives == 0:
+			w.me.teleport(e.pos + Vector3(1.2, 0, 0))
+			var to: Vector3 = e.pos - w._eye()
+			w.yaw = atan2(-to.x, -to.z)
+			w.pitch = atan2(to.y, Vector2(to.x, to.z).length())
+			w.auto_bits = w.BITS.interact
+			_medic_hold += delta
+			if "REVIVE" in w.prompt:
+				_pass("REVIVE_PROMPT", "prompt='%s'" % w.prompt)
+			return
+		if st == "ok" and _medic_hold > 0.0 and _revives == 0:
+			_revives = 1
+			_pass("REVIVE_OK", "teammate revived after %.1fs hold (_request_interact=%d)" % [_medic_hold, int(n.rpc_out.get("_request_interact", 0))])
+		if st == "turned" and a and is_instance_valid(a):
+			if w.me.feet().distance_to(a.translation) > 7.0:
+				w.me.teleport(a.translation + Vector3(4.0, 0.1, 0))
+			var to2: Vector3 = a.translation + Vector3(0, 1.0, 0) - w._eye()
+			w.yaw = atan2(-to2.x, -to2.z)
+			w.pitch = atan2(to2.y, Vector2(to2.x, to2.z).length())
+			if int(fmod(_run_t * 10.0, 10.0)) < 6:
+				w.auto_bits = w.BITS.fire
+			return
+		if st == "out":
+			_pass("TEAMMATE_OUT", "turned teammate shot out")
+		if st == "downed" and _revives > 0:
+			_pass("BLEEDING", "second down left to bleed out")
+		var post = Vector3(-28.0, 0.1, 8.2)
+		if w.me.feet().distance_to(post) > 1.5:
+			w.me.teleport(post)
+		var best = null
+		var bd = 12.0   # save ammo for the turned teammate
+		for id in w.enemies:
+			var en = w.enemies[id]
+			if en and is_instance_valid(en) and not en.dying and en.translation.distance_to(w.me.feet()) < bd:
+				bd = en.translation.distance_to(w.me.feet())
+				best = en
+		if best:
+			var to3: Vector3 = best.translation + Vector3(0, 1.0, 0) - w._eye()
+			w.yaw = atan2(-to3.x, -to3.z)
+			w.pitch = atan2(to3.y, Vector2(to3.x, to3.z).length())
+			if int(fmod(_run_t * 10.0, 10.0)) < 6:
+				w.auto_bits = w.BITS.fire
 	if _leave_after > 0.0 and _run_t > _leave_after:
 		print("DRIVE leaving after %.0fs in run" % _run_t)
 		_finish()
@@ -362,6 +485,106 @@ func _run_probe(w, delta: float) -> void:
 				w.handle_rpc("GameManager", "_sync_tape_state", [false, false, false])
 				w.handle_rpc("GameManager/MutationRoll", "_reset_run_rpc", [])
 				_pass("TAPE", "tape overlay shown (can_choose=%s)" % str(n.first_peer == n.you))
+				# Raise our own tarp (host echo injected): own sheet + shelter.
+				w.me.teleport(Vector3(-2.0, 0.1, -9.0))
+				w.handle_rpc("Main/Players/P_%d" % n.you, "_apply_tarp", [true])
+				_probe_step = 7
+				_probe_t = 0.0
+		7:
+			# The host's 5 Hz vitals carry tarp=false; keep the echo coming.
+			w.handle_rpc("Main/Players/P_%d" % n.you, "_apply_tarp", [true])
+			if _probe_t > 0.5:
+				if w.tarp_up and w._my_tarp.visible and w.sheltered:
+					_pass("TARP", "own raised tarp: sheet visible, sheltered=%s (open street)" % str(w.sheltered))
+				_shot("tarp")
+				w.handle_rpc("Main/Players/P_%d" % n.you, "_apply_tarp", [false])
+				var at = w.me.feet() + Vector3(0, 0, -5)
+				w.handle_rpc("Main/RunLoot", "_effect_spawn", [w.run_id, 90001, ["shield_dome", at, Vector3.ZERO, 0, true, 2.5, 0.0]])
+				w.handle_rpc("Main/RunLoot", "_effect_spawn", [w.run_id, 90002, ["lightning_rod", at + Vector3(4, 0, 0), Vector3.ZERO, 0, true, 2.0, 0.0]])
+				w.handle_rpc("Main/RunLoot", "_effect_spawn", [w.run_id, 90003, ["bleach_bomb", at + Vector3(-4, 0, 0), Vector3.ZERO, 0, true, 3.0, 0.0]])
+				_probe_step = 8
+				_probe_t = 0.0
+		8:
+			if _probe_t > 0.8:
+				_shot("zones")
+			if _probe_t > 1.0:
+				var dome = w.ffx._zones.get(90001, {})
+				if w.ffx.zone_count() >= 3:
+					_pass("ZONES", "zones=%d dome warn=%s rod sweep=%s" % [w.ffx.zone_count(), str(dome.get("warn", -1)), str(w.ffx._zones.has(90002) and w.ffx._zones[90002].has("sweep"))])
+				for seq in [90001, 90002, 90003]:
+					w.handle_rpc("Main/RunLoot", "_effect_end", [w.run_id, seq, w.me.feet(), seq == 90002])
+				var eye = w._eye()
+				var fwd = w._view_dir()
+				var holder = "Main/Players/P_%d/Head/Camera3D/WeaponHolder" % n.you
+				w.handle_rpc(holder, "_shot_fx", [w.run_id, "harpoon", eye, fwd, [[eye + fwd * 12.0, 1]], false, false])
+				w.handle_rpc(holder, "_shot_fx", [w.run_id, "pressure_washer", eye, fwd, [[eye + fwd * 6.0 + Vector3(0.5, 0, 0), 2]], false, false])
+				_probe_step = 9
+				_probe_t = 0.0
+		9:
+			if _probe_t > 0.12 and _probe_t < 0.3:
+				if not w.ffx._harpoons.empty():
+					_pass("HARPOON", "bolt + winch cable in flight, zones left=%d" % w.ffx.zone_count())
+				_shot("harpoon")
+			if _probe_t > 0.6:
+				w.handle_rpc("Main/Enemies", "_spawn_enemy", [987654, 0, w.me.feet() + Vector3(0, 0, -4), false, true, 0])
+				_probe_step = 10
+				_probe_t = 0.0
+		10:
+			if _probe_t > 0.8 and not w.has_meta("told"):
+				w.set_meta("told", true)
+				w.handle_rpc("Main/Enemies", "_play_enemy_tell", [987654, "drip_windup", 0.6, -6.0])
+			if _probe_t > 1.0 and not w.has_meta("corpse"):
+				var en2 = w.enemies.get(987654)
+				if en2:
+					_pass("TELL", "wind-up telegraph ring visible=%s" % str(w.ffx._tells[(w.ffx._tell_i + w.ffx.TELLS - 1) % w.ffx.TELLS][0].visible))
+					_shot("tell")
+					w.set_meta("corpse", en2)
+					w.handle_rpc("Main/Enemies", "_despawn_enemy", [987654, [], en2.translation, Vector3(3, 0, 0), true])
+			if _probe_t > 2.6:
+				var c = w.get_meta("corpse") if w.has_meta("corpse") else null
+				if c and is_instance_valid(c) and c.dying:
+					_pass("CORPSE", "body toppled and still lies 1.6s after death (fragments+splat)")
+				_shot("corpse")
+				w.me.teleport(Vector3(-2.8, 0.1, 7.6))
+				w.yaw = PI
+				_probe_step = 11
+				_probe_t = 0.0
+		11:
+			w.yaw = PI
+			w.pitch = -0.1
+			if _probe_t > 0.8:
+				var m = 0
+				for key in w.cabinets:
+					m += w.cabinets[key].mounts.size()
+				if m > 0:
+					_pass("OFFERS", "bay models shown near cabinet: %d" % m)
+				_shot("offers")
+				var f = File.new()
+				if f.open("user://car_feats.cfg", File.READ) == OK:
+					_feat_backup = f.get_as_text()
+					f.close()
+				var before = Loadout.color_unlocked(2)
+				w.handle_rpc("GameManager/Feats", "_feat_event", ["main_street", 1])
+				if Loadout.color_unlocked(2) and not before:
+					_pass("FEATS", "main_street -> HOT PINK SUIT unlocked (store restored)")
+				if _feat_backup.empty():
+					Directory.new().remove("user://car_feats.cfg")
+				elif f.open("user://car_feats.cfg", File.WRITE) == OK:
+					f.store_string(_feat_backup)
+					f.close()
+				w.handle_rpc("GameManager/CrateManager", "_airdrop_spawn", [w.run_id, w.me.feet() + Vector3(0, 0, -6), 2.4])
+				w.yaw = 0.0
+				_probe_step = 12
+				_probe_t = 0.0
+		12:
+			w.yaw = 0.0
+			w.pitch = 0.15
+			if _probe_t > 1.0 and _probe_t < 1.1:
+				_shot("airdrop")
+			if _probe_t > 2.8:
+				if w.ffx._beacon and w.ffx._beacon.visible and w.drop.t <= 0.0:
+					_pass("AIRDROP", "landed, beacon on, chute=%s" % str(w.drop.get("chute") != null))
+				w.handle_rpc("GameManager/CrateManager", "_remove_drop", [w.run_id])
 				w.me.teleport(Vector3(-2.0, 0.1, -9.0))
 				_probe_step = 99
 				_run_t = 2.7
