@@ -26,6 +26,7 @@ Assets="*res://core/assets.gd"
 UI="*res://ui/style.gd"
 RetroMat="*res://world/retro_materials.gd"
 Sound="*res://core/sound.gd"
+Controls="*res://core/controls.gd"
 Net="*res://core/net.gd"
 
 [debug]
