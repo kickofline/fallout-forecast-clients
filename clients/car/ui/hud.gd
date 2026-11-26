@@ -308,8 +308,10 @@ func toggle_menu() -> void:
 	if _menu and is_instance_valid(_menu):
 		_menu.queue_free()
 		_menu = null
+		_set_solo_paused(false)
 		return
 	_touch.cancel_all()
+	_set_solo_paused(true)
 	_menu = Control.new()
 	_menu.set_anchors_and_margins_preset(Control.PRESET_WIDE)
 	_menu.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -323,7 +325,8 @@ func toggle_menu() -> void:
 	box.add_constant_override("separation", 10)
 	_menu.add_child(box)
 	box.add_child(UI.label("PAUSE", 26, UI.MUTED))
-	box.add_child(UI.label("SOLO TAPE KEEPS RUNNING" if net == FullNet and FullNet.mode == "solo" else "CLOUD PLAY KEEPS RUNNING", 22, UI.AMBER))
+	if net != FullNet or FullNet.mode != "solo":
+		box.add_child(UI.label("CLOUD PLAY KEEPS RUNNING", 22, UI.AMBER))
 	var first: Button
 	for spec in [["RESUME", "toggle_menu"], ["SETTINGS", "_open_settings"], ["LEAVE RUN", "_leave"]]:
 		var b = UI.button(spec[0], self, spec[1])
@@ -337,6 +340,13 @@ func toggle_menu() -> void:
 	_menu_nav = FocusNav.new().attach(_menu)
 	_menu_nav.first = first
 	_menu_nav.connect("back", self, "toggle_menu")
+
+
+func _set_solo_paused(value: bool) -> void:
+	if net == FullNet and FullNet.mode == "solo" and FullNet.rpc_send("GameManager", "_request_pause_rpc", [value, Settings.player_name]):
+		world.set_process(not value)
+		if value:
+			Controls.capture_mouse(false)
 
 
 func _open_settings() -> void:
