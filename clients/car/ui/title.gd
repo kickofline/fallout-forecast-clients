@@ -64,7 +64,7 @@ func _ready() -> void:
 	_sub = UI.label("", 26, UI.ACID)
 	title.add_child(_sub)
 
-	_menu.rect_position = Vector2(720, 40)
+	_menu.rect_position = Vector2(720, 124)
 	_menu.rect_min_size = Vector2(450, 0)
 	_menu.add_constant_override("separation", 8)
 	add_child(_menu)

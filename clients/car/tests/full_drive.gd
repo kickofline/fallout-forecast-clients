@@ -11,6 +11,9 @@ extends Node
 ##   --drive-no-force             do not force start (live server etiquette)
 ##   --drive-leave-after=N        leave N s after confirm instead of waiting for results
 ##   --drive-shots=DIR            save screenshots to DIR
+##   --drive-probe               local server only: teleport through shelter,
+##                                vending, decon and ping checks and inject a
+##                                draft and a tape prompt to exercise the UI
 ##   --exit-when-done
 
 var main: Node
@@ -29,6 +32,9 @@ var _shot_dir = ""
 var _shots_taken = {}
 var _ready_sent = false
 var _skip_calm_sent = 0.0
+var _probe = false
+var _probe_t = 0.0
+var _probe_step = 0
 
 
 func _ready() -> void:
@@ -41,6 +47,8 @@ func _ready() -> void:
 			_limit = float(s.substr(16))
 		elif s.begins_with("--drive-leave-after="):
 			_leave_after = float(s.substr(20))
+		elif s == "--drive-probe":
+			_probe = true
 		elif s.begins_with("--drive-shots="):
 			_shot_dir = s.substr(14)
 	if not _shot_dir.empty():
@@ -159,6 +167,9 @@ func _play(delta: float) -> void:
 		var en = "enemies spawn=%d sync=%d" % [int(n.rpc_in.get("_spawn_enemy", 0)), int(n.rpc_in.get("_sync_enemies", 0))]
 		if int(n.rpc_in.get("_sync_enemies", 0)) > 0 and int(n.rpc_in.get("_spawn_enemy", 0)) > 0:
 			_pass("F6", "pushes=%d phases=%d vitals=%d %s" % [int(n.rpc_out.get("_push_transform", 0)), int(n.rpc_in.get("_receive_phase", 0)), int(n.rpc_in.get("_apply_vitals", 0)), en])
+	if _probe and _probe_step < 99 and w.starter_state == 2:
+		_run_probe(w, delta)
+		return
 	if _hp0 < 0.0 and w.vit.hp > 0.0:
 		_hp0 = w.vit.hp
 	if w.vit.hp < _hp0 - 0.5 or w.vit.suit < 99.0 and not _hurt:
@@ -224,3 +235,79 @@ func _finish() -> void:
 	if Settings.has_arg("--exit-when-done"):
 		yield(get_tree().create_timer(1.0), "timeout")
 		get_tree().quit(0)
+
+
+## Scripted checks for the parts a short fight does not reach.
+func _run_probe(w, delta: float) -> void:
+	var n = FullNet
+	_probe_t += delta
+	w.auto_move = Vector2.ZERO
+	w.auto_bits = 0
+	match _probe_step:
+		0:
+			# Under Pinecrest's BlockAAwning (shelter box) -> sheltered.
+			w.me.teleport(Vector3(-28.0, 0.1, 8.2))
+			_probe_step = 1
+			_probe_t = 0.0
+		1:
+			if _probe_t > 0.6:
+				if w.sheltered:
+					_pass("EXPOSURE", "awning: sheltered=%s reported=%s (_report_exposure sent %d)" % [str(w.sheltered), str(w._exposure_sent), int(n.rpc_out.get("_report_exposure", 0))])
+				_shot("shelter")
+				# Vending: stand in front of HardwareStation, look at bay 2.
+				w.me.teleport(Vector3(-2.8, 0.1, 7.6))
+				w.yaw = PI
+				w.pitch = -0.25
+				_probe_step = 2
+				_probe_t = 0.0
+		2:
+			w.yaw = PI
+			w.pitch = -0.25
+			if _probe_t > 0.5 and _probe_t < 1.4:
+				if "BUY" in w.prompt or "AMMO" in w.prompt:
+					_pass("VEND_PROMPT", "prompt='%s'" % w.prompt)
+					_shot("vending")
+				w.auto_bits = w.BITS.interact
+			if _probe_t >= 1.6:
+				_pass("VEND_HOLD", "_hold_request sent %d (begin+finish)" % int(n.rpc_out.get("_hold_request", 0)))
+				w.me.teleport(Vector3(-21.84, 0.1, -45.6))
+				w.yaw = 0.0
+				w.pitch = -0.2
+				_probe_step = 3
+				_probe_t = 0.0
+		3:
+			w.yaw = 0.0
+			w.pitch = -0.2
+			if _probe_t > 0.5:
+				if "SUIT" in w.prompt or "DECON" in w.prompt:
+					_pass("DECON_PROMPT", "prompt='%s' charges=%d" % [w.prompt, w.decon_charges])
+				w.press_bits(w.BITS.ping)
+				_probe_step = 4
+				_probe_t = 0.0
+		4:
+			if _probe_t > 1.0:
+				if not w.pings.empty():
+					_pass("PING", "_request_ping -> _show_ping kind=%s" % str(w.pings[0][1]))
+				w.handle_rpc("GameManager/MutationRoll", "_deal_rpc", ["", ["reflex_tendons", "chitin_suit", "adrenaline_glands"]])
+				_probe_step = 5
+				_probe_t = 0.0
+		5:
+			if _probe_t > 0.8:
+				_shot("draft")
+			if _probe_t > 1.5:
+				w.handle_rpc("GameManager/MutationRoll", "_result_rpc", [2, [], ["adrenaline_glands"], ["adrenaline_glands"]])
+				if abs(w.me.speed_scale - 1.18) < 0.01:
+					_pass("DRAFT", "overlay shown, result applied (adrenaline speed x%.2f)" % w.me.speed_scale)
+				w.handle_rpc("GameManager", "_sync_tape_state", [true, false, true])
+				_probe_step = 6
+				_probe_t = 0.0
+		6:
+			if _probe_t > 0.8:
+				_shot("tape")
+			if _probe_t > 1.5:
+				w.handle_rpc("GameManager", "_sync_tape_state", [false, false, false])
+				w.handle_rpc("GameManager/MutationRoll", "_reset_run_rpc", [])
+				_pass("TAPE", "tape overlay shown (can_choose=%s)" % str(n.first_peer == n.you))
+				w.me.teleport(Vector3(-2.0, 0.1, -9.0))
+				_probe_step = 99
+				_run_t = 2.7
