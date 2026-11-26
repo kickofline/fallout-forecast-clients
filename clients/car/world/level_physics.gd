@@ -8,6 +8,9 @@ extends Reference
 ##   var lp = preload("res://world/level_physics.gd").new()
 ##   var info = lp.build(level_root, map_id)   # call once after the level is instanced
 ##   info.navigation  -> Navigation (Godot 3) node or null; parented under level_root
+##                       and named "LevelNavigation" (solo code may also find it
+##                       with level_root.get_node_or_null("LevelNavigation"))
+##   info.shelters    -> Array of Area (layer 4) built from the map sidecar `shelters`
 ##   info.source      -> "exported" (assets/maps/<id>_physics.json) | "trimesh_fallback"
 ##
 ## Collision layers (match the native game, client-responsibilities.md §3):
@@ -26,7 +29,7 @@ func build(level_root: Spatial, _map_id: String) -> Dictionary:
 		mi.create_trimesh_collision()
 		n += 1
 	print("PHYSICS fallback trimesh meshes=%d" % n)
-	return {"navigation": null, "source": "trimesh_fallback"}
+	return {"navigation": null, "shelters": [], "source": "trimesh_fallback"}
 
 
 func _meshes(node: Node, out := []) -> Array:
