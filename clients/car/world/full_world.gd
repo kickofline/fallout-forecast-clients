@@ -584,7 +584,7 @@ func _boss_rpc(method: String, args: Array) -> void:
 			if a and is_instance_valid(a) and args.size() >= 3 and args[0] is Vector3:
 				_etarget[0] = [args[0], a.rotation.y]
 				var sacs = int(args[2])
-				a.hp = [0.2, 0.4, 0.75, 1.0][clamp(sacs, 0, 3)]
+				a.hp = [0.2, 0.4, 0.75, 1.0][int(clamp(sacs, 0, 3))]
 		"_died":
 			if a and is_instance_valid(a):
 				a.kill()
@@ -1558,12 +1558,9 @@ func _best_interact() -> Dictionary:
 				best = {"key": kb, "text": text3, "hold": 0.6, "cab": key, "mode": mode, "serial": serial}
 			i += 1
 	if not drop.empty() and drop.t <= 0.0:
-		var pad2: Vector3 = drop.pos + Vector3(0, 0.85, 0)
 		var dd = feet.distance_to(drop.pos)
 		if dd <= 2.8 and dd < best_score + 1.0:
 			best = {"key": "bay:Airdrop:airdrop", "text": "OPEN AIRDROP", "hold": 0.6, "cab": "Airdrop", "mode": "airdrop", "serial": 0}
-			if pad2.y < -1000.0:
-				best = {}
 	return best
 
 
