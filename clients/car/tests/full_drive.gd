@@ -125,7 +125,10 @@ func _process(delta: float) -> void:
 		return
 	match _step:
 		"connect":
-			if n.state == "lobby" and n.roster.has(n.you):
+			if n.state in ["loading", "run"]:
+				_pass("LATE_JOIN", "Net._start_run(%s) right after the roster (run in progress)" % n.current_map)
+				_step = "wait_start"
+			elif n.state == "lobby" and n.roster.has(n.you):
 				_shot("lobby")
 				if _mode != "solo":
 					n.lobby_action("vote", {"map": "pinecrest"})
@@ -214,6 +217,14 @@ func _play(delta: float) -> void:
 		_pass("HIT", "_receive_hits=%d despawned=%d" % [int(n.rpc_in.get("_receive_hits", 0)), int(n.rpc_in.get("_despawn_enemy", 0))])
 	if _run_t > 20.0 and n.errors == 0:
 		_pass("F7", "no protocol errors after %.0fs of stream (%d rpc types in)" % [_run_t, n.rpc_in.size()])
+	if w.players.size() > 0:
+		var ids = []
+		for id in w.players:
+			var e = w.squad.get(id, {})
+			ids.append("%d@%s" % [id, str(e.get("pos", Vector3.ZERO).snapped(Vector3.ONE * 0.1))])
+		if not _checks.has("SQUAD"):
+			_pass("SQUAD", "remote players rendered: %s (roster %d)" % [str(ids), n.roster.size()])
+			_shot("squad")
 	if _leave_after > 0.0 and _run_t > _leave_after:
 		print("DRIVE leaving after %.0fs in run" % _run_t)
 		_finish()
