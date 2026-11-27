@@ -107,6 +107,12 @@ func _next() -> void:
 	var gap = max(box.size.x, box.size.z) * 1.35 + 0.3
 	if _name == "cumulus":
 		gap = box.size.x * 1.05
+	var center = box.position + box.size * 0.5
+	var dist = (size * 0.5 + gap * 0.25) / tan(deg2rad(_cam.fov * 0.5)) * 1.15 + max(box.size.z, box.size.x) * 0.5
+	var horiz = (gap * 1.5 + max(box.size.x, box.size.z) * 0.5) / tan(deg2rad(_cam.fov * 0.5)) / (float(W) / H) + max(box.size.z, 0.5)
+	dist = max(dist, horiz)
+	_cam.transform = Transform(Basis(Vector3.RIGHT, deg2rad(-8)), Vector3(0, center.y + dist * 0.14, dist))
+	_cam.far = dist * 4.0 + 50.0
 	var yaws = [deg2rad(200), deg2rad(270), deg2rad(160)]
 	for i in 3:
 		var a = Actor.new()
@@ -137,13 +143,7 @@ func _next() -> void:
 				a.state = "downed"
 				a._down = 1.0
 		seed(7 + i)
-		a._process_body(0.0)
-	var center = box.position + box.size * 0.5
-	var dist = (size * 0.5 + gap * 0.25) / tan(deg2rad(_cam.fov * 0.5)) * 1.15 + max(box.size.z, box.size.x) * 0.5
-	var horiz = (gap * 1.5 + max(box.size.x, box.size.z) * 0.5) / tan(deg2rad(_cam.fov * 0.5)) / (float(W) / H) + max(box.size.z, 0.5)
-	dist = max(dist, horiz)
-	_cam.transform = Transform(Basis(Vector3.RIGHT, deg2rad(-8)), Vector3(0, center.y + dist * 0.14, dist))
-	_cam.far = dist * 4.0 + 50.0
+		a._process_body(0.11)
 	_wait = 4
 
 

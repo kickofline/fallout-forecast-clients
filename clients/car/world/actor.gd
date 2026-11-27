@@ -37,6 +37,7 @@ var id = 0
 var model: Spatial
 var parts = {}
 var rest = {}
+var _rest_rotation = {}
 var weapon_mount: Spatial
 var held_item = ""
 var state = "ok"
@@ -105,11 +106,13 @@ func _use_model(m: Spatial) -> void:
 	RetroMat.prepare(model)
 	parts.clear()
 	rest.clear()
+	_rest_rotation.clear()
 	for n in PIVOTS:
 		var node = model.find_node(n, true, false) as Spatial
 		if node:
 			parts[n] = node
 			rest[n] = node.transform
+			_rest_rotation[n] = node.transform.basis.get_euler()
 	weapon_mount = parts.get("WeaponMount")
 	if _rig:
 		_rig.set_style(RetroMat.snap if Settings.retro_enabled else 0.0, RetroMat.wetness)
@@ -294,7 +297,7 @@ func _rot(n: String, x: float, y = null, z = null) -> void:
 	var p: Spatial = parts.get(n)
 	if p == null:
 		return
-	var r: Vector3 = (rest[n] as Transform).basis.get_euler()
+	var r: Vector3 = _rest_rotation[n]
 	p.rotation = Vector3(x, r.y if y == null else y, r.z if z == null else z)
 
 

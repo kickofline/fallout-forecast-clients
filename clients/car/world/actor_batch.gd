@@ -109,7 +109,14 @@ func _build(scene: PackedScene, pivots: Array, static_lod: bool):
 			if not _supported(mesh.mesh, i, m):
 				valid = false
 				break
-			_append(alpha if m.flags_transparent else opaque, mesh.mesh.surface_get_arrays(i), m, local, part)
+			# On GLES2 the source's alpha prepass draws constant-alpha
+			# glTF surfaces opaquely at alpha >= 0.1. Bake that appearance
+			# into the solid surface and avoid the original double draw.
+			var arrays = mesh.mesh.surface_get_arrays(i)
+			var vertex_alpha = m.vertex_color_use_as_albedo and arrays[Mesh.ARRAY_COLOR] != null
+			var blended = m.flags_transparent and (m.params_depth_draw_mode != SpatialMaterial.DEPTH_DRAW_ALPHA_OPAQUE_PREPASS
+				or m.albedo_color.a < 0.1 or vertex_alpha)
+			_append(alpha if blended else opaque, arrays, m, local, part, blended)
 		if not valid:
 			break
 	if not valid or owners.empty() or owners.size() > MAX_PARTS:
@@ -199,7 +206,7 @@ func _group() -> Dictionary:
 	return {"vertices": [], "normals": [], "colors": [], "uv": [], "extra": [], "indices": []}
 
 
-func _append(group: Dictionary, arrays: Array, material: SpatialMaterial, xf: Transform, part: int) -> void:
+func _append(group: Dictionary, arrays: Array, material: SpatialMaterial, xf: Transform, part: int, blended: bool) -> void:
 	var vertices: PoolVector3Array = arrays[Mesh.ARRAY_VERTEX]
 	var normals = arrays[Mesh.ARRAY_NORMAL]
 	var colors = arrays[Mesh.ARRAY_COLOR]
@@ -220,7 +227,7 @@ func _append(group: Dictionary, arrays: Array, material: SpatialMaterial, xf: Tr
 		var color = material.albedo_color
 		if material.vertex_color_use_as_albedo and colors != null:
 			color *= colors[i]
-		if not material.flags_transparent:
+		if not blended:
 			color.a = emission.b
 		group.colors.append(color)
 		group.uv.append(Vector2(part, style))

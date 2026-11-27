@@ -7,28 +7,20 @@ Android SDK Platform-Tools and Build-Tools, and Python 3. In the Godot editor
 settings under **Export → Android**, set **Java SDK Path** and **Android SDK
 Path**. Configure a debug keystore there if Godot has not already created one.
 
-From the repository root, sync the asset pack and create the output directory.
+From a clean repository worktree, sync and export with PowerShell. Set
+`GODOT3` to the Godot 3.6.3 executable. Open `clients/car/project.godot` in
+the editor first if the project needs to import assets.
 
 ```powershell
-python -m pip install soundfile   # optional: lets sync decode SFX .ogg to .wav
-python tools/sync_assets.py
-New-Item -ItemType Directory -Force build
+python -m pip install soundfile   # optional PCM SFX on the head unit
+python tools/sync_assets.py       # provides assets for the first editor import
+.\tools\build_apk.ps1
+.\tools\build_apk.ps1 -Test
 ```
 
-With `soundfile` installed, `sync_assets.py` writes a PCM `.wav` next to each
-SFX `.ogg` under `clients/car/assets/`, and the client plays those instead
-(no per-voice Vorbis decoding on the head unit's CPU).
-
-Open `clients/car/project.godot` in Godot 3.6.3 and wait for the first import to
-finish. Set `GODOT3` to the Godot executable path, then export from `clients/car/`.
-On Windows, `Start-Process -Wait` waits for the GUI executable to finish.
-
-```powershell
-Push-Location clients/car
-Start-Process -FilePath $env:GODOT3 -ArgumentList '--path . --no-window --export-debug "Android Car" ../../build/fallout-car.apk' -Wait -NoNewWindow
-Start-Process -FilePath $env:GODOT3 -ArgumentList '--path . --no-window --export-debug "Android Test" ../../build/fallout-car-test.apk' -Wait -NoNewWindow
-Pop-Location
-```
+The export script checks Git status, syncs assets, and restores
+`project.godot` after Godot exits. With `soundfile` installed, sync writes a
+PCM `.wav` next to each one-shot `.ogg` for cheaper audio decoding.
 
 | Preset | Output | ABI |
 | --- | --- | --- |
@@ -220,8 +212,8 @@ world-parity visuals do not change that. In a wave-1 Downpour on Pinecrest
 with two players and 30 to 40 infected (2026-11-26, desktop), `world` was
 1.2 to 1.5 ms, `actors` 0.5 to 0.9 ms and `fx` under 0.1 ms. 3D draws were 85
 to 130 with the horde off screen and peaked at 660 when facing all of it.
-Each infected rig costs about 15 draws, so the horde dominates the frame,
-not the new effects. Idle effect pools draw nothing, and an active zone adds
+In that build, each infected rig cost about 15 draws. The current actor
+batching path is described below. Idle effect pools draw nothing, and an active zone adds
 one or two draws.
 
 #### Native feature parity (HUD and in-run UI)
@@ -320,6 +312,40 @@ roughly a fifth of that on a desktop. The API 22 x86 emulator with
 similar overall frame rate (about 10 fps), but it is 3D-bound in software,
 not draw-call-bound. Use it for Android behaviour and A/B direction, not
 absolute fps.
+
+### Actor rendering and stress fixture
+
+The client loads the original manifest rigs and caches one merged mesh per
+model. The procedural pose drives rigid per-part transforms in a GLES2
+vertex shader. Vertex colors preserve the lit, glowing and unshaded surfaces.
+The opaque draw includes constant-alpha effects that the GLES2 depth prepass
+already rendered opaque. Blended geometry uses a second surface when needed.
+The teammate's held item still follows the animated weapon mount.
+
+Ordinary infected switch to a baked pose beyond 30 m and resume animation
+within 27 m. Bosses and teammates keep their original pose updates at a
+reduced rate past 30 m. Every actor keeps its own frustum bounds.
+
+Profile 40 animated infected and two armed teammates with the mock:
+
+```powershell
+python tools/mock_bridge.py --fast --actor-stress --host 127.0.0.1 --port 8792
+```
+
+In a second shell, use the following Godot arguments and change
+`--map=pinecrest` to `--map=harbor` or `--map=maple_hollow`.
+
+```text
+--path clients/car --resolution 1280x720 -- --url=ws://127.0.0.1:8792/ --capture=DIR --run-seconds=19 --exit-when-done --map=pinecrest --retro --lines=240 --detail=1 --no-rain --cam=0,18,0,0,-0.22
+```
+
+Use an absolute capture directory. For an emulator run, use the Android
+Test APK, substitute `10.0.2.2` in the URL, and put the flags after `--`
+into the emulator's `user://test_args.txt`, one per line. Give
+`--capture` a writable path such as `user://actor-stress`.
+
+Capture all enemy types and suit combinations under repeatable lighting with
+`--path clients/car -s res://tests/rig_shots.gd -- --shots=DIR --verify-batched`.
 
 ## Local verification
 
