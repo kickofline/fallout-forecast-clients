@@ -4,6 +4,9 @@ extends Spatial
 ## equations from assets/README.md (player_model.gd, infected_model.gd).
 
 # reach, freq, freq_per_speed, arm, leg, bounce, sway, lean
+const LOD_ENTER_SQUARED = 30.0 * 30.0
+const LOD_EXIT_SQUARED = 27.0 * 27.0
+
 const GAIT = {
 	"drip": [1.15, 2.6, 1.7, 0.55, 0.45, 0.050, 0.06, -0.10],
 	"gutter": [0.55, 5.0, 2.6, 0.70, 0.55, 0.025, 0.02, -0.25],
@@ -57,6 +60,7 @@ var _attack = 0.0
 var _down = 0.0
 var _gait: Array = GAIT["drip"]
 var _lod_acc = 0.0
+var _rig
 var _fall_axis = Vector3.RIGHT
 var _fall_dir = Vector3.ZERO
 var _linger = 0.0
@@ -71,7 +75,7 @@ func setup_enemy(enemy_type: String) -> void:
 	_gait = GAIT.get(type, GAIT["gutter"])
 	var scene = Assets.enemy_scene(type)
 	if scene:
-		_use_model(RetroMat.instance_merged(scene, PIVOTS))
+		_use_scene(scene, kind == "enemy" and type != "cloudburst")
 	else:
 		_use_model(_placeholder(PLACEHOLDER_COLORS.get(type, Color("#6fd65a")), type == "turned" or kind == "boss"))
 	if type == "cloudburst" and not scene:
@@ -83,9 +87,14 @@ func setup_player(model_id: String, suit: Color) -> void:
 	kind = "player"
 	var scene = Assets.player_scene(model_id)
 	if scene:
-		_use_model(RetroMat.instance_merged(scene, PIVOTS))
+		_use_scene(scene, false)
 	else:
 		_use_model(_placeholder(suit, true))
+
+
+func _use_scene(scene: PackedScene, static_lod: bool) -> void:
+	_rig = RetroMat.actor_batch.instance(scene, PIVOTS, static_lod)
+	_use_model(_rig.root if _rig else RetroMat.instance_merged(scene, PIVOTS))
 
 
 func _use_model(m: Spatial) -> void:
@@ -102,6 +111,9 @@ func _use_model(m: Spatial) -> void:
 			parts[n] = node
 			rest[n] = node.transform
 	weapon_mount = parts.get("WeaponMount")
+	if _rig:
+		_rig.set_style(RetroMat.snap if Settings.retro_enabled else 0.0, RetroMat.wetness)
+		_rig.update_pose()
 
 
 ## Procedural stand-in with the player/infected hierarchy (boxes).
@@ -250,11 +262,18 @@ func _process_body(delta: float) -> void:
 		if die_left <= -0.2:
 			queue_free()
 		return
-	# Off-screen or distant actors animate at ~10 Hz (procedural rigs are
-	# GDScript-heavy on the head unit).
 	var cam = get_viewport().get_camera()
+	if _rig:
+		_rig.set_style(RetroMat.snap if Settings.retro_enabled else 0.0, RetroMat.wetness)
 	if cam and spawn_left <= 0.0:
-		if pos.distance_squared_to(cam.global_transform.origin) > 900.0 or cam.is_position_behind(pos):
+		var dist_squared = pos.distance_squared_to(cam.global_transform.origin)
+		if _rig and _rig.still_mesh:
+			_rig.set_still(dist_squared > (LOD_EXIT_SQUARED if _rig.still else LOD_ENTER_SQUARED))
+			if _rig.still:
+				_advance_infected(delta)
+				return
+		# Off-screen actors and distant bosses/teammates animate at ~10 Hz.
+		if dist_squared > LOD_ENTER_SQUARED or cam.is_position_behind(pos):
 			_lod_acc += delta
 			if _lod_acc < 0.1:
 				return
@@ -267,6 +286,8 @@ func _process_body(delta: float) -> void:
 			_animate_boss(delta)
 		_:
 			_animate_infected(delta)
+	if _rig:
+		_rig.update_pose()
 
 
 func _rot(n: String, x: float, y = null, z = null) -> void:
@@ -329,16 +350,20 @@ func _animate_player(delta: float) -> void:
 		weapon_mount.transform = Transform(t.basis, t.xform(Vector3(0, -0.29, 0)))
 
 
-func _animate_infected(delta: float) -> void:
-	var reach: float = _gait[0]
+func _advance_infected(delta: float) -> void:
 	_clock += delta * (_gait[1] + _speed * _gait[2])
-	var amount: float = clamp(_speed / 3.5, 0.0, 1.2)
 	_hurt = max(0.0, _hurt - delta * 5.0)
 	_head_kick = max(0.0, _head_kick - delta * 4.0)
 	_anticipation = max(0.0, _anticipation - delta * 2.0)
 	if anim == "windup":
 		_anticipation = max(_anticipation, 0.8)
 	_attack = max(0.0, _attack - delta * 3.0)
+
+
+func _animate_infected(delta: float) -> void:
+	_advance_infected(delta)
+	var reach: float = _gait[0]
+	var amount: float = clamp(_speed / 3.5, 0.0, 1.2)
 	var idx = 0
 	for s in ["L", "R"]:
 		var phase = 0.0 if s == "L" else PI

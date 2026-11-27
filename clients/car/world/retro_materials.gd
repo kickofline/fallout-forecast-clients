@@ -7,13 +7,15 @@ extends Node
 ## Converted materials are cached per source material.
 
 const PS1 = preload("res://shaders/ps1.shader")
+const ActorBatch = preload("res://world/actor_batch.gd")
 const PS1_TRI = preload("res://shaders/ps1_triplanar.shader")
 
 var snap = 120.0
 var _converted = {}
 var _fixed = {}
 var _all = []
-var _wetness = 0.0
+var wetness = 0.0
+var actor_batch = ActorBatch.new()
 
 
 func prepare(root: Node) -> void:
@@ -89,7 +91,7 @@ func _convert(material: Material) -> Material:
 	if m.albedo_texture:
 		s.set_shader_param("albedo_texture", m.albedo_texture)
 	s.set_shader_param("dry_roughness", m.roughness)
-	s.set_shader_param("wetness", _wetness)
+	s.set_shader_param("wetness", wetness)
 	_converted[m] = s
 	_all.append(s)
 	return s
@@ -97,9 +99,9 @@ func _convert(material: Material) -> Material:
 
 ## Storm wetness on every converted surface (cheap uniform write).
 func set_wetness(w: float) -> void:
-	if abs(w - _wetness) < 0.02:
+	if abs(w - wetness) < 0.02:
 		return
-	_wetness = w
+	wetness = w
 	for s in _all:
 		s.set_shader_param("wetness", w)
 
@@ -121,6 +123,7 @@ var _merged_material: SpatialMaterial
 
 
 func _exit_tree() -> void:
+	actor_batch.clear()
 	for template in _templates.values():
 		template.free()
 	_templates.clear()
