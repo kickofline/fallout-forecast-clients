@@ -336,7 +336,7 @@ In a second shell, use the following Godot arguments and change
 `--map=pinecrest` to `--map=harbor` or `--map=maple_hollow`.
 
 ```text
---path clients/car --resolution 1280x720 -- --url=ws://127.0.0.1:8792/ --capture=DIR --run-seconds=19 --exit-when-done --map=pinecrest --retro --lines=240 --detail=1 --no-rain --cam=0,18,0,0,-0.22
+--path clients/car --resolution 1280x720 -- --url=ws://127.0.0.1:8792/ --capture=DIR --run-seconds=19 --exit-when-done --map=pinecrest --retro --lines=240 --detail=1 --cam=0,18,0,0,-0.22
 ```
 
 Use an absolute capture directory. For an emulator run, use the Android
