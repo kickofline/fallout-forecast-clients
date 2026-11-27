@@ -204,6 +204,30 @@ class Run:
         self.pickups[5101] = {"id": 5101, "item": "supply_station", "pos": [-16.0, 0.0, 10.0], "kind": "station"}
         self.ev({"e": "banner", "text": "WAVE 1 — CALM BEFORE THE STORM"})
 
+    def step_actor_stress(self, dt):
+        # Five ranks, with the farthest one beyond the actor LOD threshold.
+        # Elevate the horde so every map can use the same unobstructed view.
+        if not self.enemies:
+            self.pickups.clear()
+            self.pos = [0, 16.35, 0]
+            self.phase = "downpour"
+            self.intensity = 0.75
+            for i, bot in enumerate(self.bots):
+                bot["pos"] = [(-1 if i == 0 else 1) * 3.8, 14, -11]
+                bot["yaw"] = 0.2 * (1 if i == 0 else -1)
+            for i in range(40):
+                self.enemies[1000 + i] = {
+                    "id": 1000 + i, "type": ENEMY_TYPES[i % len(ENEMY_TYPES)],
+                    "pos": [0, 14, 0], "yaw": 0, "anim": "walk",
+                }
+        t = self.tick * dt
+        for i, enemy in enumerate(self.enemies.values()):
+            depth = [9, 13, 17, 22, 33][i // 8]
+            enemy["pos"][0] = (i % 8 - 3.5) * depth * 0.16 + math.sin(t * 3 + i) * 0.4
+            enemy["pos"][2] = -depth + math.cos(t * 2 + i) * 0.4
+            cycle = (t + i * 0.17) % 4
+            enemy["anim"] = "windup" if cycle < 0.6 else "attack" if cycle < 0.9 else "walk"
+
     def ev(self, e):
         self.events.append(e)
 
@@ -238,6 +262,9 @@ class Run:
 
     def step(self, dt):
         self.tick += 1
+        if self.args.actor_stress:
+            self.step_actor_stress(dt)
+            return
         if self.done:
             return
         self.update_weather(dt)
@@ -821,6 +848,7 @@ def main():
     ap.add_argument("--waves", type=int, default=2, help="waves before the tape/results")
     ap.add_argument("--autostart", type=float, default=0.0, help="force start N seconds after connect")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--actor-stress", action="store_true", help="40 moving infected for client profiling")
     args = ap.parse_args()
 
     async def run():
